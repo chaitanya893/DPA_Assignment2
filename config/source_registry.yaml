@@ -1,0 +1,183 @@
+# Source Registry for Fund Distribution Detection Engine
+# Documenting source hierarchy, tier authority, date fields, capabilities, and explicit limitations.
+
+version: "1.0"
+sources:
+  - source_id: "sec_edgar_rule_19a1"
+    source_type: "REGULATORY_FILING_NOTICE"
+    source_tier: 1
+    applicable_country: "US"
+    applicable_fund_types:
+      - "MUTUAL_FUND"
+      - "ETF"
+    evidence_capabilities:
+      - "Explicit disclosure of distribution components including Return of Capital (ROC)"
+      - "Authoritative per-share payout breakdowns"
+    available_date_fields:
+      - "declaration_date"
+      - "ex_date"
+      - "record_date"
+      - "payable_date"
+    limitations:
+      - "Only required when distributions include sources other than net investment income (e.g. ROC or capital gains)."
+      - "Funds paying purely ordinary net investment income are not legally required to file 19a-1 notices."
+      - "Not every filing constitutes a distribution declaration."
+    access_method: "HTTPS_EDGAR_API_OR_ARCHIVE"
+    notes: "Primary authoritative US artifact for return of capital characterization."
+
+  - source_id: "sec_edgar_form_497_485bpos"
+    source_type: "PROSPECTUS_SUPPLEMENT"
+    source_tier: 1
+    applicable_country: "US"
+    applicable_fund_types:
+      - "MUTUAL_FUND"
+      - "ETF"
+    evidence_capabilities:
+      - "Authoritative notices of special distributions, policy amendments, and fund reorganizations"
+    available_date_fields:
+      - "filing_date"
+      - "declaration_date"
+      - "ex_date"
+      - "record_date"
+      - "payable_date"
+    limitations:
+      - "Often describes future distribution policies or fund changes rather than routine periodic cash declarations."
+      - "Requires explicit textual parsing to distinguish formal declarations from general prospectus updates."
+    access_method: "HTTPS_EDGAR_SUBMISSIONS_API"
+    notes: "Authoritative supplementary filings filed under Securities Act Rule 497."
+
+  - source_id: "sec_edgar_form_nport_ncen"
+    source_type: "PERIODIC_REGULATORY_REPORT"
+    source_tier: 1
+    applicable_country: "US"
+    applicable_fund_types:
+      - "MUTUAL_FUND"
+      - "ETF"
+    evidence_capabilities:
+      - "Comprehensive retrospective record of monthly portfolio distributions and capital flows"
+    available_date_fields:
+      - "filing_date"
+      - "period_end_date"
+      - "record_date"
+      - "ex_date"
+    limitations:
+      - "Filed retrospectively (up to 60 days after fiscal month/quarter end); not suitable for real-time forward declaration detection."
+      - "Does not always report the precise initial board declaration announcement date."
+    access_method: "HTTPS_EDGAR_COMPANY_API"
+    notes: "Authoritative validation and audit baseline for US funds."
+
+  - source_id: "sec_edgar_series_class_mapping"
+    source_type: "REGULATORY_METADATA_INDEX"
+    source_tier: 1
+    applicable_country: "US"
+    applicable_fund_types:
+      - "MUTUAL_FUND"
+      - "ETF"
+    evidence_capabilities:
+      - "Authoritative mapping from CIK to Series ID (S-number) and Class/Contract ID (C-number) and ticker"
+    available_date_fields:
+      - "updated_at"
+    limitations:
+      - "Provides structural metadata only; does not contain distribution event records."
+    access_method: "HTTPS_EDGAR_DATA_DIRECTORY"
+    notes: "Used to resolve internal fund_id to authoritative SEC series and class identifiers."
+
+  - source_id: "tmx_cds_bulletins"
+    source_type: "EXCHANGE_SETTLEMENT_NOTICE"
+    source_tier: 1
+    applicable_country: "CA"
+    applicable_fund_types:
+      - "MUTUAL_FUND"
+      - "ETF"
+    evidence_capabilities:
+      - "Official exchange notices of corporate distributions, cash per unit, and tax factor schedules"
+    available_date_fields:
+      - "declaration_date"
+      - "ex_date"
+      - "record_date"
+      - "payable_date"
+    limitations:
+      - "Exchange bulletins primarily cover exchange-traded products (TSX/TSXV); unlisted mutual funds report through FundServ or direct sponsor notices."
+      - "Access interfaces vary between public bulletin releases and depository distribution feeds."
+    access_method: "HTTPS_EXCHANGE_DISCLOSURE"
+    notes: "Authoritative Canadian exchange distribution source."
+
+  - source_id: "official_fund_distribution_page"
+    source_type: "SPONSOR_PORTAL_SCHEDULE"
+    source_tier: 2
+    applicable_country: "BOTH"
+    applicable_fund_types:
+      - "MUTUAL_FUND"
+      - "ETF"
+    evidence_capabilities:
+      - "Direct fund family published dividend and capital gains tables, schedules, and historical rates"
+    available_date_fields:
+      - "declaration_date"
+      - "ex_date"
+      - "record_date"
+      - "payable_date"
+      - "reinvestment_date"
+    limitations:
+      - "HTML table and PDF layouts vary widely across fund sponsors."
+      - "Some sponsors publish schedules listing ex-dates and pay-dates without explicitly listing board declaration dates."
+      - "Specific endpoint URLs must be independently verified per fund family before production ingestion."
+    access_method: "HTTPS_GET"
+    notes: "Primary unstructured source for scheduled fund distributions."
+
+  - source_id: "official_fund_press_release"
+    source_type: "SPONSOR_PRESS_RELEASE"
+    source_tier: 2
+    applicable_country: "BOTH"
+    applicable_fund_types:
+      - "MUTUAL_FUND"
+      - "ETF"
+    evidence_capabilities:
+      - "Formal announcement text for monthly/quarterly dividend declarations and year-end capital gains"
+    available_date_fields:
+      - "declaration_date"
+      - "ex_date"
+      - "record_date"
+      - "payable_date"
+    limitations:
+      - "Unstructured prose requiring parsing to extract exact per-share figures."
+      - "Press release release time can precede or lag exchange bulletin postings."
+    access_method: "HTTPS_GET_OR_RSS"
+    notes: "Primary source for explicit declaration dates and announcement timestamps."
+
+  - source_id: "official_fund_estimated_capgains_pdf"
+    source_type: "SPONSOR_ESTIMATE_DOCUMENT"
+    source_tier: 2
+    applicable_country: "BOTH"
+    applicable_fund_types:
+      - "MUTUAL_FUND"
+      - "ETF"
+    evidence_capabilities:
+      - "Preliminary estimated year-end capital gain distributions published in October/November"
+    available_date_fields:
+      - "publication_date"
+      - "estimated_record_date"
+      - "estimated_payable_date"
+    limitations:
+      - "Figures are preliminary estimates, not final binding cash distributions."
+      - "Must not overwrite final distribution declarations."
+    access_method: "HTTPS_GET_DOCUMENT"
+    notes: "Crucial for Q4 tax planning tracking; coexists as distinct estimated records."
+
+  - source_id: "public_market_data_feed"
+    source_type: "THIRD_PARTY_MARKET_DATA"
+    source_tier: 3
+    applicable_country: "BOTH"
+    applicable_fund_types:
+      - "MUTUAL_FUND"
+      - "ETF"
+    evidence_capabilities:
+      - "Independent cross-checking of ex-dates and cash payout amounts"
+    available_date_fields:
+      - "ex_date"
+      - "payable_date"
+    limitations:
+      - "Third-party data is strictly corroboration-only."
+      - "Never treated as sole evidence for a DECLARED or NOT_DECLARED outcome."
+      - "Declaration dates are frequently omitted, aggregated, or estimated by third-party aggregators."
+    access_method: "HTTPS_PUBLIC_QUERY"
+    notes: "Used only for secondary cross-source verification and discrepancy alerting."
