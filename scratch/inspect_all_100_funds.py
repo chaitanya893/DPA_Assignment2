@@ -21,15 +21,21 @@ def main() -> None:
         report = json.load(f)
 
     print("=" * 95)
-    print("       ASSIGNMENT 2 — COMPLETE 100-FUND UNIVERSE AND DETECTOR EXECUTION AUDIT")
+    print(
+        "       ASSIGNMENT 2 — COMPLETE 100-FUND UNIVERSE AND DETECTOR EXECUTION AUDIT"
+    )
     print("=" * 95)
     print(f"Total Funds in Universe : {len(funds)}")
     print(f"US Funds (Target: 60)   : {sum(1 for f in funds if f['country'] == 'US')}")
     print(f"CA Funds (Target: 40)   : {sum(1 for f in funds if f['country'] == 'CA')}")
     print(f"ETFs (Min: 10)          : {sum(1 for f in funds if f.get('is_etf'))}")
-    print(f"Monthly Payers (Min: 10): {sum(1 for f in funds if f.get('is_monthly_payer'))}")
+    print(
+        f"Monthly Payers (Min: 10): {sum(1 for f in funds if f.get('is_monthly_payer'))}"
+    )
     print("-" * 95)
-    print(f"{'#':<4} | {'Region':<6} | {'Ticker/Code':<12} | {'Fund Family':<18} | {'Status':<12} | {'Sources Checked'}")
+    print(
+        f"{'#':<4} | {'Region':<6} | {'Ticker/Code':<12} | {'Fund Family':<18} | {'Status':<12} | {'Sources Checked'}"
+    )
     print("-" * 95)
 
     res_map = {r["fund_id"]: r for r in results}
@@ -48,11 +54,21 @@ def main() -> None:
     print("SUMMARY OF LAYER A DETECTOR LIVE RUN:")
     print(f"  * Generated At       : {report.get('generated_at')}")
     print(f"  * Total Processed    : {report['universe_summary']['total_funds']} funds")
-    print(f"  * DECLARED           : {report['status_distribution']['overall']['DECLARED']}")
-    print(f"  * NOT_DECLARED       : {report['status_distribution']['overall']['NOT_DECLARED']}")
-    print(f"  * UNKNOWN            : {report['status_distribution']['overall']['UNKNOWN']}")
-    print(f"  * Total Runtime      : {report['performance_metrics']['total_runtime_seconds']}s")
-    print(f"  * Authenticity Audit : {report['authenticity_audit']['status']} (0 fake data violations)")
+    print(
+        f"  * DECLARED           : {report['status_distribution']['overall']['DECLARED']}"
+    )
+    print(
+        f"  * NOT_DECLARED       : {report['status_distribution']['overall']['NOT_DECLARED']}"
+    )
+    print(
+        f"  * UNKNOWN            : {report['status_distribution']['overall']['UNKNOWN']}"
+    )
+    print(
+        f"  * Total Runtime      : {report['performance_metrics']['total_runtime_seconds']}s"
+    )
+    print(
+        f"  * Authenticity Audit : {report['authenticity_audit']['status']} (0 fake data violations)"
+    )
     print("=" * 95)
 
 

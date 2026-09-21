@@ -21,6 +21,7 @@ from src.detector import synthesize_detection_result
 from src.http_client import HTTPClient
 from src.models import (
     DetectionResult,
+    DetectionStatus,
     SourceAttemptRecord,
     SourceCoverageState,
     SourceTier,
@@ -266,6 +267,132 @@ class SourceOrchestrator:
         )
 
         return detection_result, attempts
+
+    def execute_sweep(
+        self,
+        fund_id: str,
+        mode: str = "5months",
+        as_of: date | None = None,
+    ) -> dict[str, object]:
+        """Execute multi-tier detection across dynamic multi-cycle or 24-month rolling windows.
+
+        Args:
+            fund_id: Identifier of the target fund.
+            mode: '5months' (Active Quarterly + Feb cycles) or '24months' (Dynamic 2-year rolling sweep).
+            as_of: Reference date for dynamic calculations (defaults to current date).
+
+        Returns:
+            Dictionary containing aggregated status, window results, and attempt logs.
+        """
+        ref_date = as_of if as_of is not None else datetime.now(timezone.utc).date()
+
+        if mode == "24months":
+            w_start, w_end = get_dynamic_24month_window(ref_date)
+            result, attempts = self.execute(fund_id, w_start, w_end)
+            return {
+                "fund_id": fund_id,
+                "mode": "24months",
+                "reference_date": ref_date.isoformat(),
+                "window_start": w_start.isoformat(),
+                "window_end": w_end.isoformat(),
+                "overall_status": result.status.value,
+                "confidence": result.confidence,
+                "suggested_extraction_route": (
+                    result.suggested_extraction_route.value
+                    if result.suggested_extraction_route
+                    else None
+                ),
+                "detection_result": result,
+                "source_attempts": attempts,
+            }
+
+        # mode == '5months' (Active Quarterly + Feb cycles)
+        cycle_windows = get_active_5month_windows(ref_date.year)
+        cycle_results: list[dict[str, object]] = []
+        any_declared = False
+        all_not_declared = True
+        highest_conf: float | None = None
+        all_attempts: list[SourceAttemptRecord] = []
+
+        for cycle_name, start_d, end_d in cycle_windows:
+            res, atts = self.execute(fund_id, start_d, end_d)
+            all_attempts.extend(atts)
+            if res.status == DetectionStatus.DECLARED:
+                any_declared = True
+                all_not_declared = False
+                if highest_conf is None or (
+                    res.confidence is not None and res.confidence > highest_conf
+                ):
+                    highest_conf = res.confidence
+            elif res.status != DetectionStatus.NOT_DECLARED:
+                all_not_declared = False
+
+            cycle_results.append(
+                {
+                    "cycle_name": cycle_name,
+                    "window_start": start_d.isoformat(),
+                    "window_end": end_d.isoformat(),
+                    "status": res.status.value,
+                    "confidence": res.confidence,
+                    "evidence_count": len(res.evidence),
+                }
+            )
+
+        if any_declared:
+            overall_status = DetectionStatus.DECLARED.value
+        elif all_not_declared and cycle_results:
+            overall_status = DetectionStatus.NOT_DECLARED.value
+        else:
+            overall_status = DetectionStatus.UNKNOWN.value
+
+        return {
+            "fund_id": fund_id,
+            "mode": "5months",
+            "evaluation_year": ref_date.year,
+            "overall_status": overall_status,
+            "confidence": highest_conf,
+            "cycle_results": cycle_results,
+            "source_attempts": all_attempts,
+        }
+
+
+def get_dynamic_24month_window(as_of: date | None = None) -> tuple[date, date]:
+    """Calculate a 24-month historical rolling window dynamically from the execution date.
+
+    Never hardcodes fixed calendar dates.
+    Example: if as_of is 22-Sep-2026, returns (22-Sep-2024, 22-Sep-2026).
+    Handles leap years (e.g. Feb 29) safely.
+    """
+    end_d = as_of if as_of is not None else datetime.now(timezone.utc).date()
+    try:
+        start_d = end_d.replace(year=end_d.year - 2)
+    except ValueError:
+        # Leap year Feb 29 edge case
+        start_d = end_d.replace(year=end_d.year - 2, day=28)
+    return start_d, end_d
+
+
+def get_active_5month_windows(
+    year: int | None = None,
+) -> list[tuple[str, date, date]]:
+    """Generate the 5 core active declaration cycle windows for an evaluation year:
+
+    1. February (Monthly bond & income payers)
+    2. March (Q1 Equity & ETF declaration cycle)
+    3. June (Q2 Equity & ETF declaration cycle)
+    4. September (Q3 Equity & ETF declaration cycle)
+    5. December (Q4 & Year-End Capital Gains declaration cycle)
+    """
+    y = year if year is not None else datetime.now(timezone.utc).date().year
+    is_leap = (y % 4 == 0 and y % 100 != 0) or (y % 400 == 0)
+    feb_end = 29 if is_leap else 28
+    return [
+        ("FEB_MONTHLY", date(y, 2, 1), date(y, 2, feb_end)),
+        ("Q1_MARCH", date(y, 3, 1), date(y, 3, 31)),
+        ("Q2_JUNE", date(y, 6, 1), date(y, 6, 30)),
+        ("Q3_SEPTEMBER", date(y, 9, 1), date(y, 9, 30)),
+        ("Q4_DECEMBER", date(y, 12, 1), date(y, 12, 31)),
+    ]
 
 
 def detect_distribution_with_fallback(

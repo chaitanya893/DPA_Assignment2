@@ -1,0 +1,225 @@
+=== PAGE 5 ===
+Deliverable
+Acceptance criterion
+Final memo
+5 to 8 pages: what works, what fails, what it would cost to run this for 500 companies
+Code
+Git repo, README, requirements pinned, runs end-to-end with one command
+Stretch goals (only if the above is complete)
+Auto-extract guidance statements and reported figures from the transcript.
+Flag differences between the press release numbers and the numbers spoken on the call.
+Sentiment or tone scoring on the Q&A section only.
+Assignment 2: Fund Distribution
+Detection and Extraction Engine
+Objective
+Build an engine that determines, for any US or Canadian mutual fund or ETF, whether it declared a dividend or capital gain distribution in
+a given period, and then captures the full details into a database.
+The assignment is deliberately split into two layers, and the first layer must be built and working before the second is started:
+Layer A, the atomic detector. A single-purpose function: given a fund and a date window, did a distribution occur? Yes, no, or
+unknown. Cheap, fast, high recall.
+Layer B, the extraction engine. Only invoked when Layer A says yes. Expensive, slow, high precision.
+This split matters because most funds on most days declare nothing. Running expensive PDF extraction across the whole universe every day
+is wasteful. The detector is the gate.
+Phase 0 (Days 1 to 3): Learn the domain before
+writing any code
+Write a short primer, in your own words, covering:
+Date types, and why confusing them corrupts a database: declaration date, ex-dividend date, record date, payable date, reinvestment
+date. Explain which one an event should be keyed on and why.
+US distribution component types: ordinary income dividend, qualified dividend, short-term capital gain, long-term capital gain, return of
+capital, foreign tax paid or credit, Section 199A dividend, tax-exempt income.
+Canadian distribution component types: eligible dividend, non-eligible dividend, capital gains, return of capital, foreign income, foreign tax
+paid, interest and other income. Explain how the year-end T3 or T5 reallocation can restate what was reported during the year, and what that
+means for a database that has already recorded the earlier figure.
+Estimated versus final: Fund families publish estimated year-end capital gains in October and November, then final figures in December.
+Both matter. Explain how you would store both without one silently overwriting the other.
+Deliverable: DOMAIN_PRIMER.md, 3 to 5 pages. This gets reviewed before you write code. Getting this wrong makes everything downstream
+wrong.
+
+=== PAGE 6 ===
+Phase 1 (Days 4 to 10): Layer A, the atomic
+detector
+Interface
+def detect_distribution( 
+    fund_id: str,          # internal ID resolving to ticker / CUSIP / ISIN / series ID / FundServ code 
+    window_start: date, 
+    window_end: date, 
+) -> DetectionResult: 
+    """ 
+    Returns: 
+      status: DECLARED | NOT_DECLARED | UNKNOWN 
+      confidence: 0.0 - 1.0 
+      evidence: list of {source_id, source_tier, url, retrieved_at, snippet_or_locator} 
+      suggested_extraction_route: API | HTML_TABLE | PDF | FILING | MANUAL 
+    """ 
+Three things to note in that signature, all of them deliberate:
+UNKNOWN is a first-class outcome. A detector that returns NOT_DECLARED when it simply could not reach the source will silently lose
+data forever. Never collapse the two.
+Every result carries evidence. A boolean with no pointer to what produced it cannot be audited or debugged.
+The detector recommends the extraction route. It has already seen the source, so it knows whether the data sits in a table, a PDF, or a
+filing.
+Source hierarchy
+Build a tiered source registry, and record the tier on every piece of evidence.
+Tier 1, authoritative:
+SEC EDGAR: Section 19(a) / Rule 19a-1 notices (these exist specifically to disclose distribution sources including return of capital, and
+are the single most useful US artefact), N-CEN, N-PORT, 497 and 485BPOS filings.
+The EDGAR company, series and class mapping files, which give you the series and class IDs that tickers alone will not.
+Exchange notices: Nasdaq and NYSE distribution notices, TMX and CDS bulletins for Canada.
+Tier 2, primary but unstructured:
+Fund company distribution pages, press releases, "distribution schedule" and "estimated year-end capital gains" PDFs.
+Tier 3, corroboration only:
+Public market data pages. Useful to cross-check, never to be the only evidence for a record.
+Detection strategies, cheapest first
+1. Calendar-based expectation. Every fund has an expected frequency: daily accrual, monthly, quarterly, semi-annual, annual, or
+irregular. Learn it from history. If a monthly payer has no record for 45 days, that is a signal in itself.
+2. Change detection. Hash the fund's distribution page or PDF. If the hash changed, something happened. Cheap and effective.
+3. Filing index polling. Poll the EDGAR daily index for the relevant form types filed by CIKs in your universe. Structured and reliable.
+
+=== PAGE 7 ===
+4. Targeted lookup. Only where 1 to 3 are inconclusive.
+Backfill and gap logic (this is the part the brief specifically asks for)
+Maintain per fund: expected_frequency, last_confirmed_event_date, last_checked_at, consecutive_unknowns.
+Trigger a lookback sweep when:
+Elapsed time since the last confirmed event exceeds 1.5× the expected interval.
+Any run returned UNKNOWN more than twice in a row.
+A new fund enters the universe (backfill 24 months).
+Month-end and year-end, unconditionally, since December is when the capital gain volume lands.
+The sweep re-queries a rolling window of N months rather than a single day, because sources publish late and amend. Make N configurable
+per source, and justify your default in the memo.
+Deliverable: working detector over 100 funds (60 US, 40 Canadian; mix of fund families, and include at least 10 ETFs and 10 monthly-
+payers), plus a report on hit rate, false negative rate, and average cost per check.
+Phase 2 (Days 11 to 16): Routing and extraction
+Only funds flagged DECLARED reach this layer.
+Route decision tree
+Is there a structured feed or documented API?        → parse directly 
+Is there an HTML table on the distribution page?     → HTML parse 
+Is there a PDF or Excel distribution schedule?       → document extraction 
+Is the data only inside a filing?                    → filing extraction 
+None of the above?                                   → queue for manual review 
+Log the route taken on every event, so you can report later on how much of the universe is genuinely automatable.
+Tools
+HTML: httpx, selectolax or BeautifulSoup, pandas.read_html for well-formed tables.
+PDF text layer: pdfplumber, PyMuPDF.
+PDF tables: camelot, tabula-py.
+Scanned PDFs: ocrmypdf with Tesseract, then re-extract.
+Excel: openpyxl, pandas.
+Rule on LLM-assisted extraction
+An LLM may be used to locate and structure values in messy documents. It may not be the last word on any number. Every extracted figure
+passes through deterministic validation: format check, magnitude check, component sum check, and cross-source comparison where a
+second source exists. Any figure that fails goes to review, not to the database.
+Phase 3 (Days 17 to 21): Database design
+Design and implement the schema. Suggested shape, refine it and justify your changes:
+
+=== PAGE 8 ===
+Table
+Purpose
+Table
+Purpose
+fund_master
+Fund level: name, family, CIK or SEDAR ID, country, type, inception, status
+share_class
+Class level: ticker, CUSIP, ISIN, series ID, FundServ code, currency, expected
+frequency
+source_registry
+Every source: URL pattern, tier, parser version, robots and ToS status, last
+success
+crawl_log
+Every attempt: source, timestamp, HTTP status, hash, outcome, duration
+raw_document
+Immutable copy of every source artefact, with sha256 and retrieval timestamp
+distribution_event
+One row per class per ex-date: declaration, ex, record, pay dates, currency, total
+per share, estimated_or_final flag
+distribution_component Child rows: component type, amount per share, percentage
+event_evidence
+Links events to the raw documents that support them
+dq_flag
+Validation failures, severity, resolution status
+Non-negotiable design requirements:
+Idempotency. Re-running the same day must not duplicate rows. Define your natural key explicitly, and defend it.
+Amendments. Distributions get restated, especially Canadian year-end reallocations and estimated-to-final capital gains. Never
+update in place. Append a new version and mark the old one superseded, so the history of what we believed and when stays intact.
+Provenance. Every number traces to a stored document. If it cannot be traced, it does not belong in the table.
+Estimated versus final coexist as separate rows, never as an overwrite.
+Phase 4 (Days 22 to 25): Validation and quality
+Implement these checks and report the pass rate:
+Components sum to the stated total, within a tolerance you define and justify.
+Ex-date NAV decline is broadly consistent with the distribution per share. A large mismatch is a red flag worth investigating.
+Distribution per share is not absurd relative to NAV. Flag anything above 20 percent for review rather than rejecting it, since legitimate
+large year-end distributions do exist.
+Currency matches the share class currency.
+Date ordering is sane: declaration ≤ ex ≤ record ≤ pay.
+Frequency continuity: a monthly payer with a missing month gets flagged.
+Cross-source variance: where two sources disagree, record both and flag, never silently pick one.
+Build a gold set (do this in parallel from Day 4)
+Manually verify 300 distribution events across 50 funds spanning at least 24 months, from primary sources only. Record the correct answer
+and the evidence URL for each. This is tedious and it is the most valuable artefact you will produce, because without it you cannot state your
+accuracy, and an accuracy number without a gold set is a guess.
+Deliverables and acceptance criteria
+Deliverable
+Acceptance criterion
+Domain
+primer
+Reviewed and approved before coding starts
+Atomic
+detector
+Runs over 100 funds; recall ≥ 98% and precision ≥ 99% against the gold set
+Routing layer Route logged for 100% of detected events
+Extraction
+≥ 90% of detected events fully extracted without manual intervention
+Database
+Schema implemented, populated with 24 months of history for 100 funds, idempotent on re-
+run
+
+=== PAGE 9 ===
+Deliverable
+Acceptance criterion
+Validation
+All checks implemented, DQ report generated
+Gold set
+300 verified events with evidence links
+Final memo
+Coverage by fund family and source type, where automation fails, and what full-universe
+scale would cost
+Stretch goals
+Predict likely declaration dates from history, so the crawler front-loads its effort.
+Detect and alert on unusual distributions, such as a first-ever return of capital, or a capital gain far above the fund's own history.
+Reconcile against year-end tax character statements.
+Common requirements for both
+assignments
+Repository structure
+/src            application code 
+/tests          pytest, meaningful coverage on parsers and validators 
+/config         source registry, universe files, no secrets committed 
+/notebooks      exploration only, not the deliverable 
+/docs           memo, primer, compliance file, schema diagram 
+/data/samples   small committed samples; large artefacts stay out of Git 
+README.md       what it does, how to run it, known limitations 
+Standards
+Type hints on public functions, ruff clean, black formatted.
+Structured logging with correlation IDs. Print statements do not count.
+Every network call retried with exponential backoff and a hard timeout.
+Secrets in environment variables. Nothing sensitive in the repo, ever.
+Cadence
+Daily standup note: done yesterday, doing today, blocked by.
+Friday demo of working code. Slides are not a demo.
+Mid-point review at the end of week 2, where scope can be cut if needed.
+Evaluation weighting
+Area
+Weight
+Correctness and measured accuracy
+30%
+Design quality, especially error and edge-case handling 25%
+Documentation and clarity of the final memo
+20%
+Code quality and tests
+15%
+Compliance discipline
+10%
+A closing note for the interns
+
+=== PAGE 10 ===
+On both assignments, a working pipeline that covers 60 percent of cases and documents the other 40 percent precisely is a better outcome
+than one claiming full coverage that nobody can verify. Report failures in detail. That is the deliverable that gets used.
+
+=== PAGE 11 ===
+

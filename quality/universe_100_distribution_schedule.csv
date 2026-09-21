@@ -1,0 +1,101 @@
+Sr No.,Country,Ticker / Code,Fund Name,Fund Family (Sponsor),Structure,Frequency,Authenticated Distribution Months,Official Source / Regulatory ID
+1,US,VTI,Vanguard Total Stock Market Index Fund ETF,Vanguard,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0000036405
+2,US,VOO,Vanguard S&P 500 ETF,Vanguard,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0000036405
+3,US,BND,Vanguard Total Bond Market ETF,Vanguard,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0000794105
+4,US,VYM,Vanguard High Dividend Yield ETF,Vanguard,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0001004655
+5,US,VNQ,Vanguard Real Estate ETF,Vanguard,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0000734383
+6,US,VB,Vanguard Small-Cap ETF,Vanguard,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0000036405
+7,US,VO,Vanguard Mid-Cap ETF,Vanguard,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0000036405
+8,US,VEA,Vanguard FTSE Developed Markets ETF,Vanguard,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0000923202
+9,US,VWO,Vanguard FTSE Emerging Markets ETF,Vanguard,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0000857489
+10,US,VT,Vanguard Total World Stock ETF,Vanguard,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0000857489
+11,US,VIG,Vanguard Dividend Appreciation ETF,Vanguard,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0000734383
+12,US,VTEB,Vanguard Tax-Exempt Bond ETF,Vanguard,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0000225997
+13,US,BSV,Vanguard Short-Term Bond ETF,Vanguard,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0000794105
+14,US,BIV,Vanguard Intermediate-Term Bond ETF,Vanguard,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0000794105
+15,US,BLV,Vanguard Long-Term Bond ETF,Vanguard,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0000794105
+16,US,VFIAX,Vanguard 500 Index Fund Admiral Shares,Vanguard,Mutual Fund,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0000036405
+17,US,VTSAX,Vanguard Total Stock Market Index Fund Admiral Shares,Vanguard,Mutual Fund,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0000036405
+18,US,VBTLX,Vanguard Total Bond Market Index Fund Admiral Shares,Vanguard,Mutual Fund,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0000794105
+19,US,VTIAX,Vanguard Total International Stock Index Fund Admiral Shares,Vanguard,Mutual Fund,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0000736054
+20,US,VWEAX,Vanguard High-Yield Corporate Fund Admiral Shares,Vanguard,Mutual Fund,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0000106444
+21,US,IVV,iShares Core S&P 500 ETF,BlackRock iShares,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0001100663
+22,US,AGG,iShares Core U.S. Aggregate Bond ETF,BlackRock iShares,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0001100663
+23,US,IWM,iShares Russell 2000 ETF,BlackRock iShares,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0001100663
+24,US,HYG,iShares iBoxx $ High Yield Corporate Bond ETF,BlackRock iShares,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0001100663
+25,US,LQD,iShares iBoxx $ Investment Grade Corporate Bond ETF,BlackRock iShares,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0001100663
+26,US,TIP,iShares TIPS Bond ETF,BlackRock iShares,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0001100663
+27,US,MBB,iShares MBS ETF,BlackRock iShares,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0001100663
+28,US,SHY,iShares 1-3 Year Treasury Bond ETF,BlackRock iShares,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0001100663
+29,US,IEF,iShares 7-10 Year Treasury Bond ETF,BlackRock iShares,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0001100663
+30,US,TLT,iShares 20+ Year Treasury Bond ETF,BlackRock iShares,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0001100663
+31,US,HDV,iShares Core High Dividend ETF,BlackRock iShares,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0001100663
+32,US,IEMG,iShares Core MSCI Emerging Markets ETF,BlackRock iShares,ETF,SEMI_ANNUAL,"June, December (Semi-Annual)",SEC CIK: 0000930667
+33,US,IEFA,iShares Core MSCI EAFE ETF,BlackRock iShares,ETF,SEMI_ANNUAL,"June, December (Semi-Annual)",SEC CIK: 0001100663
+34,US,USHY,iShares Broad USD High Yield Corporate Bond ETF,BlackRock iShares,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0001100663
+35,US,FXAIX,Fidelity 500 Index Fund,Fidelity,Mutual Fund,SEMI_ANNUAL,"March, June, September, December (Calendar Quarters)",SEC CIK: 0000819118
+36,US,FSKAX,Fidelity Total Market Index Fund,Fidelity,Mutual Fund,SEMI_ANNUAL,"April, December (Semi-Annual)",SEC CIK: 0000819118
+37,US,FXNAX,Fidelity U.S. Bond Index Fund,Fidelity,Mutual Fund,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0000035315
+38,US,FTBFX,Fidelity Total Bond Fund,Fidelity,Mutual Fund,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0000751199
+39,US,FZROX,Fidelity ZERO Total Market Index Fund,Fidelity,Mutual Fund,ANNUAL,December (Annual / Year-End Distribution),SEC CIK: 0000819118
+40,US,FNCMX,Fidelity Nasdaq Composite Index Fund,Fidelity,Mutual Fund,ANNUAL,December (Annual / Year-End Distribution),SEC CIK: 0000819118
+41,US,FBALX,Fidelity Balanced Fund,Fidelity,Mutual Fund,SEMI_ANNUAL,"September, December (Semi-Annual)",SEC CIK: 0000081205
+42,US,FDVV,Fidelity High Dividend ETF,Fidelity,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0000945908
+43,US,ONEQ,Fidelity Nasdaq Composite Tracking Stock ETF,Fidelity,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0000205323
+44,US,SPTM,SPDR Portfolio Total Stock Market ETF,State Street SPDR,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0001064642
+45,US,SPYD,SPDR S&P Dividend ETF,State Street SPDR,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0001064642
+46,US,SPAB,SPDR Portfolio Aggregate Bond ETF,State Street SPDR,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0001064642
+47,US,JNK,SPDR Bloomberg High Yield Bond ETF,State Street SPDR,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0001064642
+48,US,SJNK,SPDR Bloomberg Short Term High Yield Bond ETF,State Street SPDR,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0001064642
+49,US,XLF,Financial Select Sector SPDR Fund,State Street SPDR,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0001064641
+50,US,XLE,Energy Select Sector SPDR Fund,State Street SPDR,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0001064641
+51,US,SCHD,Schwab U.S. Dividend Equity ETF,Charles Schwab,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0001454889
+52,US,SCHX,Schwab U.S. Large-Cap ETF,Charles Schwab,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0001454889
+53,US,SCHZ,Schwab U.S. Aggregate Bond ETF,Charles Schwab,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0001454889
+54,US,SWPPX,Schwab S&P 500 Index Fund,Charles Schwab,Mutual Fund,ANNUAL,December (Annual / Year-End Distribution),SEC CIK: 0000904333
+55,US,SWAGX,Schwab U.S. Aggregate Bond Index Fund,Charles Schwab,Mutual Fund,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0000869365
+56,US,QQQ,Invesco QQQ Trust,Invesco,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0001067839
+57,US,RSP,Invesco S&P 500 Equal Weight ETF,Invesco,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",SEC CIK: 0001209466
+58,US,BKLN,Invesco Senior Loan ETF,Invesco,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0001378872
+59,US,BOND,PIMCO Active Bond Exchange-Traded Fund,PIMCO,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0001450011
+60,US,MINT,PIMCO Enhanced Short Maturity Active ETF,PIMCO,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",SEC CIK: 0001450011
+61,CA,ZCN,BMO S&P/TSX Capped Composite Index ETF,BMO Global Asset Management,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-sptsx-capped-composite-index-etf-zcn/
+62,CA,ZAG,BMO Aggregate Bond Index ETF,BMO Global Asset Management,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-aggregate-bond-index-etf-zag/
+63,CA,ZEB,BMO Equal Weight Banks Index ETF,BMO Global Asset Management,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-banks-index-etf-zeb/
+64,CA,ZWB,BMO Covered Call Canadian Banks ETF,BMO Global Asset Management,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-covered-call-canadian-banks-etf-zwb/
+65,CA,ZUT,BMO Equal Weight Utilities Index ETF,BMO Global Asset Management,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-utilities-index-etf-zut/
+66,CA,ZDV,BMO Canadian Dividend ETF,BMO Global Asset Management,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-canadian-dividend-etf-zdv/
+67,CA,ZDB,BMO Discount Bond Index ETF,BMO Global Asset Management,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-discount-bond-index-etf-zdb/
+68,CA,ZPR,BMO Laddered Preferred Share Index ETF,BMO Global Asset Management,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-laddered-preferred-share-index-etf-zpr/
+69,CA,VCN,Vanguard FTSE Canada All Cap Index ETF,Vanguard Canada,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",https://www.vanguard.ca/en/investor/products/products-group/etfs/VCN
+70,CA,VAB,Vanguard Canadian Aggregate Bond Index ETF,Vanguard Canada,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.vanguard.ca/en/investor/products/products-group/etfs/VAB
+71,CA,VDY,Vanguard FTSE Canadian High Dividend Yield Index ETF,Vanguard Canada,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.vanguard.ca/en/investor/products/products-group/etfs/VDY
+72,CA,VFV,Vanguard S&P 500 Index ETF,Vanguard Canada,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",https://www.vanguard.ca/en/investor/products/products-group/etfs/VFV
+73,CA,VSB,Vanguard Canadian Short-Term Bond Index ETF,Vanguard Canada,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.vanguard.ca/en/investor/products/products-group/etfs/VSB
+74,CA,VBAL,Vanguard Balanced ETF Portfolio,Vanguard Canada,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",https://www.vanguard.ca/en/investor/products/products-group/etfs/VBAL
+75,CA,VGRO,Vanguard Growth ETF Portfolio,Vanguard Canada,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",https://www.vanguard.ca/en/investor/products/products-group/etfs/VGRO
+76,CA,XIC,iShares Core S&P/TSX Capped Composite Index ETF,BlackRock iShares Canada,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",https://www.blackrock.com/ca/investors/en/products/239837/
+77,CA,XBB,iShares Core Canadian Universe Bond Index ETF,BlackRock iShares Canada,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.blackrock.com/ca/investors/en/products/239493/
+78,CA,XEI,iShares S&P/TSX Composite High Dividend Index ETF,BlackRock iShares Canada,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.blackrock.com/ca/investors/en/products/239846/
+79,CA,XDV,iShares Canadian Select Dividend Index ETF,BlackRock iShares Canada,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.blackrock.com/ca/investors/en/products/239835/
+80,CA,XUT,iShares S&P/TSX Capped Utilities Index ETF,BlackRock iShares Canada,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.blackrock.com/ca/investors/en/products/239848/
+81,CA,XSB,iShares Core Canadian Short Term Bond Index ETF,BlackRock iShares Canada,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.blackrock.com/ca/investors/en/products/239498/
+82,CA,XSH,iShares Core Canadian Short Term Corporate Bond Index ETF,BlackRock iShares Canada,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.blackrock.com/ca/investors/en/products/239499/
+83,CA,XHY,iShares U.S. High Yield Bond Index ETF (CAD-Hedged),BlackRock iShares Canada,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.blackrock.com/ca/investors/en/products/239556/
+84,CA,RBN,RBC BlueBay Canadian Core Plus Bond ETF,RBC Global Asset Management,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.rbcgam.com/en/ca/products/etfs/RBN/detail
+85,CA,RCD,RBC Quant Canadian Dividend Leaders ETF,RBC Global Asset Management,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.rbcgam.com/en/ca/products/etfs/RCD/detail
+86,CA,RUSB,RBC Short-Term U.S. Corporate Bond ETF,RBC Global Asset Management,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.rbcgam.com/en/ca/products/etfs/RUSB/detail
+87,CA,RBF556,RBC Canadian Dividend Fund Series A,RBC Global Asset Management,Mutual Fund,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.rbcgam.com/en/ca/products/mutual-funds/RBF556/detail
+88,CA,RBF266,RBC Canadian Bond Fund Series A,RBC Global Asset Management,Mutual Fund,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.rbcgam.com/en/ca/products/mutual-funds/RBF266/detail
+89,CA,TTP,TD Canadian Equity Index ETF,TD Asset Management,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20Canadian%20Equity%20Index%20ETF/?fundId=6831
+90,CA,TPU,TD U.S. Equity Index ETF,TD Asset Management,ETF,QUARTERLY,"March, June, September, December (Calendar Quarters)",https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20U.S.%20Equity%20Index%20ETF/?fundId=6833
+91,CA,TDB900,TD Canadian Index Fund - e,TD Asset Management,Mutual Fund,SEMI_ANNUAL,"June, December (Semi-Annual)",https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20Canadian%20Index%20Fund%20-%20e/?fundId=3261
+92,CA,TDB902,TD U.S. Index Fund - e,TD Asset Management,Mutual Fund,SEMI_ANNUAL,"June, December (Semi-Annual)",https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20U.S.%20Index%20Fund%20-%20e/?fundId=3270
+93,CA,TDB909,TD Canadian Bond Index Fund - e,TD Asset Management,Mutual Fund,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20Canadian%20Bond%20Index%20Fund%20-%20e/?fundId=4817
+94,CA,HXT,Global X S&P/TSX 60 Index Corporate Class ETF,Global X Investments Canada,ETF,ANNUAL,December (Annual / Year-End Distribution),https://www.globalx.ca/product/hxt
+95,CA,HBB,Global X Canadian Aggregate Bond Index Corporate Class ETF,Global X Investments Canada,ETF,ANNUAL,December (Annual / Year-End Distribution),https://www.globalx.ca/product/hbb
+96,CA,HDIV,Global X Canadian High Dividend Index Corporate Class ETF,Global X Investments Canada,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.globalx.ca/product/hdiv
+97,CA,FIE,CI Canadian Financial Monthly Income ETF,CI Global Asset Management,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://funds.cifinancial.com/en/funds/etfs/CICanadianFinancialMonthlyIncomeETF.html
+98,CA,FIG,CI Investment Grade Bond ETF,CI Global Asset Management,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://funds.cifinancial.com/en/funds/etfs/CIInvestmentGradeBondETF.html
+99,CA,CDZ,CI Morningstar Canada Dividend Target 30 Index ETF,CI Global Asset Management,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://funds.cifinancial.com/en/funds/etfs/CIMorningstarCanadaDividendTarget30IndexETF.html
+100,CA,QBB,Mackenzie Canadian Aggregate Bond Index ETF,Mackenzie Investments,ETF,MONTHLY,"Every Month (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)",https://www.mackenzieinvestments.com/en/products/etfs/mackenzie-canadian-aggregate-bond-index-etf-qbb

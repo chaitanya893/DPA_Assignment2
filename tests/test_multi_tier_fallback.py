@@ -704,3 +704,137 @@ def test_complete_negative_schedule_regression() -> None:
     )
     assert result.status == DetectionStatus.NOT_DECLARED
     assert result.confidence is not None and result.confidence >= 0.85
+
+
+# -----------------------------------------------------------------------------
+# 14. Dynamic 24-Month Rolling Window Calculation
+# -----------------------------------------------------------------------------
+def test_dynamic_24month_window_calculation() -> None:
+    from src.source_orchestrator import get_dynamic_24month_window
+
+    # Case 1: Arbitrary standard execution date (22-Sep-2026)
+    ref_date_1 = date(2026, 9, 22)
+    start_1, end_1 = get_dynamic_24month_window(ref_date_1)
+    assert end_1 == date(2026, 9, 22)
+    assert start_1 == date(2024, 9, 22)
+    assert (end_1 - start_1).days in (730, 731)
+
+    # Case 2: Leap year execution date (29-Feb-2024)
+    ref_date_2 = date(2024, 2, 29)
+    start_2, end_2 = get_dynamic_24month_window(ref_date_2)
+    assert end_2 == date(2024, 2, 29)
+    assert start_2 == date(2022, 2, 28)
+
+    # Case 3: Default (no as_of passed -> uses today)
+    start_3, end_3 = get_dynamic_24month_window()
+    assert end_3 == datetime.now(timezone.utc).date()
+    assert (end_3 - start_3).days in (730, 731)
+
+
+# -----------------------------------------------------------------------------
+# 15. Active 5-Month Multi-Cycle Window Generation
+# -----------------------------------------------------------------------------
+def test_active_5month_windows_generation() -> None:
+    from src.source_orchestrator import get_active_5month_windows
+
+    # Non-leap year (2025)
+    windows_2025 = get_active_5month_windows(2025)
+    assert len(windows_2025) == 5
+    cycle_names = [w[0] for w in windows_2025]
+    assert cycle_names == [
+        "FEB_MONTHLY",
+        "Q1_MARCH",
+        "Q2_JUNE",
+        "Q3_SEPTEMBER",
+        "Q4_DECEMBER",
+    ]
+    assert windows_2025[0] == ("FEB_MONTHLY", date(2025, 2, 1), date(2025, 2, 28))
+    assert windows_2025[1] == ("Q1_MARCH", date(2025, 3, 1), date(2025, 3, 31))
+    assert windows_2025[2] == ("Q2_JUNE", date(2025, 6, 1), date(2025, 6, 30))
+    assert windows_2025[3] == ("Q3_SEPTEMBER", date(2025, 9, 1), date(2025, 9, 30))
+    assert windows_2025[4] == ("Q4_DECEMBER", date(2025, 12, 1), date(2025, 12, 31))
+
+    # Leap year (2024)
+    windows_2024 = get_active_5month_windows(2024)
+    assert windows_2024[0] == ("FEB_MONTHLY", date(2024, 2, 1), date(2024, 2, 29))
+
+
+# -----------------------------------------------------------------------------
+# 16. Source Orchestrator Sweep Execution (5-Month & 24-Month Modes)
+# -----------------------------------------------------------------------------
+def test_source_orchestrator_execute_sweep(universe_registry: UniverseRegistry) -> None:
+    mock_client = MagicMock(spec=HTTPClient)
+    mock_client.get.return_value = HTTPResponseRecord(
+        url="https://mock.sec.gov",
+        status_code=404,
+        retrieved_at=datetime.now(timezone.utc),
+        content_text=None,
+        content_bytes=None,
+        failure_reason=UnknownReason.SOURCE_UNAVAILABLE,
+        is_success=False,
+        elapsed_seconds=0.1,
+    )
+
+    orchestrator = SourceOrchestrator(
+        http_client=mock_client, universe=universe_registry
+    )
+
+    # Test 24-Month Sweep
+    ref_date = date(2026, 9, 22)
+    sweep_24m = orchestrator.execute_sweep(
+        fund_id="US_ISHARES_IVV",
+        mode="24months",
+        as_of=ref_date,
+    )
+    assert sweep_24m["mode"] == "24months"
+    assert sweep_24m["window_start"] == "2024-09-22"
+    assert sweep_24m["window_end"] == "2026-09-22"
+    assert sweep_24m["overall_status"] in ("UNKNOWN", "NOT_DECLARED", "DECLARED")
+
+    # Test 5-Month Multi-Cycle Sweep
+    sweep_5m = orchestrator.execute_sweep(
+        fund_id="US_ISHARES_IVV",
+        mode="5months",
+        as_of=ref_date,
+    )
+    assert sweep_5m["mode"] == "5months"
+    assert sweep_5m["evaluation_year"] == 2026
+    assert len(sweep_5m["cycle_results"]) == 5
+    cycle_names = [c["cycle_name"] for c in sweep_5m["cycle_results"]]
+    assert cycle_names == [
+        "FEB_MONTHLY",
+        "Q1_MARCH",
+        "Q2_JUNE",
+        "Q3_SEPTEMBER",
+        "Q4_DECEMBER",
+    ]
+
+
+# -----------------------------------------------------------------------------
+# 17. Phase 1 Runner Determine Fund Window Modes
+# -----------------------------------------------------------------------------
+def test_phase1_runner_determine_fund_window_modes(
+    universe_registry: UniverseRegistry,
+) -> None:
+    from src.phase1_runner import determine_fund_window
+
+    fund = universe_registry.get_fund("US_ISHARES_IVV")
+    assert fund is not None
+
+    ref_date = date(2026, 9, 22)
+
+    # 24-Month dynamic rolling mode
+    w_start_24, w_end_24, just_24 = determine_fund_window(
+        fund, mode="24months", as_of=ref_date
+    )
+    assert w_start_24 == date(2024, 9, 22)
+    assert w_end_24 == date(2026, 9, 22)
+    assert "24-month" in just_24.lower()
+
+    # 5-Month active multi-cycle mode
+    w_start_5, w_end_5, just_5 = determine_fund_window(
+        fund, mode="5months", as_of=ref_date
+    )
+    assert w_start_5 == date(2026, 1, 1)
+    assert w_end_5 == date(2026, 12, 31)
+    assert "5-cycle" in just_5.lower()
