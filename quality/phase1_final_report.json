@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-09-20T17:55:31.927496+00:00",
+  "report_version": "1.0",
+  "scope": "Phase 1 Layer A Detection Engine",
+  "universe_summary": {
+    "total_funds": 100,
+    "us_funds": 60,
+    "canadian_funds": 40
+  },
+  "status_distribution": {
+    "overall": {
+      "DECLARED": 3,
+      "NOT_DECLARED": 0,
+      "UNKNOWN": 97
+    },
+    "by_region": {
+      "US": {
+        "total": 60,
+        "DECLARED": 3,
+        "NOT_DECLARED": 0,
+        "UNKNOWN": 57
+      },
+      "CA": {
+        "total": 40,
+        "DECLARED": 0,
+        "NOT_DECLARED": 0,
+        "UNKNOWN": 40
+      }
+    }
+  },
+  "source_evidence_breakdown": {
+    "tier_counts": {
+      "TIER_1_AUTHORITATIVE": 60,
+      "TIER_2_PRIMARY_UNSTRUCTURED": 100,
+      "TIER_3_CORROBORATION": 0
+    },
+    "access_limitations": {
+      "WAF_BLOCKED_403": 36,
+      "TIMEOUT": 8,
+      "REDIRECTED": 19,
+      "UNAVAILABLE_404_OR_ERROR": 0,
+      "DYNAMIC_SPA_INCOMPLETE": 0,
+      "RETRIEVED_USABLE": 5
+    }
+  },
+  "performance_metrics": {
+    "total_runtime_seconds": 604.0,
+    "average_seconds_per_fund": 6.04,
+    "precision_recall_status": "NOT MEASURABLE (Zero-fabrication rule: no synthetic gold set manufactured)"
+  },
+  "authenticity_audit": {
+    "status": "PASS",
+    "violation_count": 0,
+    "violations": []
+  },
+  "real_cases_verified": {
+    "pimco_sec_19a1": "DECLARED (Audited real 19a-1 filing declaration on 2026-02-18)",
+    "bmo_official_announcement": "DECLARED (Audited real sponsor declaration on 2026-02-18)",
+    "vti_sec_false_positive_rejection": "REJECTED (12b-1 fee filing correctly excluded from declaration status)",
+    "negative_schedule_verification": "NOT_DECLARED (Exhaustive static table covering window verified with 0 declarations)"
+  }
+}

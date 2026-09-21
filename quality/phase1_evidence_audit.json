@@ -1,0 +1,173 @@
+{
+  "audit_scope": {
+    "records_checked": 100,
+    "rerun_performed": false,
+    "audit_timestamp": "2026-09-20T18:43:04.135768+00:00"
+  },
+  "summary": {
+    "declared_checked": 3,
+    "declared_valid": 0,
+    "declared_requiring_correction": 3,
+    "not_declared_checked": 0,
+    "unknown_checked": 97,
+    "fund_evidence_binding_issues": 2,
+    "duplicate_evidence_issues": 1,
+    "window_issues": 0,
+    "source_tier_issues": 0
+  },
+  "declared_audit": [
+    {
+      "fund_id": "US_ISHARES_IVV",
+      "ticker": "IVV",
+      "fund_name": "iShares Core S&P 500 ETF",
+      "status_reported": "DECLARED",
+      "audit_verdict": "INVALID_REQUIRES_CORRECTION",
+      "correct_status": "UNKNOWN",
+      "evidence_url": "https://www.sec.gov/Archives/edgar/data/1100663/000119312526114192/d45638d497.htm",
+      "source_tier": 1,
+      "document_type": "Form 497 (Revised Statement of Additional Information)",
+      "event_date_found": "2026-03-18",
+      "event_date_is_real_declaration": false,
+      "distribution_type": null,
+      "amount_or_rate": null,
+      "snippet": "Form 497 (IVV): 'capital gain rates to the extent the Fund receives qualified dividend income on the securities it holds and the Fund reports the distribution as qualified dividend income.'",
+      "fund_identity_verified": true,
+      "fund_binding_valid": true,
+      "semantic_error": "Document is a routine SAI update. Matched snippet is general tax explanation of qualified dividend income tax treatment, not an actual distribution declaration event.",
+      "why_correction_required": "No distribution was declared in this filing. The filing date (2026-03-18) of the revised SAI was falsely assigned as a declaration date based on tax narrative disclosure."
+    },
+    {
+      "fund_id": "US_ISHARES_IWM",
+      "ticker": "IWM",
+      "fund_name": "iShares Russell 2000 ETF",
+      "status_reported": "DECLARED",
+      "audit_verdict": "INVALID_REQUIRES_CORRECTION",
+      "correct_status": "UNKNOWN",
+      "evidence_url": "https://www.sec.gov/Archives/edgar/data/1100663/000119312526114192/d45638d497.htm",
+      "source_tier": 1,
+      "document_type": "Form 497 (Revised Statement of Additional Information for IVV)",
+      "event_date_found": "2026-03-18",
+      "event_date_is_real_declaration": false,
+      "distribution_type": null,
+      "amount_or_rate": null,
+      "snippet": "Form 497 (IWM): 'capital gain rates to the extent the Fund receives qualified dividend income on the securities it holds and the Fund reports the distribution as qualified dividend income.'",
+      "fund_identity_verified": false,
+      "fund_binding_valid": false,
+      "semantic_error": "Cross-fund contamination: This document is the SAI exclusively for IVV (iShares Core S&P 500 ETF). IWM was mentioned only in trustee personal equity ownership disclosure tables. Matched snippet is general tax boilerplate from IVV's SAI.",
+      "why_correction_required": "Document belongs to IVV, not IWM. Contaminated via trustee portfolio tables. Contains no distribution declaration."
+    },
+    {
+      "fund_id": "US_ISHARES_IEFA",
+      "ticker": "IEFA",
+      "fund_name": "iShares Core MSCI EAFE ETF",
+      "status_reported": "DECLARED",
+      "audit_verdict": "INVALID_REQUIRES_CORRECTION",
+      "correct_status": "UNKNOWN",
+      "evidence_url": "https://www.sec.gov/Archives/edgar/data/1100663/000119312526114192/d45638d497.htm",
+      "source_tier": 1,
+      "document_type": "Form 497 (Revised Statement of Additional Information for IVV)",
+      "event_date_found": "2026-03-18",
+      "event_date_is_real_declaration": false,
+      "distribution_type": null,
+      "amount_or_rate": null,
+      "snippet": "Form 497 (IEFA): 'capital gain rates to the extent the Fund receives qualified dividend income on the securities it holds and the Fund reports the distribution as qualified dividend income.'",
+      "fund_identity_verified": false,
+      "fund_binding_valid": false,
+      "semantic_error": "Cross-fund contamination: This document is the SAI exclusively for IVV (iShares Core S&P 500 ETF). IEFA was mentioned only in trustee personal equity ownership disclosure tables. Matched snippet is general tax boilerplate from IVV's SAI.",
+      "why_correction_required": "Document belongs to IVV, not IEFA. Contaminated via trustee portfolio tables. Contains no distribution declaration."
+    }
+  ],
+  "fund_binding_issues": [
+    {
+      "fund_id": "US_ISHARES_IWM",
+      "target_fund": "iShares Russell 2000 ETF",
+      "erroneous_url": "https://www.sec.gov/Archives/edgar/data/1100663/000119312526114192/d45638d497.htm",
+      "actual_document_fund": "iShares Core S&P 500 ETF (IVV)",
+      "root_cause": "Trustee Equity Ownership disclosure table in IVV SAI listed other iShares funds held by trustees (e.g. Madhav V. Rajan holding iShares Russell 2000 ETF). Substring match of fund_name bypassed fund identity filtering.",
+      "classification": "INVALID_CROSS_FUND_CONTAMINATION"
+    },
+    {
+      "fund_id": "US_ISHARES_IEFA",
+      "target_fund": "iShares Core MSCI EAFE ETF",
+      "erroneous_url": "https://www.sec.gov/Archives/edgar/data/1100663/000119312526114192/d45638d497.htm",
+      "actual_document_fund": "iShares Core S&P 500 ETF (IVV)",
+      "root_cause": "Trustee Equity Ownership disclosure table in IVV SAI listed other iShares funds held by trustees (e.g. Jane D. Carlin / Richard L. Fagnani holding iShares Core MSCI EAFE ETF). Substring match of fund_name bypassed fund identity filtering.",
+      "classification": "INVALID_CROSS_FUND_CONTAMINATION"
+    }
+  ],
+  "unknown_reason_audit": [
+    {
+      "category": "INSUFFICIENT_EVIDENCE",
+      "count": 63,
+      "description": "SEC submissions API or sponsor HTML was successfully retrieved (HTTP 200), but contained zero qualifying distribution declarations in window and lacked an exhaustive static negative distribution schedule.",
+      "is_justified": true
+    },
+    {
+      "category": "RETRIEVAL_FAILED (WAF 403 / Redirect 301-302 / Timeout)",
+      "count": 34,
+      "description": "Target sponsor source could not be retrieved due to automated access blocks (BlackRock/iShares, PIMCO, Global X Canada HTTP 403), dynamic redirect loops, or network timeouts.",
+      "is_justified": true
+    }
+  ],
+  "not_declared_audit": [
+    {
+      "status_reported_count": 0,
+      "audit_finding": "Correct. No sponsor source or filing during this live run provided an exhaustive static schedule proving zero distributions for the requested window.",
+      "is_justified": true
+    }
+  ],
+  "window_audit": {
+    "total_checked": 100,
+    "us_funds_windows": "60 funds with cadence-justified windows (Quarterly Q1 2026: 2026-01-01 to 2026-03-31 for equity index funds; Monthly: 2026-02-01 to 2026-02-28 for fixed-income funds)",
+    "canadian_funds_windows": "40 funds with cadence-justified windows (Quarterly Q1 2026 or Monthly Feb 2026)",
+    "arbitrary_windows_detected": 0,
+    "window_justification_weak_count": 0,
+    "verdict": "ALL_WINDOWS_JUSTIFIED"
+  },
+  "regression_results": [
+    {
+      "case": "US_PIMCO_BOND (SEC Rule 19a-1 positive declaration)",
+      "expected": "DECLARED",
+      "test_status": "PASS (tests/test_real_source_detector.py::test_sec_edgar_strategy_pdi_rule_19a1_positive)"
+    },
+    {
+      "case": "CA_BMO_ZCN (Official BMO press release declaration)",
+      "expected": "DECLARED",
+      "test_status": "PASS (tests/test_real_source_detector.py::test_official_sponsor_web_strategy_bmo_positive)"
+    },
+    {
+      "case": "US_VANGUARD_VTI (SEC Form 497 12b-1 fee rejection)",
+      "expected": "UNKNOWN (False positive rejected)",
+      "test_status": "PASS (tests/test_real_source_detector.py::test_sec_edgar_strategy_12b1_fee_excluded)"
+    },
+    {
+      "case": "Negative Schedule Coverage (Complete schedule with 0 events)",
+      "expected": "NOT_DECLARED",
+      "test_status": "PASS (tests/test_real_source_detector.py::test_complete_negative_schedule_yields_not_declared)"
+    }
+  ],
+  "authenticity_auditor_assessment": {
+    "structural_checks": [
+      "Validates that no financial amounts are synthesized or fabricated",
+      "Validates that all evidence records have valid timestamps and URLs",
+      "Validates that results contain justified date windows",
+      "Validates that NOT_DECLARED requires coverage_status == EXHAUSTIVE_NEGATIVE_SCHEDULE_VERIFIED",
+      "Validates that UNKNOWN records contain valid failure_reasons"
+    ],
+    "semantic_checks": [
+      "Checked that amounts/rates match document regex",
+      "Verified source tier numbering against SourceTier enum"
+    ],
+    "missing_checks": [
+      "Did NOT cross-check whether a Form 497 document is a full SAI update vs a dedicated dividend supplement",
+      "Did NOT detect that multi-fund trustee equity ownership disclosure tables caused substring matches on unrelated fund names",
+      "Did NOT verify that matched text is tax disclosure narrative rather than an operative dividend declaration action"
+    ],
+    "limitation_summary": "The built-in Authenticity Auditor in src/phase1_runner.py provides strong structural and zero-fabrication guarantees, but lacks deep semantic NLP parsing to distinguish between general tax explanation boilerplate and board dividend declarations in SEC Form 497 filings."
+  },
+  "final_assessment": {
+    "phase1_evidence_quality": "PASS_WITH_CORRECTIONS",
+    "reason": "The 97 UNKNOWN and 0 NOT_DECLARED results are completely defensible and compliant. However, all 3 reported DECLARED cases (IVV, IWM, IEFA) were triggered by SEC Form 497 tax disclosure boilerplate and trustee equity ownership table matches rather than genuine distribution declarations.",
+    "next_action": "Apply targeted corrections to SEC Form 497 parsing (requiring exact series/ticker headers and excluding trustee ownership tables and tax narrative descriptions) so that IVV, IWM, and IEFA correctly evaluate to UNKNOWN."
+  }
+}

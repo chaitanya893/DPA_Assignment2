@@ -4,13 +4,14 @@ All fixtures and values used here are purely SYNTHETIC / TEST values for unit te
 No real or assumed fund/financial data is used.
 """
 
+import os
 from datetime import date
 from unittest.mock import MagicMock, patch
 
 import pytest
 
 from src.detector import detect_distribution
-from src.http_client import HTTPClient
+from src.http_client import DEFAULT_USER_AGENT, HTTPClient
 from src.models import (
     DetectionStatus,
     Evidence,
@@ -23,6 +24,26 @@ from src.strategies import (
     SignalType,
     StrategyObservation,
 )
+
+
+def test_user_agent_configuration_no_fake_contact() -> None:
+    """Verify default User-Agent contains no fake contact and is configurable."""
+    assert "example.internal" not in DEFAULT_USER_AGENT
+    assert "contact@" not in DEFAULT_USER_AGENT
+
+    # Test default instance
+    client = HTTPClient()
+    assert client.user_agent == DEFAULT_USER_AGENT
+
+    # Test custom param override
+    custom_ua = "SYNTHETIC_TEST_AGENT/1.0 (test-run)"
+    custom_client = HTTPClient(user_agent=custom_ua)
+    assert custom_client.user_agent == custom_ua
+
+    # Test env var override
+    with patch.dict(os.environ, {"DETECTOR_USER_AGENT": "SYNTHETIC_ENV_AGENT/2.0"}):
+        env_client = HTTPClient()
+        assert env_client.user_agent == "SYNTHETIC_ENV_AGENT/2.0"
 
 
 def test_rate_limit_config_validation() -> None:
@@ -64,14 +85,19 @@ def test_http_client_success_synthetic_response() -> None:
     mock_resp.text = "<html>SYNTHETIC_TEST_CONTENT</html>"
     mock_resp.content = b"<html>SYNTHETIC_TEST_CONTENT</html>"
 
-    with patch("httpx.Client.get", return_value=mock_resp):
-        client = HTTPClient(max_retries=1)
+    with patch("httpx.Client.get", return_value=mock_resp) as mock_get:
+        client = HTTPClient(user_agent="SYNTHETIC_TEST_USER_AGENT/1.0", max_retries=1)
         record = client.get("https://synthetic-test.example.org/api")
 
         assert record.is_success is True
         assert record.status_code == 200
         assert record.content_text == "<html>SYNTHETIC_TEST_CONTENT</html>"
         assert record.failure_reason is None
+
+        # Verify custom synthetic User-Agent header was passed
+        mock_get.assert_called_once()
+        headers_passed = mock_get.call_args[1].get("headers", {})
+        assert headers_passed.get("User-Agent") == "SYNTHETIC_TEST_USER_AGENT/1.0"
 
 
 def test_http_client_empty_body_classified_as_incomplete() -> None:

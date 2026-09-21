@@ -1,0 +1,4277 @@
+[
+  {
+    "fund_id": "US_VANGUARD_VTI",
+    "country": "US",
+    "fund_name": "Vanguard Total Stock Market Index Fund ETF",
+    "fund_type": "ETF",
+    "ticker": "VTI",
+    "fund_family": "Vanguard",
+    "cik": "0000036405",
+    "sec_series_id": "S000002848",
+    "sec_class_id": "C000007808",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/etfs/profile/vti",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vti",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_VANGUARD_VOO",
+    "country": "US",
+    "fund_name": "Vanguard S&P 500 ETF",
+    "fund_type": "ETF",
+    "ticker": "VOO",
+    "fund_family": "Vanguard",
+    "cik": "0000036405",
+    "sec_series_id": "S000002839",
+    "sec_class_id": "C000092055",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/etfs/profile/voo",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/voo",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_VANGUARD_BND",
+    "country": "US",
+    "fund_name": "Vanguard Total Bond Market ETF",
+    "fund_type": "ETF",
+    "ticker": "BND",
+    "fund_family": "Vanguard",
+    "cik": "0000794105",
+    "sec_series_id": "S000002564",
+    "sec_class_id": "C000046844",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/etfs/profile/bnd",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/bnd",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_VANGUARD_VYM",
+    "country": "US",
+    "fund_name": "Vanguard High Dividend Yield ETF",
+    "fund_type": "ETF",
+    "ticker": "VYM",
+    "fund_family": "Vanguard",
+    "cik": "0001004655",
+    "sec_series_id": "S000014011",
+    "sec_class_id": "C000038295",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/etfs/profile/vym",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vym",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_VANGUARD_VNQ",
+    "country": "US",
+    "fund_name": "Vanguard Real Estate ETF",
+    "fund_type": "ETF",
+    "ticker": "VNQ",
+    "fund_family": "Vanguard",
+    "cik": "0000734383",
+    "sec_series_id": "S000002924",
+    "sec_class_id": "C000032424",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/etfs/profile/vnq",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vnq",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_VANGUARD_VB",
+    "country": "US",
+    "fund_name": "Vanguard Small-Cap ETF",
+    "fund_type": "ETF",
+    "ticker": "VB",
+    "fund_family": "Vanguard",
+    "cik": "0000036405",
+    "sec_series_id": "S000002845",
+    "sec_class_id": "C000007798",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/etfs/profile/vb",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vb",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_VANGUARD_VO",
+    "country": "US",
+    "fund_name": "Vanguard Mid-Cap ETF",
+    "fund_type": "ETF",
+    "ticker": "VO",
+    "fund_family": "Vanguard",
+    "cik": "0000036405",
+    "sec_series_id": "S000002844",
+    "sec_class_id": "C000007794",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/etfs/profile/vo",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vo",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_VANGUARD_VEA",
+    "country": "US",
+    "fund_name": "Vanguard FTSE Developed Markets ETF",
+    "fund_type": "ETF",
+    "ticker": "VEA",
+    "fund_family": "Vanguard",
+    "cik": "0000923202",
+    "sec_series_id": "S000004386",
+    "sec_class_id": "C000051262",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/etfs/profile/vea",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vea",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_VANGUARD_VWO",
+    "country": "US",
+    "fund_name": "Vanguard FTSE Emerging Markets ETF",
+    "fund_type": "ETF",
+    "ticker": "VWO",
+    "fund_family": "Vanguard",
+    "cik": "0000857489",
+    "sec_series_id": "S000005786",
+    "sec_class_id": "C000015902",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/etfs/profile/vwo",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vwo",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_VANGUARD_VT",
+    "country": "US",
+    "fund_name": "Vanguard Total World Stock ETF",
+    "fund_type": "ETF",
+    "ticker": "VT",
+    "fund_family": "Vanguard",
+    "cik": "0000857489",
+    "sec_series_id": "S000022482",
+    "sec_class_id": "C000065038",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/etfs/profile/vt",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vt",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_VANGUARD_VIG",
+    "country": "US",
+    "fund_name": "Vanguard Dividend Appreciation ETF",
+    "fund_type": "ETF",
+    "ticker": "VIG",
+    "fund_family": "Vanguard",
+    "cik": "0000734383",
+    "sec_series_id": "S000011322",
+    "sec_class_id": "C000031350",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/etfs/profile/vig",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vig",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_VANGUARD_VTEB",
+    "country": "US",
+    "fund_name": "Vanguard Tax-Exempt Bond ETF",
+    "fund_type": "ETF",
+    "ticker": "VTEB",
+    "fund_family": "Vanguard",
+    "cik": "0000225997",
+    "sec_series_id": "S000048568",
+    "sec_class_id": "C000153132",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/etfs/profile/vteb",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vteb",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_VANGUARD_BSV",
+    "country": "US",
+    "fund_name": "Vanguard Short-Term Bond ETF",
+    "fund_type": "ETF",
+    "ticker": "BSV",
+    "fund_family": "Vanguard",
+    "cik": "0000794105",
+    "sec_series_id": "S000002563",
+    "sec_class_id": "C000046843",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/etfs/profile/bsv",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/bsv",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_VANGUARD_BIV",
+    "country": "US",
+    "fund_name": "Vanguard Intermediate-Term Bond ETF",
+    "fund_type": "ETF",
+    "ticker": "BIV",
+    "fund_family": "Vanguard",
+    "cik": "0000794105",
+    "sec_series_id": "S000002561",
+    "sec_class_id": "C000046841",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/etfs/profile/biv",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/biv",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_VANGUARD_BLV",
+    "country": "US",
+    "fund_name": "Vanguard Long-Term Bond ETF",
+    "fund_type": "ETF",
+    "ticker": "BLV",
+    "fund_family": "Vanguard",
+    "cik": "0000794105",
+    "sec_series_id": "S000002562",
+    "sec_class_id": "C000046842",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/etfs/profile/blv",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/blv",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_VANGUARD_VFIAX",
+    "country": "US",
+    "fund_name": "Vanguard 500 Index Fund Admiral Shares",
+    "fund_type": "MUTUAL_FUND",
+    "ticker": "VFIAX",
+    "fund_family": "Vanguard",
+    "cik": "0000036405",
+    "sec_series_id": "S000002839",
+    "sec_class_id": "C000007774",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vfiax",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": false,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vfiax",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_VANGUARD_VTSAX",
+    "country": "US",
+    "fund_name": "Vanguard Total Stock Market Index Fund Admiral Shares",
+    "fund_type": "MUTUAL_FUND",
+    "ticker": "VTSAX",
+    "fund_family": "Vanguard",
+    "cik": "0000036405",
+    "sec_series_id": "S000002848",
+    "sec_class_id": "C000007806",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vtsax",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": false,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vtsax",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_VANGUARD_VBTLX",
+    "country": "US",
+    "fund_name": "Vanguard Total Bond Market Index Fund Admiral Shares",
+    "fund_type": "MUTUAL_FUND",
+    "ticker": "VBTLX",
+    "fund_family": "Vanguard",
+    "cik": "0000794105",
+    "sec_series_id": "S000002564",
+    "sec_class_id": "C000007063",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vbtlx",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": false,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vbtlx",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_VANGUARD_VTIAX",
+    "country": "US",
+    "fund_name": "Vanguard Total International Stock Index Fund Admiral Shares",
+    "fund_type": "MUTUAL_FUND",
+    "ticker": "VTIAX",
+    "fund_family": "Vanguard",
+    "cik": "0000736054",
+    "sec_series_id": "S000002932",
+    "sec_class_id": "C000094037",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vtiax",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": false,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vtiax",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_VANGUARD_VWEAX",
+    "country": "US",
+    "fund_name": "Vanguard High-Yield Corporate Fund Admiral Shares",
+    "fund_type": "MUTUAL_FUND",
+    "ticker": "VWEAX",
+    "fund_family": "Vanguard",
+    "cik": "0000106444",
+    "sec_series_id": "S000002584",
+    "sec_class_id": "C000007093",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vweax",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": false,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vweax",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_ISHARES_IVV",
+    "country": "US",
+    "fund_name": "iShares Core S&P 500 ETF",
+    "fund_type": "ETF",
+    "ticker": "IVV",
+    "fund_family": "BlackRock iShares",
+    "cik": "0001100663",
+    "sec_series_id": "S000004310",
+    "sec_class_id": "C000012040",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ishares.com/us/products/239726/",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ishares.com/us/products/239726/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_ISHARES_AGG",
+    "country": "US",
+    "fund_name": "iShares Core U.S. Aggregate Bond ETF",
+    "fund_type": "ETF",
+    "ticker": "AGG",
+    "fund_family": "BlackRock iShares",
+    "cik": "0001100663",
+    "sec_series_id": "S000004362",
+    "sec_class_id": "C000012092",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ishares.com/us/products/239458/",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ishares.com/us/products/239458/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_ISHARES_IWM",
+    "country": "US",
+    "fund_name": "iShares Russell 2000 ETF",
+    "fund_type": "ETF",
+    "ticker": "IWM",
+    "fund_family": "BlackRock iShares",
+    "cik": "0001100663",
+    "sec_series_id": "S000004344",
+    "sec_class_id": "C000012074",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ishares.com/us/products/239710/",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ishares.com/us/products/239710/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_ISHARES_HYG",
+    "country": "US",
+    "fund_name": "iShares iBoxx $ High Yield Corporate Bond ETF",
+    "fund_type": "ETF",
+    "ticker": "HYG",
+    "fund_family": "BlackRock iShares",
+    "cik": "0001100663",
+    "sec_series_id": "S000016772",
+    "sec_class_id": "C000046846",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ishares.com/us/products/239565/",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ishares.com/us/products/239565/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_ISHARES_LQD",
+    "country": "US",
+    "fund_name": "iShares iBoxx $ Investment Grade Corporate Bond ETF",
+    "fund_type": "ETF",
+    "ticker": "LQD",
+    "fund_family": "BlackRock iShares",
+    "cik": "0001100663",
+    "sec_series_id": "S000004361",
+    "sec_class_id": "C000012091",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ishares.com/us/products/239566/",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ishares.com/us/products/239566/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_ISHARES_TIP",
+    "country": "US",
+    "fund_name": "iShares TIPS Bond ETF",
+    "fund_type": "ETF",
+    "ticker": "TIP",
+    "fund_family": "BlackRock iShares",
+    "cik": "0001100663",
+    "sec_series_id": "S000004363",
+    "sec_class_id": "C000012093",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ishares.com/us/products/239467/",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ishares.com/us/products/239467/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_ISHARES_MBB",
+    "country": "US",
+    "fund_name": "iShares MBS ETF",
+    "fund_type": "ETF",
+    "ticker": "MBB",
+    "fund_family": "BlackRock iShares",
+    "cik": "0001100663",
+    "sec_series_id": "S000013702",
+    "sec_class_id": "C000037544",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ishares.com/us/products/239465/",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ishares.com/us/products/239465/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_ISHARES_SHY",
+    "country": "US",
+    "fund_name": "iShares 1-3 Year Treasury Bond ETF",
+    "fund_type": "ETF",
+    "ticker": "SHY",
+    "fund_family": "BlackRock iShares",
+    "cik": "0001100663",
+    "sec_series_id": "S000004357",
+    "sec_class_id": "C000012087",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ishares.com/us/products/239452/",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ishares.com/us/products/239452/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_ISHARES_IEF",
+    "country": "US",
+    "fund_name": "iShares 7-10 Year Treasury Bond ETF",
+    "fund_type": "ETF",
+    "ticker": "IEF",
+    "fund_family": "BlackRock iShares",
+    "cik": "0001100663",
+    "sec_series_id": "S000004358",
+    "sec_class_id": "C000012088",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ishares.com/us/products/239456/",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ishares.com/us/products/239456/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_ISHARES_TLT",
+    "country": "US",
+    "fund_name": "iShares 20+ Year Treasury Bond ETF",
+    "fund_type": "ETF",
+    "ticker": "TLT",
+    "fund_family": "BlackRock iShares",
+    "cik": "0001100663",
+    "sec_series_id": "S000004360",
+    "sec_class_id": "C000012090",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ishares.com/us/products/239454/",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ishares.com/us/products/239454/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_ISHARES_HDV",
+    "country": "US",
+    "fund_name": "iShares Core High Dividend ETF",
+    "fund_type": "ETF",
+    "ticker": "HDV",
+    "fund_family": "BlackRock iShares",
+    "cik": "0001100663",
+    "sec_series_id": "S000031844",
+    "sec_class_id": "C000099165",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ishares.com/us/products/239563/",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ishares.com/us/products/239563/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_ISHARES_IEMG",
+    "country": "US",
+    "fund_name": "iShares Core MSCI Emerging Markets ETF",
+    "fund_type": "ETF",
+    "ticker": "IEMG",
+    "fund_family": "BlackRock iShares",
+    "cik": "0000930667",
+    "sec_series_id": "S000038923",
+    "sec_class_id": "C000119708",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ishares.com/us/products/244050/",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "SEMI_ANNUAL",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ishares.com/us/products/244050/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_ISHARES_IEFA",
+    "country": "US",
+    "fund_name": "iShares Core MSCI EAFE ETF",
+    "fund_type": "ETF",
+    "ticker": "IEFA",
+    "fund_family": "BlackRock iShares",
+    "cik": "0001100663",
+    "sec_series_id": "S000038930",
+    "sec_class_id": "C000119715",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ishares.com/us/products/244049/",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "SEMI_ANNUAL",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ishares.com/us/products/244049/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_ISHARES_USHY",
+    "country": "US",
+    "fund_name": "iShares Broad USD High Yield Corporate Bond ETF",
+    "fund_type": "ETF",
+    "ticker": "USHY",
+    "fund_family": "BlackRock iShares",
+    "cik": "0001100663",
+    "sec_series_id": "S000059297",
+    "sec_class_id": "C000194633",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ishares.com/us/products/290144/",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ishares.com/us/products/290144/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_FIDELITY_FXAIX",
+    "country": "US",
+    "fund_name": "Fidelity 500 Index Fund",
+    "fund_type": "MUTUAL_FUND",
+    "ticker": "FXAIX",
+    "fund_family": "Fidelity",
+    "cik": "0000819118",
+    "sec_series_id": "S000006027",
+    "sec_class_id": "C000100045",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911750",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "SEMI_ANNUAL",
+    "is_etf": false,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911750",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_FIDELITY_FSKAX",
+    "country": "US",
+    "fund_name": "Fidelity Total Market Index Fund",
+    "fund_type": "MUTUAL_FUND",
+    "ticker": "FSKAX",
+    "fund_family": "Fidelity",
+    "cik": "0000819118",
+    "sec_series_id": "S000006026",
+    "sec_class_id": "C000103359",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911693",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "SEMI_ANNUAL",
+    "is_etf": false,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911693",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_FIDELITY_FXNAX",
+    "country": "US",
+    "fund_name": "Fidelity U.S. Bond Index Fund",
+    "fund_type": "MUTUAL_FUND",
+    "ticker": "FXNAX",
+    "fund_family": "Fidelity",
+    "cik": "0000035315",
+    "sec_series_id": "S000017676",
+    "sec_class_id": "C000100043",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://fundresearch.fidelity.com/mutual-funds/summary/316146358",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": false,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://fundresearch.fidelity.com/mutual-funds/summary/316146358",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_FIDELITY_FTBFX",
+    "country": "US",
+    "fund_name": "Fidelity Total Bond Fund",
+    "fund_type": "MUTUAL_FUND",
+    "ticker": "FTBFX",
+    "fund_family": "Fidelity",
+    "cik": "0000751199",
+    "sec_series_id": "S000007066",
+    "sec_class_id": "C000019272",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://fundresearch.fidelity.com/mutual-funds/summary/316146200",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": false,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://fundresearch.fidelity.com/mutual-funds/summary/316146200",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_FIDELITY_FZROX",
+    "country": "US",
+    "fund_name": "Fidelity ZERO Total Market Index Fund",
+    "fund_type": "MUTUAL_FUND",
+    "ticker": "FZROX",
+    "fund_family": "Fidelity",
+    "cik": "0000819118",
+    "sec_series_id": "S000063106",
+    "sec_class_id": "C000204614",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911602",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "ANNUAL",
+    "is_etf": false,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911602",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_FIDELITY_FNCMX",
+    "country": "US",
+    "fund_name": "Fidelity Nasdaq Composite Index Fund",
+    "fund_type": "MUTUAL_FUND",
+    "ticker": "FNCMX",
+    "fund_family": "Fidelity",
+    "cik": "0000819118",
+    "sec_series_id": "S000055366",
+    "sec_class_id": "C000174185",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://fundresearch.fidelity.com/mutual-funds/summary/316389303",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "ANNUAL",
+    "is_etf": false,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://fundresearch.fidelity.com/mutual-funds/summary/316389303",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_FIDELITY_FBALX",
+    "country": "US",
+    "fund_name": "Fidelity Balanced Fund",
+    "fund_type": "MUTUAL_FUND",
+    "ticker": "FBALX",
+    "fund_family": "Fidelity",
+    "cik": "0000081205",
+    "sec_series_id": "S000007151",
+    "sec_class_id": "C000019555",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://fundresearch.fidelity.com/mutual-funds/summary/316345107",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "SEMI_ANNUAL",
+    "is_etf": false,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://fundresearch.fidelity.com/mutual-funds/summary/316345107",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_FIDELITY_FDVV",
+    "country": "US",
+    "fund_name": "Fidelity High Dividend ETF",
+    "fund_type": "ETF",
+    "ticker": "FDVV",
+    "fund_family": "Fidelity",
+    "cik": "0000945908",
+    "sec_series_id": "S000054749",
+    "sec_class_id": "C000171930",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.fidelity.com/etfs/different-types-of-etfs/fdvv",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.fidelity.com/etfs/different-types-of-etfs/fdvv",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_FIDELITY_ONEQ",
+    "country": "US",
+    "fund_name": "Fidelity Nasdaq Composite Tracking Stock ETF",
+    "fund_type": "ETF",
+    "ticker": "ONEQ",
+    "fund_family": "Fidelity",
+    "cik": "0000205323",
+    "sec_series_id": "S000006011",
+    "sec_class_id": "C000016527",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.fidelity.com/etfs/different-types-of-etfs/oneq",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.fidelity.com/etfs/different-types-of-etfs/oneq",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_SPDR_SPTM",
+    "country": "US",
+    "fund_name": "SPDR Portfolio Total Stock Market ETF",
+    "fund_type": "ETF",
+    "ticker": "SPTM",
+    "fund_family": "State Street SPDR",
+    "cik": "0001064642",
+    "sec_series_id": "S000006973",
+    "sec_class_id": "C000019026",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-portfolio-total-stock-market-etf-sptm",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-portfolio-total-stock-market-etf-sptm",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_SPDR_SPYD",
+    "country": "US",
+    "fund_name": "SPDR S&P Dividend ETF",
+    "fund_type": "ETF",
+    "ticker": "SPYD",
+    "fund_family": "State Street SPDR",
+    "cik": "0001064642",
+    "sec_series_id": "S000050968",
+    "sec_class_id": "C000160602",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-sp-dividend-etf-spyd",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-sp-dividend-etf-spyd",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_SPDR_SPAB",
+    "country": "US",
+    "fund_name": "SPDR Portfolio Aggregate Bond ETF",
+    "fund_type": "ETF",
+    "ticker": "SPAB",
+    "fund_family": "State Street SPDR",
+    "cik": "0001064642",
+    "sec_series_id": "S000017334",
+    "sec_class_id": "C000047971",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-portfolio-aggregate-bond-etf-spab",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-portfolio-aggregate-bond-etf-spab",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_SPDR_JNK",
+    "country": "US",
+    "fund_name": "SPDR Bloomberg High Yield Bond ETF",
+    "fund_type": "ETF",
+    "ticker": "JNK",
+    "fund_family": "State Street SPDR",
+    "cik": "0001064642",
+    "sec_series_id": "S000019669",
+    "sec_class_id": "C000055013",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-bloomberg-high-yield-bond-etf-jnk",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-bloomberg-high-yield-bond-etf-jnk",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_SPDR_SJNK",
+    "country": "US",
+    "fund_name": "SPDR Bloomberg Short Term High Yield Bond ETF",
+    "fund_type": "ETF",
+    "ticker": "SJNK",
+    "fund_family": "State Street SPDR",
+    "cik": "0001064642",
+    "sec_series_id": "S000036414",
+    "sec_class_id": "C000111386",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-bloomberg-short-term-high-yield-bond-etf-sjnk",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-bloomberg-short-term-high-yield-bond-etf-sjnk",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_SPDR_XLF",
+    "country": "US",
+    "fund_name": "Financial Select Sector SPDR Fund",
+    "fund_type": "ETF",
+    "ticker": "XLF",
+    "fund_family": "State Street SPDR",
+    "cik": "0001064641",
+    "sec_series_id": "S000006411",
+    "sec_class_id": "C000017597",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ssga.com/us/en/intermediary/etfs/funds/the-financial-select-sector-spdr-fund-xlf",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/the-financial-select-sector-spdr-fund-xlf",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_SPDR_XLE",
+    "country": "US",
+    "fund_name": "Energy Select Sector SPDR Fund",
+    "fund_type": "ETF",
+    "ticker": "XLE",
+    "fund_family": "State Street SPDR",
+    "cik": "0001064641",
+    "sec_series_id": "S000006410",
+    "sec_class_id": "C000017596",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.ssga.com/us/en/intermediary/etfs/funds/the-energy-select-sector-spdr-fund-xle",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/the-energy-select-sector-spdr-fund-xle",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_SCHWAB_SCHD",
+    "country": "US",
+    "fund_name": "Schwab U.S. Dividend Equity ETF",
+    "fund_type": "ETF",
+    "ticker": "SCHD",
+    "fund_family": "Charles Schwab",
+    "cik": "0001454889",
+    "sec_series_id": "S000034163",
+    "sec_class_id": "C000105320",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.schwabassetmanagement.com/products/schd",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.schwabassetmanagement.com/products/schd",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_SCHWAB_SCHX",
+    "country": "US",
+    "fund_name": "Schwab U.S. Large-Cap ETF",
+    "fund_type": "ETF",
+    "ticker": "SCHX",
+    "fund_family": "Charles Schwab",
+    "cik": "0001454889",
+    "sec_series_id": "S000026632",
+    "sec_class_id": "C000079979",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.schwabassetmanagement.com/products/schx",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.schwabassetmanagement.com/products/schx",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_SCHWAB_SCHZ",
+    "country": "US",
+    "fund_name": "Schwab U.S. Aggregate Bond ETF",
+    "fund_type": "ETF",
+    "ticker": "SCHZ",
+    "fund_family": "Charles Schwab",
+    "cik": "0001454889",
+    "sec_series_id": "S000033156",
+    "sec_class_id": "C000102078",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.schwabassetmanagement.com/products/schz",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.schwabassetmanagement.com/products/schz",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_SCHWAB_SWPPX",
+    "country": "US",
+    "fund_name": "Schwab S&P 500 Index Fund",
+    "fund_type": "MUTUAL_FUND",
+    "ticker": "SWPPX",
+    "fund_family": "Charles Schwab",
+    "cik": "0000904333",
+    "sec_series_id": "S000005911",
+    "sec_class_id": "C000016166",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.schwabassetmanagement.com/products/swppx",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "ANNUAL",
+    "is_etf": false,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.schwabassetmanagement.com/products/swppx",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_SCHWAB_SWAGX",
+    "country": "US",
+    "fund_name": "Schwab U.S. Aggregate Bond Index Fund",
+    "fund_type": "MUTUAL_FUND",
+    "ticker": "SWAGX",
+    "fund_family": "Charles Schwab",
+    "cik": "0000869365",
+    "sec_series_id": "S000056207",
+    "sec_class_id": "C000176960",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.schwabassetmanagement.com/products/swagx",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": false,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.schwabassetmanagement.com/products/swagx",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_INVESCO_QQQ",
+    "country": "US",
+    "fund_name": "Invesco QQQ Trust",
+    "fund_type": "ETF",
+    "ticker": "QQQ",
+    "fund_family": "Invesco",
+    "cik": "0001067839",
+    "sec_series_id": "S000101292",
+    "sec_class_id": "C000271435",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=QQQ",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=QQQ",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_INVESCO_RSP",
+    "country": "US",
+    "fund_name": "Invesco S&P 500 Equal Weight ETF",
+    "fund_type": "ETF",
+    "ticker": "RSP",
+    "fund_family": "Invesco",
+    "cik": "0001209466",
+    "sec_series_id": "S000060812",
+    "sec_class_id": "C000197628",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=RSP",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=RSP",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_INVESCO_BKLN",
+    "country": "US",
+    "fund_name": "Invesco Senior Loan ETF",
+    "fund_type": "ETF",
+    "ticker": "BKLN",
+    "fund_family": "Invesco",
+    "cik": "0001378872",
+    "sec_series_id": "S000031053",
+    "sec_class_id": "C000096299",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=BKLN",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=BKLN",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_PIMCO_BOND",
+    "country": "US",
+    "fund_name": "PIMCO Active Bond Exchange-Traded Fund",
+    "fund_type": "ETF",
+    "ticker": "BOND",
+    "fund_family": "PIMCO",
+    "cik": "0001450011",
+    "sec_series_id": "S000033233",
+    "sec_class_id": "C000102215",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.pimco.com/en-us/investments/etf/active-bond-etf/bond",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.pimco.com/en-us/investments/etf/active-bond-etf/bond",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "US_PIMCO_MINT",
+    "country": "US",
+    "fund_name": "PIMCO Enhanced Short Maturity Active ETF",
+    "fund_type": "ETF",
+    "ticker": "MINT",
+    "fund_family": "PIMCO",
+    "cik": "0001450011",
+    "sec_series_id": "S000026751",
+    "sec_class_id": "C000080241",
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.pimco.com/en-us/investments/etf/enhanced-short-maturity-active-etf/mint",
+    "verification_source": "SEC EDGAR Series/Class Database & Sponsor Official Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "REGULATORY_INDEX",
+        "name": "SEC EDGAR Series/Class Database (company_tickers_mf.json)",
+        "verified_fields": [
+          "cik",
+          "sec_series_id",
+          "sec_class_id",
+          "ticker"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.pimco.com/en-us/investments/etf/enhanced-short-maturity-active-etf/mint",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "fund_type",
+          "is_etf",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_BMO_ZCN",
+    "country": "CA",
+    "fund_name": "BMO S&P/TSX Capped Composite Index ETF",
+    "fund_type": "ETF",
+    "ticker": "ZCN",
+    "fund_family": "BMO Global Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-sptsx-capped-composite-index-etf-zcn/",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-sptsx-capped-composite-index-etf-zcn/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_BMO_ZAG",
+    "country": "CA",
+    "fund_name": "BMO Aggregate Bond Index ETF",
+    "fund_type": "ETF",
+    "ticker": "ZAG",
+    "fund_family": "BMO Global Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-aggregate-bond-index-etf-zag/",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-aggregate-bond-index-etf-zag/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_BMO_ZEB",
+    "country": "CA",
+    "fund_name": "BMO Equal Weight Banks Index ETF",
+    "fund_type": "ETF",
+    "ticker": "ZEB",
+    "fund_family": "BMO Global Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-banks-index-etf-zeb/",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-banks-index-etf-zeb/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_BMO_ZWB",
+    "country": "CA",
+    "fund_name": "BMO Covered Call Canadian Banks ETF",
+    "fund_type": "ETF",
+    "ticker": "ZWB",
+    "fund_family": "BMO Global Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-covered-call-canadian-banks-etf-zwb/",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-covered-call-canadian-banks-etf-zwb/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_BMO_ZUT",
+    "country": "CA",
+    "fund_name": "BMO Equal Weight Utilities Index ETF",
+    "fund_type": "ETF",
+    "ticker": "ZUT",
+    "fund_family": "BMO Global Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-utilities-index-etf-zut/",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-utilities-index-etf-zut/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_BMO_ZDV",
+    "country": "CA",
+    "fund_name": "BMO Canadian Dividend ETF",
+    "fund_type": "ETF",
+    "ticker": "ZDV",
+    "fund_family": "BMO Global Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-canadian-dividend-etf-zdv/",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-canadian-dividend-etf-zdv/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_BMO_ZDB",
+    "country": "CA",
+    "fund_name": "BMO Discount Bond Index ETF",
+    "fund_type": "ETF",
+    "ticker": "ZDB",
+    "fund_family": "BMO Global Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-discount-bond-index-etf-zdb/",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-discount-bond-index-etf-zdb/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_BMO_ZPR",
+    "country": "CA",
+    "fund_name": "BMO Laddered Preferred Share Index ETF",
+    "fund_type": "ETF",
+    "ticker": "ZPR",
+    "fund_family": "BMO Global Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-laddered-preferred-share-index-etf-zpr/",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-laddered-preferred-share-index-etf-zpr/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_VANGUARD_VCN",
+    "country": "CA",
+    "fund_name": "Vanguard FTSE Canada All Cap Index ETF",
+    "fund_type": "ETF",
+    "ticker": "VCN",
+    "fund_family": "Vanguard Canada",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VCN",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VCN",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_VANGUARD_VAB",
+    "country": "CA",
+    "fund_name": "Vanguard Canadian Aggregate Bond Index ETF",
+    "fund_type": "ETF",
+    "ticker": "VAB",
+    "fund_family": "Vanguard Canada",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VAB",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VAB",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_VANGUARD_VDY",
+    "country": "CA",
+    "fund_name": "Vanguard FTSE Canadian High Dividend Yield Index ETF",
+    "fund_type": "ETF",
+    "ticker": "VDY",
+    "fund_family": "Vanguard Canada",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VDY",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VDY",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_VANGUARD_VFV",
+    "country": "CA",
+    "fund_name": "Vanguard S&P 500 Index ETF",
+    "fund_type": "ETF",
+    "ticker": "VFV",
+    "fund_family": "Vanguard Canada",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VFV",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VFV",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_VANGUARD_VSB",
+    "country": "CA",
+    "fund_name": "Vanguard Canadian Short-Term Bond Index ETF",
+    "fund_type": "ETF",
+    "ticker": "VSB",
+    "fund_family": "Vanguard Canada",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VSB",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VSB",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_VANGUARD_VBAL",
+    "country": "CA",
+    "fund_name": "Vanguard Balanced ETF Portfolio",
+    "fund_type": "ETF",
+    "ticker": "VBAL",
+    "fund_family": "Vanguard Canada",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VBAL",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VBAL",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_VANGUARD_VGRO",
+    "country": "CA",
+    "fund_name": "Vanguard Growth ETF Portfolio",
+    "fund_type": "ETF",
+    "ticker": "VGRO",
+    "fund_family": "Vanguard Canada",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VGRO",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VGRO",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_ISHARES_XIC",
+    "country": "CA",
+    "fund_name": "iShares Core S&P/TSX Capped Composite Index ETF",
+    "fund_type": "ETF",
+    "ticker": "XIC",
+    "fund_family": "BlackRock iShares Canada",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.blackrock.com/ca/investors/en/products/239837/",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.blackrock.com/ca/investors/en/products/239837/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_ISHARES_XBB",
+    "country": "CA",
+    "fund_name": "iShares Core Canadian Universe Bond Index ETF",
+    "fund_type": "ETF",
+    "ticker": "XBB",
+    "fund_family": "BlackRock iShares Canada",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.blackrock.com/ca/investors/en/products/239493/",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.blackrock.com/ca/investors/en/products/239493/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_ISHARES_XEI",
+    "country": "CA",
+    "fund_name": "iShares S&P/TSX Composite High Dividend Index ETF",
+    "fund_type": "ETF",
+    "ticker": "XEI",
+    "fund_family": "BlackRock iShares Canada",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.blackrock.com/ca/investors/en/products/239846/",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.blackrock.com/ca/investors/en/products/239846/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_ISHARES_XDV",
+    "country": "CA",
+    "fund_name": "iShares Canadian Select Dividend Index ETF",
+    "fund_type": "ETF",
+    "ticker": "XDV",
+    "fund_family": "BlackRock iShares Canada",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.blackrock.com/ca/investors/en/products/239835/",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.blackrock.com/ca/investors/en/products/239835/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_ISHARES_XUT",
+    "country": "CA",
+    "fund_name": "iShares S&P/TSX Capped Utilities Index ETF",
+    "fund_type": "ETF",
+    "ticker": "XUT",
+    "fund_family": "BlackRock iShares Canada",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.blackrock.com/ca/investors/en/products/239848/",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.blackrock.com/ca/investors/en/products/239848/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_ISHARES_XSB",
+    "country": "CA",
+    "fund_name": "iShares Core Canadian Short Term Bond Index ETF",
+    "fund_type": "ETF",
+    "ticker": "XSB",
+    "fund_family": "BlackRock iShares Canada",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.blackrock.com/ca/investors/en/products/239498/",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.blackrock.com/ca/investors/en/products/239498/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_ISHARES_XSH",
+    "country": "CA",
+    "fund_name": "iShares Core Canadian Short Term Corporate Bond Index ETF",
+    "fund_type": "ETF",
+    "ticker": "XSH",
+    "fund_family": "BlackRock iShares Canada",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.blackrock.com/ca/investors/en/products/239499/",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.blackrock.com/ca/investors/en/products/239499/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_ISHARES_XHY",
+    "country": "CA",
+    "fund_name": "iShares U.S. High Yield Bond Index ETF (CAD-Hedged)",
+    "fund_type": "ETF",
+    "ticker": "XHY",
+    "fund_family": "BlackRock iShares Canada",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.blackrock.com/ca/investors/en/products/239556/",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.blackrock.com/ca/investors/en/products/239556/",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_RBC_RBN",
+    "country": "CA",
+    "fund_name": "RBC BlueBay Canadian Core Plus Bond ETF",
+    "fund_type": "ETF",
+    "ticker": "RBN",
+    "fund_family": "RBC Global Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.rbcgam.com/en/ca/products/etfs/RBN/detail",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.rbcgam.com/en/ca/products/etfs/RBN/detail",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_RBC_RCD",
+    "country": "CA",
+    "fund_name": "RBC Quant Canadian Dividend Leaders ETF",
+    "fund_type": "ETF",
+    "ticker": "RCD",
+    "fund_family": "RBC Global Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.rbcgam.com/en/ca/products/etfs/RCD/detail",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.rbcgam.com/en/ca/products/etfs/RCD/detail",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_RBC_RUSB",
+    "country": "CA",
+    "fund_name": "RBC Short-Term U.S. Corporate Bond ETF",
+    "fund_type": "ETF",
+    "ticker": "RUSB",
+    "fund_family": "RBC Global Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.rbcgam.com/en/ca/products/etfs/RUSB/detail",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.rbcgam.com/en/ca/products/etfs/RUSB/detail",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_RBC_RBF556",
+    "country": "CA",
+    "fund_name": "RBC Canadian Dividend Fund Series A",
+    "fund_type": "MUTUAL_FUND",
+    "ticker": null,
+    "fund_family": "RBC Global Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": "RBF556",
+    "official_source_url": "https://www.rbcgam.com/en/ca/products/mutual-funds/RBF556/detail",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": false,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "FUNDSERV_REGISTRY",
+        "name": "FundServ Canada Registry",
+        "verified_fields": [
+          "fundserv_code",
+          "fund_type"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.rbcgam.com/en/ca/products/mutual-funds/RBF556/detail",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_RBC_RBF266",
+    "country": "CA",
+    "fund_name": "RBC Canadian Bond Fund Series A",
+    "fund_type": "MUTUAL_FUND",
+    "ticker": null,
+    "fund_family": "RBC Global Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": "RBF266",
+    "official_source_url": "https://www.rbcgam.com/en/ca/products/mutual-funds/RBF266/detail",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": false,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "FUNDSERV_REGISTRY",
+        "name": "FundServ Canada Registry",
+        "verified_fields": [
+          "fundserv_code",
+          "fund_type"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.rbcgam.com/en/ca/products/mutual-funds/RBF266/detail",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_TD_TTP",
+    "country": "CA",
+    "fund_name": "TD Canadian Equity Index ETF",
+    "fund_type": "ETF",
+    "ticker": "TTP",
+    "fund_family": "TD Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20Canadian%20Equity%20Index%20ETF/?fundId=6831",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20Canadian%20Equity%20Index%20ETF/?fundId=6831",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_TD_TPU",
+    "country": "CA",
+    "fund_name": "TD U.S. Equity Index ETF",
+    "fund_type": "ETF",
+    "ticker": "TPU",
+    "fund_family": "TD Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20U.S.%20Equity%20Index%20ETF/?fundId=6833",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "QUARTERLY",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20U.S.%20Equity%20Index%20ETF/?fundId=6833",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_TD_TDB900",
+    "country": "CA",
+    "fund_name": "TD Canadian Index Fund - e",
+    "fund_type": "MUTUAL_FUND",
+    "ticker": null,
+    "fund_family": "TD Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": "TDB900",
+    "official_source_url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20Canadian%20Index%20Fund%20-%20e/?fundId=3261",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "SEMI_ANNUAL",
+    "is_etf": false,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "FUNDSERV_REGISTRY",
+        "name": "FundServ Canada Registry",
+        "verified_fields": [
+          "fundserv_code",
+          "fund_type"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20Canadian%20Index%20Fund%20-%20e/?fundId=3261",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_TD_TDB902",
+    "country": "CA",
+    "fund_name": "TD U.S. Index Fund - e",
+    "fund_type": "MUTUAL_FUND",
+    "ticker": null,
+    "fund_family": "TD Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": "TDB902",
+    "official_source_url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20U.S.%20Index%20Fund%20-%20e/?fundId=3270",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "SEMI_ANNUAL",
+    "is_etf": false,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "FUNDSERV_REGISTRY",
+        "name": "FundServ Canada Registry",
+        "verified_fields": [
+          "fundserv_code",
+          "fund_type"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20U.S.%20Index%20Fund%20-%20e/?fundId=3270",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_TD_TDB909",
+    "country": "CA",
+    "fund_name": "TD Canadian Bond Index Fund - e",
+    "fund_type": "MUTUAL_FUND",
+    "ticker": null,
+    "fund_family": "TD Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": "TDB909",
+    "official_source_url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20Canadian%20Bond%20Index%20Fund%20-%20e/?fundId=4817",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": false,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "FUNDSERV_REGISTRY",
+        "name": "FundServ Canada Registry",
+        "verified_fields": [
+          "fundserv_code",
+          "fund_type"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20Canadian%20Bond%20Index%20Fund%20-%20e/?fundId=4817",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_GLOBALX_HXT",
+    "country": "CA",
+    "fund_name": "Global X S&P/TSX 60 Index Corporate Class ETF",
+    "fund_type": "ETF",
+    "ticker": "HXT",
+    "fund_family": "Global X Investments Canada",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.globalx.ca/product/hxt",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "ANNUAL",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.globalx.ca/product/hxt",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_GLOBALX_HBB",
+    "country": "CA",
+    "fund_name": "Global X Canadian Aggregate Bond Index Corporate Class ETF",
+    "fund_type": "ETF",
+    "ticker": "HBB",
+    "fund_family": "Global X Investments Canada",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.globalx.ca/product/hbb",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "ANNUAL",
+    "is_etf": true,
+    "is_monthly_payer": false,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.globalx.ca/product/hbb",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_GLOBALX_HDIV",
+    "country": "CA",
+    "fund_name": "Global X Canadian High Dividend Index Corporate Class ETF",
+    "fund_type": "ETF",
+    "ticker": "HDIV",
+    "fund_family": "Global X Investments Canada",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.globalx.ca/product/hdiv",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.globalx.ca/product/hdiv",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_CI_FIE",
+    "country": "CA",
+    "fund_name": "CI Canadian Financial Monthly Income ETF",
+    "fund_type": "ETF",
+    "ticker": "FIE",
+    "fund_family": "CI Global Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://funds.cifinancial.com/en/funds/etfs/CICanadianFinancialMonthlyIncomeETF.html",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://funds.cifinancial.com/en/funds/etfs/CICanadianFinancialMonthlyIncomeETF.html",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_CI_FIG",
+    "country": "CA",
+    "fund_name": "CI Investment Grade Bond ETF",
+    "fund_type": "ETF",
+    "ticker": "FIG",
+    "fund_family": "CI Global Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://funds.cifinancial.com/en/funds/etfs/CIInvestmentGradeBondETF.html",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://funds.cifinancial.com/en/funds/etfs/CIInvestmentGradeBondETF.html",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_CI_CDZ",
+    "country": "CA",
+    "fund_name": "CI Morningstar Canada Dividend Target 30 Index ETF",
+    "fund_type": "ETF",
+    "ticker": "CDZ",
+    "fund_family": "CI Global Asset Management",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://funds.cifinancial.com/en/funds/etfs/CIMorningstarCanadaDividendTarget30IndexETF.html",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://funds.cifinancial.com/en/funds/etfs/CIMorningstarCanadaDividendTarget30IndexETF.html",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  },
+  {
+    "fund_id": "CA_MACKENZIE_QBB",
+    "country": "CA",
+    "fund_name": "Mackenzie Canadian Aggregate Bond Index ETF",
+    "fund_type": "ETF",
+    "ticker": "QBB",
+    "fund_family": "Mackenzie Investments",
+    "cik": null,
+    "sec_series_id": null,
+    "sec_class_id": null,
+    "sedar_id": null,
+    "fundserv_code": null,
+    "official_source_url": "https://www.mackenzieinvestments.com/en/products/etfs/mackenzie-canadian-aggregate-bond-index-etf-qbb",
+    "verification_source": "TSX Official Directory & Fund Sponsor Official Disclosure Portal",
+    "verified_at": "2026-09-19T21:05:43.688686+00:00",
+    "expected_frequency": "MONTHLY",
+    "is_etf": true,
+    "is_monthly_payer": true,
+    "is_verified": true,
+    "verification_audit": {
+      "primary_source": {
+        "source_type": "EXCHANGE_DIRECTORY",
+        "name": "TSX/TMX Official Exchange Directory",
+        "verified_fields": [
+          "ticker",
+          "fund_type",
+          "is_etf"
+        ]
+      },
+      "secondary_source": {
+        "source_type": "OFFICIAL_SPONSOR_PORTAL",
+        "url": "https://www.mackenzieinvestments.com/en/products/etfs/mackenzie-canadian-aggregate-bond-index-etf-qbb",
+        "verified_fields": [
+          "fund_name",
+          "fund_family",
+          "expected_frequency",
+          "is_monthly_payer"
+        ]
+      }
+    }
+  }
+]

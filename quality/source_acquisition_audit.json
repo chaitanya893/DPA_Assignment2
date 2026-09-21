@@ -1,0 +1,435 @@
+{
+  "generated_at": "2026-09-20T16:58:10.399100+00:00",
+  "audit_version": "1.0",
+  "inspection_window": {
+    "start": "2026-02-01",
+    "end": "2026-02-28"
+  },
+  "summary": {
+    "funds_audited": 10,
+    "candidates_attempted": 15,
+    "total_documents_inspected": 25,
+    "acquisition_status_breakdown": {
+      "RETRIEVED": 14,
+      "NOT_RETRIEVED": 1,
+      "BLOCKED": 3,
+      "TIMEOUT": 1,
+      "INVALID_CONTENT": 4,
+      "REDIRECTED": 2,
+      "INCOMPLETE": 0
+    },
+    "tier_breakdown": {
+      "TIER_1_AUTHORITATIVE": 15,
+      "TIER_2_PRIMARY_UNSTRUCTURED": 10
+    },
+    "direct_distribution_candidates_found": 0,
+    "coverage_schedule_candidates_found": 0
+  },
+  "fund_details": [
+    {
+      "fund_id": "US_VANGUARD_VTI",
+      "fund_name": "Vanguard Total Stock Market Index Fund ETF",
+      "ticker": "VTI",
+      "country": "US",
+      "acquisitions": [
+        {
+          "source_id": "sec_edgar_filing",
+          "source_tier": 1,
+          "url": "https://www.sec.gov/Archives/edgar/data/36405/000003640526000228/f44892d1.htm",
+          "http_status": 200,
+          "content_hash": "f92183f490065cb9399f54cf6377cd855578f55bef820016c5f4bac53f43c4c5",
+          "status": "RETRIEVED",
+          "is_usable": true,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "No recognized distribution or dividend terms found in content.",
+          "extracted_evidence_candidates": []
+        },
+        {
+          "source_id": "sec_edgar_filing",
+          "source_tier": 1,
+          "url": "https://www.sec.gov/Archives/edgar/data/36405/000003640526000227/f44893d1.htm",
+          "http_status": 200,
+          "content_hash": "79df5e57dde095819340cdf9dda639451c4d6aa858d3baa8d57c336f0c0c6840",
+          "status": "RETRIEVED",
+          "is_usable": true,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "No recognized distribution or dividend terms found in content.",
+          "extracted_evidence_candidates": []
+        },
+        {
+          "source_id": "sec_edgar_filing",
+          "source_tier": 1,
+          "url": "https://www.sec.gov/Archives/edgar/data/36405/000003640526000226/f44891d1.htm",
+          "http_status": 200,
+          "content_hash": "42892a8a90e9e5fe228b09f325c71f84b33796ec3149b8e129de011387cd4855",
+          "status": "RETRIEVED",
+          "is_usable": true,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "No recognized distribution or dividend terms found in content.",
+          "extracted_evidence_candidates": []
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/etfs/profile/vti",
+          "http_status": 200,
+          "content_hash": "7195814ec115838d34d774610c4c4a303b52b3c14024e2bf19158e5c7008b22a",
+          "status": "RETRIEVED",
+          "is_usable": true,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": null,
+          "extracted_evidence_candidates": []
+        }
+      ]
+    },
+    {
+      "fund_id": "US_ISHARES_AGG",
+      "fund_name": "iShares Core U.S. Aggregate Bond ETF",
+      "ticker": "AGG",
+      "country": "US",
+      "acquisitions": [
+        {
+          "source_id": "sec_edgar_filing",
+          "source_tier": 1,
+          "url": "https://www.sec.gov/Archives/edgar/data/1100663/000119312526188422/d17882d497.htm",
+          "http_status": 200,
+          "content_hash": "1228776627d75e8c03cc25523a66656090a0e3709d7be77025297efc83b42e97",
+          "status": "INVALID_CONTENT",
+          "is_usable": false,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "Identity mismatch: Document content does not explicitly identify target fund 'US_ISHARES_AGG' (AGG).",
+          "extracted_evidence_candidates": []
+        },
+        {
+          "source_id": "sec_edgar_filing",
+          "source_tier": 1,
+          "url": "https://www.sec.gov/Archives/edgar/data/1100663/000119312526187840/d128315d485bpos.htm",
+          "http_status": 200,
+          "content_hash": "155f1ee9822999f792872e372375f0082f3bd83412fc8dc5730af69f8ac91a75",
+          "status": "RETRIEVED",
+          "is_usable": true,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": null,
+          "extracted_evidence_candidates": []
+        },
+        {
+          "source_id": "sec_edgar_filing",
+          "source_tier": 1,
+          "url": "https://www.sec.gov/Archives/edgar/data/1100663/000100472626002884/xslFormNPORT-P_X01/primary_doc.xml",
+          "http_status": 200,
+          "content_hash": "54c067c2ce436677f7015e8fe290db5f2853b1caf54c4426cedfdb50ccfc8327",
+          "status": "RETRIEVED",
+          "is_usable": true,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "No recognized distribution or dividend terms found in content.",
+          "extracted_evidence_candidates": []
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ishares.com/us/products/239458/",
+          "http_status": 403,
+          "content_hash": null,
+          "status": "BLOCKED",
+          "is_usable": false,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "HTTP 403: Forbidden",
+          "extracted_evidence_candidates": []
+        }
+      ]
+    },
+    {
+      "fund_id": "US_PIMCO_BOND",
+      "fund_name": "PIMCO Active Bond Exchange-Traded Fund",
+      "ticker": "BOND",
+      "country": "US",
+      "acquisitions": [
+        {
+          "source_id": "sec_edgar_filing",
+          "source_tier": 1,
+          "url": "https://www.sec.gov/Archives/edgar/data/1450011/000119312526134647/d133625d497k.htm",
+          "http_status": 200,
+          "content_hash": "bb3d1c9f23352f3decc19045530d93cc06f0ae691c7de828d248f6c6c337471e",
+          "status": "RETRIEVED",
+          "is_usable": true,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "No recognized distribution or dividend terms found in content.",
+          "extracted_evidence_candidates": []
+        },
+        {
+          "source_id": "sec_edgar_filing",
+          "source_tier": 1,
+          "url": "https://www.sec.gov/Archives/edgar/data/1450011/000119312526134526/d20205d497.htm",
+          "http_status": 200,
+          "content_hash": "ea64ac9c3ac37859900fbc5d9d7f5608f8827b208bfdd240c054761b1354e15d",
+          "status": "RETRIEVED",
+          "is_usable": true,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": null,
+          "extracted_evidence_candidates": []
+        },
+        {
+          "source_id": "sec_edgar_filing",
+          "source_tier": 1,
+          "url": "https://www.sec.gov/Archives/edgar/data/1450011/000119312526095852/d21342d497k.htm",
+          "http_status": 200,
+          "content_hash": "fd7063bed0ca93fd1fdffe1b3de29d5c1f1dc04de6bcbcf9983bb5c00be9b80b",
+          "status": "RETRIEVED",
+          "is_usable": true,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "No recognized distribution or dividend terms found in content.",
+          "extracted_evidence_candidates": []
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.pimco.com/en-us/investments/etf/active-bond-etf/bond",
+          "http_status": 403,
+          "content_hash": null,
+          "status": "BLOCKED",
+          "is_usable": false,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "HTTP 403: Forbidden",
+          "extracted_evidence_candidates": []
+        }
+      ]
+    },
+    {
+      "fund_id": "US_SPDR_SPAB",
+      "fund_name": "SPDR Portfolio Aggregate Bond ETF",
+      "ticker": "SPAB",
+      "country": "US",
+      "acquisitions": [
+        {
+          "source_id": "sec_edgar_filing",
+          "source_tier": 1,
+          "url": "https://www.sec.gov/Archives/edgar/data/1064642/000119312526187520/d100865d497k.htm",
+          "http_status": 200,
+          "content_hash": "3e0d7da909e36754512d832b2a257a6e846d53b88830b75e8680f7d5d79582f2",
+          "status": "RETRIEVED",
+          "is_usable": true,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "No recognized distribution or dividend terms found in content.",
+          "extracted_evidence_candidates": []
+        },
+        {
+          "source_id": "sec_edgar_filing",
+          "source_tier": 1,
+          "url": "https://www.sec.gov/Archives/edgar/data/1064642/000119312526187518/d148325d497k.htm",
+          "http_status": 200,
+          "content_hash": "17c8594110c6a044c1d618f826f2c5095343b12181d83dc69c94ebec374bb945",
+          "status": "RETRIEVED",
+          "is_usable": true,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "No recognized distribution or dividend terms found in content.",
+          "extracted_evidence_candidates": []
+        },
+        {
+          "source_id": "sec_edgar_filing",
+          "source_tier": 1,
+          "url": "https://www.sec.gov/Archives/edgar/data/1064642/000119312526187516/d122822d497k.htm",
+          "http_status": 200,
+          "content_hash": "7ab7f6e8aa544ae0c32b70f1c3e2599426682f937646eee00d87650b9536b13b",
+          "status": "RETRIEVED",
+          "is_usable": true,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "No recognized distribution or dividend terms found in content.",
+          "extracted_evidence_candidates": []
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-portfolio-aggregate-bond-etf-spab",
+          "http_status": 301,
+          "content_hash": null,
+          "status": "REDIRECTED",
+          "is_usable": false,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "HTTP 301: Moved Permanently",
+          "extracted_evidence_candidates": []
+        }
+      ]
+    },
+    {
+      "fund_id": "US_FIDELITY_FXAIX",
+      "fund_name": "Fidelity 500 Index Fund",
+      "ticker": "FXAIX",
+      "country": "US",
+      "acquisitions": [
+        {
+          "source_id": "sec_edgar_filing",
+          "source_tier": 1,
+          "url": "https://www.sec.gov/Archives/edgar/data/819118/000081911826000079/filing12050.htm",
+          "http_status": 200,
+          "content_hash": "f2e8960e4bad6cf8b95dd8c2686ebfa3563fda6f2d3f134ebf92d465962c606e",
+          "status": "INVALID_CONTENT",
+          "is_usable": false,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "Identity mismatch: Document content does not explicitly identify target fund 'US_FIDELITY_FXAIX' (FXAIX).",
+          "extracted_evidence_candidates": []
+        },
+        {
+          "source_id": "sec_edgar_filing",
+          "source_tier": 1,
+          "url": "https://www.sec.gov/Archives/edgar/data/819118/000081911826000078/filing11574.htm",
+          "http_status": 200,
+          "content_hash": "e612fdbff34988f2039daaafb9843c15558fe214cb6c6bd77f2557a619fe3a6b",
+          "status": "INVALID_CONTENT",
+          "is_usable": false,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "Identity mismatch: Document content does not explicitly identify target fund 'US_FIDELITY_FXAIX' (FXAIX).",
+          "extracted_evidence_candidates": []
+        },
+        {
+          "source_id": "sec_edgar_filing",
+          "source_tier": 1,
+          "url": "https://www.sec.gov/Archives/edgar/data/819118/000081911826000077/filing11574.htm",
+          "http_status": 200,
+          "content_hash": "458062df9a23179c518e4d4b01a937bfc068e7aa67abe034a19fccf75ab541b5",
+          "status": "INVALID_CONTENT",
+          "is_usable": false,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "Identity mismatch: Document content does not explicitly identify target fund 'US_FIDELITY_FXAIX' (FXAIX).",
+          "extracted_evidence_candidates": []
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911750",
+          "http_status": 200,
+          "content_hash": "35f8119d440a48d4738a7d838fefff358e580f7d884729ef033c50f626c69816",
+          "status": "RETRIEVED",
+          "is_usable": true,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "No recognized distribution or dividend terms found in content.",
+          "extracted_evidence_candidates": []
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_VANGUARD_VCN",
+      "fund_name": "Vanguard FTSE Canada All Cap Index ETF",
+      "ticker": "VCN",
+      "country": "CA",
+      "acquisitions": [
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VCN",
+          "http_status": 301,
+          "content_hash": null,
+          "status": "REDIRECTED",
+          "is_usable": false,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "HTTP 301: Moved Permanently",
+          "extracted_evidence_candidates": []
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_BMO_ZCN",
+      "fund_name": "BMO S&P/TSX Capped Composite Index ETF",
+      "ticker": "ZCN",
+      "country": "CA",
+      "acquisitions": [
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-sptsx-capped-composite-index-etf-zcn/",
+          "http_status": null,
+          "content_hash": null,
+          "status": "TIMEOUT",
+          "is_usable": false,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "HTTP Timeout: The read operation timed out",
+          "extracted_evidence_candidates": []
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_CI_FIE",
+      "fund_name": "CI Canadian Financial Monthly Income ETF",
+      "ticker": "FIE",
+      "country": "CA",
+      "acquisitions": [
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://funds.cifinancial.com/en/funds/etfs/CICanadianFinancialMonthlyIncomeETF.html",
+          "http_status": 400,
+          "content_hash": null,
+          "status": "NOT_RETRIEVED",
+          "is_usable": false,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "HTTP 400: Bad Request",
+          "extracted_evidence_candidates": []
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_RBC_RBF556",
+      "fund_name": "RBC Canadian Dividend Fund Series A",
+      "ticker": null,
+      "country": "CA",
+      "acquisitions": [
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.rbcgam.com/en/ca/products/mutual-funds/RBF556/detail",
+          "http_status": 200,
+          "content_hash": "db69d04bcfe6e057775b66facee3e443673ade72b3713214ef92559b6518082e",
+          "status": "RETRIEVED",
+          "is_usable": true,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": null,
+          "extracted_evidence_candidates": []
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_GLOBALX_HXT",
+      "fund_name": "Global X S&P/TSX 60 Index Corporate Class ETF",
+      "ticker": "HXT",
+      "country": "CA",
+      "acquisitions": [
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.globalx.ca/product/hxt",
+          "http_status": 403,
+          "content_hash": null,
+          "status": "BLOCKED",
+          "is_usable": false,
+          "is_distribution_evidence": false,
+          "is_coverage_evidence": false,
+          "failure_reason": "HTTP 403: Forbidden",
+          "extracted_evidence_candidates": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3602 @@
+[
+  {
+    "fund_id": "US_VANGUARD_VTI",
+    "region": "US",
+    "fund_name": "Vanguard Total Stock Market Index Fund ETF",
+    "ticker": "VTI",
+    "fund_family": "Vanguard",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000036405.json",
+        "retrieved_at": "2026-09-20T17:45:27.934040+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000036405 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vti",
+        "retrieved_at": "2026-09-20T17:45:35.762898+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000036405.json",
+      "https://investor.vanguard.com/investment-products/etfs/profile/vti"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_VANGUARD_VOO",
+    "region": "US",
+    "fund_name": "Vanguard S&P 500 ETF",
+    "ticker": "VOO",
+    "fund_family": "Vanguard",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000036405.json",
+        "retrieved_at": "2026-09-20T17:45:36.988539+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000036405 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/voo",
+        "retrieved_at": "2026-09-20T17:45:41.820414+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000036405.json",
+      "https://investor.vanguard.com/investment-products/etfs/profile/voo"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_VANGUARD_BND",
+    "region": "US",
+    "fund_name": "Vanguard Total Bond Market ETF",
+    "ticker": "BND",
+    "fund_family": "Vanguard",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000794105.json",
+        "retrieved_at": "2026-09-20T17:45:42.925347+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000794105 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/bnd",
+        "retrieved_at": "2026-09-20T17:45:45.296633+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000794105.json",
+      "https://investor.vanguard.com/investment-products/etfs/profile/bnd"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_VANGUARD_VYM",
+    "region": "US",
+    "fund_name": "Vanguard High Dividend Yield ETF",
+    "ticker": "VYM",
+    "fund_family": "Vanguard",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001004655.json",
+        "retrieved_at": "2026-09-20T17:45:46.722347+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001004655 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vym",
+        "retrieved_at": "2026-09-20T17:46:03.144593+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001004655.json",
+      "https://investor.vanguard.com/investment-products/etfs/profile/vym"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_VANGUARD_VNQ",
+    "region": "US",
+    "fund_name": "Vanguard Real Estate ETF",
+    "ticker": "VNQ",
+    "fund_family": "Vanguard",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000734383.json",
+        "retrieved_at": "2026-09-20T17:46:06.563999+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000734383 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vnq",
+        "retrieved_at": "2026-09-20T17:46:14.832963+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000734383.json",
+      "https://investor.vanguard.com/investment-products/etfs/profile/vnq"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_VANGUARD_VB",
+    "region": "US",
+    "fund_name": "Vanguard Small-Cap ETF",
+    "ticker": "VB",
+    "fund_family": "Vanguard",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000036405.json",
+        "retrieved_at": "2026-09-20T17:46:17.486280+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000036405 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vb",
+        "retrieved_at": "2026-09-20T17:46:25.188461+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000036405.json",
+      "https://investor.vanguard.com/investment-products/etfs/profile/vb"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_VANGUARD_VO",
+    "region": "US",
+    "fund_name": "Vanguard Mid-Cap ETF",
+    "ticker": "VO",
+    "fund_family": "Vanguard",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000036405.json",
+        "retrieved_at": "2026-09-20T17:46:26.790944+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000036405 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vo",
+        "retrieved_at": "2026-09-20T17:46:36.218562+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000036405.json",
+      "https://investor.vanguard.com/investment-products/etfs/profile/vo"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_VANGUARD_VEA",
+    "region": "US",
+    "fund_name": "Vanguard FTSE Developed Markets ETF",
+    "ticker": "VEA",
+    "fund_family": "Vanguard",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000923202.json",
+        "retrieved_at": "2026-09-20T17:46:37.662043+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000923202 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vea",
+        "retrieved_at": "2026-09-20T17:46:45.464332+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000923202.json",
+      "https://investor.vanguard.com/investment-products/etfs/profile/vea"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_VANGUARD_VWO",
+    "region": "US",
+    "fund_name": "Vanguard FTSE Emerging Markets ETF",
+    "ticker": "VWO",
+    "fund_family": "Vanguard",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000857489.json",
+        "retrieved_at": "2026-09-20T17:46:47.318374+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000857489 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vwo",
+        "retrieved_at": "2026-09-20T17:46:54.422721+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000857489.json",
+      "https://investor.vanguard.com/investment-products/etfs/profile/vwo"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_VANGUARD_VT",
+    "region": "US",
+    "fund_name": "Vanguard Total World Stock ETF",
+    "ticker": "VT",
+    "fund_family": "Vanguard",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000857489.json",
+        "retrieved_at": "2026-09-20T17:46:57.447188+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000857489 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vt",
+        "retrieved_at": "2026-09-20T17:47:02.267702+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000857489.json",
+      "https://investor.vanguard.com/investment-products/etfs/profile/vt"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_VANGUARD_VIG",
+    "region": "US",
+    "fund_name": "Vanguard Dividend Appreciation ETF",
+    "ticker": "VIG",
+    "fund_family": "Vanguard",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000734383.json",
+        "retrieved_at": "2026-09-20T17:47:03.522987+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000734383 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vig",
+        "retrieved_at": "2026-09-20T17:47:10.426259+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000734383.json",
+      "https://investor.vanguard.com/investment-products/etfs/profile/vig"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_VANGUARD_VTEB",
+    "region": "US",
+    "fund_name": "Vanguard Tax-Exempt Bond ETF",
+    "ticker": "VTEB",
+    "fund_family": "Vanguard",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000225997.json",
+        "retrieved_at": "2026-09-20T17:47:11.991829+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000225997 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/vteb",
+        "retrieved_at": "2026-09-20T17:47:14.475656+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000225997.json",
+      "https://investor.vanguard.com/investment-products/etfs/profile/vteb"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_VANGUARD_BSV",
+    "region": "US",
+    "fund_name": "Vanguard Short-Term Bond ETF",
+    "ticker": "BSV",
+    "fund_family": "Vanguard",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000794105.json",
+        "retrieved_at": "2026-09-20T17:47:15.977302+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000794105 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/bsv",
+        "retrieved_at": "2026-09-20T17:47:20.055928+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000794105.json",
+      "https://investor.vanguard.com/investment-products/etfs/profile/bsv"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_VANGUARD_BIV",
+    "region": "US",
+    "fund_name": "Vanguard Intermediate-Term Bond ETF",
+    "ticker": "BIV",
+    "fund_family": "Vanguard",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000794105.json",
+        "retrieved_at": "2026-09-20T17:47:21.666474+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000794105 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/biv",
+        "retrieved_at": "2026-09-20T17:47:23.607747+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000794105.json",
+      "https://investor.vanguard.com/investment-products/etfs/profile/biv"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_VANGUARD_BLV",
+    "region": "US",
+    "fund_name": "Vanguard Long-Term Bond ETF",
+    "ticker": "BLV",
+    "fund_family": "Vanguard",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000794105.json",
+        "retrieved_at": "2026-09-20T17:47:25.070378+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000794105 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/etfs/profile/blv",
+        "retrieved_at": "2026-09-20T17:47:27.988204+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000794105.json",
+      "https://investor.vanguard.com/investment-products/etfs/profile/blv"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_VANGUARD_VFIAX",
+    "region": "US",
+    "fund_name": "Vanguard 500 Index Fund Admiral Shares",
+    "ticker": "VFIAX",
+    "fund_family": "Vanguard",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000036405.json",
+        "retrieved_at": "2026-09-20T17:47:32.501213+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000036405 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vfiax",
+        "retrieved_at": "2026-09-20T17:47:40.564262+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000036405.json",
+      "https://investor.vanguard.com/investment-products/mutual-funds/profile/vfiax"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_VANGUARD_VTSAX",
+    "region": "US",
+    "fund_name": "Vanguard Total Stock Market Index Fund Admiral Shares",
+    "ticker": "VTSAX",
+    "fund_family": "Vanguard",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000036405.json",
+        "retrieved_at": "2026-09-20T17:47:42.696754+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000036405 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vtsax",
+        "retrieved_at": "2026-09-20T17:47:50.591048+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000036405.json",
+      "https://investor.vanguard.com/investment-products/mutual-funds/profile/vtsax"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_VANGUARD_VBTLX",
+    "region": "US",
+    "fund_name": "Vanguard Total Bond Market Index Fund Admiral Shares",
+    "ticker": "VBTLX",
+    "fund_family": "Vanguard",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000794105.json",
+        "retrieved_at": "2026-09-20T17:47:51.759718+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000794105 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vbtlx",
+        "retrieved_at": "2026-09-20T17:47:53.779402+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000794105.json",
+      "https://investor.vanguard.com/investment-products/mutual-funds/profile/vbtlx"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_VANGUARD_VTIAX",
+    "region": "US",
+    "fund_name": "Vanguard Total International Stock Index Fund Admiral Shares",
+    "ticker": "VTIAX",
+    "fund_family": "Vanguard",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000736054.json",
+        "retrieved_at": "2026-09-20T17:47:54.905118+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000736054 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vtiax",
+        "retrieved_at": "2026-09-20T17:48:05.060361+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000736054.json",
+      "https://investor.vanguard.com/investment-products/mutual-funds/profile/vtiax"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_VANGUARD_VWEAX",
+    "region": "US",
+    "fund_name": "Vanguard High-Yield Corporate Fund Admiral Shares",
+    "ticker": "VWEAX",
+    "fund_family": "Vanguard",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000106444.json",
+        "retrieved_at": "2026-09-20T17:48:06.465658+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000106444 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vweax",
+        "retrieved_at": "2026-09-20T17:48:09.028390+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000106444.json",
+      "https://investor.vanguard.com/investment-products/mutual-funds/profile/vweax"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_ISHARES_IVV",
+    "region": "US",
+    "fund_name": "iShares Core S&P 500 ETF",
+    "ticker": "IVV",
+    "fund_family": "BlackRock iShares",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "DECLARED",
+    "confidence": 1.0,
+    "unknown_reason": null,
+    "suggested_extraction_route": "FILING",
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_filing",
+        "source_tier": 1,
+        "url": "https://www.sec.gov/Archives/edgar/data/1100663/000119312526114192/d45638d497.htm",
+        "retrieved_at": "2026-09-20T17:48:15.735586+00:00",
+        "snippet_or_locator": "Form 497 (IVV): 'capital gain rates to the extent the Fund receives qualified dividend income on the securities it holds and the Fund reports the distribution as qualified dividend income.'",
+        "declaration_date_found": "2026-03-18",
+        "failure_reason": null
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ishares.com/us/products/239726/",
+        "retrieved_at": "2026-09-20T17:48:29.785087+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.sec.gov/Archives/edgar/data/1100663/000119312526114192/d45638d497.htm",
+      "https://www.ishares.com/us/products/239726/"
+    ],
+    "coverage_status": "QUALIFYING_DECLARATION_IDENTIFIED"
+  },
+  {
+    "fund_id": "US_ISHARES_AGG",
+    "region": "US",
+    "fund_name": "iShares Core U.S. Aggregate Bond ETF",
+    "ticker": "AGG",
+    "fund_family": "BlackRock iShares",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+        "retrieved_at": "2026-09-20T17:48:30.783349+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ishares.com/us/products/239458/",
+        "retrieved_at": "2026-09-20T17:48:35.717355+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001100663.json",
+      "https://www.ishares.com/us/products/239458/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_ISHARES_IWM",
+    "region": "US",
+    "fund_name": "iShares Russell 2000 ETF",
+    "ticker": "IWM",
+    "fund_family": "BlackRock iShares",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "DECLARED",
+    "confidence": 1.0,
+    "unknown_reason": null,
+    "suggested_extraction_route": "FILING",
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_filing",
+        "source_tier": 1,
+        "url": "https://www.sec.gov/Archives/edgar/data/1100663/000119312526114192/d45638d497.htm",
+        "retrieved_at": "2026-09-20T17:48:39.954825+00:00",
+        "snippet_or_locator": "Form 497 (IWM): 'capital gain rates to the extent the Fund receives qualified dividend income on the securities it holds and the Fund reports the distribution as qualified dividend income.'",
+        "declaration_date_found": "2026-03-18",
+        "failure_reason": null
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ishares.com/us/products/239710/",
+        "retrieved_at": "2026-09-20T17:48:55.241852+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.sec.gov/Archives/edgar/data/1100663/000119312526114192/d45638d497.htm",
+      "https://www.ishares.com/us/products/239710/"
+    ],
+    "coverage_status": "QUALIFYING_DECLARATION_IDENTIFIED"
+  },
+  {
+    "fund_id": "US_ISHARES_HYG",
+    "region": "US",
+    "fund_name": "iShares iBoxx $ High Yield Corporate Bond ETF",
+    "ticker": "HYG",
+    "fund_family": "BlackRock iShares",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+        "retrieved_at": "2026-09-20T17:48:56.177677+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ishares.com/us/products/239565/",
+        "retrieved_at": "2026-09-20T17:49:04.007417+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001100663.json",
+      "https://www.ishares.com/us/products/239565/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_ISHARES_LQD",
+    "region": "US",
+    "fund_name": "iShares iBoxx $ Investment Grade Corporate Bond ETF",
+    "ticker": "LQD",
+    "fund_family": "BlackRock iShares",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+        "retrieved_at": "2026-09-20T17:49:05.035039+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ishares.com/us/products/239566/",
+        "retrieved_at": "2026-09-20T17:49:10.853422+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001100663.json",
+      "https://www.ishares.com/us/products/239566/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_ISHARES_TIP",
+    "region": "US",
+    "fund_name": "iShares TIPS Bond ETF",
+    "ticker": "TIP",
+    "fund_family": "BlackRock iShares",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+        "retrieved_at": "2026-09-20T17:49:11.793910+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ishares.com/us/products/239467/",
+        "retrieved_at": "2026-09-20T17:49:19.553750+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001100663.json",
+      "https://www.ishares.com/us/products/239467/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_ISHARES_MBB",
+    "region": "US",
+    "fund_name": "iShares MBS ETF",
+    "ticker": "MBB",
+    "fund_family": "BlackRock iShares",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+        "retrieved_at": "2026-09-20T17:49:20.905344+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ishares.com/us/products/239465/",
+        "retrieved_at": "2026-09-20T17:49:28.504140+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001100663.json",
+      "https://www.ishares.com/us/products/239465/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_ISHARES_SHY",
+    "region": "US",
+    "fund_name": "iShares 1-3 Year Treasury Bond ETF",
+    "ticker": "SHY",
+    "fund_family": "BlackRock iShares",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+        "retrieved_at": "2026-09-20T17:49:29.430036+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ishares.com/us/products/239452/",
+        "retrieved_at": "2026-09-20T17:49:37.546614+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001100663.json",
+      "https://www.ishares.com/us/products/239452/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_ISHARES_IEF",
+    "region": "US",
+    "fund_name": "iShares 7-10 Year Treasury Bond ETF",
+    "ticker": "IEF",
+    "fund_family": "BlackRock iShares",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+        "retrieved_at": "2026-09-20T17:49:38.507328+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ishares.com/us/products/239456/",
+        "retrieved_at": "2026-09-20T17:49:45.069098+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001100663.json",
+      "https://www.ishares.com/us/products/239456/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_ISHARES_TLT",
+    "region": "US",
+    "fund_name": "iShares 20+ Year Treasury Bond ETF",
+    "ticker": "TLT",
+    "fund_family": "BlackRock iShares",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+        "retrieved_at": "2026-09-20T17:49:46.084676+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ishares.com/us/products/239454/",
+        "retrieved_at": "2026-09-20T17:49:51.382297+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001100663.json",
+      "https://www.ishares.com/us/products/239454/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_ISHARES_HDV",
+    "region": "US",
+    "fund_name": "iShares Core High Dividend ETF",
+    "ticker": "HDV",
+    "fund_family": "BlackRock iShares",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+        "retrieved_at": "2026-09-20T17:49:52.071036+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ishares.com/us/products/239563/",
+        "retrieved_at": "2026-09-20T17:50:15.849343+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001100663.json",
+      "https://www.ishares.com/us/products/239563/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_ISHARES_IEMG",
+    "region": "US",
+    "fund_name": "iShares Core MSCI Emerging Markets ETF",
+    "ticker": "IEMG",
+    "fund_family": "BlackRock iShares",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated semi_annual schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000930667.json",
+        "retrieved_at": "2026-09-20T17:50:16.831451+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000930667 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ishares.com/us/products/244050/",
+        "retrieved_at": "2026-09-20T17:50:19.072948+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000930667.json",
+      "https://www.ishares.com/us/products/244050/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_ISHARES_IEFA",
+    "region": "US",
+    "fund_name": "iShares Core MSCI EAFE ETF",
+    "ticker": "IEFA",
+    "fund_family": "BlackRock iShares",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated semi_annual schedule cadence window (Q1 2026)",
+    "status": "DECLARED",
+    "confidence": 1.0,
+    "unknown_reason": null,
+    "suggested_extraction_route": "FILING",
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_filing",
+        "source_tier": 1,
+        "url": "https://www.sec.gov/Archives/edgar/data/1100663/000119312526114192/d45638d497.htm",
+        "retrieved_at": "2026-09-20T17:50:25.053805+00:00",
+        "snippet_or_locator": "Form 497 (IEFA): 'capital gain rates to the extent the Fund receives qualified dividend income on the securities it holds and the Fund reports the distribution as qualified dividend income.'",
+        "declaration_date_found": "2026-03-18",
+        "failure_reason": null
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ishares.com/us/products/244049/",
+        "retrieved_at": "2026-09-20T17:50:39.391017+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.sec.gov/Archives/edgar/data/1100663/000119312526114192/d45638d497.htm",
+      "https://www.ishares.com/us/products/244049/"
+    ],
+    "coverage_status": "QUALIFYING_DECLARATION_IDENTIFIED"
+  },
+  {
+    "fund_id": "US_ISHARES_USHY",
+    "region": "US",
+    "fund_name": "iShares Broad USD High Yield Corporate Bond ETF",
+    "ticker": "USHY",
+    "fund_family": "BlackRock iShares",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+        "retrieved_at": "2026-09-20T17:50:40.332555+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ishares.com/us/products/290144/",
+        "retrieved_at": "2026-09-20T17:50:47.270793+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001100663.json",
+      "https://www.ishares.com/us/products/290144/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_FIDELITY_FXAIX",
+    "region": "US",
+    "fund_name": "Fidelity 500 Index Fund",
+    "ticker": "FXAIX",
+    "fund_family": "Fidelity",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated semi_annual schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000819118.json",
+        "retrieved_at": "2026-09-20T17:50:48.182596+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000819118 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911750",
+        "retrieved_at": "2026-09-20T17:50:49.618615+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000819118.json",
+      "https://fundresearch.fidelity.com/mutual-funds/summary/315911750"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_FIDELITY_FSKAX",
+    "region": "US",
+    "fund_name": "Fidelity Total Market Index Fund",
+    "ticker": "FSKAX",
+    "fund_family": "Fidelity",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated semi_annual schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000819118.json",
+        "retrieved_at": "2026-09-20T17:50:52.158513+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000819118 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911693",
+        "retrieved_at": "2026-09-20T17:50:53.483374+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000819118.json",
+      "https://fundresearch.fidelity.com/mutual-funds/summary/315911693"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_FIDELITY_FXNAX",
+    "region": "US",
+    "fund_name": "Fidelity U.S. Bond Index Fund",
+    "ticker": "FXNAX",
+    "fund_family": "Fidelity",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000035315.json",
+        "retrieved_at": "2026-09-20T17:50:54.917902+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000035315 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://fundresearch.fidelity.com/mutual-funds/summary/316146358",
+        "retrieved_at": "2026-09-20T17:50:56.451115+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000035315.json",
+      "https://fundresearch.fidelity.com/mutual-funds/summary/316146358"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_FIDELITY_FTBFX",
+    "region": "US",
+    "fund_name": "Fidelity Total Bond Fund",
+    "ticker": "FTBFX",
+    "fund_family": "Fidelity",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000751199.json",
+        "retrieved_at": "2026-09-20T17:50:57.976155+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000751199 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://fundresearch.fidelity.com/mutual-funds/summary/316146200",
+        "retrieved_at": "2026-09-20T17:50:59.731393+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000751199.json",
+      "https://fundresearch.fidelity.com/mutual-funds/summary/316146200"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_FIDELITY_FZROX",
+    "region": "US",
+    "fund_name": "Fidelity ZERO Total Market Index Fund",
+    "ticker": "FZROX",
+    "fund_family": "Fidelity",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated annual schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000819118.json",
+        "retrieved_at": "2026-09-20T17:51:02.218679+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000819118 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911602",
+        "retrieved_at": "2026-09-20T17:51:03.161456+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000819118.json",
+      "https://fundresearch.fidelity.com/mutual-funds/summary/315911602"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_FIDELITY_FNCMX",
+    "region": "US",
+    "fund_name": "Fidelity Nasdaq Composite Index Fund",
+    "ticker": "FNCMX",
+    "fund_family": "Fidelity",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated annual schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000819118.json",
+        "retrieved_at": "2026-09-20T17:51:04.575252+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000819118 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://fundresearch.fidelity.com/mutual-funds/summary/316389303",
+        "retrieved_at": "2026-09-20T17:51:05.696441+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000819118.json",
+      "https://fundresearch.fidelity.com/mutual-funds/summary/316389303"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_FIDELITY_FBALX",
+    "region": "US",
+    "fund_name": "Fidelity Balanced Fund",
+    "ticker": "FBALX",
+    "fund_family": "Fidelity",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated semi_annual schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000081205.json",
+        "retrieved_at": "2026-09-20T17:51:07.275111+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000081205 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://fundresearch.fidelity.com/mutual-funds/summary/316345107",
+        "retrieved_at": "2026-09-20T17:51:11.354004+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000081205.json",
+      "https://fundresearch.fidelity.com/mutual-funds/summary/316345107"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_FIDELITY_FDVV",
+    "region": "US",
+    "fund_name": "Fidelity High Dividend ETF",
+    "ticker": "FDVV",
+    "fund_family": "Fidelity",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000945908.json",
+        "retrieved_at": "2026-09-20T17:51:12.943695+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000945908 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.fidelity.com/etfs/different-types-of-etfs/fdvv",
+        "retrieved_at": "2026-09-20T17:51:17.679905+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 400: Bad Request",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000945908.json",
+      "https://www.fidelity.com/etfs/different-types-of-etfs/fdvv"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_FIDELITY_ONEQ",
+    "region": "US",
+    "fund_name": "Fidelity Nasdaq Composite Tracking Stock ETF",
+    "ticker": "ONEQ",
+    "fund_family": "Fidelity",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000205323.json",
+        "retrieved_at": "2026-09-20T17:51:19.139609+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000205323 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.fidelity.com/etfs/different-types-of-etfs/oneq",
+        "retrieved_at": "2026-09-20T17:51:20.803158+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 400: Bad Request",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000205323.json",
+      "https://www.fidelity.com/etfs/different-types-of-etfs/oneq"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_SPDR_SPTM",
+    "region": "US",
+    "fund_name": "SPDR Portfolio Total Stock Market ETF",
+    "ticker": "SPTM",
+    "fund_family": "State Street SPDR",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001064642.json",
+        "retrieved_at": "2026-09-20T17:51:23.510990+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001064642 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-portfolio-total-stock-market-etf-sptm",
+        "retrieved_at": "2026-09-20T17:51:28.534335+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001064642.json",
+      "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-portfolio-total-stock-market-etf-sptm"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_SPDR_SPYD",
+    "region": "US",
+    "fund_name": "SPDR S&P Dividend ETF",
+    "ticker": "SPYD",
+    "fund_family": "State Street SPDR",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001064642.json",
+        "retrieved_at": "2026-09-20T17:51:29.535072+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001064642 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-sp-dividend-etf-spyd",
+        "retrieved_at": "2026-09-20T17:51:32.658522+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001064642.json",
+      "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-sp-dividend-etf-spyd"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_SPDR_SPAB",
+    "region": "US",
+    "fund_name": "SPDR Portfolio Aggregate Bond ETF",
+    "ticker": "SPAB",
+    "fund_family": "State Street SPDR",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001064642.json",
+        "retrieved_at": "2026-09-20T17:51:33.644126+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001064642 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-portfolio-aggregate-bond-etf-spab",
+        "retrieved_at": "2026-09-20T17:51:36.582549+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001064642.json",
+      "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-portfolio-aggregate-bond-etf-spab"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_SPDR_JNK",
+    "region": "US",
+    "fund_name": "SPDR Bloomberg High Yield Bond ETF",
+    "ticker": "JNK",
+    "fund_family": "State Street SPDR",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001064642.json",
+        "retrieved_at": "2026-09-20T17:51:37.535328+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001064642 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-bloomberg-high-yield-bond-etf-jnk",
+        "retrieved_at": "2026-09-20T17:51:40.775589+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001064642.json",
+      "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-bloomberg-high-yield-bond-etf-jnk"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_SPDR_SJNK",
+    "region": "US",
+    "fund_name": "SPDR Bloomberg Short Term High Yield Bond ETF",
+    "ticker": "SJNK",
+    "fund_family": "State Street SPDR",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001064642.json",
+        "retrieved_at": "2026-09-20T17:51:42.021503+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001064642 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-bloomberg-short-term-high-yield-bond-etf-sjnk",
+        "retrieved_at": "2026-09-20T17:51:44.925262+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001064642.json",
+      "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-bloomberg-short-term-high-yield-bond-etf-sjnk"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_SPDR_XLF",
+    "region": "US",
+    "fund_name": "Financial Select Sector SPDR Fund",
+    "ticker": "XLF",
+    "fund_family": "State Street SPDR",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001064641.json",
+        "retrieved_at": "2026-09-20T17:51:45.823470+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001064641 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/the-financial-select-sector-spdr-fund-xlf",
+        "retrieved_at": "2026-09-20T17:51:49.582094+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001064641.json",
+      "https://www.ssga.com/us/en/intermediary/etfs/funds/the-financial-select-sector-spdr-fund-xlf"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_SPDR_XLE",
+    "region": "US",
+    "fund_name": "Energy Select Sector SPDR Fund",
+    "ticker": "XLE",
+    "fund_family": "State Street SPDR",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001064641.json",
+        "retrieved_at": "2026-09-20T17:51:50.473640+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001064641 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/the-energy-select-sector-spdr-fund-xle",
+        "retrieved_at": "2026-09-20T17:51:53.353225+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001064641.json",
+      "https://www.ssga.com/us/en/intermediary/etfs/funds/the-energy-select-sector-spdr-fund-xle"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_SCHWAB_SCHD",
+    "region": "US",
+    "fund_name": "Schwab U.S. Dividend Equity ETF",
+    "ticker": "SCHD",
+    "fund_family": "Charles Schwab",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001454889.json",
+        "retrieved_at": "2026-09-20T17:51:54.296381+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001454889 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.schwabassetmanagement.com/products/schd",
+        "retrieved_at": "2026-09-20T17:52:06.186961+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001454889.json",
+      "https://www.schwabassetmanagement.com/products/schd"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_SCHWAB_SCHX",
+    "region": "US",
+    "fund_name": "Schwab U.S. Large-Cap ETF",
+    "ticker": "SCHX",
+    "fund_family": "Charles Schwab",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001454889.json",
+        "retrieved_at": "2026-09-20T17:52:07.179680+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001454889 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.schwabassetmanagement.com/products/schx",
+        "retrieved_at": "2026-09-20T17:52:10.324238+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001454889.json",
+      "https://www.schwabassetmanagement.com/products/schx"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_SCHWAB_SCHZ",
+    "region": "US",
+    "fund_name": "Schwab U.S. Aggregate Bond ETF",
+    "ticker": "SCHZ",
+    "fund_family": "Charles Schwab",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001454889.json",
+        "retrieved_at": "2026-09-20T17:52:11.242019+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001454889 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.schwabassetmanagement.com/products/schz",
+        "retrieved_at": "2026-09-20T17:52:13.686255+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001454889.json",
+      "https://www.schwabassetmanagement.com/products/schz"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_SCHWAB_SWPPX",
+    "region": "US",
+    "fund_name": "Schwab S&P 500 Index Fund",
+    "ticker": "SWPPX",
+    "fund_family": "Charles Schwab",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated annual schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000904333.json",
+        "retrieved_at": "2026-09-20T17:52:14.550093+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000904333 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.schwabassetmanagement.com/products/swppx",
+        "retrieved_at": "2026-09-20T17:52:24.508737+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000904333.json",
+      "https://www.schwabassetmanagement.com/products/swppx"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_SCHWAB_SWAGX",
+    "region": "US",
+    "fund_name": "Schwab U.S. Aggregate Bond Index Fund",
+    "ticker": "SWAGX",
+    "fund_family": "Charles Schwab",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0000869365.json",
+        "retrieved_at": "2026-09-20T17:52:25.458434+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0000869365 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.schwabassetmanagement.com/products/swagx",
+        "retrieved_at": "2026-09-20T17:52:28.997701+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0000869365.json",
+      "https://www.schwabassetmanagement.com/products/swagx"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_INVESCO_QQQ",
+    "region": "US",
+    "fund_name": "Invesco QQQ Trust",
+    "ticker": "QQQ",
+    "fund_family": "Invesco",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001067839.json",
+        "retrieved_at": "2026-09-20T17:52:30.393311+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001067839 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=QQQ",
+        "retrieved_at": "2026-09-20T17:52:32.087707+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001067839.json",
+      "https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=QQQ"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_INVESCO_RSP",
+    "region": "US",
+    "fund_name": "Invesco S&P 500 Equal Weight ETF",
+    "ticker": "RSP",
+    "fund_family": "Invesco",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001209466.json",
+        "retrieved_at": "2026-09-20T17:52:32.971353+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001209466 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=RSP",
+        "retrieved_at": "2026-09-20T17:52:35.318510+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001209466.json",
+      "https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=RSP"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_INVESCO_BKLN",
+    "region": "US",
+    "fund_name": "Invesco Senior Loan ETF",
+    "ticker": "BKLN",
+    "fund_family": "Invesco",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001378872.json",
+        "retrieved_at": "2026-09-20T17:52:36.180523+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001378872 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=BKLN",
+        "retrieved_at": "2026-09-20T17:52:37.618249+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001378872.json",
+      "https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=BKLN"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_PIMCO_BOND",
+    "region": "US",
+    "fund_name": "PIMCO Active Bond Exchange-Traded Fund",
+    "ticker": "BOND",
+    "fund_family": "PIMCO",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Documented Section 19(a) declaration event window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001450011.json",
+        "retrieved_at": "2026-09-20T17:52:39.020206+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001450011 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.pimco.com/en-us/investments/etf/active-bond-etf/bond",
+        "retrieved_at": "2026-09-20T17:52:40.481022+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001450011.json",
+      "https://www.pimco.com/en-us/investments/etf/active-bond-etf/bond"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "US_PIMCO_MINT",
+    "region": "US",
+    "fund_name": "PIMCO Enhanced Short Maturity Active ETF",
+    "ticker": "MINT",
+    "fund_family": "PIMCO",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 2,
+    "evidence": [
+      {
+        "source_id": "sec_edgar_submissions_api",
+        "source_tier": 1,
+        "url": "https://data.sec.gov/submissions/CIK0001450011.json",
+        "retrieved_at": "2026-09-20T17:52:41.658892+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001450011 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.pimco.com/en-us/investments/etf/enhanced-short-maturity-active-etf/mint",
+        "retrieved_at": "2026-09-20T17:52:42.615076+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://data.sec.gov/submissions/CIK0001450011.json",
+      "https://www.pimco.com/en-us/investments/etf/enhanced-short-maturity-active-etf/mint"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_BMO_ZCN",
+    "region": "CA",
+    "fund_name": "BMO S&P/TSX Capped Composite Index ETF",
+    "ticker": "ZCN",
+    "fund_family": "BMO Global Asset Management",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Documented official sponsor declaration window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-sptsx-capped-composite-index-etf-zcn/",
+        "retrieved_at": "2026-09-20T17:52:43.575841+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-sptsx-capped-composite-index-etf-zcn/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_BMO_ZAG",
+    "region": "CA",
+    "fund_name": "BMO Aggregate Bond Index ETF",
+    "ticker": "ZAG",
+    "fund_family": "BMO Global Asset Management",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-aggregate-bond-index-etf-zag/",
+        "retrieved_at": "2026-09-20T17:52:56.794578+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-aggregate-bond-index-etf-zag/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_BMO_ZEB",
+    "region": "CA",
+    "fund_name": "BMO Equal Weight Banks Index ETF",
+    "ticker": "ZEB",
+    "fund_family": "BMO Global Asset Management",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-banks-index-etf-zeb/",
+        "retrieved_at": "2026-09-20T17:53:10.234846+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-banks-index-etf-zeb/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_BMO_ZWB",
+    "region": "CA",
+    "fund_name": "BMO Covered Call Canadian Banks ETF",
+    "ticker": "ZWB",
+    "fund_family": "BMO Global Asset Management",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-covered-call-canadian-banks-etf-zwb/",
+        "retrieved_at": "2026-09-20T17:53:23.130119+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-covered-call-canadian-banks-etf-zwb/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_BMO_ZUT",
+    "region": "CA",
+    "fund_name": "BMO Equal Weight Utilities Index ETF",
+    "ticker": "ZUT",
+    "fund_family": "BMO Global Asset Management",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-utilities-index-etf-zut/",
+        "retrieved_at": "2026-09-20T17:53:36.555030+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-utilities-index-etf-zut/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_BMO_ZDV",
+    "region": "CA",
+    "fund_name": "BMO Canadian Dividend ETF",
+    "ticker": "ZDV",
+    "fund_family": "BMO Global Asset Management",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-canadian-dividend-etf-zdv/",
+        "retrieved_at": "2026-09-20T17:53:49.467068+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-canadian-dividend-etf-zdv/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_BMO_ZDB",
+    "region": "CA",
+    "fund_name": "BMO Discount Bond Index ETF",
+    "ticker": "ZDB",
+    "fund_family": "BMO Global Asset Management",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-discount-bond-index-etf-zdb/",
+        "retrieved_at": "2026-09-20T17:54:02.318044+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-discount-bond-index-etf-zdb/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_BMO_ZPR",
+    "region": "CA",
+    "fund_name": "BMO Laddered Preferred Share Index ETF",
+    "ticker": "ZPR",
+    "fund_family": "BMO Global Asset Management",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-laddered-preferred-share-index-etf-zpr/",
+        "retrieved_at": "2026-09-20T17:54:15.627608+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-laddered-preferred-share-index-etf-zpr/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_VANGUARD_VCN",
+    "region": "CA",
+    "fund_name": "Vanguard FTSE Canada All Cap Index ETF",
+    "ticker": "VCN",
+    "fund_family": "Vanguard Canada",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VCN",
+        "retrieved_at": "2026-09-20T17:54:28.578462+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.vanguard.ca/en/investor/products/products-group/etfs/VCN"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_VANGUARD_VAB",
+    "region": "CA",
+    "fund_name": "Vanguard Canadian Aggregate Bond Index ETF",
+    "ticker": "VAB",
+    "fund_family": "Vanguard Canada",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VAB",
+        "retrieved_at": "2026-09-20T17:54:30.563053+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.vanguard.ca/en/investor/products/products-group/etfs/VAB"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_VANGUARD_VDY",
+    "region": "CA",
+    "fund_name": "Vanguard FTSE Canadian High Dividend Yield Index ETF",
+    "ticker": "VDY",
+    "fund_family": "Vanguard Canada",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VDY",
+        "retrieved_at": "2026-09-20T17:54:31.791266+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.vanguard.ca/en/investor/products/products-group/etfs/VDY"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_VANGUARD_VFV",
+    "region": "CA",
+    "fund_name": "Vanguard S&P 500 Index ETF",
+    "ticker": "VFV",
+    "fund_family": "Vanguard Canada",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VFV",
+        "retrieved_at": "2026-09-20T17:54:34.044373+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.vanguard.ca/en/investor/products/products-group/etfs/VFV"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_VANGUARD_VSB",
+    "region": "CA",
+    "fund_name": "Vanguard Canadian Short-Term Bond Index ETF",
+    "ticker": "VSB",
+    "fund_family": "Vanguard Canada",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VSB",
+        "retrieved_at": "2026-09-20T17:54:36.093691+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.vanguard.ca/en/investor/products/products-group/etfs/VSB"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_VANGUARD_VBAL",
+    "region": "CA",
+    "fund_name": "Vanguard Balanced ETF Portfolio",
+    "ticker": "VBAL",
+    "fund_family": "Vanguard Canada",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VBAL",
+        "retrieved_at": "2026-09-20T17:54:37.320460+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.vanguard.ca/en/investor/products/products-group/etfs/VBAL"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_VANGUARD_VGRO",
+    "region": "CA",
+    "fund_name": "Vanguard Growth ETF Portfolio",
+    "ticker": "VGRO",
+    "fund_family": "Vanguard Canada",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VGRO",
+        "retrieved_at": "2026-09-20T17:54:38.550085+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.vanguard.ca/en/investor/products/products-group/etfs/VGRO"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_ISHARES_XIC",
+    "region": "CA",
+    "fund_name": "iShares Core S&P/TSX Capped Composite Index ETF",
+    "ticker": "XIC",
+    "fund_family": "BlackRock iShares Canada",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.blackrock.com/ca/investors/en/products/239837/",
+        "retrieved_at": "2026-09-20T17:54:40.598881+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.blackrock.com/ca/investors/en/products/239837/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_ISHARES_XBB",
+    "region": "CA",
+    "fund_name": "iShares Core Canadian Universe Bond Index ETF",
+    "ticker": "XBB",
+    "fund_family": "BlackRock iShares Canada",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.blackrock.com/ca/investors/en/products/239493/",
+        "retrieved_at": "2026-09-20T17:54:41.517930+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.blackrock.com/ca/investors/en/products/239493/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_ISHARES_XEI",
+    "region": "CA",
+    "fund_name": "iShares S&P/TSX Composite High Dividend Index ETF",
+    "ticker": "XEI",
+    "fund_family": "BlackRock iShares Canada",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.blackrock.com/ca/investors/en/products/239846/",
+        "retrieved_at": "2026-09-20T17:54:42.446606+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.blackrock.com/ca/investors/en/products/239846/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_ISHARES_XDV",
+    "region": "CA",
+    "fund_name": "iShares Canadian Select Dividend Index ETF",
+    "ticker": "XDV",
+    "fund_family": "BlackRock iShares Canada",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.blackrock.com/ca/investors/en/products/239835/",
+        "retrieved_at": "2026-09-20T17:54:43.348427+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.blackrock.com/ca/investors/en/products/239835/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_ISHARES_XUT",
+    "region": "CA",
+    "fund_name": "iShares S&P/TSX Capped Utilities Index ETF",
+    "ticker": "XUT",
+    "fund_family": "BlackRock iShares Canada",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.blackrock.com/ca/investors/en/products/239848/",
+        "retrieved_at": "2026-09-20T17:54:44.282434+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.blackrock.com/ca/investors/en/products/239848/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_ISHARES_XSB",
+    "region": "CA",
+    "fund_name": "iShares Core Canadian Short Term Bond Index ETF",
+    "ticker": "XSB",
+    "fund_family": "BlackRock iShares Canada",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.blackrock.com/ca/investors/en/products/239498/",
+        "retrieved_at": "2026-09-20T17:54:45.258294+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.blackrock.com/ca/investors/en/products/239498/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_ISHARES_XSH",
+    "region": "CA",
+    "fund_name": "iShares Core Canadian Short Term Corporate Bond Index ETF",
+    "ticker": "XSH",
+    "fund_family": "BlackRock iShares Canada",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.blackrock.com/ca/investors/en/products/239499/",
+        "retrieved_at": "2026-09-20T17:54:46.294644+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.blackrock.com/ca/investors/en/products/239499/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_ISHARES_XHY",
+    "region": "CA",
+    "fund_name": "iShares U.S. High Yield Bond Index ETF (CAD-Hedged)",
+    "ticker": "XHY",
+    "fund_family": "BlackRock iShares Canada",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.blackrock.com/ca/investors/en/products/239556/",
+        "retrieved_at": "2026-09-20T17:54:47.234271+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.blackrock.com/ca/investors/en/products/239556/"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_RBC_RBN",
+    "region": "CA",
+    "fund_name": "RBC BlueBay Canadian Core Plus Bond ETF",
+    "ticker": "RBN",
+    "fund_family": "RBC Global Asset Management",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.rbcgam.com/en/ca/products/etfs/RBN/detail",
+        "retrieved_at": "2026-09-20T17:54:48.127179+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 404: ",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://www.rbcgam.com/en/ca/products/etfs/RBN/detail"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_RBC_RCD",
+    "region": "CA",
+    "fund_name": "RBC Quant Canadian Dividend Leaders ETF",
+    "ticker": "RCD",
+    "fund_family": "RBC Global Asset Management",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.rbcgam.com/en/ca/products/etfs/RCD/detail",
+        "retrieved_at": "2026-09-20T17:54:50.942825+00:00",
+        "snippet_or_locator": "Official distribution schedule table inspected for window [2026-02-01 to 2026-02-28]. Zero declared events confirmed.",
+        "declaration_date_found": null,
+        "failure_reason": null
+      }
+    ],
+    "sources_checked": [
+      "https://www.rbcgam.com/en/ca/products/etfs/RCD/detail"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_RBC_RUSB",
+    "region": "CA",
+    "fund_name": "RBC Short-Term U.S. Corporate Bond ETF",
+    "ticker": "RUSB",
+    "fund_family": "RBC Global Asset Management",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.rbcgam.com/en/ca/products/etfs/RUSB/detail",
+        "retrieved_at": "2026-09-20T17:54:58.553986+00:00",
+        "snippet_or_locator": "Official distribution schedule table inspected for window [2026-02-01 to 2026-02-28]. Zero declared events confirmed.",
+        "declaration_date_found": null,
+        "failure_reason": null
+      }
+    ],
+    "sources_checked": [
+      "https://www.rbcgam.com/en/ca/products/etfs/RUSB/detail"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_RBC_RBF556",
+    "region": "CA",
+    "fund_name": "RBC Canadian Dividend Fund Series A",
+    "ticker": null,
+    "fund_family": "RBC Global Asset Management",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.rbcgam.com/en/ca/products/mutual-funds/RBF556/detail",
+        "retrieved_at": "2026-09-20T17:55:07.579324+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://www.rbcgam.com/en/ca/products/mutual-funds/RBF556/detail"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_RBC_RBF266",
+    "region": "CA",
+    "fund_name": "RBC Canadian Bond Fund Series A",
+    "ticker": null,
+    "fund_family": "RBC Global Asset Management",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.rbcgam.com/en/ca/products/mutual-funds/RBF266/detail",
+        "retrieved_at": "2026-09-20T17:55:11.796151+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://www.rbcgam.com/en/ca/products/mutual-funds/RBF266/detail"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_TD_TTP",
+    "region": "CA",
+    "fund_name": "TD Canadian Equity Index ETF",
+    "ticker": "TTP",
+    "fund_family": "TD Asset Management",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20Canadian%20Equity%20Index%20ETF/?fundId=6831",
+        "retrieved_at": "2026-09-20T17:55:16.110820+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 302: Moved Temporarily",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20Canadian%20Equity%20Index%20ETF/?fundId=6831"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_TD_TPU",
+    "region": "CA",
+    "fund_name": "TD U.S. Equity Index ETF",
+    "ticker": "TPU",
+    "fund_family": "TD Asset Management",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20U.S.%20Equity%20Index%20ETF/?fundId=6833",
+        "retrieved_at": "2026-09-20T17:55:17.220451+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 302: Moved Temporarily",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20U.S.%20Equity%20Index%20ETF/?fundId=6833"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_TD_TDB900",
+    "region": "CA",
+    "fund_name": "TD Canadian Index Fund - e",
+    "ticker": null,
+    "fund_family": "TD Asset Management",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated semi_annual schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20Canadian%20Index%20Fund%20-%20e/?fundId=3261",
+        "retrieved_at": "2026-09-20T17:55:18.188306+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 302: Moved Temporarily",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20Canadian%20Index%20Fund%20-%20e/?fundId=3261"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_TD_TDB902",
+    "region": "CA",
+    "fund_name": "TD U.S. Index Fund - e",
+    "ticker": null,
+    "fund_family": "TD Asset Management",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated semi_annual schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20U.S.%20Index%20Fund%20-%20e/?fundId=3270",
+        "retrieved_at": "2026-09-20T17:55:19.466376+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 302: Moved Temporarily",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20U.S.%20Index%20Fund%20-%20e/?fundId=3270"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_TD_TDB909",
+    "region": "CA",
+    "fund_name": "TD Canadian Bond Index Fund - e",
+    "ticker": null,
+    "fund_family": "TD Asset Management",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20Canadian%20Bond%20Index%20Fund%20-%20e/?fundId=4817",
+        "retrieved_at": "2026-09-20T17:55:20.468920+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 302: Moved Temporarily",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20Canadian%20Bond%20Index%20Fund%20-%20e/?fundId=4817"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_GLOBALX_HXT",
+    "region": "CA",
+    "fund_name": "Global X S&P/TSX 60 Index Corporate Class ETF",
+    "ticker": "HXT",
+    "fund_family": "Global X Investments Canada",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated annual schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.globalx.ca/product/hxt",
+        "retrieved_at": "2026-09-20T17:55:21.379351+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.globalx.ca/product/hxt"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_GLOBALX_HBB",
+    "region": "CA",
+    "fund_name": "Global X Canadian Aggregate Bond Index Corporate Class ETF",
+    "ticker": "HBB",
+    "fund_family": "Global X Investments Canada",
+    "window_start": "2026-01-01",
+    "window_end": "2026-03-31",
+    "window_justification": "Authenticated annual schedule cadence window (Q1 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.globalx.ca/product/hbb",
+        "retrieved_at": "2026-09-20T17:55:22.788263+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.globalx.ca/product/hbb"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_GLOBALX_HDIV",
+    "region": "CA",
+    "fund_name": "Global X Canadian High Dividend Index Corporate Class ETF",
+    "ticker": "HDIV",
+    "fund_family": "Global X Investments Canada",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.globalx.ca/product/hdiv",
+        "retrieved_at": "2026-09-20T17:55:24.736695+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.globalx.ca/product/hdiv"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_CI_FIE",
+    "region": "CA",
+    "fund_name": "CI Canadian Financial Monthly Income ETF",
+    "ticker": "FIE",
+    "fund_family": "CI Global Asset Management",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://funds.cifinancial.com/en/funds/etfs/CICanadianFinancialMonthlyIncomeETF.html",
+        "retrieved_at": "2026-09-20T17:55:26.066717+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 400: Bad Request",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://funds.cifinancial.com/en/funds/etfs/CICanadianFinancialMonthlyIncomeETF.html"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_CI_FIG",
+    "region": "CA",
+    "fund_name": "CI Investment Grade Bond ETF",
+    "ticker": "FIG",
+    "fund_family": "CI Global Asset Management",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://funds.cifinancial.com/en/funds/etfs/CIInvestmentGradeBondETF.html",
+        "retrieved_at": "2026-09-20T17:55:27.806507+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "sources_checked": [
+      "https://funds.cifinancial.com/en/funds/etfs/CIInvestmentGradeBondETF.html"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_CI_CDZ",
+    "region": "CA",
+    "fund_name": "CI Morningstar Canada Dividend Target 30 Index ETF",
+    "ticker": "CDZ",
+    "fund_family": "CI Global Asset Management",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://funds.cifinancial.com/en/funds/etfs/CIMorningstarCanadaDividendTarget30IndexETF.html",
+        "retrieved_at": "2026-09-20T17:55:29.400698+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 400: Bad Request",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://funds.cifinancial.com/en/funds/etfs/CIMorningstarCanadaDividendTarget30IndexETF.html"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  },
+  {
+    "fund_id": "CA_MACKENZIE_QBB",
+    "region": "CA",
+    "fund_name": "Mackenzie Canadian Aggregate Bond Index ETF",
+    "ticker": "QBB",
+    "fund_family": "Mackenzie Investments",
+    "window_start": "2026-02-01",
+    "window_end": "2026-02-28",
+    "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "RETRIEVAL_FAILED",
+    "suggested_extraction_route": null,
+    "evidence_count": 1,
+    "evidence": [
+      {
+        "source_id": "official_fund_sponsor_page",
+        "source_tier": 2,
+        "url": "https://www.mackenzieinvestments.com/en/products/etfs/mackenzie-canadian-aggregate-bond-index-etf-qbb",
+        "retrieved_at": "2026-09-20T17:55:30.878929+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "declaration_date_found": null,
+        "failure_reason": "RETRIEVAL_FAILED"
+      }
+    ],
+    "sources_checked": [
+      "https://www.mackenzieinvestments.com/en/products/etfs/mackenzie-canadian-aggregate-bond-index-etf-qbb"
+    ],
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
+  }
+]

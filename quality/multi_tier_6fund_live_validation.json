@@ -1,0 +1,522 @@
+{
+  "validation_timestamp": "2026-09-20T19:39:27.238416+00:00",
+  "total_funds_tested": 6,
+  "window_start": "2026-02-01",
+  "window_end": "2026-02-28",
+  "results_summary": {
+    "DECLARED": 0,
+    "NOT_DECLARED": 0,
+    "UNKNOWN": 6
+  },
+  "fallback_audit": {
+    "tier1_to_tier2_fallback_executed": true,
+    "targeted_lookup_executed": true,
+    "tier3_protection_verified": true
+  },
+  "funds": [
+    {
+      "fund_id": "US_PIMCO_BOND",
+      "fund_name": "PIMCO Active Bond Exchange-Traded Fund",
+      "country": "US",
+      "ticker": "BOND",
+      "cik": "0001450011",
+      "window_start": "2026-02-01",
+      "window_end": "2026-02-28",
+      "detection_status": "UNKNOWN",
+      "confidence": null,
+      "suggested_extraction_route": null,
+      "source_attempts": [
+        {
+          "source_id": "sec_edgar_submissions",
+          "source_tier": "TIER_1_AUTHORITATIVE",
+          "url": "https://data.sec.gov/submissions/CIK0001450011.json",
+          "source_type": "REGULATORY_FILING_INDEX",
+          "retrieval_status": "SUCCESS",
+          "retrieved_at": "2026-09-20T19:38:25.531904+00:00",
+          "coverage_status": "UNAVAILABLE",
+          "evidence_found": false,
+          "failure_reason": "RETRIEVAL_FAILED",
+          "notes": "SEC submissions API error: RETRIEVAL_FAILED"
+        },
+        {
+          "source_id": "official_fund_sponsor_portal",
+          "source_tier": "TIER_2_PRIMARY_UNSTRUCTURED",
+          "url": "https://www.pimco.com/en-us/investments/etf/active-bond-etf/bond",
+          "source_type": "SPONSOR_PORTAL_SCHEDULE",
+          "retrieval_status": "SUCCESS",
+          "retrieved_at": "2026-09-20T19:38:26.179890+00:00",
+          "coverage_status": "UNAVAILABLE",
+          "evidence_found": false,
+          "failure_reason": "RETRIEVAL_FAILED",
+          "notes": "Sponsor portal retrieval failure: RETRIEVAL_FAILED"
+        },
+        {
+          "source_id": "targeted_secondary_lookup",
+          "source_tier": "TIER_2_PRIMARY_UNSTRUCTURED",
+          "url": "targeted://official_secondary_candidates",
+          "source_type": "SECONDARY_OFFICIAL_LOOKUP",
+          "retrieval_status": "FAILED",
+          "retrieved_at": "2026-09-20T19:38:26.179921+00:00",
+          "coverage_status": "PARTIAL",
+          "evidence_found": false,
+          "failure_reason": "INSUFFICIENT_EVIDENCE",
+          "notes": "No targeted secondary candidate URLs configured."
+        },
+        {
+          "source_id": "public_market_data_corroboration",
+          "source_tier": "TIER_3_CORROBORATION",
+          "url": "https://finance.yahoo.com/quote/BOND",
+          "source_type": "THIRD_PARTY_CORROBORATION",
+          "retrieval_status": "SUCCESS",
+          "retrieved_at": "2026-09-20T19:38:26.836356+00:00",
+          "coverage_status": "PARTIAL",
+          "evidence_found": false,
+          "failure_reason": "INSUFFICIENT_EVIDENCE",
+          "notes": "Corroboration only. Never sole evidence for DECLARED or NOT_DECLARED."
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": "TIER_1_AUTHORITATIVE",
+          "url": "https://data.sec.gov/submissions/CIK0001450011.json",
+          "retrieved_at": "2026-09-20T19:38:24.817752+00:00",
+          "snippet_or_locator": "SEC submissions query failed: HTTP 403: Forbidden",
+          "declaration_date_found": null,
+          "failure_reason": "RETRIEVAL_FAILED"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": "TIER_2_PRIMARY_UNSTRUCTURED",
+          "url": "https://www.pimco.com/en-us/investments/etf/active-bond-etf/bond",
+          "retrieved_at": "2026-09-20T19:38:25.532047+00:00",
+          "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+          "declaration_date_found": null,
+          "failure_reason": "RETRIEVAL_FAILED"
+        },
+        {
+          "source_id": "public_market_data_corroboration",
+          "source_tier": "TIER_3_CORROBORATION",
+          "url": "https://finance.yahoo.com/quote/BOND",
+          "retrieved_at": "2026-09-20T19:38:26.836313+00:00",
+          "snippet_or_locator": "Tier 3 public market data checked; no corroboration record.",
+          "declaration_date_found": null,
+          "failure_reason": "INSUFFICIENT_EVIDENCE"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_BMO_ZCN",
+      "fund_name": "BMO S&P/TSX Capped Composite Index ETF",
+      "country": "CA",
+      "ticker": "ZCN",
+      "cik": null,
+      "window_start": "2026-02-01",
+      "window_end": "2026-02-28",
+      "detection_status": "UNKNOWN",
+      "confidence": null,
+      "suggested_extraction_route": null,
+      "source_attempts": [
+        {
+          "source_id": "official_fund_sponsor_portal",
+          "source_tier": "TIER_2_PRIMARY_UNSTRUCTURED",
+          "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-sptsx-capped-composite-index-etf-zcn/",
+          "source_type": "SPONSOR_PORTAL_SCHEDULE",
+          "retrieval_status": "SUCCESS",
+          "retrieved_at": "2026-09-20T19:39:18.071127+00:00",
+          "coverage_status": "UNAVAILABLE",
+          "evidence_found": false,
+          "failure_reason": "RETRIEVAL_FAILED",
+          "notes": "Sponsor portal retrieval failure: RETRIEVAL_FAILED"
+        },
+        {
+          "source_id": "targeted_secondary_lookup",
+          "source_tier": "TIER_2_PRIMARY_UNSTRUCTURED",
+          "url": "targeted://official_secondary_candidates",
+          "source_type": "SECONDARY_OFFICIAL_LOOKUP",
+          "retrieval_status": "FAILED",
+          "retrieved_at": "2026-09-20T19:39:18.071186+00:00",
+          "coverage_status": "PARTIAL",
+          "evidence_found": false,
+          "failure_reason": "INSUFFICIENT_EVIDENCE",
+          "notes": "No targeted secondary candidate URLs configured."
+        },
+        {
+          "source_id": "public_market_data_corroboration",
+          "source_tier": "TIER_3_CORROBORATION",
+          "url": "https://finance.yahoo.com/quote/ZCN",
+          "source_type": "THIRD_PARTY_CORROBORATION",
+          "retrieval_status": "SUCCESS",
+          "retrieved_at": "2026-09-20T19:39:18.967267+00:00",
+          "coverage_status": "PARTIAL",
+          "evidence_found": false,
+          "failure_reason": "INSUFFICIENT_EVIDENCE",
+          "notes": "Corroboration only. Never sole evidence for DECLARED or NOT_DECLARED."
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": "TIER_2_PRIMARY_UNSTRUCTURED",
+          "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-sptsx-capped-composite-index-etf-zcn/",
+          "retrieved_at": "2026-09-20T19:39:01.635279+00:00",
+          "snippet_or_locator": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out",
+          "declaration_date_found": null,
+          "failure_reason": "RETRIEVAL_FAILED"
+        },
+        {
+          "source_id": "public_market_data_corroboration",
+          "source_tier": "TIER_3_CORROBORATION",
+          "url": "https://finance.yahoo.com/quote/ZCN",
+          "retrieved_at": "2026-09-20T19:39:18.967240+00:00",
+          "snippet_or_locator": "Tier 3 public market data checked; no corroboration record.",
+          "declaration_date_found": null,
+          "failure_reason": "INSUFFICIENT_EVIDENCE"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_VANGUARD_VCN",
+      "fund_name": "Vanguard FTSE Canada All Cap Index ETF",
+      "country": "CA",
+      "ticker": "VCN",
+      "cik": null,
+      "window_start": "2026-02-01",
+      "window_end": "2026-02-28",
+      "detection_status": "UNKNOWN",
+      "confidence": null,
+      "suggested_extraction_route": null,
+      "source_attempts": [
+        {
+          "source_id": "official_fund_sponsor_portal",
+          "source_tier": "TIER_2_PRIMARY_UNSTRUCTURED",
+          "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VCN",
+          "source_type": "SPONSOR_PORTAL_SCHEDULE",
+          "retrieval_status": "SUCCESS",
+          "retrieved_at": "2026-09-20T19:39:20.334908+00:00",
+          "coverage_status": "UNAVAILABLE",
+          "evidence_found": false,
+          "failure_reason": "RETRIEVAL_FAILED",
+          "notes": "Sponsor portal retrieval failure: RETRIEVAL_FAILED"
+        },
+        {
+          "source_id": "targeted_secondary_lookup",
+          "source_tier": "TIER_2_PRIMARY_UNSTRUCTURED",
+          "url": "targeted://official_secondary_candidates",
+          "source_type": "SECONDARY_OFFICIAL_LOOKUP",
+          "retrieval_status": "FAILED",
+          "retrieved_at": "2026-09-20T19:39:20.334948+00:00",
+          "coverage_status": "PARTIAL",
+          "evidence_found": false,
+          "failure_reason": "INSUFFICIENT_EVIDENCE",
+          "notes": "No targeted secondary candidate URLs configured."
+        },
+        {
+          "source_id": "public_market_data_corroboration",
+          "source_tier": "TIER_3_CORROBORATION",
+          "url": "https://finance.yahoo.com/quote/VCN",
+          "source_type": "THIRD_PARTY_CORROBORATION",
+          "retrieval_status": "SUCCESS",
+          "retrieved_at": "2026-09-20T19:39:21.015608+00:00",
+          "coverage_status": "PARTIAL",
+          "evidence_found": false,
+          "failure_reason": "INSUFFICIENT_EVIDENCE",
+          "notes": "Corroboration only. Never sole evidence for DECLARED or NOT_DECLARED."
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": "TIER_2_PRIMARY_UNSTRUCTURED",
+          "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VCN",
+          "retrieved_at": "2026-09-20T19:39:18.967429+00:00",
+          "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
+          "declaration_date_found": null,
+          "failure_reason": "RETRIEVAL_FAILED"
+        },
+        {
+          "source_id": "public_market_data_corroboration",
+          "source_tier": "TIER_3_CORROBORATION",
+          "url": "https://finance.yahoo.com/quote/VCN",
+          "retrieved_at": "2026-09-20T19:39:21.015582+00:00",
+          "snippet_or_locator": "Tier 3 public market data checked; no corroboration record.",
+          "declaration_date_found": null,
+          "failure_reason": "INSUFFICIENT_EVIDENCE"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_ISHARES_AGG",
+      "fund_name": "iShares Core U.S. Aggregate Bond ETF",
+      "country": "US",
+      "ticker": "AGG",
+      "cik": "0001100663",
+      "window_start": "2026-02-01",
+      "window_end": "2026-02-28",
+      "detection_status": "UNKNOWN",
+      "confidence": null,
+      "suggested_extraction_route": null,
+      "source_attempts": [
+        {
+          "source_id": "sec_edgar_submissions",
+          "source_tier": "TIER_1_AUTHORITATIVE",
+          "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+          "source_type": "REGULATORY_FILING_INDEX",
+          "retrieval_status": "SUCCESS",
+          "retrieved_at": "2026-09-20T19:39:21.597804+00:00",
+          "coverage_status": "UNAVAILABLE",
+          "evidence_found": false,
+          "failure_reason": "RETRIEVAL_FAILED",
+          "notes": "SEC submissions API error: RETRIEVAL_FAILED"
+        },
+        {
+          "source_id": "official_fund_sponsor_portal",
+          "source_tier": "TIER_2_PRIMARY_UNSTRUCTURED",
+          "url": "https://www.ishares.com/us/products/239458/",
+          "source_type": "SPONSOR_PORTAL_SCHEDULE",
+          "retrieval_status": "SUCCESS",
+          "retrieved_at": "2026-09-20T19:39:22.186328+00:00",
+          "coverage_status": "UNAVAILABLE",
+          "evidence_found": false,
+          "failure_reason": "RETRIEVAL_FAILED",
+          "notes": "Sponsor portal retrieval failure: RETRIEVAL_FAILED"
+        },
+        {
+          "source_id": "targeted_secondary_lookup",
+          "source_tier": "TIER_2_PRIMARY_UNSTRUCTURED",
+          "url": "targeted://official_secondary_candidates",
+          "source_type": "SECONDARY_OFFICIAL_LOOKUP",
+          "retrieval_status": "FAILED",
+          "retrieved_at": "2026-09-20T19:39:22.186354+00:00",
+          "coverage_status": "PARTIAL",
+          "evidence_found": false,
+          "failure_reason": "INSUFFICIENT_EVIDENCE",
+          "notes": "No targeted secondary candidate URLs configured."
+        },
+        {
+          "source_id": "public_market_data_corroboration",
+          "source_tier": "TIER_3_CORROBORATION",
+          "url": "https://finance.yahoo.com/quote/AGG",
+          "source_type": "THIRD_PARTY_CORROBORATION",
+          "retrieval_status": "SUCCESS",
+          "retrieved_at": "2026-09-20T19:39:22.876929+00:00",
+          "coverage_status": "PARTIAL",
+          "evidence_found": false,
+          "failure_reason": "INSUFFICIENT_EVIDENCE",
+          "notes": "Corroboration only. Never sole evidence for DECLARED or NOT_DECLARED."
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": "TIER_1_AUTHORITATIVE",
+          "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+          "retrieved_at": "2026-09-20T19:39:21.015780+00:00",
+          "snippet_or_locator": "SEC submissions query failed: HTTP 403: Forbidden",
+          "declaration_date_found": null,
+          "failure_reason": "RETRIEVAL_FAILED"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": "TIER_2_PRIMARY_UNSTRUCTURED",
+          "url": "https://www.ishares.com/us/products/239458/",
+          "retrieved_at": "2026-09-20T19:39:21.597891+00:00",
+          "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+          "declaration_date_found": null,
+          "failure_reason": "RETRIEVAL_FAILED"
+        },
+        {
+          "source_id": "public_market_data_corroboration",
+          "source_tier": "TIER_3_CORROBORATION",
+          "url": "https://finance.yahoo.com/quote/AGG",
+          "retrieved_at": "2026-09-20T19:39:22.876904+00:00",
+          "snippet_or_locator": "Tier 3 public market data checked; no corroboration record.",
+          "declaration_date_found": null,
+          "failure_reason": "INSUFFICIENT_EVIDENCE"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_VTI",
+      "fund_name": "Vanguard Total Stock Market Index Fund ETF",
+      "country": "US",
+      "ticker": "VTI",
+      "cik": "0000036405",
+      "window_start": "2026-02-01",
+      "window_end": "2026-02-28",
+      "detection_status": "UNKNOWN",
+      "confidence": null,
+      "suggested_extraction_route": null,
+      "source_attempts": [
+        {
+          "source_id": "sec_edgar_submissions",
+          "source_tier": "TIER_1_AUTHORITATIVE",
+          "url": "https://data.sec.gov/submissions/CIK0000036405.json",
+          "source_type": "REGULATORY_FILING_INDEX",
+          "retrieval_status": "SUCCESS",
+          "retrieved_at": "2026-09-20T19:39:23.668221+00:00",
+          "coverage_status": "UNAVAILABLE",
+          "evidence_found": false,
+          "failure_reason": "RETRIEVAL_FAILED",
+          "notes": "SEC submissions API error: RETRIEVAL_FAILED"
+        },
+        {
+          "source_id": "official_fund_sponsor_portal",
+          "source_tier": "TIER_2_PRIMARY_UNSTRUCTURED",
+          "url": "https://investor.vanguard.com/investment-products/etfs/profile/vti",
+          "source_type": "SPONSOR_PORTAL_SCHEDULE",
+          "retrieval_status": "SUCCESS",
+          "retrieved_at": "2026-09-20T19:39:24.516532+00:00",
+          "coverage_status": "PARTIAL",
+          "evidence_found": false,
+          "failure_reason": "INSUFFICIENT_EVIDENCE",
+          "notes": "Sponsor HTML retrieved but lacks verifiable distribution schedule table for window."
+        },
+        {
+          "source_id": "targeted_secondary_lookup",
+          "source_tier": "TIER_2_PRIMARY_UNSTRUCTURED",
+          "url": "targeted://official_secondary_candidates",
+          "source_type": "SECONDARY_OFFICIAL_LOOKUP",
+          "retrieval_status": "FAILED",
+          "retrieved_at": "2026-09-20T19:39:24.516553+00:00",
+          "coverage_status": "PARTIAL",
+          "evidence_found": false,
+          "failure_reason": "INSUFFICIENT_EVIDENCE",
+          "notes": "No targeted secondary candidate URLs configured."
+        },
+        {
+          "source_id": "public_market_data_corroboration",
+          "source_tier": "TIER_3_CORROBORATION",
+          "url": "https://finance.yahoo.com/quote/VTI",
+          "source_type": "THIRD_PARTY_CORROBORATION",
+          "retrieval_status": "SUCCESS",
+          "retrieved_at": "2026-09-20T19:39:25.181412+00:00",
+          "coverage_status": "PARTIAL",
+          "evidence_found": false,
+          "failure_reason": "INSUFFICIENT_EVIDENCE",
+          "notes": "Corroboration only. Never sole evidence for DECLARED or NOT_DECLARED."
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": "TIER_1_AUTHORITATIVE",
+          "url": "https://data.sec.gov/submissions/CIK0000036405.json",
+          "retrieved_at": "2026-09-20T19:39:22.877102+00:00",
+          "snippet_or_locator": "SEC submissions query failed: HTTP 403: Forbidden",
+          "declaration_date_found": null,
+          "failure_reason": "RETRIEVAL_FAILED"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": "TIER_2_PRIMARY_UNSTRUCTURED",
+          "url": "https://investor.vanguard.com/investment-products/etfs/profile/vti",
+          "retrieved_at": "2026-09-20T19:39:23.668325+00:00",
+          "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
+          "declaration_date_found": null,
+          "failure_reason": "INSUFFICIENT_EVIDENCE"
+        },
+        {
+          "source_id": "public_market_data_corroboration",
+          "source_tier": "TIER_3_CORROBORATION",
+          "url": "https://finance.yahoo.com/quote/VTI",
+          "retrieved_at": "2026-09-20T19:39:25.181392+00:00",
+          "snippet_or_locator": "Tier 3 public market data checked; no corroboration record.",
+          "declaration_date_found": null,
+          "failure_reason": "INSUFFICIENT_EVIDENCE"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_SPDR_SPYD",
+      "fund_name": "SPDR S&P Dividend ETF",
+      "country": "US",
+      "ticker": "SPYD",
+      "cik": "0001064642",
+      "window_start": "2026-02-01",
+      "window_end": "2026-02-28",
+      "detection_status": "UNKNOWN",
+      "confidence": null,
+      "suggested_extraction_route": null,
+      "source_attempts": [
+        {
+          "source_id": "sec_edgar_submissions",
+          "source_tier": "TIER_1_AUTHORITATIVE",
+          "url": "https://data.sec.gov/submissions/CIK0001064642.json",
+          "source_type": "REGULATORY_FILING_INDEX",
+          "retrieval_status": "SUCCESS",
+          "retrieved_at": "2026-09-20T19:39:25.759969+00:00",
+          "coverage_status": "UNAVAILABLE",
+          "evidence_found": false,
+          "failure_reason": "RETRIEVAL_FAILED",
+          "notes": "SEC submissions API error: RETRIEVAL_FAILED"
+        },
+        {
+          "source_id": "official_fund_sponsor_portal",
+          "source_tier": "TIER_2_PRIMARY_UNSTRUCTURED",
+          "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-sp-dividend-etf-spyd",
+          "source_type": "SPONSOR_PORTAL_SCHEDULE",
+          "retrieval_status": "SUCCESS",
+          "retrieved_at": "2026-09-20T19:39:26.617051+00:00",
+          "coverage_status": "UNAVAILABLE",
+          "evidence_found": false,
+          "failure_reason": "RETRIEVAL_FAILED",
+          "notes": "Sponsor portal retrieval failure: RETRIEVAL_FAILED"
+        },
+        {
+          "source_id": "targeted_secondary_lookup",
+          "source_tier": "TIER_2_PRIMARY_UNSTRUCTURED",
+          "url": "targeted://official_secondary_candidates",
+          "source_type": "SECONDARY_OFFICIAL_LOOKUP",
+          "retrieval_status": "FAILED",
+          "retrieved_at": "2026-09-20T19:39:26.617081+00:00",
+          "coverage_status": "PARTIAL",
+          "evidence_found": false,
+          "failure_reason": "INSUFFICIENT_EVIDENCE",
+          "notes": "No targeted secondary candidate URLs configured."
+        },
+        {
+          "source_id": "public_market_data_corroboration",
+          "source_tier": "TIER_3_CORROBORATION",
+          "url": "https://finance.yahoo.com/quote/SPYD",
+          "source_type": "THIRD_PARTY_CORROBORATION",
+          "retrieval_status": "SUCCESS",
+          "retrieved_at": "2026-09-20T19:39:27.238320+00:00",
+          "coverage_status": "PARTIAL",
+          "evidence_found": false,
+          "failure_reason": "INSUFFICIENT_EVIDENCE",
+          "notes": "Corroboration only. Never sole evidence for DECLARED or NOT_DECLARED."
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": "TIER_1_AUTHORITATIVE",
+          "url": "https://data.sec.gov/submissions/CIK0001064642.json",
+          "retrieved_at": "2026-09-20T19:39:25.181541+00:00",
+          "snippet_or_locator": "SEC submissions query failed: HTTP 403: Forbidden",
+          "declaration_date_found": null,
+          "failure_reason": "RETRIEVAL_FAILED"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": "TIER_2_PRIMARY_UNSTRUCTURED",
+          "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-sp-dividend-etf-spyd",
+          "retrieved_at": "2026-09-20T19:39:25.760051+00:00",
+          "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
+          "declaration_date_found": null,
+          "failure_reason": "RETRIEVAL_FAILED"
+        },
+        {
+          "source_id": "public_market_data_corroboration",
+          "source_tier": "TIER_3_CORROBORATION",
+          "url": "https://finance.yahoo.com/quote/SPYD",
+          "retrieved_at": "2026-09-20T19:39:27.238294+00:00",
+          "snippet_or_locator": "Tier 3 public market data checked; no corroboration record.",
+          "declaration_date_found": null,
+          "failure_reason": "INSUFFICIENT_EVIDENCE"
+        }
+      ]
+    }
+  ]
+}

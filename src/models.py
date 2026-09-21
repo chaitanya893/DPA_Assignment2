@@ -124,3 +124,92 @@ class DetectionResult:
         # Ensure that every result carries evidence
         if not self.evidence:
             raise ValueError("DetectionResult must carry at least one Evidence item.")
+
+
+class ValidationStatus(str, Enum):
+    """Validation states for discovered candidate sources."""
+
+    VERIFIED_DIRECT_DISTRIBUTION = "VERIFIED_DIRECT_DISTRIBUTION"
+    VERIFIED_COVERAGE_SOURCE = "VERIFIED_COVERAGE_SOURCE"
+    SUPPORTING_FILING_INDEX = "SUPPORTING_FILING_INDEX"
+    PARTIALLY_VERIFIED = "PARTIALLY_VERIFIED"
+    INCOMPLETE = "INCOMPLETE"
+    UNAVAILABLE = "UNAVAILABLE"
+    INVALID = "INVALID"
+    CORROBORATION_ONLY = "CORROBORATION_ONLY"
+    VERIFIED = "VERIFIED"
+
+
+class SourceCoverageType(str, Enum):
+    """Classification of source coverage over the target date window."""
+
+    DIRECT_DECLARATION = "DIRECT_DECLARATION"
+    EXHAUSTIVE_NEGATIVE = "EXHAUSTIVE_NEGATIVE"
+    INCOMPLETE = "INCOMPLETE"
+    UNAVAILABLE = "UNAVAILABLE"
+    CORROBORATION_ONLY = "CORROBORATION_ONLY"
+
+
+class SourceCoverageState(str, Enum):
+    """Explicit coverage states for evaluated source attempts per Assignment 2 requirements."""
+
+    COMPLETE_POSITIVE = "COMPLETE_POSITIVE"
+    COMPLETE_NEGATIVE = "COMPLETE_NEGATIVE"
+    PARTIAL = "PARTIAL"
+    BLOCKED = "BLOCKED"
+    UNAVAILABLE = "UNAVAILABLE"
+    NOT_RETRIEVED = "NOT_RETRIEVED"
+
+
+@dataclass
+class SourceAttemptRecord:
+    """Record of an attempted source inspection during multi-tier fallback."""
+
+    fund_id: str
+    source_id: str
+    source_tier: SourceTier
+    url: str
+    source_type: str
+    retrieval_status: str
+    retrieved_at: datetime | None = None
+    coverage_status: SourceCoverageState = SourceCoverageState.NOT_RETRIEVED
+    evidence_found: bool = False
+    failure_reason: UnknownReason | None = None
+    notes: str = ""
+
+
+@dataclass
+class SourceCandidate:
+    """Standardized representation of a discovered and evaluated source candidate."""
+
+    fund_id: str
+    source_id: str
+    source_tier: SourceTier
+    source_role: str
+    provider: str
+    url: str
+    source_type: str
+    official_domain: str
+    identifier_type: str | None = None
+    identifier_value: str | None = None
+    retrieval_status: str = "PENDING"
+    http_status: int | None = None
+    redirect_chain: list[str] = field(default_factory=list)
+    content_type: str | None = None
+    content_hash: str | None = None
+    retrieved_at: datetime | None = None
+    coverage_start: date | None = None
+    coverage_end: date | None = None
+    domain_verified: bool = False
+    source_retrievable: bool = False
+    identity_verified: bool = False
+    content_usable: bool = False
+    distribution_capable: bool = False
+    coverage_verified: bool = False
+    fund_identity_verified: bool = False
+    class_or_series_verified: bool = False
+    distribution_semantics_verified: bool = False
+    direct_declaration_capable: bool = False
+    coverage_complete: bool = False
+    validation_status: ValidationStatus = ValidationStatus.UNAVAILABLE
+    validation_reason: str = ""

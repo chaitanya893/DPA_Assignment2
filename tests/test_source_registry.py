@@ -5,7 +5,11 @@ from pathlib import Path
 import pytest
 
 from src.models import SourceTier
-from src.registry_loader import SourceDefinition, SourceRegistry
+from src.registry_loader import (
+    SourceDefinition,
+    SourceRegistry,
+    SourceRoleCategory,
+)
 
 
 @pytest.fixture
@@ -29,6 +33,9 @@ def test_required_registry_fields_present(registry_file_path: Path) -> None:
         assert isinstance(
             source.source_tier, SourceTier
         ), f"Invalid tier for {source.source_id}"
+        assert isinstance(
+            source.role_category, SourceRoleCategory
+        ), f"Invalid role_category for {source.source_id}"
         assert source.applicable_country in {"US", "CA", "BOTH"}
         assert len(source.applicable_fund_types) > 0
         assert len(source.limitations) > 0
@@ -54,6 +61,41 @@ def test_tier_hierarchy_and_filtering(registry_file_path: Path) -> None:
     assert "official_fund_distribution_page" in ca_ids
 
 
+def test_role_categories_and_capabilities(registry_file_path: Path) -> None:
+    """Verify distinct role categories for sources."""
+    registry = SourceRegistry.from_yaml(registry_file_path)
+
+    direct_sources = registry.get_sources_by_role(SourceRoleCategory.DIRECT_DECLARATION)
+    supporting_sources = registry.get_sources_by_role(
+        SourceRoleCategory.SUPPORTING_RETROSPECTIVE
+    )
+    metadata_sources = registry.get_sources_by_role(SourceRoleCategory.METADATA_ONLY)
+    corroboration_sources = registry.get_sources_by_role(
+        SourceRoleCategory.CORROBORATION_ONLY
+    )
+
+    assert len(direct_sources) >= 3
+    assert len(supporting_sources) >= 2
+    assert len(metadata_sources) >= 1
+    assert len(corroboration_sources) >= 1
+
+    # Specifically verify N-PORT/N-CEN is classified as supporting/retrospective
+    nport = registry.get_source("sec_edgar_form_nport_ncen")
+    assert nport is not None
+    assert nport.role_category == SourceRoleCategory.SUPPORTING_RETROSPECTIVE
+    assert any("retrospective" in lim.lower() for lim in nport.limitations)
+
+    # Verify Mapping is metadata only
+    mapping = registry.get_source("sec_edgar_series_class_mapping")
+    assert mapping is not None
+    assert mapping.role_category == SourceRoleCategory.METADATA_ONLY
+
+    # Verify third party is corroboration only
+    third_party = registry.get_source("public_market_data_feed")
+    assert third_party is not None
+    assert third_party.role_category == SourceRoleCategory.CORROBORATION_ONLY
+
+
 def test_limitations_explicitly_documented(registry_file_path: Path) -> None:
     """5. Every single source must document limitations explicitly."""
     registry = SourceRegistry.from_yaml(registry_file_path)
@@ -71,6 +113,21 @@ def test_source_definition_validation_errors() -> None:
             source_id="",
             source_type="TEST",
             source_tier=SourceTier.TIER_1_AUTHORITATIVE,
+            role_category=SourceRoleCategory.DIRECT_DECLARATION,
+            applicable_country="US",
+            applicable_fund_types=("MUTUAL_FUND",),
+            evidence_capabilities=("test",),
+            available_date_fields=("ex_date",),
+            limitations=("limitation",),
+            access_method="HTTPS",
+        )
+
+    with pytest.raises(TypeError, match="role_category"):
+        SourceDefinition(
+            source_id="TEST_SRC",
+            source_type="TEST",
+            source_tier=SourceTier.TIER_1_AUTHORITATIVE,
+            role_category="INVALID_ROLE",  # type: ignore
             applicable_country="US",
             applicable_fund_types=("MUTUAL_FUND",),
             evidence_capabilities=("test",),
@@ -84,6 +141,7 @@ def test_source_definition_validation_errors() -> None:
             source_id="TEST_SRC",
             source_type="TEST",
             source_tier=SourceTier.TIER_1_AUTHORITATIVE,
+            role_category=SourceRoleCategory.DIRECT_DECLARATION,
             applicable_country="INVALID_COUNTRY",
             applicable_fund_types=("MUTUAL_FUND",),
             evidence_capabilities=("test",),

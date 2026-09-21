@@ -11,6 +11,7 @@ import logging
 from datetime import date, datetime, timezone
 
 from src.confidence import compute_confidence
+from src.http_client import HTTPClient
 from src.models import (
     DetectionResult,
     DetectionStatus,
@@ -21,11 +22,27 @@ from src.models import (
 )
 from src.strategies import (
     BaseDetectionStrategy,
+    CalendarExpectationStrategy,
+    OfficialSponsorWebStrategy,
+    SECEdgarSubmissionsStrategy,
     SignalType,
     StrategyObservation,
 )
+from src.universe_loader import UniverseRegistry
 
 logger = logging.getLogger(__name__)
+
+
+def get_default_strategies(
+    http_client: HTTPClient | None = None,
+    universe: UniverseRegistry | None = None,
+) -> list[BaseDetectionStrategy]:
+    """Provide standard real-source strategy pipeline."""
+    return [
+        CalendarExpectationStrategy(),
+        SECEdgarSubmissionsStrategy(http_client=http_client, universe=universe),
+        OfficialSponsorWebStrategy(http_client=http_client, universe=universe),
+    ]
 
 
 def synthesize_detection_result(
@@ -64,16 +81,32 @@ def synthesize_detection_result(
                 suggested_route = obs.suggested_route
 
             for ev in obs.evidence:
+                # Tier 3 can NEVER be the sole basis for DECLARED
                 if (
-                    ev.declaration_date_found is not None
+                    ev.source_tier
+                    in (
+                        SourceTier.TIER_1_AUTHORITATIVE,
+                        SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+                    )
+                    and ev.declaration_date_found is not None
                     and window_start <= ev.declaration_date_found <= window_end
                 ):
                     valid_declarations.append(ev)
 
+        # Tier 3 can NEVER establish full window coverage for NOT_DECLARED
         if obs.window_fully_covered:
-            has_full_window_coverage = True
-            if not obs.has_declaration_in_window:
-                has_conflicting_negative = True
+            has_tier1_or_2 = any(
+                ev.source_tier
+                in (
+                    SourceTier.TIER_1_AUTHORITATIVE,
+                    SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+                )
+                for ev in obs.evidence
+            )
+            if has_tier1_or_2:
+                has_full_window_coverage = True
+                if not obs.has_declaration_in_window:
+                    has_conflicting_negative = True
 
     # 1. Check for conflicting evidence (both valid declaration and confirmed negative on full window)
     if valid_declarations and has_conflicting_negative:
@@ -164,14 +197,18 @@ def detect_distribution(
     window_start: date,
     window_end: date,
     strategies: list[BaseDetectionStrategy] | None = None,
+    http_client: HTTPClient | None = None,
+    universe: UniverseRegistry | None = None,
 ) -> DetectionResult:
     """Evaluate whether a fund declared a distribution in the requested window [window_start, window_end].
 
     Args:
-        fund_id: Internal fund identifier.
+        fund_id: Internal fund identifier or ticker.
         window_start: Start date of the declaration window (inclusive).
         window_end: End date of the declaration window (inclusive).
-        strategies: Optional list of inspection strategies. If omitted, returns UNKNOWN (INSUFFICIENT_EVIDENCE).
+        strategies: Optional list of inspection strategies. If None, uses default real-source strategies.
+        http_client: Optional HTTPClient instance for network queries.
+        universe: Optional UniverseRegistry instance.
 
     Returns:
         DetectionResult carrying status, confidence, evidence list, and recommended route.
@@ -187,8 +224,11 @@ def detect_distribution(
             f"Invalid date window: window_start ({window_start}) cannot be after window_end ({window_end})."
         )
 
+    if strategies is None:
+        strategies = get_default_strategies(http_client=http_client, universe=universe)
+
     if not strategies:
-        # Without active inspection strategies, return UNKNOWN with insufficient evidence
+        # Explicit empty strategies list -> UNKNOWN with insufficient evidence
         insufficient_evidence = Evidence(
             source_id="DETECTOR_UNCONFIGURED_PASS",
             source_tier=SourceTier.TIER_3_CORROBORATION,

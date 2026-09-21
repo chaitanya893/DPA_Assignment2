@@ -6,11 +6,23 @@ Parses config/source_registry.yaml and provides structured, validated SourceDefi
 from __future__ import annotations
 
 from dataclasses import dataclass
+from enum import Enum
 from pathlib import Path
 
 import yaml
 
 from src.models import SourceTier
+
+
+class SourceRoleCategory(str, Enum):
+    """Functional role category of a distribution detection source."""
+
+    DIRECT_DECLARATION = "DIRECT_DECLARATION"  # Can directly establish an explicit declaration when containing it
+    SUPPORTING_RETROSPECTIVE = (
+        "SUPPORTING_RETROSPECTIVE"  # Provides supporting/retrospective evidence
+    )
+    METADATA_ONLY = "METADATA_ONLY"  # Metadata and identifier mapping only
+    CORROBORATION_ONLY = "CORROBORATION_ONLY"  # Corroboration cross-check only
 
 
 @dataclass(frozen=True)
@@ -20,6 +32,7 @@ class SourceDefinition:
     source_id: str
     source_type: str
     source_tier: SourceTier
+    role_category: SourceRoleCategory
     applicable_country: str  # US, CA, or BOTH
     applicable_fund_types: tuple[str, ...]
     evidence_capabilities: tuple[str, ...]
@@ -34,6 +47,10 @@ class SourceDefinition:
         if not isinstance(self.source_tier, SourceTier):
             raise TypeError(
                 f"Invalid source_tier: {self.source_tier}. Must be a valid SourceTier."
+            )
+        if not isinstance(self.role_category, SourceRoleCategory):
+            raise TypeError(
+                f"Invalid role_category: {self.role_category}. Must be a valid SourceRoleCategory."
             )
         if self.applicable_country not in {"US", "CA", "BOTH"}:
             raise ValueError(
@@ -78,10 +95,19 @@ class SourceRegistry:
                     f"Invalid source_tier '{tier_val}' in source '{item.get('source_id')}': {err}"
                 ) from err
 
+            role_val = item.get("role_category")
+            try:
+                role_enum = SourceRoleCategory(str(role_val))
+            except (ValueError, KeyError) as err:
+                raise ValueError(
+                    f"Invalid role_category '{role_val}' in source '{item.get('source_id')}': {err}"
+                ) from err
+
             src_def = SourceDefinition(
                 source_id=item.get("source_id", ""),
                 source_type=item.get("source_type", ""),
                 source_tier=tier_enum,
+                role_category=role_enum,
                 applicable_country=item.get("applicable_country", ""),
                 applicable_fund_types=tuple(item.get("applicable_fund_types", [])),
                 evidence_capabilities=tuple(item.get("evidence_capabilities", [])),
@@ -105,6 +131,10 @@ class SourceRegistry:
     def get_sources_by_tier(self, tier: SourceTier) -> list[SourceDefinition]:
         """Filter sources by tier hierarchy."""
         return [s for s in self._sources_by_id.values() if s.source_tier == tier]
+
+    def get_sources_by_role(self, role: SourceRoleCategory) -> list[SourceDefinition]:
+        """Filter sources by role category."""
+        return [s for s in self._sources_by_id.values() if s.role_category == role]
 
     def get_sources_by_country(self, country: str) -> list[SourceDefinition]:
         """Filter sources applicable to US or CA."""

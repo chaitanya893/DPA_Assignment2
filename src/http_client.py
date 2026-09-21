@@ -1,6 +1,12 @@
 """Resilient HTTP client foundation with bounded backoff, rate limiting, and failure classification.
 
 Designed for Layer A detection without hardcoded credentials or unverified financial assumptions.
+
+Note on User-Agent:
+External authoritative sources (e.g. SEC EDGAR) require a compliant User-Agent header
+with operator contact details. In production, this must be explicitly configured via the
+DETECTOR_USER_AGENT environment variable or the user_agent constructor parameter.
+Do not hardcode or fabricate contact emails.
 """
 
 from __future__ import annotations
@@ -19,7 +25,11 @@ from src.rate_limiter import RateLimiter
 
 logger = logging.getLogger(__name__)
 
-DEFAULT_USER_AGENT = "FundDistributionDetector/1.0 (+https://github.com/chaitanya893/DPA_Assignment2; contact@example.internal)"
+# Base descriptive User-Agent without fake contact info.
+# Real production execution requires setting DETECTOR_USER_AGENT with valid operator details.
+DEFAULT_USER_AGENT = (
+    "FundDistributionDetector/1.0 (+https://github.com/chaitanya893/DPA_Assignment2)"
+)
 
 
 @dataclass(frozen=True)
@@ -79,7 +89,10 @@ class HTTPClient:
         params: dict[str, Any] | None = None,
     ) -> HTTPResponseRecord:
         """Execute a GET request with pacing, retry logic, and structured error recording."""
-        req_headers = {"User-Agent": self.user_agent}
+        req_headers = {
+            "User-Agent": self.user_agent,
+            "Accept-Encoding": "gzip, deflate",
+        }
         if headers:
             req_headers.update(headers)
 
