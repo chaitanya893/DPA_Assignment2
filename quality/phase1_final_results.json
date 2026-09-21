@@ -18,7 +18,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000036405.json",
-        "retrieved_at": "2026-09-20T17:45:27.934040+00:00",
+        "retrieved_at": "2026-09-21T08:53:18.618878+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000036405 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -27,7 +27,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/etfs/profile/vti",
-        "retrieved_at": "2026-09-20T17:45:35.762898+00:00",
+        "retrieved_at": "2026-09-21T08:53:22.285093+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -58,7 +58,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000036405.json",
-        "retrieved_at": "2026-09-20T17:45:36.988539+00:00",
+        "retrieved_at": "2026-09-21T08:53:23.057126+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000036405 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -67,7 +67,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/etfs/profile/voo",
-        "retrieved_at": "2026-09-20T17:45:41.820414+00:00",
+        "retrieved_at": "2026-09-21T08:53:25.824610+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -98,7 +98,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000794105.json",
-        "retrieved_at": "2026-09-20T17:45:42.925347+00:00",
+        "retrieved_at": "2026-09-21T08:53:26.257474+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000794105 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -107,7 +107,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/etfs/profile/bnd",
-        "retrieved_at": "2026-09-20T17:45:45.296633+00:00",
+        "retrieved_at": "2026-09-21T08:53:27.718863+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -138,7 +138,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001004655.json",
-        "retrieved_at": "2026-09-20T17:45:46.722347+00:00",
+        "retrieved_at": "2026-09-21T08:53:28.214368+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001004655 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -147,7 +147,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/etfs/profile/vym",
-        "retrieved_at": "2026-09-20T17:46:03.144593+00:00",
+        "retrieved_at": "2026-09-21T08:53:36.519455+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -178,7 +178,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000734383.json",
-        "retrieved_at": "2026-09-20T17:46:06.563999+00:00",
+        "retrieved_at": "2026-09-21T08:53:37.214627+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000734383 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -187,7 +187,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/etfs/profile/vnq",
-        "retrieved_at": "2026-09-20T17:46:14.832963+00:00",
+        "retrieved_at": "2026-09-21T08:53:40.899551+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -218,7 +218,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000036405.json",
-        "retrieved_at": "2026-09-20T17:46:17.486280+00:00",
+        "retrieved_at": "2026-09-21T08:53:41.370195+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000036405 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -227,7 +227,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/etfs/profile/vb",
-        "retrieved_at": "2026-09-20T17:46:25.188461+00:00",
+        "retrieved_at": "2026-09-21T08:53:44.159057+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -258,7 +258,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000036405.json",
-        "retrieved_at": "2026-09-20T17:46:26.790944+00:00",
+        "retrieved_at": "2026-09-21T08:53:44.911861+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000036405 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -267,7 +267,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/etfs/profile/vo",
-        "retrieved_at": "2026-09-20T17:46:36.218562+00:00",
+        "retrieved_at": "2026-09-21T08:53:47.709250+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -298,7 +298,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000923202.json",
-        "retrieved_at": "2026-09-20T17:46:37.662043+00:00",
+        "retrieved_at": "2026-09-21T08:53:48.279421+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000923202 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -307,7 +307,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/etfs/profile/vea",
-        "retrieved_at": "2026-09-20T17:46:45.464332+00:00",
+        "retrieved_at": "2026-09-21T08:53:51.950320+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -338,7 +338,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000857489.json",
-        "retrieved_at": "2026-09-20T17:46:47.318374+00:00",
+        "retrieved_at": "2026-09-21T08:53:52.827239+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000857489 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -347,7 +347,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/etfs/profile/vwo",
-        "retrieved_at": "2026-09-20T17:46:54.422721+00:00",
+        "retrieved_at": "2026-09-21T08:53:56.092020+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -378,7 +378,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000857489.json",
-        "retrieved_at": "2026-09-20T17:46:57.447188+00:00",
+        "retrieved_at": "2026-09-21T08:53:56.719690+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000857489 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -387,7 +387,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/etfs/profile/vt",
-        "retrieved_at": "2026-09-20T17:47:02.267702+00:00",
+        "retrieved_at": "2026-09-21T08:53:59.001444+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -418,7 +418,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000734383.json",
-        "retrieved_at": "2026-09-20T17:47:03.522987+00:00",
+        "retrieved_at": "2026-09-21T08:54:00.335810+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000734383 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -427,7 +427,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/etfs/profile/vig",
-        "retrieved_at": "2026-09-20T17:47:10.426259+00:00",
+        "retrieved_at": "2026-09-21T08:54:03.134724+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -458,7 +458,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000225997.json",
-        "retrieved_at": "2026-09-20T17:47:11.991829+00:00",
+        "retrieved_at": "2026-09-21T08:54:03.860057+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000225997 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -467,7 +467,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/etfs/profile/vteb",
-        "retrieved_at": "2026-09-20T17:47:14.475656+00:00",
+        "retrieved_at": "2026-09-21T08:54:04.833956+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -498,7 +498,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000794105.json",
-        "retrieved_at": "2026-09-20T17:47:15.977302+00:00",
+        "retrieved_at": "2026-09-21T08:54:05.363099+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000794105 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -507,7 +507,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/etfs/profile/bsv",
-        "retrieved_at": "2026-09-20T17:47:20.055928+00:00",
+        "retrieved_at": "2026-09-21T08:54:06.098598+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -538,7 +538,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000794105.json",
-        "retrieved_at": "2026-09-20T17:47:21.666474+00:00",
+        "retrieved_at": "2026-09-21T08:54:06.731642+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000794105 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -547,7 +547,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/etfs/profile/biv",
-        "retrieved_at": "2026-09-20T17:47:23.607747+00:00",
+        "retrieved_at": "2026-09-21T08:54:07.464115+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -578,7 +578,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000794105.json",
-        "retrieved_at": "2026-09-20T17:47:25.070378+00:00",
+        "retrieved_at": "2026-09-21T08:54:08.090801+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000794105 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -587,7 +587,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/etfs/profile/blv",
-        "retrieved_at": "2026-09-20T17:47:27.988204+00:00",
+        "retrieved_at": "2026-09-21T08:54:08.839126+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -618,7 +618,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000036405.json",
-        "retrieved_at": "2026-09-20T17:47:32.501213+00:00",
+        "retrieved_at": "2026-09-21T08:54:09.500664+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000036405 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -627,7 +627,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vfiax",
-        "retrieved_at": "2026-09-20T17:47:40.564262+00:00",
+        "retrieved_at": "2026-09-21T08:54:12.216320+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -658,7 +658,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000036405.json",
-        "retrieved_at": "2026-09-20T17:47:42.696754+00:00",
+        "retrieved_at": "2026-09-21T08:54:12.744804+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000036405 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -667,7 +667,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vtsax",
-        "retrieved_at": "2026-09-20T17:47:50.591048+00:00",
+        "retrieved_at": "2026-09-21T08:54:15.431788+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -698,7 +698,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000794105.json",
-        "retrieved_at": "2026-09-20T17:47:51.759718+00:00",
+        "retrieved_at": "2026-09-21T08:54:15.859879+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000794105 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -707,7 +707,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vbtlx",
-        "retrieved_at": "2026-09-20T17:47:53.779402+00:00",
+        "retrieved_at": "2026-09-21T08:54:16.585741+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -738,7 +738,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000736054.json",
-        "retrieved_at": "2026-09-20T17:47:54.905118+00:00",
+        "retrieved_at": "2026-09-21T08:54:17.206390+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000736054 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -747,7 +747,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vtiax",
-        "retrieved_at": "2026-09-20T17:48:05.060361+00:00",
+        "retrieved_at": "2026-09-21T08:54:22.818371+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -778,7 +778,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000106444.json",
-        "retrieved_at": "2026-09-20T17:48:06.465658+00:00",
+        "retrieved_at": "2026-09-21T08:54:23.367635+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000106444 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -787,7 +787,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vweax",
-        "retrieved_at": "2026-09-20T17:48:09.028390+00:00",
+        "retrieved_at": "2026-09-21T08:54:24.311200+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -808,36 +808,36 @@
     "window_start": "2026-01-01",
     "window_end": "2026-03-31",
     "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
-    "status": "DECLARED",
-    "confidence": 1.0,
-    "unknown_reason": null,
-    "suggested_extraction_route": "FILING",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
     "evidence_count": 2,
     "evidence": [
       {
-        "source_id": "sec_edgar_submissions_filing",
+        "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
-        "url": "https://www.sec.gov/Archives/edgar/data/1100663/000119312526114192/d45638d497.htm",
-        "retrieved_at": "2026-09-20T17:48:15.735586+00:00",
-        "snippet_or_locator": "Form 497 (IVV): 'capital gain rates to the extent the Fund receives qualified dividend income on the securities it holds and the Fund reports the distribution as qualified dividend income.'",
-        "declaration_date_found": "2026-03-18",
-        "failure_reason": null
+        "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+        "retrieved_at": "2026-09-21T08:54:25.010911+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
       },
       {
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ishares.com/us/products/239726/",
-        "retrieved_at": "2026-09-20T17:48:29.785087+00:00",
+        "retrieved_at": "2026-09-21T08:54:33.637878+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
       }
     ],
     "sources_checked": [
-      "https://www.sec.gov/Archives/edgar/data/1100663/000119312526114192/d45638d497.htm",
+      "https://data.sec.gov/submissions/CIK0001100663.json",
       "https://www.ishares.com/us/products/239726/"
     ],
-    "coverage_status": "QUALIFYING_DECLARATION_IDENTIFIED"
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
   },
   {
     "fund_id": "US_ISHARES_AGG",
@@ -858,7 +858,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001100663.json",
-        "retrieved_at": "2026-09-20T17:48:30.783349+00:00",
+        "retrieved_at": "2026-09-21T08:54:33.764642+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -867,7 +867,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ishares.com/us/products/239458/",
-        "retrieved_at": "2026-09-20T17:48:35.717355+00:00",
+        "retrieved_at": "2026-09-21T08:54:35.971644+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -888,36 +888,36 @@
     "window_start": "2026-01-01",
     "window_end": "2026-03-31",
     "window_justification": "Authenticated quarterly schedule cadence window (Q1 2026)",
-    "status": "DECLARED",
-    "confidence": 1.0,
-    "unknown_reason": null,
-    "suggested_extraction_route": "FILING",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
     "evidence_count": 2,
     "evidence": [
       {
-        "source_id": "sec_edgar_submissions_filing",
+        "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
-        "url": "https://www.sec.gov/Archives/edgar/data/1100663/000119312526114192/d45638d497.htm",
-        "retrieved_at": "2026-09-20T17:48:39.954825+00:00",
-        "snippet_or_locator": "Form 497 (IWM): 'capital gain rates to the extent the Fund receives qualified dividend income on the securities it holds and the Fund reports the distribution as qualified dividend income.'",
-        "declaration_date_found": "2026-03-18",
-        "failure_reason": null
+        "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+        "retrieved_at": "2026-09-21T08:54:36.077697+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
       },
       {
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ishares.com/us/products/239710/",
-        "retrieved_at": "2026-09-20T17:48:55.241852+00:00",
+        "retrieved_at": "2026-09-21T08:54:43.971692+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
       }
     ],
     "sources_checked": [
-      "https://www.sec.gov/Archives/edgar/data/1100663/000119312526114192/d45638d497.htm",
+      "https://data.sec.gov/submissions/CIK0001100663.json",
       "https://www.ishares.com/us/products/239710/"
     ],
-    "coverage_status": "QUALIFYING_DECLARATION_IDENTIFIED"
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
   },
   {
     "fund_id": "US_ISHARES_HYG",
@@ -938,7 +938,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001100663.json",
-        "retrieved_at": "2026-09-20T17:48:56.177677+00:00",
+        "retrieved_at": "2026-09-21T08:54:44.045798+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -947,7 +947,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ishares.com/us/products/239565/",
-        "retrieved_at": "2026-09-20T17:49:04.007417+00:00",
+        "retrieved_at": "2026-09-21T08:54:46.446491+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -978,7 +978,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001100663.json",
-        "retrieved_at": "2026-09-20T17:49:05.035039+00:00",
+        "retrieved_at": "2026-09-21T08:54:46.527154+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -987,7 +987,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ishares.com/us/products/239566/",
-        "retrieved_at": "2026-09-20T17:49:10.853422+00:00",
+        "retrieved_at": "2026-09-21T08:54:48.980560+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -1018,7 +1018,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001100663.json",
-        "retrieved_at": "2026-09-20T17:49:11.793910+00:00",
+        "retrieved_at": "2026-09-21T08:54:49.073530+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1027,7 +1027,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ishares.com/us/products/239467/",
-        "retrieved_at": "2026-09-20T17:49:19.553750+00:00",
+        "retrieved_at": "2026-09-21T08:54:51.452745+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -1058,7 +1058,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001100663.json",
-        "retrieved_at": "2026-09-20T17:49:20.905344+00:00",
+        "retrieved_at": "2026-09-21T08:54:51.538682+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1067,7 +1067,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ishares.com/us/products/239465/",
-        "retrieved_at": "2026-09-20T17:49:28.504140+00:00",
+        "retrieved_at": "2026-09-21T08:54:53.974267+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -1098,7 +1098,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001100663.json",
-        "retrieved_at": "2026-09-20T17:49:29.430036+00:00",
+        "retrieved_at": "2026-09-21T08:54:54.059247+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1107,7 +1107,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ishares.com/us/products/239452/",
-        "retrieved_at": "2026-09-20T17:49:37.546614+00:00",
+        "retrieved_at": "2026-09-21T08:54:56.497857+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -1138,7 +1138,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001100663.json",
-        "retrieved_at": "2026-09-20T17:49:38.507328+00:00",
+        "retrieved_at": "2026-09-21T08:54:56.603641+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1147,7 +1147,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ishares.com/us/products/239456/",
-        "retrieved_at": "2026-09-20T17:49:45.069098+00:00",
+        "retrieved_at": "2026-09-21T08:54:58.991610+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -1178,7 +1178,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001100663.json",
-        "retrieved_at": "2026-09-20T17:49:46.084676+00:00",
+        "retrieved_at": "2026-09-21T08:54:59.080667+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1187,7 +1187,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ishares.com/us/products/239454/",
-        "retrieved_at": "2026-09-20T17:49:51.382297+00:00",
+        "retrieved_at": "2026-09-21T08:55:01.488093+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -1218,7 +1218,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001100663.json",
-        "retrieved_at": "2026-09-20T17:49:52.071036+00:00",
+        "retrieved_at": "2026-09-21T08:55:01.595342+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1227,7 +1227,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ishares.com/us/products/239563/",
-        "retrieved_at": "2026-09-20T17:50:15.849343+00:00",
+        "retrieved_at": "2026-09-21T08:55:09.486963+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -1258,7 +1258,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000930667.json",
-        "retrieved_at": "2026-09-20T17:50:16.831451+00:00",
+        "retrieved_at": "2026-09-21T08:55:09.592699+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000930667 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1267,7 +1267,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ishares.com/us/products/244050/",
-        "retrieved_at": "2026-09-20T17:50:19.072948+00:00",
+        "retrieved_at": "2026-09-21T08:55:10.538453+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -1288,36 +1288,36 @@
     "window_start": "2026-01-01",
     "window_end": "2026-03-31",
     "window_justification": "Authenticated semi_annual schedule cadence window (Q1 2026)",
-    "status": "DECLARED",
-    "confidence": 1.0,
-    "unknown_reason": null,
-    "suggested_extraction_route": "FILING",
+    "status": "UNKNOWN",
+    "confidence": null,
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
+    "suggested_extraction_route": null,
     "evidence_count": 2,
     "evidence": [
       {
-        "source_id": "sec_edgar_submissions_filing",
+        "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
-        "url": "https://www.sec.gov/Archives/edgar/data/1100663/000119312526114192/d45638d497.htm",
-        "retrieved_at": "2026-09-20T17:50:25.053805+00:00",
-        "snippet_or_locator": "Form 497 (IEFA): 'capital gain rates to the extent the Fund receives qualified dividend income on the securities it holds and the Fund reports the distribution as qualified dividend income.'",
-        "declaration_date_found": "2026-03-18",
-        "failure_reason": null
+        "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+        "retrieved_at": "2026-09-21T08:55:10.618986+00:00",
+        "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
+        "declaration_date_found": null,
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
       },
       {
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ishares.com/us/products/244049/",
-        "retrieved_at": "2026-09-20T17:50:39.391017+00:00",
+        "retrieved_at": "2026-09-21T08:55:18.378666+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
       }
     ],
     "sources_checked": [
-      "https://www.sec.gov/Archives/edgar/data/1100663/000119312526114192/d45638d497.htm",
+      "https://data.sec.gov/submissions/CIK0001100663.json",
       "https://www.ishares.com/us/products/244049/"
     ],
-    "coverage_status": "QUALIFYING_DECLARATION_IDENTIFIED"
+    "coverage_status": "INSUFFICIENT_OR_UNAVAILABLE"
   },
   {
     "fund_id": "US_ISHARES_USHY",
@@ -1338,7 +1338,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001100663.json",
-        "retrieved_at": "2026-09-20T17:50:40.332555+00:00",
+        "retrieved_at": "2026-09-21T08:55:18.498074+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001100663 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1347,7 +1347,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ishares.com/us/products/290144/",
-        "retrieved_at": "2026-09-20T17:50:47.270793+00:00",
+        "retrieved_at": "2026-09-21T08:55:20.881826+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -1378,7 +1378,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000819118.json",
-        "retrieved_at": "2026-09-20T17:50:48.182596+00:00",
+        "retrieved_at": "2026-09-21T08:55:20.964918+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000819118 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1387,7 +1387,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911750",
-        "retrieved_at": "2026-09-20T17:50:49.618615+00:00",
+        "retrieved_at": "2026-09-21T08:55:21.413449+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1418,7 +1418,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000819118.json",
-        "retrieved_at": "2026-09-20T17:50:52.158513+00:00",
+        "retrieved_at": "2026-09-21T08:55:22.007025+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000819118 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1427,7 +1427,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911693",
-        "retrieved_at": "2026-09-20T17:50:53.483374+00:00",
+        "retrieved_at": "2026-09-21T08:55:22.097684+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1458,7 +1458,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000035315.json",
-        "retrieved_at": "2026-09-20T17:50:54.917902+00:00",
+        "retrieved_at": "2026-09-21T08:55:23.453057+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000035315 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1467,7 +1467,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://fundresearch.fidelity.com/mutual-funds/summary/316146358",
-        "retrieved_at": "2026-09-20T17:50:56.451115+00:00",
+        "retrieved_at": "2026-09-21T08:55:23.892182+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1498,7 +1498,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000751199.json",
-        "retrieved_at": "2026-09-20T17:50:57.976155+00:00",
+        "retrieved_at": "2026-09-21T08:55:24.493852+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000751199 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1507,7 +1507,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://fundresearch.fidelity.com/mutual-funds/summary/316146200",
-        "retrieved_at": "2026-09-20T17:50:59.731393+00:00",
+        "retrieved_at": "2026-09-21T08:55:24.877868+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1538,7 +1538,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000819118.json",
-        "retrieved_at": "2026-09-20T17:51:02.218679+00:00",
+        "retrieved_at": "2026-09-21T08:55:25.373280+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000819118 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1547,7 +1547,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911602",
-        "retrieved_at": "2026-09-20T17:51:03.161456+00:00",
+        "retrieved_at": "2026-09-21T08:55:25.477999+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1578,7 +1578,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000819118.json",
-        "retrieved_at": "2026-09-20T17:51:04.575252+00:00",
+        "retrieved_at": "2026-09-21T08:55:25.966700+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000819118 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1587,7 +1587,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://fundresearch.fidelity.com/mutual-funds/summary/316389303",
-        "retrieved_at": "2026-09-20T17:51:05.696441+00:00",
+        "retrieved_at": "2026-09-21T08:55:26.083968+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1618,7 +1618,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000081205.json",
-        "retrieved_at": "2026-09-20T17:51:07.275111+00:00",
+        "retrieved_at": "2026-09-21T08:55:26.640301+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000081205 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1627,7 +1627,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://fundresearch.fidelity.com/mutual-funds/summary/316345107",
-        "retrieved_at": "2026-09-20T17:51:11.354004+00:00",
+        "retrieved_at": "2026-09-21T08:55:27.984484+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1658,7 +1658,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000945908.json",
-        "retrieved_at": "2026-09-20T17:51:12.943695+00:00",
+        "retrieved_at": "2026-09-21T08:55:28.479473+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000945908 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1667,7 +1667,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.fidelity.com/etfs/different-types-of-etfs/fdvv",
-        "retrieved_at": "2026-09-20T17:51:17.679905+00:00",
+        "retrieved_at": "2026-09-21T08:55:30.371514+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 400: Bad Request",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -1698,7 +1698,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000205323.json",
-        "retrieved_at": "2026-09-20T17:51:19.139609+00:00",
+        "retrieved_at": "2026-09-21T08:55:31.188561+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000205323 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1707,7 +1707,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.fidelity.com/etfs/different-types-of-etfs/oneq",
-        "retrieved_at": "2026-09-20T17:51:20.803158+00:00",
+        "retrieved_at": "2026-09-21T08:55:31.681963+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 400: Bad Request",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -1738,7 +1738,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001064642.json",
-        "retrieved_at": "2026-09-20T17:51:23.510990+00:00",
+        "retrieved_at": "2026-09-21T08:55:32.513881+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001064642 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1747,7 +1747,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-portfolio-total-stock-market-etf-sptm",
-        "retrieved_at": "2026-09-20T17:51:28.534335+00:00",
+        "retrieved_at": "2026-09-21T08:55:33.873181+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -1778,7 +1778,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001064642.json",
-        "retrieved_at": "2026-09-20T17:51:29.535072+00:00",
+        "retrieved_at": "2026-09-21T08:55:34.113988+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001064642 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1787,7 +1787,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-sp-dividend-etf-spyd",
-        "retrieved_at": "2026-09-20T17:51:32.658522+00:00",
+        "retrieved_at": "2026-09-21T08:55:34.843191+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -1818,7 +1818,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001064642.json",
-        "retrieved_at": "2026-09-20T17:51:33.644126+00:00",
+        "retrieved_at": "2026-09-21T08:55:34.925128+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001064642 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1827,7 +1827,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-portfolio-aggregate-bond-etf-spab",
-        "retrieved_at": "2026-09-20T17:51:36.582549+00:00",
+        "retrieved_at": "2026-09-21T08:55:35.860632+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -1858,7 +1858,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001064642.json",
-        "retrieved_at": "2026-09-20T17:51:37.535328+00:00",
+        "retrieved_at": "2026-09-21T08:55:35.963891+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001064642 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1867,7 +1867,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-bloomberg-high-yield-bond-etf-jnk",
-        "retrieved_at": "2026-09-20T17:51:40.775589+00:00",
+        "retrieved_at": "2026-09-21T08:55:36.862869+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -1898,7 +1898,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001064642.json",
-        "retrieved_at": "2026-09-20T17:51:42.021503+00:00",
+        "retrieved_at": "2026-09-21T08:55:36.960928+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001064642 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1907,7 +1907,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-bloomberg-short-term-high-yield-bond-etf-sjnk",
-        "retrieved_at": "2026-09-20T17:51:44.925262+00:00",
+        "retrieved_at": "2026-09-21T08:55:37.898549+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -1938,7 +1938,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001064641.json",
-        "retrieved_at": "2026-09-20T17:51:45.823470+00:00",
+        "retrieved_at": "2026-09-21T08:55:37.989358+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001064641 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1947,7 +1947,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/the-financial-select-sector-spdr-fund-xlf",
-        "retrieved_at": "2026-09-20T17:51:49.582094+00:00",
+        "retrieved_at": "2026-09-21T08:55:38.991162+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -1978,7 +1978,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001064641.json",
-        "retrieved_at": "2026-09-20T17:51:50.473640+00:00",
+        "retrieved_at": "2026-09-21T08:55:39.082814+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001064641 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -1987,7 +1987,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/the-energy-select-sector-spdr-fund-xle",
-        "retrieved_at": "2026-09-20T17:51:53.353225+00:00",
+        "retrieved_at": "2026-09-21T08:55:39.491401+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2018,7 +2018,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001454889.json",
-        "retrieved_at": "2026-09-20T17:51:54.296381+00:00",
+        "retrieved_at": "2026-09-21T08:55:39.590177+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001454889 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -2027,7 +2027,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.schwabassetmanagement.com/products/schd",
-        "retrieved_at": "2026-09-20T17:52:06.186961+00:00",
+        "retrieved_at": "2026-09-21T08:55:40.925727+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2058,7 +2058,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001454889.json",
-        "retrieved_at": "2026-09-20T17:52:07.179680+00:00",
+        "retrieved_at": "2026-09-21T08:55:41.489644+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001454889 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -2067,7 +2067,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.schwabassetmanagement.com/products/schx",
-        "retrieved_at": "2026-09-20T17:52:10.324238+00:00",
+        "retrieved_at": "2026-09-21T08:55:42.221905+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2098,7 +2098,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001454889.json",
-        "retrieved_at": "2026-09-20T17:52:11.242019+00:00",
+        "retrieved_at": "2026-09-21T08:55:42.297239+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001454889 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -2107,7 +2107,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.schwabassetmanagement.com/products/schz",
-        "retrieved_at": "2026-09-20T17:52:13.686255+00:00",
+        "retrieved_at": "2026-09-21T08:55:42.722383+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2138,7 +2138,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000904333.json",
-        "retrieved_at": "2026-09-20T17:52:14.550093+00:00",
+        "retrieved_at": "2026-09-21T08:55:42.818336+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000904333 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -2147,7 +2147,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.schwabassetmanagement.com/products/swppx",
-        "retrieved_at": "2026-09-20T17:52:24.508737+00:00",
+        "retrieved_at": "2026-09-21T08:55:45.900100+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2178,7 +2178,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0000869365.json",
-        "retrieved_at": "2026-09-20T17:52:25.458434+00:00",
+        "retrieved_at": "2026-09-21T08:55:45.983078+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0000869365 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -2187,7 +2187,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.schwabassetmanagement.com/products/swagx",
-        "retrieved_at": "2026-09-20T17:52:28.997701+00:00",
+        "retrieved_at": "2026-09-21T08:55:47.480850+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2218,7 +2218,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001067839.json",
-        "retrieved_at": "2026-09-20T17:52:30.393311+00:00",
+        "retrieved_at": "2026-09-21T08:55:47.551502+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001067839 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -2227,8 +2227,8 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=QQQ",
-        "retrieved_at": "2026-09-20T17:52:32.087707+00:00",
-        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "retrieved_at": "2026-09-21T08:55:47.879355+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
       }
@@ -2258,7 +2258,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001209466.json",
-        "retrieved_at": "2026-09-20T17:52:32.971353+00:00",
+        "retrieved_at": "2026-09-21T08:55:48.695425+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001209466 inspected for window [2026-01-01 to 2026-03-31]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -2267,8 +2267,8 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=RSP",
-        "retrieved_at": "2026-09-20T17:52:35.318510+00:00",
-        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "retrieved_at": "2026-09-21T08:55:49.677873+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
       }
@@ -2298,7 +2298,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001378872.json",
-        "retrieved_at": "2026-09-20T17:52:36.180523+00:00",
+        "retrieved_at": "2026-09-21T08:55:50.699561+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001378872 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -2307,8 +2307,8 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=BKLN",
-        "retrieved_at": "2026-09-20T17:52:37.618249+00:00",
-        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "retrieved_at": "2026-09-21T08:55:51.125302+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
       }
@@ -2338,7 +2338,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001450011.json",
-        "retrieved_at": "2026-09-20T17:52:39.020206+00:00",
+        "retrieved_at": "2026-09-21T08:55:51.934138+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001450011 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -2347,7 +2347,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.pimco.com/en-us/investments/etf/active-bond-etf/bond",
-        "retrieved_at": "2026-09-20T17:52:40.481022+00:00",
+        "retrieved_at": "2026-09-21T08:55:52.411898+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2378,7 +2378,7 @@
         "source_id": "sec_edgar_submissions_api",
         "source_tier": 1,
         "url": "https://data.sec.gov/submissions/CIK0001450011.json",
-        "retrieved_at": "2026-09-20T17:52:41.658892+00:00",
+        "retrieved_at": "2026-09-21T08:55:52.554106+00:00",
         "snippet_or_locator": "SEC submissions index for CIK 0001450011 inspected for window [2026-02-01 to 2026-02-28]. Zero positive declaration filings detected (insufficient for full negative proof).",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -2387,7 +2387,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.pimco.com/en-us/investments/etf/enhanced-short-maturity-active-etf/mint",
-        "retrieved_at": "2026-09-20T17:52:42.615076+00:00",
+        "retrieved_at": "2026-09-21T08:55:52.912078+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2418,7 +2418,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-sptsx-capped-composite-index-etf-zcn/",
-        "retrieved_at": "2026-09-20T17:52:43.575841+00:00",
+        "retrieved_at": "2026-09-21T08:55:53.008977+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2448,7 +2448,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-aggregate-bond-index-etf-zag/",
-        "retrieved_at": "2026-09-20T17:52:56.794578+00:00",
+        "retrieved_at": "2026-09-21T08:56:05.288350+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2478,7 +2478,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-banks-index-etf-zeb/",
-        "retrieved_at": "2026-09-20T17:53:10.234846+00:00",
+        "retrieved_at": "2026-09-21T08:56:17.389076+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2508,7 +2508,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-covered-call-canadian-banks-etf-zwb/",
-        "retrieved_at": "2026-09-20T17:53:23.130119+00:00",
+        "retrieved_at": "2026-09-21T08:56:29.507058+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2538,7 +2538,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-utilities-index-etf-zut/",
-        "retrieved_at": "2026-09-20T17:53:36.555030+00:00",
+        "retrieved_at": "2026-09-21T08:56:41.595563+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2568,7 +2568,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-canadian-dividend-etf-zdv/",
-        "retrieved_at": "2026-09-20T17:53:49.467068+00:00",
+        "retrieved_at": "2026-09-21T08:56:53.690024+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2598,7 +2598,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-discount-bond-index-etf-zdb/",
-        "retrieved_at": "2026-09-20T17:54:02.318044+00:00",
+        "retrieved_at": "2026-09-21T08:57:05.778498+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2628,7 +2628,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-laddered-preferred-share-index-etf-zpr/",
-        "retrieved_at": "2026-09-20T17:54:15.627608+00:00",
+        "retrieved_at": "2026-09-21T08:57:17.945197+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2658,7 +2658,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VCN",
-        "retrieved_at": "2026-09-20T17:54:28.578462+00:00",
+        "retrieved_at": "2026-09-21T08:57:30.023737+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2688,7 +2688,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VAB",
-        "retrieved_at": "2026-09-20T17:54:30.563053+00:00",
+        "retrieved_at": "2026-09-21T08:57:30.570698+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2718,7 +2718,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VDY",
-        "retrieved_at": "2026-09-20T17:54:31.791266+00:00",
+        "retrieved_at": "2026-09-21T08:57:31.070887+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2748,7 +2748,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VFV",
-        "retrieved_at": "2026-09-20T17:54:34.044373+00:00",
+        "retrieved_at": "2026-09-21T08:57:31.571361+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2778,7 +2778,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VSB",
-        "retrieved_at": "2026-09-20T17:54:36.093691+00:00",
+        "retrieved_at": "2026-09-21T08:57:32.071826+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2808,7 +2808,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VBAL",
-        "retrieved_at": "2026-09-20T17:54:37.320460+00:00",
+        "retrieved_at": "2026-09-21T08:57:32.572371+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2838,7 +2838,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VGRO",
-        "retrieved_at": "2026-09-20T17:54:38.550085+00:00",
+        "retrieved_at": "2026-09-21T08:57:33.073177+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 301: Moved Permanently",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2868,7 +2868,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.blackrock.com/ca/investors/en/products/239837/",
-        "retrieved_at": "2026-09-20T17:54:40.598881+00:00",
+        "retrieved_at": "2026-09-21T08:57:33.403722+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2898,7 +2898,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.blackrock.com/ca/investors/en/products/239493/",
-        "retrieved_at": "2026-09-20T17:54:41.517930+00:00",
+        "retrieved_at": "2026-09-21T08:57:33.903838+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2928,7 +2928,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.blackrock.com/ca/investors/en/products/239846/",
-        "retrieved_at": "2026-09-20T17:54:42.446606+00:00",
+        "retrieved_at": "2026-09-21T08:57:34.404533+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2958,7 +2958,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.blackrock.com/ca/investors/en/products/239835/",
-        "retrieved_at": "2026-09-20T17:54:43.348427+00:00",
+        "retrieved_at": "2026-09-21T08:57:34.904855+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -2988,7 +2988,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.blackrock.com/ca/investors/en/products/239848/",
-        "retrieved_at": "2026-09-20T17:54:44.282434+00:00",
+        "retrieved_at": "2026-09-21T08:57:35.405407+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -3018,7 +3018,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.blackrock.com/ca/investors/en/products/239498/",
-        "retrieved_at": "2026-09-20T17:54:45.258294+00:00",
+        "retrieved_at": "2026-09-21T08:57:35.906116+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -3048,7 +3048,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.blackrock.com/ca/investors/en/products/239499/",
-        "retrieved_at": "2026-09-20T17:54:46.294644+00:00",
+        "retrieved_at": "2026-09-21T08:57:36.406895+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -3078,7 +3078,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.blackrock.com/ca/investors/en/products/239556/",
-        "retrieved_at": "2026-09-20T17:54:47.234271+00:00",
+        "retrieved_at": "2026-09-21T08:57:36.907508+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -3108,7 +3108,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.rbcgam.com/en/ca/products/etfs/RBN/detail",
-        "retrieved_at": "2026-09-20T17:54:48.127179+00:00",
+        "retrieved_at": "2026-09-21T08:57:37.010315+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 404: ",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -3138,7 +3138,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.rbcgam.com/en/ca/products/etfs/RCD/detail",
-        "retrieved_at": "2026-09-20T17:54:50.942825+00:00",
+        "retrieved_at": "2026-09-21T08:57:39.559480+00:00",
         "snippet_or_locator": "Official distribution schedule table inspected for window [2026-02-01 to 2026-02-28]. Zero declared events confirmed.",
         "declaration_date_found": null,
         "failure_reason": null
@@ -3168,7 +3168,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.rbcgam.com/en/ca/products/etfs/RUSB/detail",
-        "retrieved_at": "2026-09-20T17:54:58.553986+00:00",
+        "retrieved_at": "2026-09-21T08:57:52.859984+00:00",
         "snippet_or_locator": "Official distribution schedule table inspected for window [2026-02-01 to 2026-02-28]. Zero declared events confirmed.",
         "declaration_date_found": null,
         "failure_reason": null
@@ -3198,7 +3198,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.rbcgam.com/en/ca/products/mutual-funds/RBF556/detail",
-        "retrieved_at": "2026-09-20T17:55:07.579324+00:00",
+        "retrieved_at": "2026-09-21T08:58:06.649599+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -3228,7 +3228,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.rbcgam.com/en/ca/products/mutual-funds/RBF266/detail",
-        "retrieved_at": "2026-09-20T17:55:11.796151+00:00",
+        "retrieved_at": "2026-09-21T08:58:12.300419+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -3258,7 +3258,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20Canadian%20Equity%20Index%20ETF/?fundId=6831",
-        "retrieved_at": "2026-09-20T17:55:16.110820+00:00",
+        "retrieved_at": "2026-09-21T08:58:18.621943+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 302: Moved Temporarily",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -3288,7 +3288,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20U.S.%20Equity%20Index%20ETF/?fundId=6833",
-        "retrieved_at": "2026-09-20T17:55:17.220451+00:00",
+        "retrieved_at": "2026-09-21T08:58:19.122244+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 302: Moved Temporarily",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -3318,7 +3318,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20Canadian%20Index%20Fund%20-%20e/?fundId=3261",
-        "retrieved_at": "2026-09-20T17:55:18.188306+00:00",
+        "retrieved_at": "2026-09-21T08:58:19.622338+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 302: Moved Temporarily",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -3348,7 +3348,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20U.S.%20Index%20Fund%20-%20e/?fundId=3270",
-        "retrieved_at": "2026-09-20T17:55:19.466376+00:00",
+        "retrieved_at": "2026-09-21T08:58:20.123117+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 302: Moved Temporarily",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -3378,7 +3378,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20Canadian%20Bond%20Index%20Fund%20-%20e/?fundId=4817",
-        "retrieved_at": "2026-09-20T17:55:20.468920+00:00",
+        "retrieved_at": "2026-09-21T08:58:20.623521+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 302: Moved Temporarily",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -3400,7 +3400,7 @@
     "window_justification": "Authenticated annual schedule cadence window (Q1 2026)",
     "status": "UNKNOWN",
     "confidence": null,
-    "unknown_reason": "RETRIEVAL_FAILED",
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
     "suggested_extraction_route": null,
     "evidence_count": 1,
     "evidence": [
@@ -3408,10 +3408,10 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.globalx.ca/product/hxt",
-        "retrieved_at": "2026-09-20T17:55:21.379351+00:00",
-        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "retrieved_at": "2026-09-21T08:58:20.790727+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
-        "failure_reason": "RETRIEVAL_FAILED"
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
       }
     ],
     "sources_checked": [
@@ -3430,7 +3430,7 @@
     "window_justification": "Authenticated annual schedule cadence window (Q1 2026)",
     "status": "UNKNOWN",
     "confidence": null,
-    "unknown_reason": "RETRIEVAL_FAILED",
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
     "suggested_extraction_route": null,
     "evidence_count": 1,
     "evidence": [
@@ -3438,10 +3438,10 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.globalx.ca/product/hbb",
-        "retrieved_at": "2026-09-20T17:55:22.788263+00:00",
-        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "retrieved_at": "2026-09-21T08:58:23.791809+00:00",
+        "snippet_or_locator": "Official portal HTML inspected for window [2026-01-01 to 2026-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
-        "failure_reason": "RETRIEVAL_FAILED"
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
       }
     ],
     "sources_checked": [
@@ -3460,7 +3460,7 @@
     "window_justification": "Authenticated monthly payment cadence observation window (February 2026)",
     "status": "UNKNOWN",
     "confidence": null,
-    "unknown_reason": "RETRIEVAL_FAILED",
+    "unknown_reason": "INSUFFICIENT_EVIDENCE",
     "suggested_extraction_route": null,
     "evidence_count": 1,
     "evidence": [
@@ -3468,10 +3468,10 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.globalx.ca/product/hdiv",
-        "retrieved_at": "2026-09-20T17:55:24.736695+00:00",
-        "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
+        "retrieved_at": "2026-09-21T08:58:26.820265+00:00",
+        "snippet_or_locator": "Failed to retrieve official portal: HTTP 404: Not Found",
         "declaration_date_found": null,
-        "failure_reason": "RETRIEVAL_FAILED"
+        "failure_reason": "INSUFFICIENT_EVIDENCE"
       }
     ],
     "sources_checked": [
@@ -3498,7 +3498,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://funds.cifinancial.com/en/funds/etfs/CICanadianFinancialMonthlyIncomeETF.html",
-        "retrieved_at": "2026-09-20T17:55:26.066717+00:00",
+        "retrieved_at": "2026-09-21T08:58:27.352371+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 400: Bad Request",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -3528,7 +3528,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://funds.cifinancial.com/en/funds/etfs/CIInvestmentGradeBondETF.html",
-        "retrieved_at": "2026-09-20T17:55:27.806507+00:00",
+        "retrieved_at": "2026-09-21T08:58:27.853000+00:00",
         "snippet_or_locator": "Official portal HTML inspected for window [2026-02-01 to 2026-02-28]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
         "declaration_date_found": null,
         "failure_reason": "INSUFFICIENT_EVIDENCE"
@@ -3558,7 +3558,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://funds.cifinancial.com/en/funds/etfs/CIMorningstarCanadaDividendTarget30IndexETF.html",
-        "retrieved_at": "2026-09-20T17:55:29.400698+00:00",
+        "retrieved_at": "2026-09-21T08:58:28.502980+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 400: Bad Request",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"
@@ -3588,7 +3588,7 @@
         "source_id": "official_fund_sponsor_page",
         "source_tier": 2,
         "url": "https://www.mackenzieinvestments.com/en/products/etfs/mackenzie-canadian-aggregate-bond-index-etf-qbb",
-        "retrieved_at": "2026-09-20T17:55:30.878929+00:00",
+        "retrieved_at": "2026-09-21T08:58:28.945781+00:00",
         "snippet_or_locator": "Failed to retrieve official portal: HTTP 403: Forbidden",
         "declaration_date_found": null,
         "failure_reason": "RETRIEVAL_FAILED"

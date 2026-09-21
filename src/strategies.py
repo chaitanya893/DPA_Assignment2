@@ -6,6 +6,7 @@ synthesized by the core detector without inventing or assuming facts.
 
 from __future__ import annotations
 
+import io
 import json
 import logging
 import re
@@ -13,6 +14,11 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from datetime import date, datetime, timezone
 from enum import Enum
+
+try:
+    from pypdf import PdfReader
+except ImportError:
+    PdfReader = None
 
 from src.http_client import HTTPClient
 from src.models import (
@@ -24,6 +30,23 @@ from src.models import (
 from src.universe_loader import UniverseFund, UniverseRegistry
 
 logger = logging.getLogger(__name__)
+
+
+def _extract_text_from_pdf(pdf_bytes: bytes | None) -> str:
+    """Safely extract plain text from PDF binary bytes using pypdf."""
+    if not pdf_bytes or not pdf_bytes.startswith(b"%PDF-") or PdfReader is None:
+        return ""
+    try:
+        reader = PdfReader(io.BytesIO(pdf_bytes))
+        pages = []
+        for page in reader.pages:
+            t = page.extract_text()
+            if t:
+                pages.append(t)
+        return "\n".join(pages)
+    except (OSError, ValueError, TypeError, RuntimeError) as e:
+        logger.debug("PDF text extraction failed: %s", e)
+        return ""
 
 
 class SignalType(str, Enum):
@@ -569,7 +592,7 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
         url = fund.official_source_url
         record = self.http_client.get(url)
 
-        if not record.is_success or not record.content_text:
+        if not record.is_success:
             failure_reason = record.failure_reason or UnknownReason.RETRIEVAL_FAILED
             err_evidence = Evidence(
                 source_id="official_fund_sponsor_page",
@@ -586,10 +609,40 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
                 has_declaration_in_window=False,
                 window_fully_covered=False,
                 failure_reason=failure_reason,
-                notes=f"Sponsor portal retrieval failure: {failure_reason.value}",
+                notes=f"Sponsor portal retrieval failure: {record.error_message or failure_reason.value}",
             )
 
-        content = record.content_text
+        is_pdf = bool(
+            record.content_bytes
+            and record.content_bytes.startswith(b"%PDF-")
+            or url.lower().endswith(".pdf")
+        )
+        content = ""
+        if is_pdf and record.content_bytes:
+            content = _extract_text_from_pdf(record.content_bytes)
+        if not content and record.content_text:
+            content = record.content_text
+
+        if not content:
+            failure_reason = record.failure_reason or UnknownReason.INCOMPLETE_SOURCE
+            err_evidence = Evidence(
+                source_id="official_fund_sponsor_page",
+                source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+                url=url,
+                retrieved_at=record.retrieved_at,
+                snippet_or_locator=f"Failed to extract content from official portal: {record.error_message or failure_reason.value}",
+                failure_reason=failure_reason,
+            )
+            return StrategyObservation(
+                strategy_name=self.name,
+                signal_type=SignalType.NO_DATA_OBSERVATION,
+                evidence=[err_evidence],
+                has_declaration_in_window=False,
+                window_fully_covered=False,
+                failure_reason=failure_reason,
+                notes=f"Sponsor portal content extraction failure: {failure_reason.value}",
+            )
+
         evidences: list[Evidence] = []
         has_declaration = False
 
@@ -647,7 +700,9 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
                 evidence=evidences,
                 has_declaration_in_window=True,
                 window_fully_covered=True,
-                suggested_route=ExtractionRoute.HTML_TABLE,
+                suggested_route=(
+                    ExtractionRoute.PDF if is_pdf else ExtractionRoute.HTML_TABLE
+                ),
                 notes="Official fund sponsor portal confirmed declaration in window.",
             )
 
@@ -792,7 +847,18 @@ class TargetedLookupStrategy(BaseDetectionStrategy):
 
         for target_url in urls_to_try:
             rec = self.http_client.get(target_url)
-            if not rec.is_success or not rec.content_text:
+            is_pdf = bool(
+                rec.content_bytes
+                and rec.content_bytes.startswith(b"%PDF-")
+                or target_url.lower().endswith(".pdf")
+            )
+            content = ""
+            if is_pdf and rec.content_bytes:
+                content = _extract_text_from_pdf(rec.content_bytes)
+            if not content and rec.content_text:
+                content = rec.content_text
+
+            if not content:
                 fail_reason = rec.failure_reason or UnknownReason.RETRIEVAL_FAILED
                 all_failures.append(fail_reason)
                 evidences.append(
@@ -807,7 +873,6 @@ class TargetedLookupStrategy(BaseDetectionStrategy):
                 )
                 continue
 
-            content = rec.content_text
             clean_text = re.sub(r"<[^>]+>", " ", content)
             clean_text = re.sub(r"\s+", " ", clean_text).strip()
 
