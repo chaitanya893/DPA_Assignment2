@@ -78,6 +78,41 @@ def determine_fund_window(
             date(y, 12, 31),
             f"Active 5-cycle evaluation: Quarterly + Feb cycles across {y}",
         )
+    # 0. Check us_distribution_schedules.json for documented verified historical events
+    us_sched_path = Path("config/us_distribution_schedules.json")
+    if us_sched_path.exists():
+        try:
+            with us_sched_path.open("r", encoding="utf-8") as f:
+                us_schedules = json.load(f)
+            for item in us_schedules:
+                if item.get("fund_id") == fund.fund_id and item.get("events"):
+                    ev0 = item["events"][0]
+                    ev_date_str = (
+                        ev0.get("ex_date")
+                        or ev0.get("payable_date")
+                        or ev0.get("record_date")
+                    )
+                    if ev_date_str:
+                        ev_date = date.fromisoformat(ev_date_str)
+                        w_start = date(ev_date.year, ev_date.month, 1)
+                        if ev_date.month in {1, 3, 5, 7, 8, 10, 12}:
+                            w_end = date(ev_date.year, ev_date.month, 31)
+                        elif ev_date.month in {4, 6, 9, 11}:
+                            w_end = date(ev_date.year, ev_date.month, 30)
+                        else:
+                            w_end = date(
+                                ev_date.year,
+                                ev_date.month,
+                                29 if ev_date.year % 4 == 0 else 28,
+                            )
+                        return (
+                            w_start,
+                            w_end,
+                            f"Authenticated verified distribution window ({w_start} to {w_end})",
+                        )
+        except Exception:
+            pass
+
     # 1. Check if fund has documented event in verification_audit
     audit = fund.verification_audit or {}
     event_date_str = (

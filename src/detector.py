@@ -23,6 +23,7 @@ from src.models import (
 from src.strategies import (
     BaseDetectionStrategy,
     CalendarExpectationStrategy,
+    CanadianRegulatoryStrategy,
     OfficialSponsorWebStrategy,
     SECEdgarSubmissionsStrategy,
     SignalType,
@@ -39,8 +40,9 @@ def get_default_strategies(
 ) -> list[BaseDetectionStrategy]:
     """Provide standard real-source strategy pipeline."""
     return [
-        CalendarExpectationStrategy(),
+        CalendarExpectationStrategy(universe=universe),
         SECEdgarSubmissionsStrategy(http_client=http_client, universe=universe),
+        CanadianRegulatoryStrategy(http_client=http_client, universe=universe),
         OfficialSponsorWebStrategy(http_client=http_client, universe=universe),
     ]
 
@@ -82,14 +84,24 @@ def synthesize_detection_result(
 
             for ev in obs.evidence:
                 # Tier 3 can NEVER be the sole basis for DECLARED
+                has_date_in_window = False
+                for d in (
+                    ev.declaration_date_found,
+                    ev.ex_date_found,
+                    ev.record_date_found,
+                    ev.payable_date_found,
+                ):
+                    if d is not None and window_start <= d <= window_end:
+                        has_date_in_window = True
+                        break
+
                 if (
                     ev.source_tier
                     in (
                         SourceTier.TIER_1_AUTHORITATIVE,
                         SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
                     )
-                    and ev.declaration_date_found is not None
-                    and window_start <= ev.declaration_date_found <= window_end
+                    and has_date_in_window
                 ):
                     valid_declarations.append(ev)
 
@@ -122,7 +134,7 @@ def synthesize_detection_result(
             fund_id=fund_id,
             status=DetectionStatus.UNKNOWN,
             confidence=None,
-            evidence=all_evidence or [conflict_evidence],
+            evidence=all_evidence + [conflict_evidence],
             suggested_extraction_route=None,
             window_start=window_start,
             window_end=window_end,

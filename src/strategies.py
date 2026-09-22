@@ -170,8 +170,22 @@ class CalendarExpectationStrategy(BaseDetectionStrategy):
     It NEVER directly declares distributions or confirms non-declarations.
     """
 
-    def __init__(self, name: str = "CalendarExpectationStrategy") -> None:
+    def __init__(
+        self,
+        universe: UniverseRegistry | None = None,
+        name: str = "CalendarExpectationStrategy",
+    ) -> None:
         super().__init__(name=name)
+        self.universe = universe
+
+    def _get_fund(self, fund_id: str) -> UniverseFund | None:
+        if self.universe is not None:
+            return self.universe.get_fund(fund_id)
+        try:
+            reg = UniverseRegistry.from_json()
+            return reg.get_fund(fund_id)
+        except (OSError, ValueError, TypeError, KeyError):
+            return None
 
     def inspect(
         self,
@@ -179,12 +193,61 @@ class CalendarExpectationStrategy(BaseDetectionStrategy):
         window_start: date,
         window_end: date,
     ) -> StrategyObservation:
+        fund = self._get_fund(fund_id)
+        is_on_cadence = False
+        cadence_desc = "UNKNOWN"
+
+        if fund:
+            freq = (fund.expected_frequency or "QUARTERLY").upper()
+            is_monthly = fund.is_monthly_payer or freq == "MONTHLY"
+
+            w_months: set[int] = set()
+            cur_d = window_start
+            while cur_d <= window_end:
+                w_months.add(cur_d.month)
+                if cur_d.month == 12:
+                    cur_d = date(cur_d.year + 1, 1, 1)
+                else:
+                    cur_d = date(cur_d.year, cur_d.month + 1, 1)
+
+            if is_monthly:
+                is_on_cadence = True
+                cadence_desc = "MONTHLY (All Months)"
+            elif fund.ticker == "VTIP":
+                is_on_cadence = bool(w_months.intersection({1, 4, 7, 10}))
+                cadence_desc = "QUARTERLY_TIPS (Jan, Apr, Jul, Oct)"
+            elif fund.ticker == "FSKAX":
+                is_on_cadence = bool(w_months.intersection({4, 12}))
+                cadence_desc = "SEMI_ANNUAL (Apr, Dec)"
+            elif fund.ticker in ("IEFA", "IEMG", "TDB900", "TDB902"):
+                is_on_cadence = bool(w_months.intersection({6, 12}))
+                cadence_desc = "SEMI_ANNUAL (Jun, Dec)"
+            elif fund.ticker == "FBALX":
+                is_on_cadence = bool(w_months.intersection({9, 12}))
+                cadence_desc = "SEMI_ANNUAL (Sep, Dec)"
+            elif freq == "ANNUAL" or fund.ticker in (
+                "FZROX",
+                "FNCMX",
+                "SWPPX",
+                "HXT",
+                "HBB",
+            ):
+                is_on_cadence = bool(w_months.intersection({12}))
+                cadence_desc = "ANNUAL (December Year-End)"
+            elif freq == "SEMI_ANNUAL":
+                is_on_cadence = bool(w_months.intersection({6, 12}))
+                cadence_desc = "SEMI_ANNUAL (Jun, Dec)"
+            else:
+                is_on_cadence = bool(w_months.intersection({3, 6, 9, 12}))
+                cadence_desc = "QUARTERLY (Mar, Jun, Sep, Dec)"
+
+        note_prefix = "ON-CADENCE" if is_on_cadence else "OFF-CADENCE"
         return StrategyObservation(
             strategy_name=self.name,
             signal_type=SignalType.TRIGGER_SIGNAL,
             has_declaration_in_window=False,
             window_fully_covered=False,
-            notes="Calendar expectation is a signal only; does not establish factual declaration.",
+            notes=f"Calendar expectation trigger ({note_prefix} for {cadence_desc}): signal only, does not establish factual declaration or non-declaration.",
         )
 
 
@@ -550,6 +613,207 @@ class SECEdgarSubmissionsStrategy(BaseDetectionStrategy):
         )
 
 
+class CanadianRegulatoryStrategy(BaseDetectionStrategy):
+    """Tier 1 Authoritative strategy inspecting Canadian regulatory sources (SEDAR+ / TMX notices)."""
+
+    def __init__(
+        self,
+        http_client: HTTPClient | None = None,
+        universe: UniverseRegistry | None = None,
+        name: str = "CanadianRegulatoryStrategy",
+    ) -> None:
+        super().__init__(name=name)
+        self.http_client = http_client or HTTPClient()
+        self.universe = universe
+
+    def _get_fund(self, fund_id: str) -> UniverseFund | None:
+        if self.universe is not None:
+            return self.universe.get_fund(fund_id)
+        try:
+            reg = UniverseRegistry.from_json()
+            return reg.get_fund(fund_id)
+        except (OSError, ValueError, TypeError, KeyError):
+            return None
+
+    def _inspect_filing_content(
+        self,
+        doc_url: str,
+        doc_type: str,
+        filing_date: date,
+        fund: UniverseFund,
+        record_retrieved_at: datetime,
+    ) -> tuple[bool, Evidence | None]:
+        """Fetch and inspect Canadian regulatory filing / TMX bulletin for genuine distribution declaration."""
+        doc_record = self.http_client.get(doc_url)
+        if not doc_record.is_success or not doc_record.content_text:
+            return False, None
+
+        raw_text = doc_record.content_text
+        clean_text = re.sub(r"<[^>]+>", " ", raw_text)
+        clean_text = re.sub(r"\s+", " ", clean_text).strip()
+
+        # 1. Fund Identity Validation
+        ticker_match = bool(
+            fund.ticker
+            and re.search(rf"\b{re.escape(fund.ticker)}\b", clean_text, re.IGNORECASE)
+        )
+        fundserv_match = bool(
+            fund.fundserv_code
+            and re.search(
+                rf"\b{re.escape(fund.fundserv_code)}\b", clean_text, re.IGNORECASE
+            )
+        )
+        name_match = bool(
+            fund.fund_name and fund.fund_name.lower() in clean_text.lower()
+        )
+
+        if not (ticker_match or fundserv_match or name_match):
+            return False, None
+
+        # 2. Reject T3/T5 tax slip narrative and general tax guides
+        is_tax_only_guide = bool(
+            re.search(
+                r"\b(?:T3|T5)\s+(?:tax\s+slips?|reporting\s+guide|tax\s+package)\b",
+                clean_text,
+                re.IGNORECASE,
+            )
+            and not re.search(
+                r"\b(?:cash\s+distribution|dividend\s+declared|monthly\s+distribution|quarterly\s+distribution|reinvested\s+distribution|payable\s+on|per\s+unit)\b",
+                clean_text,
+                re.IGNORECASE,
+            )
+        )
+        if is_tax_only_guide:
+            return False, None
+
+        # 3. Operative Declaration Evaluation
+        decl_match = re.search(
+            r"(?:(?:declared|announces|announced|cash\s+distribution|monthly\s+distribution|quarterly\s+distribution|dividend\s+distribution|reinvested\s+distribution|special\s+distribution|year-end\s+distribution)[\s\S]{0,140})",
+            clean_text,
+            re.IGNORECASE,
+        ) or re.search(
+            r"(?:(?:distribution|dividend)\s+rate\s+of\s+\$[0-9].*?(?:\.\s|\n|$))",
+            clean_text,
+            re.IGNORECASE,
+        )
+
+        if decl_match:
+            snippet_text = decl_match.group(0).strip()[:200]
+            decl_m = re.search(
+                r"(?:declared|declaration\s+date|announcement\s+date)[\s:]+([A-Za-z0-9,\s/-]+)",
+                clean_text,
+                re.IGNORECASE,
+            )
+            decl_date = _extract_date(decl_m.group(0)) if decl_m else None
+            if not decl_date:
+                decl_date = filing_date
+
+            ev = Evidence(
+                source_id="sedar_tmx_regulatory_notice",
+                source_tier=SourceTier.TIER_1_AUTHORITATIVE,
+                url=doc_url,
+                retrieved_at=doc_record.retrieved_at,
+                snippet_or_locator=f"SEDAR/TMX Notice ({fund.ticker or fund.fundserv_code}): '{snippet_text}'",
+                declaration_date_found=decl_date,
+            )
+            return True, ev
+
+        return False, None
+
+    def inspect(
+        self,
+        fund_id: str,
+        window_start: date,
+        window_end: date,
+    ) -> StrategyObservation:
+        fund = self._get_fund(fund_id)
+        if not fund or fund.country != "CA":
+            return StrategyObservation(
+                strategy_name=self.name,
+                signal_type=SignalType.NO_DATA_OBSERVATION,
+                has_declaration_in_window=False,
+                window_fully_covered=False,
+                failure_reason=UnknownReason.INSUFFICIENT_EVIDENCE,
+                notes="Fund is non-Canadian or lacks Canadian regulatory identifier.",
+            )
+
+        reg_url = (
+            f"https://www.tmx.com/dividends/{fund.ticker}" if fund.ticker else None
+        )
+        if not reg_url:
+            return StrategyObservation(
+                strategy_name=self.name,
+                signal_type=SignalType.NO_DATA_OBSERVATION,
+                has_declaration_in_window=False,
+                window_fully_covered=False,
+                failure_reason=UnknownReason.INSUFFICIENT_EVIDENCE,
+                notes="Canadian regulatory feed unconfigured without active endpoint.",
+            )
+
+        record = self.http_client.get(reg_url)
+        if not record.is_success or not record.content_text:
+            failure_reason = record.failure_reason or UnknownReason.RETRIEVAL_FAILED
+            err_evidence = Evidence(
+                source_id="sedar_tmx_regulatory_notice",
+                source_tier=SourceTier.TIER_1_AUTHORITATIVE,
+                url=reg_url,
+                retrieved_at=record.retrieved_at,
+                snippet_or_locator=f"TMX/SEDAR regulatory query failed: {record.error_message or failure_reason.value}",
+                failure_reason=failure_reason,
+            )
+            return StrategyObservation(
+                strategy_name=self.name,
+                signal_type=SignalType.NO_DATA_OBSERVATION,
+                evidence=[err_evidence],
+                has_declaration_in_window=False,
+                window_fully_covered=False,
+                failure_reason=failure_reason,
+                notes=f"Canadian regulatory API error: {failure_reason.value}",
+            )
+
+        has_decl, ev = self._inspect_filing_content(
+            doc_url=reg_url,
+            doc_type="TMX_DIVIDEND_NOTICE",
+            filing_date=record.retrieved_at.date(),
+            fund=fund,
+            record_retrieved_at=record.retrieved_at,
+        )
+
+        if (
+            has_decl
+            and ev
+            and ev.declaration_date_found
+            and window_start <= ev.declaration_date_found <= window_end
+        ):
+            return StrategyObservation(
+                strategy_name=self.name,
+                signal_type=SignalType.EVIDENCE_OBSERVATION,
+                evidence=[ev],
+                has_declaration_in_window=True,
+                window_fully_covered=True,
+                suggested_route=ExtractionRoute.FILING,
+                notes="Authoritative TMX/SEDAR notice found within requested declaration window.",
+            )
+
+        index_evidence = Evidence(
+            source_id="sedar_tmx_regulatory_notice",
+            source_tier=SourceTier.TIER_1_AUTHORITATIVE,
+            url=reg_url,
+            retrieved_at=record.retrieved_at,
+            snippet_or_locator=f"Canadian regulatory feed inspected for {fund.ticker} in window [{window_start} to {window_end}]. Zero declared events detected.",
+            failure_reason=UnknownReason.INSUFFICIENT_EVIDENCE,
+        )
+        return StrategyObservation(
+            strategy_name=self.name,
+            signal_type=SignalType.NO_DATA_OBSERVATION,
+            evidence=[index_evidence],
+            has_declaration_in_window=False,
+            window_fully_covered=False,
+            failure_reason=UnknownReason.INSUFFICIENT_EVIDENCE,
+            notes="TMX/SEDAR feed checked; zero positive distribution notices detected.",
+        )
+
+
 class OfficialSponsorWebStrategy(BaseDetectionStrategy):
     """Tier 2 Primary strategy inspecting official fund sponsor distribution schedules."""
 
@@ -571,6 +835,146 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
             return reg.get_fund(fund_id)
         except (OSError, ValueError, TypeError, KeyError):
             return None
+
+    def _parse_html_tables(
+        self,
+        content: str,
+        url: str,
+        retrieved_at: datetime,
+        window_start: date,
+        window_end: date,
+        fund: UniverseFund | None = None,
+    ) -> list[Evidence]:
+        """Parse structured HTML table rows for distribution declarations/ex-dates."""
+        table_evidences: list[Evidence] = []
+        table_matches = re.finditer(
+            r"<table[^>]*>([\s\S]*?)</table>", content, re.IGNORECASE
+        )
+        for t_match in table_matches:
+            table_html = t_match.group(1)
+            row_matches = re.finditer(
+                r"<tr[^>]*>([\s\S]*?)</tr>", table_html, re.IGNORECASE
+            )
+            headers: list[str] = []
+
+            for r_match in row_matches:
+                row_html = r_match.group(1)
+                th_cells = re.findall(
+                    r"<th[^>]*>([\s\S]*?)</th>", row_html, re.IGNORECASE
+                )
+                if th_cells:
+                    headers = [
+                        re.sub(r"<[^>]+>", " ", c).strip().lower() for c in th_cells
+                    ]
+                    continue
+
+                td_cells = re.findall(
+                    r"<td[^>]*>([\s\S]*?)</td>", row_html, re.IGNORECASE
+                )
+                if not td_cells:
+                    continue
+
+                clean_cells = [
+                    re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", c)).strip()
+                    for c in td_cells
+                ]
+
+                # Check if this first row acts as header
+                if not headers and any(
+                    h in " ".join(clean_cells).lower()
+                    for h in [
+                        "payable",
+                        "record",
+                        "ex-dividend",
+                        "declaration",
+                        "rate",
+                        "type",
+                        "ticker",
+                        "fund",
+                    ]
+                ):
+                    headers = [c.lower() for c in clean_cells]
+                    continue
+
+                # Cross-fund contamination check in multi-fund tables:
+                if fund:
+                    ticker_col_idx = None
+                    if headers:
+                        for idx, h in enumerate(headers):
+                            if any(k in h for k in ["ticker", "symbol", "code"]):
+                                ticker_col_idx = idx
+                                break
+                    if ticker_col_idx is not None and ticker_col_idx < len(clean_cells):
+                        cell_ticker = clean_cells[ticker_col_idx].upper().strip()
+                        if (
+                            fund.ticker
+                            and cell_ticker
+                            and cell_ticker != fund.ticker.upper()
+                        ):
+                            continue
+                        if (
+                            fund.fundserv_code
+                            and cell_ticker
+                            and cell_ticker != fund.fundserv_code.upper()
+                        ):
+                            continue
+
+                decl_date: date | None = None
+                ex_date: date | None = None
+                record_date: date | None = None
+                payable_date: date | None = None
+
+                if headers and len(headers) == len(clean_cells):
+                    for h, val in zip(headers, clean_cells):
+                        d = _extract_date(val)
+                        if not d:
+                            continue
+                        if any(
+                            k in h for k in ["declaration", "announced", "declared"]
+                        ):
+                            decl_date = d
+                        elif any(
+                            k in h for k in ["ex-div", "ex div", "ex-date", "ex date"]
+                        ):
+                            ex_date = d
+                        elif "record" in h:
+                            record_date = d
+                        elif any(k in h for k in ["payable", "payment", "pay date"]):
+                            payable_date = d
+                else:
+                    extracted_dates = []
+                    for val in clean_cells:
+                        d = _extract_date(val)
+                        if d:
+                            extracted_dates.append(d)
+                    if extracted_dates:
+                        for d in extracted_dates:
+                            if window_start <= d <= window_end:
+                                decl_date = d
+                                break
+
+                # Check if any identified date falls within window
+                matched_in_window = any(
+                    d is not None and window_start <= d <= window_end
+                    for d in (decl_date, ex_date, record_date, payable_date)
+                )
+
+                if matched_in_window:
+                    row_snippet = " | ".join([c for c in clean_cells if c])
+                    ev = Evidence(
+                        source_id="official_fund_sponsor_page",
+                        source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+                        url=url,
+                        retrieved_at=retrieved_at,
+                        snippet_or_locator=f"Distribution table row: '{row_snippet[:120]}'",
+                        declaration_date_found=decl_date or ex_date or record_date,
+                        ex_date_found=ex_date,
+                        record_date_found=record_date,
+                        payable_date_found=payable_date,
+                    )
+                    table_evidences.append(ev)
+
+        return table_evidences
 
     def inspect(
         self,
@@ -643,18 +1047,62 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
                 notes=f"Sponsor portal content extraction failure: {failure_reason.value}",
             )
 
+        # Rejection of T3/T5 tax reporting summaries
+        is_tax_only_guide = bool(
+            re.search(
+                r"\b(?:T3|T5)\s+(?:tax\s+slips?|reporting\s+guide|tax\s+package)\b",
+                content,
+                re.IGNORECASE,
+            )
+            and not re.search(
+                r"\b(?:cash\s+distribution|dividend\s+declared|monthly\s+distribution|quarterly\s+distribution|reinvested\s+distribution|payable\s+on|per\s+unit)\b",
+                content,
+                re.IGNORECASE,
+            )
+        )
+        if is_tax_only_guide:
+            tax_ev = Evidence(
+                source_id="official_fund_sponsor_page",
+                source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+                url=url,
+                retrieved_at=record.retrieved_at,
+                snippet_or_locator="Identified T3/T5 tax reporting guide without operative distribution declaration.",
+                failure_reason=UnknownReason.INSUFFICIENT_EVIDENCE,
+            )
+            return StrategyObservation(
+                strategy_name=self.name,
+                signal_type=SignalType.NO_DATA_OBSERVATION,
+                evidence=[tax_ev],
+                has_declaration_in_window=False,
+                window_fully_covered=False,
+                failure_reason=UnknownReason.INSUFFICIENT_EVIDENCE,
+                notes="Page is a tax reporting narrative without operative cash distribution declaration.",
+            )
+
         evidences: list[Evidence] = []
         has_declaration = False
 
-        # Deterministic pattern matching for declared distributions within window
-        # Scans for distribution announcement phrasing and extracts the declaration/announcement date
+        # 1. Parse structured HTML table rows if present
+        table_evidences = self._parse_html_tables(
+            content=content,
+            url=url,
+            retrieved_at=record.retrieved_at,
+            window_start=window_start,
+            window_end=window_end,
+            fund=fund,
+        )
+        if table_evidences:
+            evidences.extend(table_evidences)
+            has_declaration = True
+
+        # 2. Deterministic pattern matching for declared distributions within window
         announcement_patterns = [
             re.compile(
-                r"(?:(?:declared|announces|announced|cash\s+distribution|monthly\s+distribution|quarterly\s+distribution|dividend\s+distribution)[\s\S]{0,120})",
+                r"(?:(?:declared|announces|announced|cash\s+distribution|monthly\s+distribution|quarterly\s+distribution|dividend\s+distribution|reinvested\s+distribution|special\s+distribution|year-end\s+distribution)[\s\S]{0,140})",
                 re.IGNORECASE,
             ),
             re.compile(
-                r"(?:(?:TORONTO|NEW\s+YORK|BOSTON|CHICAGO|MALVERN)[\s,\-]*[A-Za-z0-9,\s\-]{0,40}(?:declared|announces|announced|distribution|dividend)[\s\S]{0,120})",
+                r"(?:(?:TORONTO|MONTREAL|VANCOUVER|CALGARY|NEW\s+YORK|BOSTON|CHICAGO|MALVERN)[\s,\-]*[A-Za-z0-9,\s\-]{0,40}(?:declared|announces|announced|distribution|dividend)[\s\S]{0,140})",
                 re.IGNORECASE,
             ),
             re.compile(
@@ -674,6 +1122,63 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
                 if clean_snippet in seen_snippets or len(clean_snippet) < 10:
                     continue
                 seen_snippets.add(clean_snippet)
+
+                # Prevent cross-fund contamination in multi-fund documents
+                if fund:
+                    doc_lower = content.lower()
+                    url_lower = url.lower()
+                    has_exact_doc_match = bool(
+                        (
+                            fund.ticker
+                            and re.search(
+                                rf"\b{re.escape(fund.ticker.lower())}\b",
+                                doc_lower,
+                            )
+                        )
+                        or (
+                            fund.fundserv_code
+                            and re.search(
+                                rf"\b{re.escape(fund.fundserv_code.lower())}\b",
+                                doc_lower,
+                            )
+                        )
+                        or (fund.fund_name and fund.fund_name.lower() in doc_lower)
+                    )
+                    url_matches = bool(
+                        (fund.ticker and fund.ticker.lower() in url_lower)
+                        or (
+                            fund.fundserv_code
+                            and fund.fundserv_code.lower() in url_lower
+                        )
+                        or (fund.fund_name and fund.fund_name.lower() in url_lower)
+                    )
+
+                    target_tickers = {
+                        t.upper() for t in [fund.ticker, fund.fundserv_code] if t
+                    }
+                    conflicting_ticker_in_doc = False
+                    for m in re.finditer(
+                        r"\b(?:ticker|symbol|code|etf)\s*[:\s]*([a-z0-9]{2,6})\b",
+                        doc_lower,
+                    ):
+                        found_sym = m.group(1).upper()
+                        if target_tickers and found_sym not in target_tickers:
+                            conflicting_ticker_in_doc = True
+                            break
+
+                    if conflicting_ticker_in_doc:
+                        other_ticker_in_snippet = re.search(
+                            r"\b(?:ticker|symbol|code|etf)\s*[:\s]*([a-z0-9]{2,6})\b",
+                            clean_snippet.lower(),
+                        )
+                        if other_ticker_in_snippet:
+                            found_sym = other_ticker_in_snippet.group(1).upper()
+                            if target_tickers and found_sym not in target_tickers:
+                                continue
+                        elif not has_exact_doc_match:
+                            continue
+                    elif not (has_exact_doc_match or url_matches):
+                        continue
 
                 decl_date = _extract_date(clean_snippet)
                 if (
@@ -711,7 +1216,7 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
         # Check whether the page actually contains a verifiable static HTML distribution schedule table.
         has_explicit_schedule_table = bool(
             re.search(
-                r"<table[^>]*>[\s\S]*?(?:ex-dividend|payable\s+date|record\s+date)[\s\S]*?</table>",
+                r"<table[^>]*>[\s\S]*?(?:ex-dividend|payable\s+date|record\s+date|declaration\s+date|distribution\s+frequency|scheduled\s+month)[\s\S]*?</table>",
                 content,
                 re.IGNORECASE,
             )

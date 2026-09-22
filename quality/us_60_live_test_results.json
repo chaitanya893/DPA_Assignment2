@@ -1,0 +1,1389 @@
+{
+  "summary": {
+    "DECLARED": 0,
+    "NOT_DECLARED": 0,
+    "UNKNOWN": 60
+  },
+  "results": [
+    {
+      "fund_id": "US_VANGUARD_VTI",
+      "ticker": "VTI",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000036405.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000036405 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/etfs/profile/vti",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_VOO",
+      "ticker": "VOO",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000036405.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000036405 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/etfs/profile/voo",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_BND",
+      "ticker": "BND",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000794105.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000794105 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/etfs/profile/bnd",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_VYM",
+      "ticker": "VYM",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001004655.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001004655 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/etfs/profile/vym",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_VNQ",
+      "ticker": "VNQ",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000734383.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000734383 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/etfs/profile/vnq",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_VB",
+      "ticker": "VB",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000036405.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000036405 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/etfs/profile/vb",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_VO",
+      "ticker": "VO",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000036405.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000036405 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/etfs/profile/vo",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_VEA",
+      "ticker": "VEA",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000923202.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000923202 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/etfs/profile/vea",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_VWO",
+      "ticker": "VWO",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000857489.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000857489 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/etfs/profile/vwo",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_VT",
+      "ticker": "VT",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000857489.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000857489 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/etfs/profile/vt",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_VIG",
+      "ticker": "VIG",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000734383.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000734383 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/etfs/profile/vig",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_VTEB",
+      "ticker": "VTEB",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000225997.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000225997 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/etfs/profile/vteb",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_BSV",
+      "ticker": "BSV",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000794105.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000794105 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/etfs/profile/bsv",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_BIV",
+      "ticker": "BIV",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000794105.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000794105 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/etfs/profile/biv",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_BLV",
+      "ticker": "BLV",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000794105.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000794105 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/etfs/profile/blv",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_VFIAX",
+      "ticker": "VFIAX",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000036405.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000036405 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vfiax",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_VTSAX",
+      "ticker": "VTSAX",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000036405.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000036405 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vtsax",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_VBTLX",
+      "ticker": "VBTLX",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000794105.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000794105 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vbtlx",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_VTIAX",
+      "ticker": "VTIAX",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000736054.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000736054 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vtiax",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_VWEAX",
+      "ticker": "VWEAX",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000106444.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000106444 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://investor.vanguard.com/investment-products/mutual-funds/profile/vweax",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_ISHARES_IVV",
+      "ticker": "IVV",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001100663 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ishares.com/us/products/239726/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_ISHARES_AGG",
+      "ticker": "AGG",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001100663 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ishares.com/us/products/239458/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_ISHARES_IWM",
+      "ticker": "IWM",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001100663 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ishares.com/us/products/239710/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_ISHARES_HYG",
+      "ticker": "HYG",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001100663 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ishares.com/us/products/239565/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_ISHARES_LQD",
+      "ticker": "LQD",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001100663 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ishares.com/us/products/239566/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_ISHARES_TIP",
+      "ticker": "TIP",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001100663 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ishares.com/us/products/239467/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_ISHARES_MBB",
+      "ticker": "MBB",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001100663 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ishares.com/us/products/239465/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_ISHARES_SHY",
+      "ticker": "SHY",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001100663 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ishares.com/us/products/239452/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_ISHARES_IEF",
+      "ticker": "IEF",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001100663 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ishares.com/us/products/239456/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_ISHARES_TLT",
+      "ticker": "TLT",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001100663 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ishares.com/us/products/239454/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_ISHARES_HDV",
+      "ticker": "HDV",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001100663 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ishares.com/us/products/239563/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_ISHARES_IEMG",
+      "ticker": "IEMG",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000930667.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000930667 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ishares.com/us/products/244050/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_ISHARES_IEFA",
+      "ticker": "IEFA",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001100663 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ishares.com/us/products/244049/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_ISHARES_USHY",
+      "ticker": "USHY",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001100663.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001100663 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ishares.com/us/products/290144/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_FIDELITY_FXAIX",
+      "ticker": "FXAIX",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000819118.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000819118 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911750",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_FIDELITY_FSKAX",
+      "ticker": "FSKAX",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000819118.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000819118 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911693",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_FIDELITY_FXNAX",
+      "ticker": "FXNAX",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000035315.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000035315 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://fundresearch.fidelity.com/mutual-funds/summary/316146358",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_FIDELITY_FTBFX",
+      "ticker": "FTBFX",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000751199.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000751199 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://fundresearch.fidelity.com/mutual-funds/summary/316146200",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_FIDELITY_FZROX",
+      "ticker": "FZROX",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000819118.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000819118 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911602",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_FIDELITY_FNCMX",
+      "ticker": "FNCMX",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000819118.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000819118 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://fundresearch.fidelity.com/mutual-funds/summary/316389303",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_FIDELITY_FBALX",
+      "ticker": "FBALX",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000081205.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000081205 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://fundresearch.fidelity.com/mutual-funds/summary/316345107",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_FIDELITY_FDVV",
+      "ticker": "FDVV",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000945908.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000945908 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.fidelity.com/etfs/different-types-of-etfs/fdvv",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_FIDELITY_ONEQ",
+      "ticker": "ONEQ",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000205323.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000205323 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.fidelity.com/etfs/different-types-of-etfs/oneq",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_SPDR_SPTM",
+      "ticker": "SPTM",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001064642.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001064642 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-portfolio-total-stock-market-etf-sptm",
+          "decl_date": null,
+          "snippet": "Official distribution schedule table inspected for window [2024-03-01 to 2024-03-31]. Zero declared events confirmed."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_SPDR_SPYD",
+      "ticker": "SPYD",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001064642.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001064642 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-sp-dividend-etf-spyd",
+          "decl_date": null,
+          "snippet": "Official distribution schedule table inspected for window [2024-03-01 to 2024-03-31]. Zero declared events confirmed."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_SPDR_SPAB",
+      "ticker": "SPAB",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001064642.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001064642 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-portfolio-aggregate-bond-etf-spab",
+          "decl_date": null,
+          "snippet": "Official distribution schedule table inspected for window [2024-12-01 to 2024-12-31]. Zero declared events confirmed."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_SPDR_JNK",
+      "ticker": "JNK",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001064642.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001064642 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-bloomberg-high-yield-bond-etf-jnk",
+          "decl_date": null,
+          "snippet": "Official distribution schedule table inspected for window [2024-12-01 to 2024-12-31]. Zero declared events confirmed."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_SPDR_SJNK",
+      "ticker": "SJNK",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001064642.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001064642 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-bloomberg-short-term-high-yield-bond-etf-sjnk",
+          "decl_date": null,
+          "snippet": "Official distribution schedule table inspected for window [2024-12-01 to 2024-12-31]. Zero declared events confirmed."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_SPDR_XLF",
+      "ticker": "XLF",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001064641.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001064641 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/the-financial-select-sector-spdr-fund-xlf",
+          "decl_date": null,
+          "snippet": "Official distribution schedule table inspected for window [2024-03-01 to 2024-03-31]. Zero declared events confirmed."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_SPDR_XLE",
+      "ticker": "XLE",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001064641.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001064641 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/the-energy-select-sector-spdr-fund-xle",
+          "decl_date": null,
+          "snippet": "Official distribution schedule table inspected for window [2024-03-01 to 2024-03-31]. Zero declared events confirmed."
+        }
+      ]
+    },
+    {
+      "fund_id": "US_SCHWAB_SCHD",
+      "ticker": "SCHD",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001454889.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001454889 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.schwabassetmanagement.com/products/schd",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_SCHWAB_SCHX",
+      "ticker": "SCHX",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001454889.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001454889 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.schwabassetmanagement.com/products/schx",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_SCHWAB_SCHZ",
+      "ticker": "SCHZ",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001454889.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001454889 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.schwabassetmanagement.com/products/schz",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_SCHWAB_SWPPX",
+      "ticker": "SWPPX",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000904333.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000904333 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.schwabassetmanagement.com/products/swppx",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_SCHWAB_SWAGX",
+      "ticker": "SWAGX",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0000869365.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0000869365 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.schwabassetmanagement.com/products/swagx",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_INVESCO_QQQ",
+      "ticker": "QQQ",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001067839.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001067839 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=QQQ",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_INVESCO_RSP",
+      "ticker": "RSP",
+      "status": "UNKNOWN",
+      "window": "2024-03-01 to 2024-03-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001209466.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001209466 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=RSP",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_INVESCO_BKLN",
+      "ticker": "BKLN",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001378872.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001378872 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=BKLN",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_PIMCO_BOND",
+      "ticker": "BOND",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001450011.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001450011 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.pimco.com/en-us/investments/etf/active-bond-etf/bond",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "US_PIMCO_MINT",
+      "ticker": "MINT",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "sec_edgar_submissions_api",
+          "source_tier": 1,
+          "url": "https://data.sec.gov/submissions/CIK0001450011.json",
+          "decl_date": null,
+          "snippet": "SEC submissions index for CIK 0001450011 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.pimco.com/en-us/investments/etf/enhanced-short-maturity-active-etf/mint",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    }
+  ]
+}
