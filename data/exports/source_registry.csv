@@ -1,0 +1,9 @@
+source_id,source_name,source_tier,url_pattern,parser_version,robots_status,tos_status,last_success,is_active,created_at
+sec_edgar_submissions_api,SEC EDGAR Submissions Index,1,https://data.sec.gov/submissions/CIK{cik}.json,1.0.0,ALLOWED,COMPLIANT,,True,2026-09-23 17:29:36.638793
+sec_edgar_rule_19a1,SEC EDGAR Rule 19a-1 Notices,1,https://www.sec.gov/Archives/edgar/data/{cik}/,1.0.0,ALLOWED,COMPLIANT,,True,2026-09-23 17:29:36.640327
+sedar_tmx_notices,SEDAR+ & TMX Regulatory Distribution Notices,1,https://www.tmx.com/dividends/{ticker},1.0.0,ALLOWED,COMPLIANT,,True,2026-09-23 17:29:36.640768
+official_fund_sponsor_page,Official Fund Sponsor Web Portal,2,https://{sponsor_domain}/products/{ticker},1.0.0,ALLOWED,COMPLIANT,,True,2026-09-23 17:29:36.641114
+vanguard_advisors_table,Vanguard Advisors Distribution Table,2,https://advisors.vanguard.com/investments/products/{ticker}/,1.0.0,ALLOWED,COMPLIANT,,True,2026-09-23 17:29:36.641546
+blackrock_ishares_schedules,iShares Canada Official Distribution Schedules,2,https://www.blackrock.com/ca/investors/en/products/,1.0.0,ALLOWED,COMPLIANT,,True,2026-09-23 17:29:36.642310
+bmo_gam_announcements,BMO Global Asset Management Press Releases,2,https://newsroom.bmo.com/,1.0.0,ALLOWED,COMPLIANT,,True,2026-09-23 17:29:36.642822
+public_market_data_crosscheck,Public Market Data Corroboration Feed,3,https://financials.marketwatch.com/,1.0.0,ALLOWED,COMPLIANT,,True,2026-09-23 17:29:36.643186

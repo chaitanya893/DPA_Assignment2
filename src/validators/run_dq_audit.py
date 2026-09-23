@@ -1,0 +1,66 @@
+"""Data Quality Audit CLI Runner.
+
+Executes all 7 validation rules on the database and exports structured DQ report.
+"""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+from src.validators.dq_engine import DataQualityEngine
+
+
+def main() -> None:
+    print("=" * 110)
+    print("           DATA QUALITY & VALIDATION ENGINE AUDIT (PHASE 4 SPECIFICATION)")
+    print("=" * 110)
+    print("Running 7 deterministic validation checks across database distribution records...")
+    print("-" * 110)
+
+    engine = DataQualityEngine()
+    report = engine.audit_database(log_to_db=True)
+
+    print(f"Total Events Evaluated        : {report.total_events_evaluated}")
+    print(f"Total Validation Checks       : {report.total_checks_performed}")
+    print(f"Total Flags Raised            : {report.total_flags_raised}")
+    print(f"  - Critical Flags            : {report.critical_flags}")
+    print(f"  - Warning Flags             : {report.warning_flags}")
+    print(f"  - Info Flags                : {report.info_flags}")
+    print("-" * 110)
+    print(f"Overall Data Quality Pass Rate: {report.pass_rate_pct:.2f}%")
+    print("=" * 110)
+
+    print("\nRULE-BY-RULE EXECUTION METRICS:")
+    print("-" * 110)
+    print(f"{'Rule Name':<35} | {'Passed':<10} | {'Failed':<10} | {'Status'}")
+    print("-" * 110)
+    for rule_name, counts in report.rule_metrics.items():
+        status = "PASS (100%)" if counts["failed"] == 0 else f"FLAGGED ({counts['failed']} flags)"
+        print(f"{rule_name:<35} | {counts['passed']:<10} | {counts['failed']:<10} | {status}")
+    print("=" * 110)
+
+    # Export report to JSON
+    export_dir = Path(__file__).parent.parent.parent / "data" / "exports"
+    export_dir.mkdir(parents=True, exist_ok=True)
+    report_file = export_dir / "dq_audit_report.json"
+
+    export_data = {
+        "total_events_evaluated": report.total_events_evaluated,
+        "total_checks_performed": report.total_checks_performed,
+        "total_flags_raised": report.total_flags_raised,
+        "critical_flags": report.critical_flags,
+        "warning_flags": report.warning_flags,
+        "info_flags": report.info_flags,
+        "pass_rate_pct": report.pass_rate_pct,
+        "rule_metrics": report.rule_metrics,
+        "flagged_events": report.flagged_events,
+    }
+    with open(report_file, "w", encoding="utf-8") as f:
+        json.dump(export_data, f, indent=2)
+
+    print(f"\nStructured Data Quality Audit Report exported to: {report_file}\n")
+
+
+if __name__ == "__main__":
+    main()

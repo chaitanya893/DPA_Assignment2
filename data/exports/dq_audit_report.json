@@ -1,0 +1,40 @@
+{
+  "total_events_evaluated": 72,
+  "total_checks_performed": 504,
+  "total_flags_raised": 0,
+  "critical_flags": 0,
+  "warning_flags": 0,
+  "info_flags": 0,
+  "pass_rate_pct": 100.0,
+  "rule_metrics": {
+    "COMPONENT_SUM_CHECK": {
+      "passed": 72,
+      "failed": 0
+    },
+    "DATE_ORDERING_SANITY": {
+      "passed": 72,
+      "failed": 0
+    },
+    "NAV_DECLINE_CONSISTENCY": {
+      "passed": 72,
+      "failed": 0
+    },
+    "MAGNITUDE_20PCT_NAV_CHECK": {
+      "passed": 72,
+      "failed": 0
+    },
+    "CURRENCY_INTEGRITY": {
+      "passed": 72,
+      "failed": 0
+    },
+    "FREQUENCY_CONTINUITY": {
+      "passed": 72,
+      "failed": 0
+    },
+    "CROSS_SOURCE_VARIANCE": {
+      "passed": 72,
+      "failed": 0
+    }
+  },
+  "flagged_events": []
+}
