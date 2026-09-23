@@ -1,0 +1,731 @@
+{
+  "total_events": 33,
+  "events": [
+    {
+      "fund_id": "US_VANGUARD_VTI",
+      "country": "US",
+      "symbol": "VTI",
+      "currency": "USD",
+      "gross_amount": 0.9168,
+      "distribution_type": "Income",
+      "ex_date": "2024-03-22",
+      "record_date": "2024-03-25",
+      "payable_date": "2024-03-27",
+      "declaration_date": null,
+      "route": "HTML_TABLE",
+      "source_url": "https://investor.vanguard.com/investment-products/etfs/profile/vti",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ORDINARY_INCOME",
+          "amount": 0.9168,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_VOO",
+      "country": "US",
+      "symbol": "VOO",
+      "currency": "USD",
+      "gross_amount": 1.5429,
+      "distribution_type": "Income",
+      "ex_date": "2024-03-22",
+      "record_date": "2024-03-25",
+      "payable_date": "2024-03-27",
+      "declaration_date": null,
+      "route": "HTML_TABLE",
+      "source_url": "https://advisors.vanguard.com/investments/products/voo/vanguard-sp-500-etf",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ORDINARY_INCOME",
+          "amount": 1.5429,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "US_VANGUARD_BND",
+      "country": "US",
+      "symbol": "BND",
+      "currency": "USD",
+      "gross_amount": 0.2312,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-02",
+      "record_date": "2024-12-02",
+      "payable_date": "2024-12-04",
+      "declaration_date": null,
+      "route": "HTML_TABLE",
+      "source_url": "https://investor.vanguard.com/investment-products/etfs/profile/bnd",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ORDINARY_INCOME",
+          "amount": 0.2312,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "US_ISHARES_IVV",
+      "country": "US",
+      "symbol": "IVV",
+      "currency": "USD",
+      "gross_amount": 1.854,
+      "distribution_type": "Income",
+      "ex_date": "2024-03-21",
+      "record_date": "2024-03-22",
+      "payable_date": "2024-03-27",
+      "declaration_date": null,
+      "route": "HTML_TABLE",
+      "source_url": "https://www.ishares.com/us/products/239726/",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ORDINARY_INCOME",
+          "amount": 1.854,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "US_ISHARES_AGG",
+      "country": "US",
+      "symbol": "AGG",
+      "currency": "USD",
+      "gross_amount": 0.3475,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-02",
+      "record_date": "2024-12-02",
+      "payable_date": "2024-12-05",
+      "declaration_date": null,
+      "route": "HTML_TABLE",
+      "source_url": "https://www.ishares.com/us/products/239458/",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ORDINARY_INCOME",
+          "amount": 0.3475,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "US_FIDELITY_FZROX",
+      "country": "US",
+      "symbol": "FZROX",
+      "currency": "USD",
+      "gross_amount": 0.245,
+      "distribution_type": "Income / Capital Gain",
+      "ex_date": "2024-12-13",
+      "record_date": "2024-12-13",
+      "payable_date": "2024-12-16",
+      "declaration_date": null,
+      "route": "HTML_TABLE",
+      "source_url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911602",
+      "components": [
+        {
+          "name": "Income / Capital Gain",
+          "type": "LONG_TERM_CAPITAL_GAIN",
+          "amount": 0.245,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "US_FIDELITY_FNCMX",
+      "country": "US",
+      "symbol": "FNCMX",
+      "currency": "USD",
+      "gross_amount": 1.921,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-13",
+      "record_date": "2024-12-13",
+      "payable_date": "2024-12-16",
+      "declaration_date": null,
+      "route": "HTML_TABLE",
+      "source_url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911701",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ORDINARY_INCOME",
+          "amount": 1.921,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "US_SCHWAB_SCHD",
+      "country": "US",
+      "symbol": "SCHD",
+      "currency": "USD",
+      "gross_amount": 0.611,
+      "distribution_type": "Income",
+      "ex_date": "2024-03-20",
+      "record_date": "2024-03-20",
+      "payable_date": "2024-03-25",
+      "declaration_date": null,
+      "route": "HTML_TABLE",
+      "source_url": "https://www.schwabassetmanagement.com/products/schd",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ORDINARY_INCOME",
+          "amount": 0.611,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "US_SCHWAB_SWPPX",
+      "country": "US",
+      "symbol": "SWPPX",
+      "currency": "USD",
+      "gross_amount": 1.156,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-11",
+      "record_date": "2024-12-11",
+      "payable_date": "2024-12-12",
+      "declaration_date": null,
+      "route": "HTML_TABLE",
+      "source_url": "https://www.schwabassetmanagement.com/products/swppx",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ORDINARY_INCOME",
+          "amount": 1.156,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "US_INVESCO_QQQ",
+      "country": "US",
+      "symbol": "QQQ",
+      "currency": "USD",
+      "gross_amount": 0.729,
+      "distribution_type": "Income",
+      "ex_date": "2024-03-22",
+      "record_date": "2024-03-25",
+      "payable_date": "2024-04-30",
+      "declaration_date": null,
+      "route": "HTML_TABLE",
+      "source_url": "https://www.invesco.com/qqq-etf/en/home.html",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ORDINARY_INCOME",
+          "amount": 0.729,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "US_PIMCO_BOND",
+      "country": "US",
+      "symbol": "BOND",
+      "currency": "USD",
+      "gross_amount": 0.395,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-02",
+      "record_date": "2024-12-02",
+      "payable_date": "2024-12-04",
+      "declaration_date": null,
+      "route": "HTML_TABLE",
+      "source_url": "https://www.pimco.com/en-us/investments/etf/active-bond-exchange-traded-fund/usd",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ORDINARY_INCOME",
+          "amount": 0.395,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "US_PIMCO_MINT",
+      "country": "US",
+      "symbol": "MINT",
+      "currency": "USD",
+      "gross_amount": 0.45,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-02",
+      "record_date": "2024-12-02",
+      "payable_date": "2024-12-04",
+      "declaration_date": null,
+      "route": "HTML_TABLE",
+      "source_url": "https://www.pimco.com/en-us/investments/etf/enhanced-short-maturity-active-exchange-traded-fund/usd",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ORDINARY_INCOME",
+          "amount": 0.45,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_BMO_ZCN",
+      "country": "CA",
+      "symbol": "ZCN",
+      "currency": "CAD",
+      "gross_amount": 0.23,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-30",
+      "record_date": "2024-12-31",
+      "payable_date": "2025-01-06",
+      "declaration_date": "2024-12-18",
+      "route": "HTML_TABLE",
+      "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-sptsx-capped-composite-index-etf-zcn/",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.23,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_BMO_ZAG",
+      "country": "CA",
+      "symbol": "ZAG",
+      "currency": "CAD",
+      "gross_amount": 0.045,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-30",
+      "record_date": "2024-12-31",
+      "payable_date": "2025-01-06",
+      "declaration_date": "2024-12-18",
+      "route": "HTML_TABLE",
+      "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-aggregate-bond-index-etf-zag/",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.045,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_BMO_ZEB",
+      "country": "CA",
+      "symbol": "ZEB",
+      "currency": "CAD",
+      "gross_amount": 0.14,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-30",
+      "record_date": "2024-12-31",
+      "payable_date": "2025-01-06",
+      "declaration_date": "2024-12-18",
+      "route": "HTML_TABLE",
+      "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-banks-index-etf-zeb/",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.14,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_BMO_ZWB",
+      "country": "CA",
+      "symbol": "ZWB",
+      "currency": "CAD",
+      "gross_amount": 0.12,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-30",
+      "record_date": "2024-12-31",
+      "payable_date": "2025-01-06",
+      "declaration_date": "2024-12-18",
+      "route": "HTML_TABLE",
+      "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-covered-call-canadian-banks-etf-zwb/",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.12,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_BMO_ZUT",
+      "country": "CA",
+      "symbol": "ZUT",
+      "currency": "CAD",
+      "gross_amount": 0.075,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-30",
+      "record_date": "2024-12-31",
+      "payable_date": "2025-01-06",
+      "declaration_date": "2024-12-18",
+      "route": "HTML_TABLE",
+      "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-utilities-index-etf-zut/",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.075,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_BMO_ZDV",
+      "country": "CA",
+      "symbol": "ZDV",
+      "currency": "CAD",
+      "gross_amount": 0.07,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-30",
+      "record_date": "2024-12-31",
+      "payable_date": "2025-01-06",
+      "declaration_date": "2024-12-18",
+      "route": "HTML_TABLE",
+      "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-canadian-dividend-etf-zdv/",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.07,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_BMO_ZDB",
+      "country": "CA",
+      "symbol": "ZDB",
+      "currency": "CAD",
+      "gross_amount": 0.04,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-30",
+      "record_date": "2024-12-31",
+      "payable_date": "2025-01-06",
+      "declaration_date": "2024-12-18",
+      "route": "HTML_TABLE",
+      "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-discount-bond-index-etf-zdb/",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.04,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_BMO_ZPR",
+      "country": "CA",
+      "symbol": "ZPR",
+      "currency": "CAD",
+      "gross_amount": 0.053,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-30",
+      "record_date": "2024-12-31",
+      "payable_date": "2025-01-06",
+      "declaration_date": "2024-12-18",
+      "route": "HTML_TABLE",
+      "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-laddered-preferred-share-index-etf-zpr/",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.053,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_ISHARES_XIC",
+      "country": "CA",
+      "symbol": "XIC",
+      "currency": "CAD",
+      "gross_amount": 0.263,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-30",
+      "record_date": "2024-12-31",
+      "payable_date": "2025-01-06",
+      "declaration_date": "2024-12-19",
+      "route": "HTML_TABLE",
+      "source_url": "https://www.blackrock.com/ca/investors/en/products/239837/",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.263,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_ISHARES_XBB",
+      "country": "CA",
+      "symbol": "XBB",
+      "currency": "CAD",
+      "gross_amount": 0.078,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-30",
+      "record_date": "2024-12-31",
+      "payable_date": "2025-01-06",
+      "declaration_date": "2024-12-19",
+      "route": "HTML_TABLE",
+      "source_url": "https://www.blackrock.com/ca/investors/en/products/239493/",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.078,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_ISHARES_XEI",
+      "country": "CA",
+      "symbol": "XEI",
+      "currency": "CAD",
+      "gross_amount": 0.109,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-30",
+      "record_date": "2024-12-31",
+      "payable_date": "2025-01-06",
+      "declaration_date": "2024-12-19",
+      "route": "HTML_TABLE",
+      "source_url": "https://www.blackrock.com/ca/investors/en/products/239846/",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.109,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_ISHARES_XDV",
+      "country": "CA",
+      "symbol": "XDV",
+      "currency": "CAD",
+      "gross_amount": 0.134,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-30",
+      "record_date": "2024-12-31",
+      "payable_date": "2025-01-06",
+      "declaration_date": "2024-12-19",
+      "route": "HTML_TABLE",
+      "source_url": "https://www.blackrock.com/ca/investors/en/products/239835/",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.134,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_ISHARES_XUT",
+      "country": "CA",
+      "symbol": "XUT",
+      "currency": "CAD",
+      "gross_amount": 0.088,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-30",
+      "record_date": "2024-12-31",
+      "payable_date": "2025-01-06",
+      "declaration_date": "2024-12-19",
+      "route": "HTML_TABLE",
+      "source_url": "https://www.blackrock.com/ca/investors/en/products/239848/",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.088,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_ISHARES_XSB",
+      "country": "CA",
+      "symbol": "XSB",
+      "currency": "CAD",
+      "gross_amount": 0.072,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-30",
+      "record_date": "2024-12-31",
+      "payable_date": "2025-01-06",
+      "declaration_date": "2024-12-19",
+      "route": "HTML_TABLE",
+      "source_url": "https://www.blackrock.com/ca/investors/en/products/239498/",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.072,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_ISHARES_XSH",
+      "country": "CA",
+      "symbol": "XSH",
+      "currency": "CAD",
+      "gross_amount": 0.061,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-30",
+      "record_date": "2024-12-31",
+      "payable_date": "2025-01-06",
+      "declaration_date": "2024-12-19",
+      "route": "HTML_TABLE",
+      "source_url": "https://www.blackrock.com/ca/investors/en/products/239499/",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.061,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_ISHARES_XHY",
+      "country": "CA",
+      "symbol": "XHY",
+      "currency": "CAD",
+      "gross_amount": 0.098,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-30",
+      "record_date": "2024-12-31",
+      "payable_date": "2025-01-06",
+      "declaration_date": "2024-12-19",
+      "route": "HTML_TABLE",
+      "source_url": "https://www.blackrock.com/ca/investors/en/products/239556/",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.098,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_TD_TTP",
+      "country": "CA",
+      "symbol": "TTP",
+      "currency": "CAD",
+      "gross_amount": 0.211,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-30",
+      "record_date": "2024-12-31",
+      "payable_date": "2025-01-07",
+      "declaration_date": "2024-12-18",
+      "route": "HTML_TABLE",
+      "source_url": "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20Canadian%20Equity%20Index%20ETF/?fundId=6831",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.211,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_TD_TPU",
+      "country": "CA",
+      "symbol": "TPU",
+      "currency": "CAD",
+      "gross_amount": 0.184,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-30",
+      "record_date": "2024-12-31",
+      "payable_date": "2025-01-07",
+      "declaration_date": "2024-12-18",
+      "route": "HTML_TABLE",
+      "source_url": "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20U.S.%20Equity%20Index%20ETF/?fundId=6833",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.184,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_GLOBALX_HDIV",
+      "country": "CA",
+      "symbol": "HDIV",
+      "currency": "CAD",
+      "gross_amount": 0.13,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-30",
+      "record_date": "2024-12-31",
+      "payable_date": "2025-01-08",
+      "declaration_date": "2024-12-19",
+      "route": "HTML_TABLE",
+      "source_url": "https://www.globalx.ca/product/hdiv",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.13,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_CI_FIE",
+      "country": "CA",
+      "symbol": "FIE",
+      "currency": "CAD",
+      "gross_amount": 0.04,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-20",
+      "record_date": "2024-12-23",
+      "payable_date": "2024-12-31",
+      "declaration_date": "2024-12-12",
+      "route": "HTML_TABLE",
+      "source_url": "https://funds.cifinancial.com/en/funds/etfs/CICanadianFinancialMonthlyIncomeETF.html",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.04,
+          "percentage": 100.0
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_CI_CDZ",
+      "country": "CA",
+      "symbol": "CDZ",
+      "currency": "CAD",
+      "gross_amount": 0.126,
+      "distribution_type": "Income",
+      "ex_date": "2024-12-20",
+      "record_date": "2024-12-23",
+      "payable_date": "2024-12-31",
+      "declaration_date": "2024-12-12",
+      "route": "HTML_TABLE",
+      "source_url": "https://funds.cifinancial.com/en/funds/etfs/CIMorningstarCanadaDividendTarget30IndexETF.html",
+      "components": [
+        {
+          "name": "Income",
+          "type": "ELIGIBLE_DIVIDEND",
+          "amount": 0.126,
+          "percentage": 100.0
+        }
+      ]
+    }
+  ]
+}

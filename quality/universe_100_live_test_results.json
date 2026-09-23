@@ -1,15 +1,29 @@
 {
   "summary": {
-    "DECLARED": 12,
+    "DECLARED": 40,
     "NOT_DECLARED": 0,
-    "UNKNOWN": 48
+    "UNKNOWN": 60
+  },
+  "by_country": {
+    "US": {
+      "DECLARED": 12,
+      "NOT_DECLARED": 0,
+      "UNKNOWN": 48
+    },
+    "CA": {
+      "DECLARED": 28,
+      "NOT_DECLARED": 0,
+      "UNKNOWN": 12
+    }
   },
   "results": [
     {
       "fund_id": "US_VANGUARD_VTI",
-      "ticker": "VTI",
+      "country": "US",
+      "symbol": "VTI",
       "status": "DECLARED",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
       "evidence_count": 3,
       "evidence": [
         {
@@ -37,9 +51,11 @@
     },
     {
       "fund_id": "US_VANGUARD_VOO",
-      "ticker": "VOO",
+      "country": "US",
+      "symbol": "VOO",
       "status": "DECLARED",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
       "evidence_count": 3,
       "evidence": [
         {
@@ -67,9 +83,11 @@
     },
     {
       "fund_id": "US_VANGUARD_BND",
-      "ticker": "BND",
+      "country": "US",
+      "symbol": "BND",
       "status": "DECLARED",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
       "evidence_count": 3,
       "evidence": [
         {
@@ -97,9 +115,11 @@
     },
     {
       "fund_id": "US_VANGUARD_VYM",
-      "ticker": "VYM",
+      "country": "US",
+      "symbol": "VYM",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -127,9 +147,11 @@
     },
     {
       "fund_id": "US_VANGUARD_VNQ",
-      "ticker": "VNQ",
+      "country": "US",
+      "symbol": "VNQ",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -157,9 +179,11 @@
     },
     {
       "fund_id": "US_VANGUARD_VB",
-      "ticker": "VB",
+      "country": "US",
+      "symbol": "VB",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -187,9 +211,11 @@
     },
     {
       "fund_id": "US_VANGUARD_VO",
-      "ticker": "VO",
+      "country": "US",
+      "symbol": "VO",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -217,9 +243,11 @@
     },
     {
       "fund_id": "US_VANGUARD_VEA",
-      "ticker": "VEA",
+      "country": "US",
+      "symbol": "VEA",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -247,9 +275,11 @@
     },
     {
       "fund_id": "US_VANGUARD_VWO",
-      "ticker": "VWO",
+      "country": "US",
+      "symbol": "VWO",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -277,9 +307,11 @@
     },
     {
       "fund_id": "US_VANGUARD_VT",
-      "ticker": "VT",
+      "country": "US",
+      "symbol": "VT",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -307,9 +339,11 @@
     },
     {
       "fund_id": "US_VANGUARD_VIG",
-      "ticker": "VIG",
+      "country": "US",
+      "symbol": "VIG",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -337,9 +371,11 @@
     },
     {
       "fund_id": "US_VANGUARD_VTEB",
-      "ticker": "VTEB",
+      "country": "US",
+      "symbol": "VTEB",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -367,9 +403,11 @@
     },
     {
       "fund_id": "US_VANGUARD_BSV",
-      "ticker": "BSV",
+      "country": "US",
+      "symbol": "BSV",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -397,9 +435,11 @@
     },
     {
       "fund_id": "US_VANGUARD_BIV",
-      "ticker": "BIV",
+      "country": "US",
+      "symbol": "BIV",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -427,9 +467,11 @@
     },
     {
       "fund_id": "US_VANGUARD_BLV",
-      "ticker": "BLV",
+      "country": "US",
+      "symbol": "BLV",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -457,9 +499,11 @@
     },
     {
       "fund_id": "US_VANGUARD_VFIAX",
-      "ticker": "VFIAX",
+      "country": "US",
+      "symbol": "VFIAX",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -487,9 +531,11 @@
     },
     {
       "fund_id": "US_VANGUARD_VTSAX",
-      "ticker": "VTSAX",
+      "country": "US",
+      "symbol": "VTSAX",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -517,9 +563,11 @@
     },
     {
       "fund_id": "US_VANGUARD_VBTLX",
-      "ticker": "VBTLX",
+      "country": "US",
+      "symbol": "VBTLX",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -547,9 +595,11 @@
     },
     {
       "fund_id": "US_VANGUARD_VTIAX",
-      "ticker": "VTIAX",
+      "country": "US",
+      "symbol": "VTIAX",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -577,9 +627,11 @@
     },
     {
       "fund_id": "US_VANGUARD_VWEAX",
-      "ticker": "VWEAX",
+      "country": "US",
+      "symbol": "VWEAX",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -607,9 +659,11 @@
     },
     {
       "fund_id": "US_ISHARES_IVV",
-      "ticker": "IVV",
+      "country": "US",
+      "symbol": "IVV",
       "status": "DECLARED",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
       "evidence_count": 3,
       "evidence": [
         {
@@ -637,9 +691,11 @@
     },
     {
       "fund_id": "US_ISHARES_AGG",
-      "ticker": "AGG",
+      "country": "US",
+      "symbol": "AGG",
       "status": "DECLARED",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
       "evidence_count": 3,
       "evidence": [
         {
@@ -667,9 +723,11 @@
     },
     {
       "fund_id": "US_ISHARES_IWM",
-      "ticker": "IWM",
+      "country": "US",
+      "symbol": "IWM",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -697,9 +755,11 @@
     },
     {
       "fund_id": "US_ISHARES_HYG",
-      "ticker": "HYG",
+      "country": "US",
+      "symbol": "HYG",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -727,9 +787,11 @@
     },
     {
       "fund_id": "US_ISHARES_LQD",
-      "ticker": "LQD",
+      "country": "US",
+      "symbol": "LQD",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -757,9 +819,11 @@
     },
     {
       "fund_id": "US_ISHARES_TIP",
-      "ticker": "TIP",
+      "country": "US",
+      "symbol": "TIP",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -787,9 +851,11 @@
     },
     {
       "fund_id": "US_ISHARES_MBB",
-      "ticker": "MBB",
+      "country": "US",
+      "symbol": "MBB",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -817,9 +883,11 @@
     },
     {
       "fund_id": "US_ISHARES_SHY",
-      "ticker": "SHY",
+      "country": "US",
+      "symbol": "SHY",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -847,9 +915,11 @@
     },
     {
       "fund_id": "US_ISHARES_IEF",
-      "ticker": "IEF",
+      "country": "US",
+      "symbol": "IEF",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -877,9 +947,11 @@
     },
     {
       "fund_id": "US_ISHARES_TLT",
-      "ticker": "TLT",
+      "country": "US",
+      "symbol": "TLT",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -907,9 +979,11 @@
     },
     {
       "fund_id": "US_ISHARES_HDV",
-      "ticker": "HDV",
+      "country": "US",
+      "symbol": "HDV",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -937,9 +1011,11 @@
     },
     {
       "fund_id": "US_ISHARES_IEMG",
-      "ticker": "IEMG",
+      "country": "US",
+      "symbol": "IEMG",
       "status": "UNKNOWN",
-      "window": "2024-03-01 to 2024-03-31",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -947,14 +1023,14 @@
           "source_tier": 2,
           "url": "https://www.ishares.com/us/products/244050/",
           "decl_date": null,
-          "snippet": "Schedule coverage incomplete or absent for IEMG over window [2024-03-01 to 2024-03-31]."
+          "snippet": "Schedule coverage incomplete or absent for IEMG over window [2024-12-01 to 2024-12-31]."
         },
         {
           "source_id": "sec_edgar_submissions_api",
           "source_tier": 1,
           "url": "https://data.sec.gov/submissions/CIK0000930667.json",
           "decl_date": null,
-          "snippet": "SEC submissions index for CIK 0000930667 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+          "snippet": "SEC submissions index for CIK 0000930667 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
         },
         {
           "source_id": "official_fund_sponsor_page",
@@ -967,9 +1043,11 @@
     },
     {
       "fund_id": "US_ISHARES_IEFA",
-      "ticker": "IEFA",
+      "country": "US",
+      "symbol": "IEFA",
       "status": "UNKNOWN",
-      "window": "2024-03-01 to 2024-03-31",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -977,14 +1055,14 @@
           "source_tier": 2,
           "url": "https://www.ishares.com/us/products/244049/",
           "decl_date": null,
-          "snippet": "Schedule coverage incomplete or absent for IEFA over window [2024-03-01 to 2024-03-31]."
+          "snippet": "Schedule coverage incomplete or absent for IEFA over window [2024-12-01 to 2024-12-31]."
         },
         {
           "source_id": "sec_edgar_submissions_api",
           "source_tier": 1,
           "url": "https://data.sec.gov/submissions/CIK0001100663.json",
           "decl_date": null,
-          "snippet": "SEC submissions index for CIK 0001100663 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+          "snippet": "SEC submissions index for CIK 0001100663 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
         },
         {
           "source_id": "official_fund_sponsor_page",
@@ -997,9 +1075,11 @@
     },
     {
       "fund_id": "US_ISHARES_USHY",
-      "ticker": "USHY",
+      "country": "US",
+      "symbol": "USHY",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1027,9 +1107,11 @@
     },
     {
       "fund_id": "US_FIDELITY_FXAIX",
-      "ticker": "FXAIX",
+      "country": "US",
+      "symbol": "FXAIX",
       "status": "UNKNOWN",
-      "window": "2024-03-01 to 2024-03-31",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1037,29 +1119,31 @@
           "source_tier": 2,
           "url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911750",
           "decl_date": null,
-          "snippet": "Schedule coverage incomplete or absent for FXAIX over window [2024-03-01 to 2024-03-31]."
+          "snippet": "Schedule coverage incomplete or absent for FXAIX over window [2024-12-01 to 2024-12-31]."
         },
         {
           "source_id": "sec_edgar_submissions_api",
           "source_tier": 1,
           "url": "https://data.sec.gov/submissions/CIK0000819118.json",
           "decl_date": null,
-          "snippet": "SEC submissions index for CIK 0000819118 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+          "snippet": "SEC submissions index for CIK 0000819118 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
         },
         {
           "source_id": "official_fund_sponsor_page",
           "source_tier": 2,
           "url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911750",
           "decl_date": null,
-          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
         }
       ]
     },
     {
       "fund_id": "US_FIDELITY_FSKAX",
-      "ticker": "FSKAX",
+      "country": "US",
+      "symbol": "FSKAX",
       "status": "UNKNOWN",
-      "window": "2024-03-01 to 2024-03-31",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1067,29 +1151,31 @@
           "source_tier": 2,
           "url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911693",
           "decl_date": null,
-          "snippet": "Schedule coverage incomplete or absent for FSKAX over window [2024-03-01 to 2024-03-31]."
+          "snippet": "Schedule coverage incomplete or absent for FSKAX over window [2024-12-01 to 2024-12-31]."
         },
         {
           "source_id": "sec_edgar_submissions_api",
           "source_tier": 1,
           "url": "https://data.sec.gov/submissions/CIK0000819118.json",
           "decl_date": null,
-          "snippet": "SEC submissions index for CIK 0000819118 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+          "snippet": "SEC submissions index for CIK 0000819118 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
         },
         {
           "source_id": "official_fund_sponsor_page",
           "source_tier": 2,
           "url": "https://fundresearch.fidelity.com/mutual-funds/summary/315911693",
           "decl_date": null,
-          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
         }
       ]
     },
     {
       "fund_id": "US_FIDELITY_FXNAX",
-      "ticker": "FXNAX",
+      "country": "US",
+      "symbol": "FXNAX",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1117,9 +1203,11 @@
     },
     {
       "fund_id": "US_FIDELITY_FTBFX",
-      "ticker": "FTBFX",
+      "country": "US",
+      "symbol": "FTBFX",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1147,9 +1235,11 @@
     },
     {
       "fund_id": "US_FIDELITY_FZROX",
-      "ticker": "FZROX",
+      "country": "US",
+      "symbol": "FZROX",
       "status": "DECLARED",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1177,9 +1267,11 @@
     },
     {
       "fund_id": "US_FIDELITY_FNCMX",
-      "ticker": "FNCMX",
+      "country": "US",
+      "symbol": "FNCMX",
       "status": "DECLARED",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1207,9 +1299,11 @@
     },
     {
       "fund_id": "US_FIDELITY_FBALX",
-      "ticker": "FBALX",
+      "country": "US",
+      "symbol": "FBALX",
       "status": "UNKNOWN",
-      "window": "2024-03-01 to 2024-03-31",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1217,29 +1311,31 @@
           "source_tier": 2,
           "url": "https://fundresearch.fidelity.com/mutual-funds/summary/316345107",
           "decl_date": null,
-          "snippet": "Schedule coverage incomplete or absent for FBALX over window [2024-03-01 to 2024-03-31]."
+          "snippet": "Schedule coverage incomplete or absent for FBALX over window [2024-12-01 to 2024-12-31]."
         },
         {
           "source_id": "sec_edgar_submissions_api",
           "source_tier": 1,
           "url": "https://data.sec.gov/submissions/CIK0000081205.json",
           "decl_date": null,
-          "snippet": "SEC submissions index for CIK 0000081205 inspected for window [2024-03-01 to 2024-03-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
+          "snippet": "SEC submissions index for CIK 0000081205 inspected for window [2024-12-01 to 2024-12-31]. Zero positive declaration filings detected (insufficient for full negative proof)."
         },
         {
           "source_id": "official_fund_sponsor_page",
           "source_tier": 2,
           "url": "https://fundresearch.fidelity.com/mutual-funds/summary/316345107",
           "decl_date": null,
-          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
         }
       ]
     },
     {
       "fund_id": "US_FIDELITY_FDVV",
-      "ticker": "FDVV",
+      "country": "US",
+      "symbol": "FDVV",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1267,9 +1363,11 @@
     },
     {
       "fund_id": "US_FIDELITY_ONEQ",
-      "ticker": "ONEQ",
+      "country": "US",
+      "symbol": "ONEQ",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1297,9 +1395,11 @@
     },
     {
       "fund_id": "US_SPDR_SPTM",
-      "ticker": "SPTM",
+      "country": "US",
+      "symbol": "SPTM",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1321,15 +1421,17 @@
           "source_tier": 2,
           "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-portfolio-total-stock-market-etf-sptm",
           "decl_date": null,
-          "snippet": "Official distribution schedule table inspected for window [2024-03-01 to 2024-03-31]. Zero declared events confirmed."
+          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
         }
       ]
     },
     {
       "fund_id": "US_SPDR_SPYD",
-      "ticker": "SPYD",
+      "country": "US",
+      "symbol": "SPYD",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1351,15 +1453,17 @@
           "source_tier": 2,
           "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-sp-dividend-etf-spyd",
           "decl_date": null,
-          "snippet": "Official distribution schedule table inspected for window [2024-03-01 to 2024-03-31]. Zero declared events confirmed."
+          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
         }
       ]
     },
     {
       "fund_id": "US_SPDR_SPAB",
-      "ticker": "SPAB",
+      "country": "US",
+      "symbol": "SPAB",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1381,15 +1485,17 @@
           "source_tier": 2,
           "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-portfolio-aggregate-bond-etf-spab",
           "decl_date": null,
-          "snippet": "Official distribution schedule table inspected for window [2024-12-01 to 2024-12-31]. Zero declared events confirmed."
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
         }
       ]
     },
     {
       "fund_id": "US_SPDR_JNK",
-      "ticker": "JNK",
+      "country": "US",
+      "symbol": "JNK",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1411,15 +1517,17 @@
           "source_tier": 2,
           "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-bloomberg-high-yield-bond-etf-jnk",
           "decl_date": null,
-          "snippet": "Official distribution schedule table inspected for window [2024-12-01 to 2024-12-31]. Zero declared events confirmed."
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
         }
       ]
     },
     {
       "fund_id": "US_SPDR_SJNK",
-      "ticker": "SJNK",
+      "country": "US",
+      "symbol": "SJNK",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1441,15 +1549,17 @@
           "source_tier": 2,
           "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/spdr-bloomberg-short-term-high-yield-bond-etf-sjnk",
           "decl_date": null,
-          "snippet": "Official distribution schedule table inspected for window [2024-12-01 to 2024-12-31]. Zero declared events confirmed."
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
         }
       ]
     },
     {
       "fund_id": "US_SPDR_XLF",
-      "ticker": "XLF",
+      "country": "US",
+      "symbol": "XLF",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1471,15 +1581,17 @@
           "source_tier": 2,
           "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/the-financial-select-sector-spdr-fund-xlf",
           "decl_date": null,
-          "snippet": "Official distribution schedule table inspected for window [2024-03-01 to 2024-03-31]. Zero declared events confirmed."
+          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
         }
       ]
     },
     {
       "fund_id": "US_SPDR_XLE",
-      "ticker": "XLE",
+      "country": "US",
+      "symbol": "XLE",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1501,15 +1613,17 @@
           "source_tier": 2,
           "url": "https://www.ssga.com/us/en/intermediary/etfs/funds/the-energy-select-sector-spdr-fund-xle",
           "decl_date": null,
-          "snippet": "Official distribution schedule table inspected for window [2024-03-01 to 2024-03-31]. Zero declared events confirmed."
+          "snippet": "Official portal HTML inspected for window [2024-03-01 to 2024-03-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
         }
       ]
     },
     {
       "fund_id": "US_SCHWAB_SCHD",
-      "ticker": "SCHD",
+      "country": "US",
+      "symbol": "SCHD",
       "status": "DECLARED",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1537,9 +1651,11 @@
     },
     {
       "fund_id": "US_SCHWAB_SCHX",
-      "ticker": "SCHX",
+      "country": "US",
+      "symbol": "SCHX",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1567,9 +1683,11 @@
     },
     {
       "fund_id": "US_SCHWAB_SCHZ",
-      "ticker": "SCHZ",
+      "country": "US",
+      "symbol": "SCHZ",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1597,9 +1715,11 @@
     },
     {
       "fund_id": "US_SCHWAB_SWPPX",
-      "ticker": "SWPPX",
+      "country": "US",
+      "symbol": "SWPPX",
       "status": "DECLARED",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1627,9 +1747,11 @@
     },
     {
       "fund_id": "US_SCHWAB_SWAGX",
-      "ticker": "SWAGX",
+      "country": "US",
+      "symbol": "SWAGX",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1657,9 +1779,11 @@
     },
     {
       "fund_id": "US_INVESCO_QQQ",
-      "ticker": "QQQ",
+      "country": "US",
+      "symbol": "QQQ",
       "status": "DECLARED",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1687,9 +1811,11 @@
     },
     {
       "fund_id": "US_INVESCO_RSP",
-      "ticker": "RSP",
+      "country": "US",
+      "symbol": "RSP",
       "status": "UNKNOWN",
       "window": "2024-03-01 to 2024-03-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1717,9 +1843,11 @@
     },
     {
       "fund_id": "US_INVESCO_BKLN",
-      "ticker": "BKLN",
+      "country": "US",
+      "symbol": "BKLN",
       "status": "UNKNOWN",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1747,9 +1875,11 @@
     },
     {
       "fund_id": "US_PIMCO_BOND",
-      "ticker": "BOND",
+      "country": "US",
+      "symbol": "BOND",
       "status": "DECLARED",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1777,9 +1907,11 @@
     },
     {
       "fund_id": "US_PIMCO_MINT",
-      "ticker": "MINT",
+      "country": "US",
+      "symbol": "MINT",
       "status": "DECLARED",
       "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
       "evidence_count": 3,
       "evidence": [
         {
@@ -1800,6 +1932,1251 @@
           "source_id": "official_fund_sponsor_page",
           "source_tier": 2,
           "url": "https://www.pimco.com/en-us/investments/etf/enhanced-short-maturity-active-etf/mint",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_BMO_ZCN",
+      "country": "CA",
+      "symbol": "ZCN",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "bmo global asset management_zcn_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-sptsx-capped-composite-index-etf-zcn/",
+          "decl_date": "2024-12-18",
+          "snippet": "Income distribution, $0.230000/share, Payable 2025-01-06, Record 2024-12-31, Ex-Dividend 2024-12-30"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/ZCN",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-sptsx-capped-composite-index-etf-zcn/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_BMO_ZAG",
+      "country": "CA",
+      "symbol": "ZAG",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "bmo global asset management_zag_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-aggregate-bond-index-etf-zag/",
+          "decl_date": "2024-12-18",
+          "snippet": "Income distribution, $0.045000/share, Payable 2025-01-06, Record 2024-12-31, Ex-Dividend 2024-12-30"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/ZAG",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-aggregate-bond-index-etf-zag/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_BMO_ZEB",
+      "country": "CA",
+      "symbol": "ZEB",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "bmo global asset management_zeb_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-banks-index-etf-zeb/",
+          "decl_date": "2024-12-18",
+          "snippet": "Income distribution, $0.140000/share, Payable 2025-01-06, Record 2024-12-31, Ex-Dividend 2024-12-30"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/ZEB",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-banks-index-etf-zeb/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_BMO_ZWB",
+      "country": "CA",
+      "symbol": "ZWB",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "bmo global asset management_zwb_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-covered-call-canadian-banks-etf-zwb/",
+          "decl_date": "2024-12-18",
+          "snippet": "Income distribution, $0.120000/share, Payable 2025-01-06, Record 2024-12-31, Ex-Dividend 2024-12-30"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/ZWB",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-covered-call-canadian-banks-etf-zwb/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_BMO_ZUT",
+      "country": "CA",
+      "symbol": "ZUT",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "bmo global asset management_zut_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-utilities-index-etf-zut/",
+          "decl_date": "2024-12-18",
+          "snippet": "Income distribution, $0.075000/share, Payable 2025-01-06, Record 2024-12-31, Ex-Dividend 2024-12-30"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/ZUT",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-utilities-index-etf-zut/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_BMO_ZDV",
+      "country": "CA",
+      "symbol": "ZDV",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "bmo global asset management_zdv_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-canadian-dividend-etf-zdv/",
+          "decl_date": "2024-12-18",
+          "snippet": "Income distribution, $0.070000/share, Payable 2025-01-06, Record 2024-12-31, Ex-Dividend 2024-12-30"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/ZDV",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-canadian-dividend-etf-zdv/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_BMO_ZDB",
+      "country": "CA",
+      "symbol": "ZDB",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "bmo global asset management_zdb_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-discount-bond-index-etf-zdb/",
+          "decl_date": "2024-12-18",
+          "snippet": "Income distribution, $0.040000/share, Payable 2025-01-06, Record 2024-12-31, Ex-Dividend 2024-12-30"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/ZDB",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-discount-bond-index-etf-zdb/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_BMO_ZPR",
+      "country": "CA",
+      "symbol": "ZPR",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "bmo global asset management_zpr_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-laddered-preferred-share-index-etf-zpr/",
+          "decl_date": "2024-12-18",
+          "snippet": "Income distribution, $0.053000/share, Payable 2025-01-06, Record 2024-12-31, Ex-Dividend 2024-12-30"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/ZPR",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-laddered-preferred-share-index-etf-zpr/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP Timeout: The read operation timed out"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_VANGUARD_VCN",
+      "country": "CA",
+      "symbol": "VCN",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "vanguard canada_vcn_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VCN",
+          "decl_date": "2024-12-19",
+          "snippet": "Income distribution, $0.347800/share, Payable 2025-01-08, Record 2024-12-30, Ex-Dividend 2024-12-27"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/VCN",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VCN",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_VANGUARD_VAB",
+      "country": "CA",
+      "symbol": "VAB",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "vanguard canada_vab_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VAB",
+          "decl_date": "2024-12-19",
+          "snippet": "Income distribution, $0.066400/share, Payable 2025-01-08, Record 2024-12-30, Ex-Dividend 2024-12-27"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/VAB",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VAB",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_VANGUARD_VDY",
+      "country": "CA",
+      "symbol": "VDY",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "vanguard canada_vdy_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VDY",
+          "decl_date": "2024-12-19",
+          "snippet": "Income distribution, $0.174200/share, Payable 2025-01-08, Record 2024-12-30, Ex-Dividend 2024-12-27"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/VDY",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VDY",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_VANGUARD_VFV",
+      "country": "CA",
+      "symbol": "VFV",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "vanguard canada_vfv_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VFV",
+          "decl_date": "2024-12-19",
+          "snippet": "Income distribution, $0.449600/share, Payable 2025-01-08, Record 2024-12-30, Ex-Dividend 2024-12-27"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/VFV",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VFV",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_VANGUARD_VSB",
+      "country": "CA",
+      "symbol": "VSB",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "vanguard canada_vsb_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VSB",
+          "decl_date": "2024-12-19",
+          "snippet": "Income distribution, $0.057300/share, Payable 2025-01-08, Record 2024-12-30, Ex-Dividend 2024-12-27"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/VSB",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VSB",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_VANGUARD_VBAL",
+      "country": "CA",
+      "symbol": "VBAL",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "vanguard canada_vbal_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VBAL",
+          "decl_date": "2024-12-19",
+          "snippet": "Income distribution, $0.235100/share, Payable 2025-01-08, Record 2024-12-30, Ex-Dividend 2024-12-27"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/VBAL",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VBAL",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_VANGUARD_VGRO",
+      "country": "CA",
+      "symbol": "VGRO",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "vanguard canada_vgro_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VGRO",
+          "decl_date": "2024-12-19",
+          "snippet": "Income distribution, $0.279800/share, Payable 2025-01-08, Record 2024-12-30, Ex-Dividend 2024-12-27"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/VGRO",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VGRO",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_ISHARES_XIC",
+      "country": "CA",
+      "symbol": "XIC",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "blackrock ishares canada_xic_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.blackrock.com/ca/investors/en/products/239837/",
+          "decl_date": "2024-12-19",
+          "snippet": "Income distribution, $0.263000/share, Payable 2025-01-06, Record 2024-12-31, Ex-Dividend 2024-12-30"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/XIC",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.blackrock.com/ca/investors/en/products/239837/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_ISHARES_XBB",
+      "country": "CA",
+      "symbol": "XBB",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "blackrock ishares canada_xbb_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.blackrock.com/ca/investors/en/products/239493/",
+          "decl_date": "2024-12-19",
+          "snippet": "Income distribution, $0.078000/share, Payable 2025-01-06, Record 2024-12-31, Ex-Dividend 2024-12-30"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/XBB",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.blackrock.com/ca/investors/en/products/239493/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_ISHARES_XEI",
+      "country": "CA",
+      "symbol": "XEI",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "blackrock ishares canada_xei_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.blackrock.com/ca/investors/en/products/239846/",
+          "decl_date": "2024-12-19",
+          "snippet": "Income distribution, $0.109000/share, Payable 2025-01-06, Record 2024-12-31, Ex-Dividend 2024-12-30"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/XEI",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.blackrock.com/ca/investors/en/products/239846/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_ISHARES_XDV",
+      "country": "CA",
+      "symbol": "XDV",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "blackrock ishares canada_xdv_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.blackrock.com/ca/investors/en/products/239835/",
+          "decl_date": "2024-12-19",
+          "snippet": "Income distribution, $0.134000/share, Payable 2025-01-06, Record 2024-12-31, Ex-Dividend 2024-12-30"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/XDV",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.blackrock.com/ca/investors/en/products/239835/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_ISHARES_XUT",
+      "country": "CA",
+      "symbol": "XUT",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "blackrock ishares canada_xut_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.blackrock.com/ca/investors/en/products/239848/",
+          "decl_date": "2024-12-19",
+          "snippet": "Income distribution, $0.088000/share, Payable 2025-01-06, Record 2024-12-31, Ex-Dividend 2024-12-30"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/XUT",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.blackrock.com/ca/investors/en/products/239848/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_ISHARES_XSB",
+      "country": "CA",
+      "symbol": "XSB",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "blackrock ishares canada_xsb_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.blackrock.com/ca/investors/en/products/239498/",
+          "decl_date": "2024-12-19",
+          "snippet": "Income distribution, $0.072000/share, Payable 2025-01-06, Record 2024-12-31, Ex-Dividend 2024-12-30"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/XSB",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.blackrock.com/ca/investors/en/products/239498/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_ISHARES_XSH",
+      "country": "CA",
+      "symbol": "XSH",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "blackrock ishares canada_xsh_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.blackrock.com/ca/investors/en/products/239499/",
+          "decl_date": "2024-12-19",
+          "snippet": "Income distribution, $0.061000/share, Payable 2025-01-06, Record 2024-12-31, Ex-Dividend 2024-12-30"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/XSH",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.blackrock.com/ca/investors/en/products/239499/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_ISHARES_XHY",
+      "country": "CA",
+      "symbol": "XHY",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "blackrock ishares canada_xhy_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.blackrock.com/ca/investors/en/products/239556/",
+          "decl_date": "2024-12-19",
+          "snippet": "Income distribution, $0.098000/share, Payable 2025-01-06, Record 2024-12-31, Ex-Dividend 2024-12-30"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/XHY",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.blackrock.com/ca/investors/en/products/239556/",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_RBC_RBN",
+      "country": "CA",
+      "symbol": "RBN",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "verified_schedule_repository",
+          "source_tier": 2,
+          "url": "https://www.rbcgam.com/en/ca/products/etfs/RBN/detail",
+          "decl_date": null,
+          "snippet": "Schedule coverage incomplete or absent for RBN over window [2024-12-01 to 2024-12-31]."
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/RBN",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.rbcgam.com/en/ca/products/etfs/RBN/detail",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 404: "
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_RBC_RCD",
+      "country": "CA",
+      "symbol": "RCD",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "verified_schedule_repository",
+          "source_tier": 2,
+          "url": "https://www.rbcgam.com/en/ca/products/etfs/RCD/detail",
+          "decl_date": null,
+          "snippet": "Schedule coverage incomplete or absent for RCD over window [2024-12-01 to 2024-12-31]."
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/RCD",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.rbcgam.com/en/ca/products/etfs/RCD/detail",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_RBC_RUSB",
+      "country": "CA",
+      "symbol": "RUSB",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "verified_schedule_repository",
+          "source_tier": 2,
+          "url": "https://www.rbcgam.com/en/ca/products/etfs/RUSB/detail",
+          "decl_date": null,
+          "snippet": "Schedule coverage incomplete or absent for RUSB over window [2024-12-01 to 2024-12-31]."
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/RUSB",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.rbcgam.com/en/ca/products/etfs/RUSB/detail",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_RBC_RBF556",
+      "country": "CA",
+      "symbol": "RBF556",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "verified_schedule_repository",
+          "source_tier": 2,
+          "url": "https://www.rbcgam.com/en/ca/products/mutual-funds/RBF556/detail",
+          "decl_date": null,
+          "snippet": "Schedule coverage incomplete or absent for CA_RBC_RBF556 over window [2024-12-01 to 2024-12-31]."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.rbcgam.com/en/ca/products/mutual-funds/RBF556/detail",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_RBC_RBF266",
+      "country": "CA",
+      "symbol": "RBF266",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "verified_schedule_repository",
+          "source_tier": 2,
+          "url": "https://www.rbcgam.com/en/ca/products/mutual-funds/RBF266/detail",
+          "decl_date": null,
+          "snippet": "Schedule coverage incomplete or absent for CA_RBC_RBF266 over window [2024-12-01 to 2024-12-31]."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.rbcgam.com/en/ca/products/mutual-funds/RBF266/detail",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_TD_TTP",
+      "country": "CA",
+      "symbol": "TTP",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "td asset management_ttp_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20Canadian%20Equity%20Index%20ETF/?fundId=6831",
+          "decl_date": "2024-12-18",
+          "snippet": "Income distribution, $0.211000/share, Payable 2025-01-07, Record 2024-12-31, Ex-Dividend 2024-12-30"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/TTP",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20Canadian%20Equity%20Index%20ETF/?fundId=6831",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_TD_TPU",
+      "country": "CA",
+      "symbol": "TPU",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "td asset management_tpu_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20U.S.%20Equity%20Index%20ETF/?fundId=6833",
+          "decl_date": "2024-12-18",
+          "snippet": "Income distribution, $0.184000/share, Payable 2025-01-07, Record 2024-12-31, Ex-Dividend 2024-12-30"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/TPU",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20U.S.%20Equity%20Index%20ETF/?fundId=6833",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_TD_TDB900",
+      "country": "CA",
+      "symbol": "TDB900",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "verified_schedule_repository",
+          "source_tier": 2,
+          "url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20Canadian%20Index%20Fund%20-%20e/?fundId=3261",
+          "decl_date": null,
+          "snippet": "Schedule coverage incomplete or absent for CA_TD_TDB900 over window [2024-12-01 to 2024-12-31]."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20Canadian%20Index%20Fund%20-%20e/?fundId=3261",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_TD_TDB902",
+      "country": "CA",
+      "symbol": "TDB902",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "verified_schedule_repository",
+          "source_tier": 2,
+          "url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20U.S.%20Index%20Fund%20-%20e/?fundId=3270",
+          "decl_date": null,
+          "snippet": "Schedule coverage incomplete or absent for CA_TD_TDB902 over window [2024-12-01 to 2024-12-31]."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20U.S.%20Index%20Fund%20-%20e/?fundId=3270",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_TD_TDB909",
+      "country": "CA",
+      "symbol": "TDB909",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "source_id": "verified_schedule_repository",
+          "source_tier": 2,
+          "url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20Canadian%20Bond%20Index%20Fund%20-%20e/?fundId=4817",
+          "decl_date": null,
+          "snippet": "Schedule coverage incomplete or absent for CA_TD_TDB909 over window [2024-12-01 to 2024-12-31]."
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20Canadian%20Bond%20Index%20Fund%20-%20e/?fundId=4817",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_GLOBALX_HXT",
+      "country": "CA",
+      "symbol": "HXT",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "verified_schedule_repository",
+          "source_tier": 2,
+          "url": "https://www.globalx.ca/product/hxt",
+          "decl_date": null,
+          "snippet": "Schedule coverage incomplete or absent for HXT over window [2024-12-01 to 2024-12-31]."
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/HXT",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.globalx.ca/product/hxt",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_GLOBALX_HBB",
+      "country": "CA",
+      "symbol": "HBB",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "verified_schedule_repository",
+          "source_tier": 2,
+          "url": "https://www.globalx.ca/product/hbb",
+          "decl_date": null,
+          "snippet": "Schedule coverage incomplete or absent for HBB over window [2024-12-01 to 2024-12-31]."
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/HBB",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.globalx.ca/product/hbb",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_GLOBALX_HDIV",
+      "country": "CA",
+      "symbol": "HDIV",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "global x investments canada_hdiv_distribution_history",
+          "source_tier": 2,
+          "url": "https://www.globalx.ca/product/hdiv",
+          "decl_date": "2024-12-19",
+          "snippet": "Income distribution, $0.130000/share, Payable 2025-01-08, Record 2024-12-31, Ex-Dividend 2024-12-30"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/HDIV",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.globalx.ca/product/hdiv",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 404: Not Found"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_CI_FIE",
+      "country": "CA",
+      "symbol": "FIE",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "ci global asset management_fie_distribution_history",
+          "source_tier": 2,
+          "url": "https://funds.cifinancial.com/en/funds/etfs/CICanadianFinancialMonthlyIncomeETF.html",
+          "decl_date": "2024-12-12",
+          "snippet": "Income distribution, $0.040000/share, Payable 2024-12-31, Record 2024-12-23, Ex-Dividend 2024-12-20"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/FIE",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://funds.cifinancial.com/en/funds/etfs/CICanadianFinancialMonthlyIncomeETF.html",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 400: Bad Request"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_CI_FIG",
+      "country": "CA",
+      "symbol": "FIG",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "verified_schedule_repository",
+          "source_tier": 2,
+          "url": "https://funds.cifinancial.com/en/funds/etfs/CIInvestmentGradeBondETF.html",
+          "decl_date": null,
+          "snippet": "Schedule coverage incomplete or absent for FIG over window [2024-12-01 to 2024-12-31]."
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/FIG",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://funds.cifinancial.com/en/funds/etfs/CIInvestmentGradeBondETF.html",
+          "decl_date": null,
+          "snippet": "Official portal HTML inspected for window [2024-12-01 to 2024-12-31]. No declared events detected, but page lacks an explicit static distribution schedule covering the window."
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_CI_CDZ",
+      "country": "CA",
+      "symbol": "CDZ",
+      "status": "DECLARED",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": 0.9,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "ci global asset management_cdz_distribution_history",
+          "source_tier": 2,
+          "url": "https://funds.cifinancial.com/en/funds/etfs/CIMorningstarCanadaDividendTarget30IndexETF.html",
+          "decl_date": "2024-12-12",
+          "snippet": "Income distribution, $0.126000/share, Payable 2024-12-31, Record 2024-12-23, Ex-Dividend 2024-12-20"
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/CDZ",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://funds.cifinancial.com/en/funds/etfs/CIMorningstarCanadaDividendTarget30IndexETF.html",
+          "decl_date": null,
+          "snippet": "Failed to retrieve official portal: HTTP 400: Bad Request"
+        }
+      ]
+    },
+    {
+      "fund_id": "CA_MACKENZIE_QBB",
+      "country": "CA",
+      "symbol": "QBB",
+      "status": "UNKNOWN",
+      "window": "2024-12-01 to 2024-12-31",
+      "confidence": null,
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "source_id": "verified_schedule_repository",
+          "source_tier": 2,
+          "url": "https://www.mackenzieinvestments.com/en/products/etfs/mackenzie-canadian-aggregate-bond-index-etf-qbb",
+          "decl_date": null,
+          "snippet": "Schedule coverage incomplete or absent for QBB over window [2024-12-01 to 2024-12-31]."
+        },
+        {
+          "source_id": "sedar_tmx_regulatory_notice",
+          "source_tier": 1,
+          "url": "https://www.tmx.com/dividends/QBB",
+          "decl_date": null,
+          "snippet": "TMX/SEDAR regulatory query failed: HTTP 404: Not Found"
+        },
+        {
+          "source_id": "official_fund_sponsor_page",
+          "source_tier": 2,
+          "url": "https://www.mackenzieinvestments.com/en/products/etfs/mackenzie-canadian-aggregate-bond-index-etf-qbb",
           "decl_date": null,
           "snippet": "Failed to retrieve official portal: HTTP 403: Forbidden"
         }

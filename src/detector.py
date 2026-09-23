@@ -28,6 +28,7 @@ from src.strategies import (
     SECEdgarSubmissionsStrategy,
     SignalType,
     StrategyObservation,
+    VerifiedScheduleStrategy,
 )
 from src.universe_loader import UniverseRegistry
 
@@ -41,6 +42,7 @@ def get_default_strategies(
     """Provide standard real-source strategy pipeline."""
     return [
         CalendarExpectationStrategy(universe=universe),
+        VerifiedScheduleStrategy(universe=universe),
         SECEdgarSubmissionsStrategy(http_client=http_client, universe=universe),
         CanadianRegulatoryStrategy(http_client=http_client, universe=universe),
         OfficialSponsorWebStrategy(http_client=http_client, universe=universe),

@@ -1,0 +1,932 @@
+[
+  {
+    "fund_id": "CA_BMO_ZCN",
+    "country": "CA",
+    "ticker": "ZCN",
+    "fundserv_code": null,
+    "fund_name": "BMO S&P/TSX Capped Composite Index ETF",
+    "fund_family": "BMO Global Asset Management",
+    "official_source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-sptsx-capped-composite-index-etf-zcn/",
+    "expected_frequency": "QUARTERLY",
+    "is_monthly_payer": false,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.23,
+        "ex_date": "2024-12-30",
+        "record_date": "2024-12-31",
+        "payable_date": "2025-01-06",
+        "declaration_date": "2024-12-18",
+        "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-sptsx-capped-composite-index-etf-zcn/"
+      },
+      {
+        "distribution_type": "Income",
+        "amount": 0.22,
+        "ex_date": "2024-09-27",
+        "record_date": "2024-09-30",
+        "payable_date": "2024-10-03",
+        "declaration_date": "2024-09-18",
+        "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-sptsx-capped-composite-index-etf-zcn/"
+      },
+      {
+        "distribution_type": "Income",
+        "amount": 0.22,
+        "ex_date": "2024-06-26",
+        "record_date": "2024-06-27",
+        "payable_date": "2024-07-03",
+        "declaration_date": "2024-06-18",
+        "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-sptsx-capped-composite-index-etf-zcn/"
+      },
+      {
+        "distribution_type": "Income",
+        "amount": 0.21,
+        "ex_date": "2024-03-27",
+        "record_date": "2024-03-28",
+        "payable_date": "2024-04-03",
+        "declaration_date": "2024-03-18",
+        "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-sptsx-capped-composite-index-etf-zcn/"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_BMO_ZAG",
+    "country": "CA",
+    "ticker": "ZAG",
+    "fundserv_code": null,
+    "fund_name": "BMO Aggregate Bond Index ETF",
+    "fund_family": "BMO Global Asset Management",
+    "official_source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-aggregate-bond-index-etf-zag/",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.045,
+        "ex_date": "2024-12-30",
+        "record_date": "2024-12-31",
+        "payable_date": "2025-01-06",
+        "declaration_date": "2024-12-18",
+        "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-aggregate-bond-index-etf-zag/"
+      },
+      {
+        "distribution_type": "Income",
+        "amount": 0.045,
+        "ex_date": "2024-11-27",
+        "record_date": "2024-11-28",
+        "payable_date": "2024-12-03",
+        "declaration_date": "2024-11-18",
+        "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-aggregate-bond-index-etf-zag/"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_BMO_ZEB",
+    "country": "CA",
+    "ticker": "ZEB",
+    "fundserv_code": null,
+    "fund_name": "BMO Equal Weight Banks Index ETF",
+    "fund_family": "BMO Global Asset Management",
+    "official_source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-banks-index-etf-zeb/",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.14,
+        "ex_date": "2024-12-30",
+        "record_date": "2024-12-31",
+        "payable_date": "2025-01-06",
+        "declaration_date": "2024-12-18",
+        "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-banks-index-etf-zeb/"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_BMO_ZWB",
+    "country": "CA",
+    "ticker": "ZWB",
+    "fundserv_code": null,
+    "fund_name": "BMO Covered Call Canadian Banks ETF",
+    "fund_family": "BMO Global Asset Management",
+    "official_source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-covered-call-canadian-banks-etf-zwb/",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.12,
+        "ex_date": "2024-12-30",
+        "record_date": "2024-12-31",
+        "payable_date": "2025-01-06",
+        "declaration_date": "2024-12-18",
+        "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-covered-call-canadian-banks-etf-zwb/"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_BMO_ZUT",
+    "country": "CA",
+    "ticker": "ZUT",
+    "fundserv_code": null,
+    "fund_name": "BMO Equal Weight Utilities Index ETF",
+    "fund_family": "BMO Global Asset Management",
+    "official_source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-utilities-index-etf-zut/",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.075,
+        "ex_date": "2024-12-30",
+        "record_date": "2024-12-31",
+        "payable_date": "2025-01-06",
+        "declaration_date": "2024-12-18",
+        "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-equal-weight-utilities-index-etf-zut/"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_BMO_ZDV",
+    "country": "CA",
+    "ticker": "ZDV",
+    "fundserv_code": null,
+    "fund_name": "BMO Canadian Dividend ETF",
+    "fund_family": "BMO Global Asset Management",
+    "official_source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-canadian-dividend-etf-zdv/",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.07,
+        "ex_date": "2024-12-30",
+        "record_date": "2024-12-31",
+        "payable_date": "2025-01-06",
+        "declaration_date": "2024-12-18",
+        "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-canadian-dividend-etf-zdv/"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_BMO_ZDB",
+    "country": "CA",
+    "ticker": "ZDB",
+    "fundserv_code": null,
+    "fund_name": "BMO Discount Bond Index ETF",
+    "fund_family": "BMO Global Asset Management",
+    "official_source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-discount-bond-index-etf-zdb/",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.04,
+        "ex_date": "2024-12-30",
+        "record_date": "2024-12-31",
+        "payable_date": "2025-01-06",
+        "declaration_date": "2024-12-18",
+        "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-discount-bond-index-etf-zdb/"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_BMO_ZPR",
+    "country": "CA",
+    "ticker": "ZPR",
+    "fundserv_code": null,
+    "fund_name": "BMO Laddered Preferred Share Index ETF",
+    "fund_family": "BMO Global Asset Management",
+    "official_source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-laddered-preferred-share-index-etf-zpr/",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.053,
+        "ex_date": "2024-12-30",
+        "record_date": "2024-12-31",
+        "payable_date": "2025-01-06",
+        "declaration_date": "2024-12-18",
+        "source_url": "https://www.bmogam.com/ca-en/investors/investment-solutions/etfs/bmo-laddered-preferred-share-index-etf-zpr/"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_VANGUARD_VCN",
+    "country": "CA",
+    "ticker": "VCN",
+    "fundserv_code": null,
+    "fund_name": "Vanguard FTSE Canada All Cap Index ETF",
+    "fund_family": "Vanguard Canada",
+    "official_source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VCN",
+    "expected_frequency": "QUARTERLY",
+    "is_monthly_payer": false,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.3478,
+        "ex_date": "2024-12-27",
+        "record_date": "2024-12-30",
+        "payable_date": "2025-01-08",
+        "declaration_date": "2024-12-19",
+        "source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VCN"
+      },
+      {
+        "distribution_type": "Income",
+        "amount": 0.3204,
+        "ex_date": "2024-09-24",
+        "record_date": "2024-09-24",
+        "payable_date": "2024-10-01",
+        "declaration_date": "2024-09-17",
+        "source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VCN"
+      },
+      {
+        "distribution_type": "Income",
+        "amount": 0.315,
+        "ex_date": "2024-06-25",
+        "record_date": "2024-06-25",
+        "payable_date": "2024-07-03",
+        "declaration_date": "2024-06-18",
+        "source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VCN"
+      },
+      {
+        "distribution_type": "Income",
+        "amount": 0.2985,
+        "ex_date": "2024-03-22",
+        "record_date": "2024-03-25",
+        "payable_date": "2024-04-02",
+        "declaration_date": "2024-03-15",
+        "source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VCN"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_VANGUARD_VAB",
+    "country": "CA",
+    "ticker": "VAB",
+    "fundserv_code": null,
+    "fund_name": "Vanguard Canadian Aggregate Bond Index ETF",
+    "fund_family": "Vanguard Canada",
+    "official_source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VAB",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.0664,
+        "ex_date": "2024-12-27",
+        "record_date": "2024-12-30",
+        "payable_date": "2025-01-08",
+        "declaration_date": "2024-12-19",
+        "source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VAB"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_VANGUARD_VDY",
+    "country": "CA",
+    "ticker": "VDY",
+    "fundserv_code": null,
+    "fund_name": "Vanguard FTSE Canadian High Dividend Yield Index ETF",
+    "fund_family": "Vanguard Canada",
+    "official_source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VDY",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.1742,
+        "ex_date": "2024-12-27",
+        "record_date": "2024-12-30",
+        "payable_date": "2025-01-08",
+        "declaration_date": "2024-12-19",
+        "source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VDY"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_VANGUARD_VFV",
+    "country": "CA",
+    "ticker": "VFV",
+    "fundserv_code": null,
+    "fund_name": "Vanguard S&P 500 Index ETF",
+    "fund_family": "Vanguard Canada",
+    "official_source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VFV",
+    "expected_frequency": "QUARTERLY",
+    "is_monthly_payer": false,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.4496,
+        "ex_date": "2024-12-27",
+        "record_date": "2024-12-30",
+        "payable_date": "2025-01-08",
+        "declaration_date": "2024-12-19",
+        "source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VFV"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_VANGUARD_VSB",
+    "country": "CA",
+    "ticker": "VSB",
+    "fundserv_code": null,
+    "fund_name": "Vanguard Canadian Short-Term Bond Index ETF",
+    "fund_family": "Vanguard Canada",
+    "official_source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VSB",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.0573,
+        "ex_date": "2024-12-27",
+        "record_date": "2024-12-30",
+        "payable_date": "2025-01-08",
+        "declaration_date": "2024-12-19",
+        "source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VSB"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_VANGUARD_VBAL",
+    "country": "CA",
+    "ticker": "VBAL",
+    "fundserv_code": null,
+    "fund_name": "Vanguard Balanced ETF Portfolio",
+    "fund_family": "Vanguard Canada",
+    "official_source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VBAL",
+    "expected_frequency": "QUARTERLY",
+    "is_monthly_payer": false,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.2351,
+        "ex_date": "2024-12-27",
+        "record_date": "2024-12-30",
+        "payable_date": "2025-01-08",
+        "declaration_date": "2024-12-19",
+        "source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VBAL"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_VANGUARD_VGRO",
+    "country": "CA",
+    "ticker": "VGRO",
+    "fundserv_code": null,
+    "fund_name": "Vanguard Growth ETF Portfolio",
+    "fund_family": "Vanguard Canada",
+    "official_source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VGRO",
+    "expected_frequency": "QUARTERLY",
+    "is_monthly_payer": false,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.2798,
+        "ex_date": "2024-12-27",
+        "record_date": "2024-12-30",
+        "payable_date": "2025-01-08",
+        "declaration_date": "2024-12-19",
+        "source_url": "https://www.vanguard.ca/en/investor/products/products-group/etfs/VGRO"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_ISHARES_XIC",
+    "country": "CA",
+    "ticker": "XIC",
+    "fundserv_code": null,
+    "fund_name": "iShares Core S&P/TSX Capped Composite Index ETF",
+    "fund_family": "BlackRock iShares Canada",
+    "official_source_url": "https://www.blackrock.com/ca/investors/en/products/239837/",
+    "expected_frequency": "QUARTERLY",
+    "is_monthly_payer": false,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.263,
+        "ex_date": "2024-12-30",
+        "record_date": "2024-12-31",
+        "payable_date": "2025-01-06",
+        "declaration_date": "2024-12-19",
+        "source_url": "https://www.blackrock.com/ca/investors/en/products/239837/"
+      },
+      {
+        "distribution_type": "Income",
+        "amount": 0.252,
+        "ex_date": "2024-09-24",
+        "record_date": "2024-09-24",
+        "payable_date": "2024-09-30",
+        "declaration_date": "2024-09-17",
+        "source_url": "https://www.blackrock.com/ca/investors/en/products/239837/"
+      },
+      {
+        "distribution_type": "Income",
+        "amount": 0.248,
+        "ex_date": "2024-06-25",
+        "record_date": "2024-06-25",
+        "payable_date": "2024-06-28",
+        "declaration_date": "2024-06-18",
+        "source_url": "https://www.blackrock.com/ca/investors/en/products/239837/"
+      },
+      {
+        "distribution_type": "Income",
+        "amount": 0.231,
+        "ex_date": "2024-03-25",
+        "record_date": "2024-03-26",
+        "payable_date": "2024-03-28",
+        "declaration_date": "2024-03-18",
+        "source_url": "https://www.blackrock.com/ca/investors/en/products/239837/"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_ISHARES_XBB",
+    "country": "CA",
+    "ticker": "XBB",
+    "fundserv_code": null,
+    "fund_name": "iShares Core Canadian Universe Bond Index ETF",
+    "fund_family": "BlackRock iShares Canada",
+    "official_source_url": "https://www.blackrock.com/ca/investors/en/products/239493/",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.078,
+        "ex_date": "2024-12-30",
+        "record_date": "2024-12-31",
+        "payable_date": "2025-01-06",
+        "declaration_date": "2024-12-19",
+        "source_url": "https://www.blackrock.com/ca/investors/en/products/239493/"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_ISHARES_XEI",
+    "country": "CA",
+    "ticker": "XEI",
+    "fundserv_code": null,
+    "fund_name": "iShares S&P/TSX Composite High Dividend Index ETF",
+    "fund_family": "BlackRock iShares Canada",
+    "official_source_url": "https://www.blackrock.com/ca/investors/en/products/239846/",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.109,
+        "ex_date": "2024-12-30",
+        "record_date": "2024-12-31",
+        "payable_date": "2025-01-06",
+        "declaration_date": "2024-12-19",
+        "source_url": "https://www.blackrock.com/ca/investors/en/products/239846/"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_ISHARES_XDV",
+    "country": "CA",
+    "ticker": "XDV",
+    "fundserv_code": null,
+    "fund_name": "iShares Canadian Select Dividend Index ETF",
+    "fund_family": "BlackRock iShares Canada",
+    "official_source_url": "https://www.blackrock.com/ca/investors/en/products/239835/",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.134,
+        "ex_date": "2024-12-30",
+        "record_date": "2024-12-31",
+        "payable_date": "2025-01-06",
+        "declaration_date": "2024-12-19",
+        "source_url": "https://www.blackrock.com/ca/investors/en/products/239835/"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_ISHARES_XUT",
+    "country": "CA",
+    "ticker": "XUT",
+    "fundserv_code": null,
+    "fund_name": "iShares S&P/TSX Capped Utilities Index ETF",
+    "fund_family": "BlackRock iShares Canada",
+    "official_source_url": "https://www.blackrock.com/ca/investors/en/products/239848/",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.088,
+        "ex_date": "2024-12-30",
+        "record_date": "2024-12-31",
+        "payable_date": "2025-01-06",
+        "declaration_date": "2024-12-19",
+        "source_url": "https://www.blackrock.com/ca/investors/en/products/239848/"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_ISHARES_XSB",
+    "country": "CA",
+    "ticker": "XSB",
+    "fundserv_code": null,
+    "fund_name": "iShares Core Canadian Short Term Bond Index ETF",
+    "fund_family": "BlackRock iShares Canada",
+    "official_source_url": "https://www.blackrock.com/ca/investors/en/products/239498/",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.072,
+        "ex_date": "2024-12-30",
+        "record_date": "2024-12-31",
+        "payable_date": "2025-01-06",
+        "declaration_date": "2024-12-19",
+        "source_url": "https://www.blackrock.com/ca/investors/en/products/239498/"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_ISHARES_XSH",
+    "country": "CA",
+    "ticker": "XSH",
+    "fundserv_code": null,
+    "fund_name": "iShares Core Canadian Short Term Corporate Bond Index ETF",
+    "fund_family": "BlackRock iShares Canada",
+    "official_source_url": "https://www.blackrock.com/ca/investors/en/products/239499/",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.061,
+        "ex_date": "2024-12-30",
+        "record_date": "2024-12-31",
+        "payable_date": "2025-01-06",
+        "declaration_date": "2024-12-19",
+        "source_url": "https://www.blackrock.com/ca/investors/en/products/239499/"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_ISHARES_XHY",
+    "country": "CA",
+    "ticker": "XHY",
+    "fundserv_code": null,
+    "fund_name": "iShares U.S. High Yield Bond Index ETF (CAD-Hedged)",
+    "fund_family": "BlackRock iShares Canada",
+    "official_source_url": "https://www.blackrock.com/ca/investors/en/products/239556/",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.098,
+        "ex_date": "2024-12-30",
+        "record_date": "2024-12-31",
+        "payable_date": "2025-01-06",
+        "declaration_date": "2024-12-19",
+        "source_url": "https://www.blackrock.com/ca/investors/en/products/239556/"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_RBC_RBN",
+    "country": "CA",
+    "ticker": "RBN",
+    "fundserv_code": null,
+    "fund_name": "RBC BlueBay Canadian Core Plus Bond ETF",
+    "fund_family": "RBC Global Asset Management",
+    "official_source_url": "https://www.rbcgam.com/en/ca/products/etfs/RBN/detail",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "UNVERIFIED",
+    "unverified_reason": "Awaiting official sponsor direct table ingestion",
+    "events": []
+  },
+  {
+    "fund_id": "CA_RBC_RCD",
+    "country": "CA",
+    "ticker": "RCD",
+    "fundserv_code": null,
+    "fund_name": "RBC Quant Canadian Dividend Leaders ETF",
+    "fund_family": "RBC Global Asset Management",
+    "official_source_url": "https://www.rbcgam.com/en/ca/products/etfs/RCD/detail",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "UNVERIFIED",
+    "unverified_reason": "Awaiting official sponsor direct table ingestion",
+    "events": []
+  },
+  {
+    "fund_id": "CA_RBC_RUSB",
+    "country": "CA",
+    "ticker": "RUSB",
+    "fundserv_code": null,
+    "fund_name": "RBC Short-Term U.S. Corporate Bond ETF",
+    "fund_family": "RBC Global Asset Management",
+    "official_source_url": "https://www.rbcgam.com/en/ca/products/etfs/RUSB/detail",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "UNVERIFIED",
+    "unverified_reason": "Awaiting official sponsor direct table ingestion",
+    "events": []
+  },
+  {
+    "fund_id": "CA_RBC_RBF556",
+    "country": "CA",
+    "ticker": null,
+    "fundserv_code": "RBF556",
+    "fund_name": "RBC Canadian Dividend Fund Series A",
+    "fund_family": "RBC Global Asset Management",
+    "official_source_url": "https://www.rbcgam.com/en/ca/products/mutual-funds/RBF556/detail",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "UNVERIFIED",
+    "unverified_reason": "Awaiting official sponsor direct table ingestion",
+    "events": []
+  },
+  {
+    "fund_id": "CA_RBC_RBF266",
+    "country": "CA",
+    "ticker": null,
+    "fundserv_code": "RBF266",
+    "fund_name": "RBC Canadian Bond Fund Series A",
+    "fund_family": "RBC Global Asset Management",
+    "official_source_url": "https://www.rbcgam.com/en/ca/products/mutual-funds/RBF266/detail",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "UNVERIFIED",
+    "unverified_reason": "Awaiting official sponsor direct table ingestion",
+    "events": []
+  },
+  {
+    "fund_id": "CA_TD_TTP",
+    "country": "CA",
+    "ticker": "TTP",
+    "fundserv_code": null,
+    "fund_name": "TD Canadian Equity Index ETF",
+    "fund_family": "TD Asset Management",
+    "official_source_url": "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20Canadian%20Equity%20Index%20ETF/?fundId=6831",
+    "expected_frequency": "QUARTERLY",
+    "is_monthly_payer": false,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.211,
+        "ex_date": "2024-12-30",
+        "record_date": "2024-12-31",
+        "payable_date": "2025-01-07",
+        "declaration_date": "2024-12-18",
+        "source_url": "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20Canadian%20Equity%20Index%20ETF/?fundId=6831"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_TD_TPU",
+    "country": "CA",
+    "ticker": "TPU",
+    "fundserv_code": null,
+    "fund_name": "TD U.S. Equity Index ETF",
+    "fund_family": "TD Asset Management",
+    "official_source_url": "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20U.S.%20Equity%20Index%20ETF/?fundId=6833",
+    "expected_frequency": "QUARTERLY",
+    "is_monthly_payer": false,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.184,
+        "ex_date": "2024-12-30",
+        "record_date": "2024-12-31",
+        "payable_date": "2025-01-07",
+        "declaration_date": "2024-12-18",
+        "source_url": "https://www.td.com/ca/en/asset-management/funds/solutions/etfs/FundCard/TD%20U.S.%20Equity%20Index%20ETF/?fundId=6833"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_TD_TDB900",
+    "country": "CA",
+    "ticker": null,
+    "fundserv_code": "TDB900",
+    "fund_name": "TD Canadian Index Fund - e",
+    "fund_family": "TD Asset Management",
+    "official_source_url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20Canadian%20Index%20Fund%20-%20e/?fundId=3261",
+    "expected_frequency": "SEMI_ANNUAL",
+    "is_monthly_payer": false,
+    "event_verification_status": "UNVERIFIED",
+    "unverified_reason": "Awaiting official sponsor direct table ingestion",
+    "events": []
+  },
+  {
+    "fund_id": "CA_TD_TDB902",
+    "country": "CA",
+    "ticker": null,
+    "fundserv_code": "TDB902",
+    "fund_name": "TD U.S. Index Fund - e",
+    "fund_family": "TD Asset Management",
+    "official_source_url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20U.S.%20Index%20Fund%20-%20e/?fundId=3270",
+    "expected_frequency": "SEMI_ANNUAL",
+    "is_monthly_payer": false,
+    "event_verification_status": "UNVERIFIED",
+    "unverified_reason": "Awaiting official sponsor direct table ingestion",
+    "events": []
+  },
+  {
+    "fund_id": "CA_TD_TDB909",
+    "country": "CA",
+    "ticker": null,
+    "fundserv_code": "TDB909",
+    "fund_name": "TD Canadian Bond Index Fund - e",
+    "fund_family": "TD Asset Management",
+    "official_source_url": "https://www.td.com/ca/en/asset-management/funds/solutions/mutual-funds/FundCard/TD%20Canadian%20Bond%20Index%20Fund%20-%20e/?fundId=4817",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "UNVERIFIED",
+    "unverified_reason": "Awaiting official sponsor direct table ingestion",
+    "events": []
+  },
+  {
+    "fund_id": "CA_GLOBALX_HXT",
+    "country": "CA",
+    "ticker": "HXT",
+    "fundserv_code": null,
+    "fund_name": "Global X S&P/TSX 60 Index Corporate Class ETF",
+    "fund_family": "Global X Investments Canada",
+    "official_source_url": "https://www.globalx.ca/product/hxt",
+    "expected_frequency": "ANNUAL",
+    "is_monthly_payer": false,
+    "event_verification_status": "UNVERIFIED",
+    "unverified_reason": "Awaiting official sponsor direct table ingestion",
+    "events": []
+  },
+  {
+    "fund_id": "CA_GLOBALX_HBB",
+    "country": "CA",
+    "ticker": "HBB",
+    "fundserv_code": null,
+    "fund_name": "Global X Canadian Aggregate Bond Index Corporate Class ETF",
+    "fund_family": "Global X Investments Canada",
+    "official_source_url": "https://www.globalx.ca/product/hbb",
+    "expected_frequency": "ANNUAL",
+    "is_monthly_payer": false,
+    "event_verification_status": "UNVERIFIED",
+    "unverified_reason": "Awaiting official sponsor direct table ingestion",
+    "events": []
+  },
+  {
+    "fund_id": "CA_GLOBALX_HDIV",
+    "country": "CA",
+    "ticker": "HDIV",
+    "fundserv_code": null,
+    "fund_name": "Global X Canadian High Dividend Index Corporate Class ETF",
+    "fund_family": "Global X Investments Canada",
+    "official_source_url": "https://www.globalx.ca/product/hdiv",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.13,
+        "ex_date": "2024-12-30",
+        "record_date": "2024-12-31",
+        "payable_date": "2025-01-08",
+        "declaration_date": "2024-12-19",
+        "source_url": "https://www.globalx.ca/product/hdiv"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_CI_FIE",
+    "country": "CA",
+    "ticker": "FIE",
+    "fundserv_code": null,
+    "fund_name": "CI Canadian Financial Monthly Income ETF",
+    "fund_family": "CI Global Asset Management",
+    "official_source_url": "https://funds.cifinancial.com/en/funds/etfs/CICanadianFinancialMonthlyIncomeETF.html",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.04,
+        "ex_date": "2024-12-20",
+        "record_date": "2024-12-23",
+        "payable_date": "2024-12-31",
+        "declaration_date": "2024-12-12",
+        "source_url": "https://funds.cifinancial.com/en/funds/etfs/CICanadianFinancialMonthlyIncomeETF.html"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_CI_FIG",
+    "country": "CA",
+    "ticker": "FIG",
+    "fundserv_code": null,
+    "fund_name": "CI Investment Grade Bond ETF",
+    "fund_family": "CI Global Asset Management",
+    "official_source_url": "https://funds.cifinancial.com/en/funds/etfs/CIInvestmentGradeBondETF.html",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "UNVERIFIED",
+    "unverified_reason": "Awaiting official sponsor direct table ingestion",
+    "events": []
+  },
+  {
+    "fund_id": "CA_CI_CDZ",
+    "country": "CA",
+    "ticker": "CDZ",
+    "fundserv_code": null,
+    "fund_name": "CI Morningstar Canada Dividend Target 30 Index ETF",
+    "fund_family": "CI Global Asset Management",
+    "official_source_url": "https://funds.cifinancial.com/en/funds/etfs/CIMorningstarCanadaDividendTarget30IndexETF.html",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "FULLY_VERIFIED",
+    "unverified_reason": null,
+    "events": [
+      {
+        "distribution_type": "Income",
+        "amount": 0.126,
+        "ex_date": "2024-12-20",
+        "record_date": "2024-12-23",
+        "payable_date": "2024-12-31",
+        "declaration_date": "2024-12-12",
+        "source_url": "https://funds.cifinancial.com/en/funds/etfs/CIMorningstarCanadaDividendTarget30IndexETF.html"
+      }
+    ]
+  },
+  {
+    "fund_id": "CA_MACKENZIE_QBB",
+    "country": "CA",
+    "ticker": "QBB",
+    "fundserv_code": null,
+    "fund_name": "Mackenzie Canadian Aggregate Bond Index ETF",
+    "fund_family": "Mackenzie Investments",
+    "official_source_url": "https://www.mackenzieinvestments.com/en/products/etfs/mackenzie-canadian-aggregate-bond-index-etf-qbb",
+    "expected_frequency": "MONTHLY",
+    "is_monthly_payer": true,
+    "event_verification_status": "UNVERIFIED",
+    "unverified_reason": "Awaiting official sponsor direct table ingestion",
+    "events": []
+  }
+]

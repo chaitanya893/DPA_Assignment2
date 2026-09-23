@@ -213,3 +213,64 @@ class SourceCandidate:
     coverage_complete: bool = False
     validation_status: ValidationStatus = ValidationStatus.UNAVAILABLE
     validation_reason: str = ""
+
+
+class USComponentType(str, Enum):
+    """The 8 authoritative US distribution tax components per IRS / Form 1099-DIV."""
+
+    ORDINARY_INCOME = "ORDINARY_INCOME"
+    QUALIFIED_DIVIDEND = "QUALIFIED_DIVIDEND"
+    SHORT_TERM_CAPITAL_GAIN = "SHORT_TERM_CAPITAL_GAIN"
+    LONG_TERM_CAPITAL_GAIN = "LONG_TERM_CAPITAL_GAIN"
+    RETURN_OF_CAPITAL = "RETURN_OF_CAPITAL"
+    FOREIGN_TAX_PAID = "FOREIGN_TAX_PAID"
+    SECTION_199A = "SECTION_199A"
+    TAX_EXEMPT_INCOME = "TAX_EXEMPT_INCOME"
+
+
+class CAComponentType(str, Enum):
+    """The 7 authoritative Canadian distribution tax components per CRA / T3/T5 tax slips."""
+
+    ELIGIBLE_DIVIDEND = "ELIGIBLE_DIVIDEND"
+    NON_ELIGIBLE_DIVIDEND = "NON_ELIGIBLE_DIVIDEND"
+    CAPITAL_GAINS = "CAPITAL_GAINS"
+    RETURN_OF_CAPITAL = "RETURN_OF_CAPITAL"
+    FOREIGN_INCOME = "FOREIGN_INCOME"
+    FOREIGN_TAX_PAID = "FOREIGN_TAX_PAID"
+    INTEREST_AND_OTHER = "INTEREST_AND_OTHER"
+
+
+@dataclass
+class ExtractedComponent:
+    """Individual tax component extracted from a distribution breakdown."""
+
+    component_name: str
+    component_type: USComponentType | CAComponentType | str
+    amount: float
+    percentage: float | None = None
+
+
+@dataclass
+class ExtractedDistribution:
+    """High-precision distribution event extracted by Layer B."""
+
+    fund_id: str
+    country: str
+    currency: str
+    ex_date: date
+    gross_amount: float
+    distribution_type: str = "Income"
+    ticker: str | None = None
+    fundserv_code: str | None = None
+    declaration_date: date | None = None
+    record_date: date | None = None
+    payable_date: date | None = None
+    is_estimated: bool = False
+    components: list[ExtractedComponent] = field(default_factory=list)
+    source_url: str = ""
+    source_tier: SourceTier = SourceTier.TIER_2_PRIMARY_UNSTRUCTURED
+    extraction_route: ExtractionRoute = ExtractionRoute.HTML_TABLE
+    retrieved_at: datetime | None = None
+    raw_doc_snippet: str = ""
+    validation_passed: bool = True
+    validation_notes: str = ""
