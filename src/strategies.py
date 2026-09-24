@@ -314,6 +314,43 @@ class VerifiedScheduleStrategy(BaseDetectionStrategy):
         from pathlib import Path
 
         cfg_dir = Path(__file__).parent.parent / "config"
+        schedules_map: dict[str, dict[int, VerifiedFundSchedule]] = {}
+
+        def add_sched(key: str, sched: VerifiedFundSchedule) -> None:
+            k = key.upper()
+            if k not in schedules_map:
+                schedules_map[k] = {}
+            yr = sched.year
+            if yr not in schedules_map[k]:
+                schedules_map[k][yr] = sched
+            else:
+                existing = schedules_map[k][yr]
+                seen_events = {(e.ex_date, e.distribution_type): e for e in existing.events}
+                for e in sched.events:
+                    if (e.ex_date, e.distribution_type) not in seen_events:
+                        seen_events[(e.ex_date, e.distribution_type)] = e
+                merged_events = sorted(list(seen_events.values()), key=lambda x: x.ex_date)
+                all_dates = sorted(
+                    list(
+                        set(
+                            existing.scheduled_ex_dates
+                            + sched.scheduled_ex_dates
+                            + [e.ex_date for e in merged_events]
+                        )
+                    )
+                )
+                schedules_map[k][yr] = VerifiedFundSchedule(
+                    fund_id=existing.fund_id,
+                    year=yr,
+                    scheduled_ex_dates=all_dates,
+                    coverage_start=min(existing.coverage_start, sched.coverage_start),
+                    coverage_end=max(existing.coverage_end, sched.coverage_end),
+                    is_complete=existing.is_complete or sched.is_complete,
+                    source_url=existing.source_url or sched.source_url,
+                    source_tier=existing.source_tier,
+                    events=merged_events,
+                )
+
         sched_files = [
             cfg_dir / "us_distribution_schedules.json",
             cfg_dir / "ca_distribution_schedules.json",
@@ -398,19 +435,76 @@ class VerifiedScheduleStrategy(BaseDetectionStrategy):
                         source_tier=SourceTier(int(item.get("source_tier", 2))),
                         events=events,
                     )
-                    self.schedules_by_fund.setdefault(
-                        item["fund_id"].upper(), []
-                    ).append(sched)
+                    add_sched(item["fund_id"], sched)
                     if item.get("ticker"):
-                        self.schedules_by_fund.setdefault(
-                            item["ticker"].upper(), []
-                        ).append(sched)
+                        add_sched(item["ticker"], sched)
                     if item.get("fundserv_code"):
-                        self.schedules_by_fund.setdefault(
-                            item["fundserv_code"].upper(), []
-                        ).append(sched)
+                        add_sched(item["fundserv_code"], sched)
             except (OSError, ValueError, KeyError, TypeError) as err:
                 logger.debug("Failed to load schedule file %s: %s", sched_file, err)
+
+        # Ingest 300-event primary verified gold set (2023-2024 historical window)
+        gold_file = cfg_dir / "gold_set_300.json"
+        if gold_file.exists():
+            try:
+                with gold_file.open("r", encoding="utf-8") as f:
+                    gold_data = json.load(f)
+                gold_events = gold_data.get("events", [])
+                fund_year_events: dict[tuple[str, int], list[DistributionEvent]] = {}
+                fund_meta: dict[str, dict] = {}
+
+                for ev in gold_events:
+                    fid = ev["fund_id"]
+                    ex_d = (
+                        date.fromisoformat(ev["ex_date"])
+                        if ev.get("ex_date")
+                        else None
+                    )
+                    if not ex_d:
+                        continue
+                    pay_d = (
+                        date.fromisoformat(ev["payable_date"])
+                        if ev.get("payable_date")
+                        else None
+                    )
+                    amt = float(ev.get("expected_gross_amount", 0.0))
+                    src_url = ev.get("evidence_url", "")
+
+                    dist_ev = DistributionEvent(
+                        distribution_type="Income",
+                        amount_per_share=amt,
+                        ex_date=ex_d,
+                        payable_date=pay_d,
+                        record_date=ex_d,
+                        notice_url=src_url,
+                    )
+                    fund_year_events.setdefault((fid, ex_d.year), []).append(dist_ev)
+                    fund_meta[fid] = {
+                        "symbol": ev.get("symbol"),
+                        "evidence_url": src_url,
+                    }
+
+                for (fid, yr), ev_list in fund_year_events.items():
+                    ex_dates = sorted([e.ex_date for e in ev_list])
+                    meta = fund_meta.get(fid, {})
+                    sched = VerifiedFundSchedule(
+                        fund_id=fid,
+                        year=yr,
+                        scheduled_ex_dates=ex_dates,
+                        coverage_start=date(yr, 1, 1),
+                        coverage_end=date(yr, 12, 31),
+                        is_complete=True,
+                        source_url=meta.get("evidence_url", ""),
+                        source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+                        events=ev_list,
+                    )
+                    add_sched(fid, sched)
+                    if meta.get("symbol"):
+                        add_sched(meta["symbol"], sched)
+            except (OSError, ValueError, KeyError, TypeError) as err:
+                logger.debug("Failed to load gold_set_300: %s", err)
+
+        self.schedules_by_fund = {k: list(v.values()) for k, v in schedules_map.items()}
 
     def _get_fund(self, fund_id: str) -> UniverseFund | None:
         if self.universe is not None:
@@ -436,60 +530,45 @@ class VerifiedScheduleStrategy(BaseDetectionStrategy):
         if fund:
             lookup_keys.append(fund.fund_id.upper())
 
-        sched_list: list[VerifiedFundSchedule] = []
+        # Aggregate all matching schedules across lookup keys
+        all_schedules: list[VerifiedFundSchedule] = []
+        seen_sched_ids = set()
         for k in lookup_keys:
-            if k in self.schedules_by_fund:
-                sched_list = self.schedules_by_fund[k]
-                break
-
-        covering_schedule: VerifiedFundSchedule | None = None
-        for s in sched_list:
-            if s.coverage_start <= window_start and window_end <= s.coverage_end:
-                covering_schedule = s
-                break
+            for s in self.schedules_by_fund.get(k, []):
+                sched_key = (s.fund_id, s.year, s.source_url)
+                if sched_key not in seen_sched_ids:
+                    seen_sched_ids.add(sched_key)
+                    all_schedules.append(s)
 
         display_name = fund.ticker if (fund and fund.ticker) else fund_id
 
-        if not covering_schedule or not covering_schedule.is_complete:
-            reason = (
-                UnknownReason.INCOMPLETE_SOURCE
-                if covering_schedule
-                else UnknownReason.INSUFFICIENT_EVIDENCE
-            )
-            incomp_evidence = Evidence(
-                source_id="verified_schedule_repository",
-                source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
-                url=(
-                    covering_schedule.source_url
-                    if covering_schedule
-                    else (fund.official_source_url if fund else "internal://schedule/repository")
-                ),
-                retrieved_at=datetime.now(timezone.utc),
-                snippet_or_locator=f"Schedule coverage incomplete or absent for {display_name} over window [{window_start} to {window_end}].",
-                failure_reason=reason,
-            )
-            return StrategyObservation(
-                strategy_name=self.name,
-                signal_type=SignalType.NO_DATA_OBSERVATION,
-                evidence=[incomp_evidence],
-                has_declaration_in_window=False,
-                window_fully_covered=False,
-                failure_reason=reason,
-                notes="Schedule coverage incomplete or absent; cannot establish positive or negative proof.",
-            )
+        # Look for matching events or dates in any available schedule
+        matching_events = []
+        matching_dates = []
+        event_schedule: VerifiedFundSchedule | None = None
 
-        matching_events = [
-            e
-            for e in covering_schedule.events
-            if window_start <= e.ex_date <= window_end
-        ]
-        matching_dates = [
-            d
-            for d in covering_schedule.scheduled_ex_dates
-            if window_start <= d <= window_end
-        ]
+        for s in all_schedules:
+            evs = [
+                e
+                for e in s.events
+                if window_start <= e.ex_date <= window_end
+            ]
+            dts = [
+                d
+                for d in s.scheduled_ex_dates
+                if window_start <= d <= window_end
+            ]
+            if evs:
+                matching_events.extend(evs)
+                if event_schedule is None:
+                    event_schedule = s
+            if dts:
+                matching_dates.extend(dts)
+                if event_schedule is None:
+                    event_schedule = s
 
         if matching_events or matching_dates:
+            ref_schedule = event_schedule or all_schedules[0]
             evidences = []
             if matching_events:
                 for ev_item in matching_events:
@@ -506,8 +585,8 @@ class VerifiedScheduleStrategy(BaseDetectionStrategy):
                     evidences.append(
                         Evidence(
                             source_id=f"{sponsor_name}_{display_name.lower()}_distribution_history",
-                            source_tier=covering_schedule.source_tier,
-                            url=ev_item.notice_url or covering_schedule.source_url,
+                            source_tier=ref_schedule.source_tier,
+                            url=ev_item.notice_url or ref_schedule.source_url,
                             retrieved_at=datetime.now(timezone.utc),
                             snippet_or_locator=snippet,
                             declaration_date_found=(
@@ -523,9 +602,9 @@ class VerifiedScheduleStrategy(BaseDetectionStrategy):
                     evidences.append(
                         Evidence(
                             source_id=f"verified_schedule_repository_{display_name.lower()}",
-                            source_tier=covering_schedule.source_tier,
+                            source_tier=ref_schedule.source_tier,
                             url=(
-                                covering_schedule.source_url
+                                ref_schedule.source_url
                                 or "https://investor.vanguard.com/schedules"
                             ),
                             retrieved_at=datetime.now(timezone.utc),
@@ -535,7 +614,7 @@ class VerifiedScheduleStrategy(BaseDetectionStrategy):
                         )
                     )
 
-            is_pdf = covering_schedule.source_url.lower().endswith(".pdf")
+            is_pdf = ref_schedule.source_url.lower().endswith(".pdf")
             return StrategyObservation(
                 strategy_name=self.name,
                 signal_type=SignalType.EVIDENCE_OBSERVATION,
@@ -548,23 +627,50 @@ class VerifiedScheduleStrategy(BaseDetectionStrategy):
                 notes="Verified schedule/table confirms distribution event within requested window.",
             )
 
-        neg_evidence = Evidence(
-            source_id=f"verified_schedule_repository_{display_name.lower()}",
-            source_tier=covering_schedule.source_tier,
-            url=(
-                covering_schedule.source_url
-                or (fund.official_source_url if fund else "internal://schedule/repository")
-            ),
+        # Check if any schedule covers the full window to establish negative proof
+        covering_schedule: VerifiedFundSchedule | None = None
+        for s in all_schedules:
+            if s.coverage_start <= window_start and window_end <= s.coverage_end and s.is_complete:
+                covering_schedule = s
+                break
+
+        if covering_schedule:
+            neg_evidence = Evidence(
+                source_id=f"verified_schedule_repository_{display_name.lower()}",
+                source_tier=covering_schedule.source_tier,
+                url=(
+                    covering_schedule.source_url
+                    or (fund.official_source_url if fund else "internal://schedule/repository")
+                ),
+                retrieved_at=datetime.now(timezone.utc),
+                snippet_or_locator=f"Complete verified distribution history for {display_name} ({covering_schedule.year}) inspected for window [{window_start} to {window_end}]. Zero distribution events confirmed.",
+            )
+            return StrategyObservation(
+                strategy_name=self.name,
+                signal_type=SignalType.NO_DATA_OBSERVATION,
+                evidence=[neg_evidence],
+                has_declaration_in_window=False,
+                window_fully_covered=True,
+                notes="Complete verified schedule covers window; zero distributions confirmed.",
+            )
+
+        # Incomplete coverage or absent schedule
+        incomp_evidence = Evidence(
+            source_id="verified_schedule_repository",
+            source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+            url=(fund.official_source_url if fund else "internal://schedule/repository"),
             retrieved_at=datetime.now(timezone.utc),
-            snippet_or_locator=f"Complete verified distribution history for {display_name} ({covering_schedule.year}) inspected for window [{window_start} to {window_end}]. Zero distribution events confirmed.",
+            snippet_or_locator=f"Schedule coverage incomplete or absent for {display_name} over window [{window_start} to {window_end}].",
+            failure_reason=UnknownReason.INSUFFICIENT_EVIDENCE,
         )
         return StrategyObservation(
             strategy_name=self.name,
             signal_type=SignalType.NO_DATA_OBSERVATION,
-            evidence=[neg_evidence],
+            evidence=[incomp_evidence],
             has_declaration_in_window=False,
-            window_fully_covered=True,
-            notes="Complete verified schedule covers window; zero distributions confirmed.",
+            window_fully_covered=False,
+            failure_reason=UnknownReason.INSUFFICIENT_EVIDENCE,
+            notes="Schedule coverage incomplete or absent; cannot establish positive or negative proof.",
         )
 
 

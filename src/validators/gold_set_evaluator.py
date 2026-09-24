@@ -11,10 +11,12 @@ from __future__ import annotations
 import json
 import logging
 from dataclasses import dataclass, field
+from datetime import date
 from pathlib import Path
 from typing import Any
 
 from src.detector import detect_distribution
+from src.strategies import CalendarExpectationStrategy, VerifiedScheduleStrategy
 from src.universe_loader import UniverseRegistry
 
 logger = logging.getLogger(__name__)
@@ -65,10 +67,29 @@ class GoldSetEvaluator:
         fn = 0
         tn = 0
 
+        strategies = [
+            CalendarExpectationStrategy(universe=self.universe),
+            VerifiedScheduleStrategy(universe=self.universe),
+        ]
+
         for item in gold_events:
             fund_id = item["fund_id"]
             evaluated_fund_set.add(fund_id)
             expected_status = item.get("expected_status", "DECLARED")
+            ex_date_str = item.get("ex_date")
+            if not ex_date_str:
+                continue
+
+            ex_d = date.fromisoformat(ex_date_str)
+            w_start = date(ex_d.year, ex_d.month, 1)
+            if ex_d.month in {1, 3, 5, 7, 8, 10, 12}:
+                w_end = date(ex_d.year, ex_d.month, 31)
+            elif ex_d.month in {4, 6, 9, 11}:
+                w_end = date(ex_d.year, ex_d.month, 30)
+            else:
+                w_end = date(
+                    ex_d.year, ex_d.month, 29 if ex_d.year % 4 == 0 else 28
+                )
 
             fund = self.universe.get_fund(fund_id)
             if not fund:
@@ -78,12 +99,34 @@ class GoldSetEvaluator:
                 )
                 continue
 
-            # In the Gold Set, every verified event corresponds to an audited primary announcement
-            # When evaluating deterministic match against gold benchmark:
+            # Execute genuine Layer A detection engine over the event window
+            detection = detect_distribution(
+                fund_id=fund_id,
+                window_start=w_start,
+                window_end=w_end,
+                strategies=strategies,
+                universe=self.universe,
+            )
+            actual_status = detection.status.value
+
             if expected_status == "DECLARED":
-                tp += 1
+                if actual_status == "DECLARED":
+                    tp += 1
+                else:
+                    fn += 1
+                    report.failure_details.append(
+                        {
+                            "fund_id": fund_id,
+                            "ex_date": ex_date_str,
+                            "expected": "DECLARED",
+                            "actual": actual_status,
+                        }
+                    )
             else:
-                tn += 1
+                if actual_status == "DECLARED":
+                    fp += 1
+                else:
+                    tn += 1
 
         report.evaluated_funds = len(evaluated_fund_set)
         report.true_positives = tp
