@@ -51,3 +51,5 @@ htmlcov/
 data/raw/
 data/cache/
 data/artifacts/
+
+_backup_before_claude_fixes.zip
