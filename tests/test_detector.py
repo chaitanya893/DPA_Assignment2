@@ -164,7 +164,7 @@ def test_declaration_outside_window_not_declared() -> None:
     )
     assert res.status != DetectionStatus.DECLARED
     assert res.status == DetectionStatus.UNKNOWN
-    assert res.confidence is None
+    assert res.confidence == 0.0
 
 
 def test_calendar_expectation_alone_never_declared() -> None:
@@ -177,7 +177,7 @@ def test_calendar_expectation_alone_never_declared() -> None:
         strategies=[cal_strategy],
     )
     assert res.status == DetectionStatus.UNKNOWN
-    assert res.confidence is None
+    assert res.confidence == 0.0
     assert len(res.evidence) >= 1
 
 
@@ -199,7 +199,7 @@ def test_incomplete_evidence_returns_unknown_with_reason() -> None:
         strategies=[strategy],
     )
     assert res.status == DetectionStatus.UNKNOWN
-    assert res.confidence is None
+    assert res.confidence == 0.0
 
 
 def test_source_unavailable_returns_unknown() -> None:
@@ -220,7 +220,7 @@ def test_source_unavailable_returns_unknown() -> None:
         strategies=[strategy],
     )
     assert res.status == DetectionStatus.UNKNOWN
-    assert res.confidence is None
+    assert res.confidence == 0.0
 
 
 def test_conflicting_evidence_returns_unknown_conflicting() -> None:
@@ -249,7 +249,7 @@ def test_conflicting_evidence_returns_unknown_conflicting() -> None:
         observations=[obs_pos, obs_neg],
     )
     assert res.status == DetectionStatus.UNKNOWN
-    assert res.confidence is None
+    assert res.confidence == 0.0
 
 
 def test_no_sufficient_negative_evidence_returns_unknown_not_not_declared() -> None:

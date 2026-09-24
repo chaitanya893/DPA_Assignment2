@@ -136,7 +136,8 @@ def test_tier_1_unavailable_tier_2_positive_yields_declared(
     mock_client = MagicMock(spec=HTTPClient)
 
     def mock_get(url: str, **kwargs):
-        if "sec.gov" in url or "submissions/CIK" in url:
+        # Tier 1 for a Canadian fund is TMX/CDS; make it unavailable like SEC.
+        if "sec.gov" in url or "submissions/CIK" in url or "tmx.com" in url:
             return HTTPResponseRecord(
                 url=url,
                 status_code=404,
@@ -227,7 +228,7 @@ def test_tier_1_2_unavailable_tier_3_only_yields_unknown(
     )
     # Crucial assignment rule: Tier 3 can NEVER produce DECLARED
     assert result.status == DetectionStatus.UNKNOWN
-    assert result.confidence is None
+    assert result.confidence == 0.0
 
 
 # -----------------------------------------------------------------------------

@@ -1,239 +1,176 @@
-# 📄 SENIOR EXECUTIVE MEMORANDUM — FUND DISTRIBUTION INTELLIGENCE ENGINE
+# Final memo - Fund Distribution Detection and Extraction Engine (Assignment 2)
 
-**TO:** Senior Engineering Leadership, Investment Data Operations & Compliance Committee  
-**FROM:** Senior Distributed Data & Financial Systems Architecture Team  
-**DATE:** September 24, 2026  
-**SUBJECT:** End-to-End Fund Distribution Intelligence, Ingestion & Data Quality Engine (Phase 1–4 Final Deliverable)  
-**STATUS:** PRODUCTION-READY (100% Verified against Assignment 2 Specification)  
+**Date:** 24 September 2026
+**Status:** code complete and tested offline; live measurements pending (see section 6).
 
----
+> PDF closing note: "a working pipeline that covers 60 percent of cases and documents the other
+> 40 percent precisely is a better outcome than one claiming full coverage that nobody can verify."
+> This memo only states numbers that the code can reproduce. Where a number needs a live run or the
+> manually verified gold set, it says so.
 
-## 1. Executive Summary & Objective
+## 1. What was built
 
-Accurate, timely, and immutable ingestion of fund distribution declarations across North American mutual funds and Exchange-Traded Funds (ETFs) is critical to fund accounting, NAV reconciliation, dividend forecasting, and tax characterization. In current production environments, market participants suffer from late filings, ambiguous tax narratives, silent amendments, and anti-scraping blocks (WAF / 403 / SPA shells).
+| Deliverable (PDF) | Where | State |
+|---|---|---|
+| Domain primer | `docs/DOMAIN_PRIMER.md` | done |
+| Layer A atomic detector | `src/detector.py`, `src/strategies.py` | done; accuracy to be measured against the gold set |
+| Backfill and gap logic | `src/sweep_scheduler.py`, `config/sweep_config.yaml`, table `fund_detection_state` | done |
+| Routing and extraction (Layer B) | `src/extractor.py`, `src/parsers/` | done (API, HTML table, PDF/Excel, filing, manual) |
+| Validation gate + DQ report | `src/validators/`, `src/pipeline.py` | done |
+| Database | `src/database/`, `docs/schema.sql`, `docs/schema_diagram.md` | schema done; 24-month history needs the live backfill |
+| Gold set | `config/gold_set.csv`, `docs/GOLD_SET_GUIDE.md`, `src/validators/gold_set_evaluator.py` | tooling done; the 300 events must be verified by hand |
+| Reports | `src/reports/detection_report.py` | done; filled by the live run |
 
-This project delivers a **production-grade, dual-layer distributed data pipeline** covering a representative **100-Fund North American Universe (60 US + 40 Canadian)**, supported by a 9-table relational database architecture, deterministic data quality validation engine, and a 300-event primary-source Gold Set benchmark.
+One command runs the whole pipeline for the universe:
 
-### Key Measured Highlights
-* **Universe Ingestion:** 100 Funds (81 ETFs, 19 Mutual Funds; 54 Monthly Payers, 38 Quarterly, 4 Semi-Annual, 4 Annual).
-* **Layer A Detector Precision & Recall:** Precision **100.0%** ($\ge 99\%$ target), Recall **100.0%** ($\ge 98\%$ target) against the audited Gold Set.
-* **Deterministic Extraction (Layer B):** 100% of detected distributions extracted via structured route selection (HTML Tables, SEC Filings, Regulatory Feeds).
-* **Database & Integrity:** 9 Relational Tables with strict idempotency (0 duplicates on re-run), non-destructive versioning (`is_superseded` flags), and cryptographic SHA-256 evidence linking.
-* **Data Quality Pass Rate:** **100.0%** across 504 deterministic checks (7 validation rules) over 24 months of historical declarations.
-* **Automated Test Suite:** **198 / 198 automated unit and integration tests passing (100% Green)**.
-
----
-
-## 2. Universe Architecture & Distribution Expectation Matrix
-
-The 100-fund universe ([`config/universe_100.json`](file:///c:/Users/chait/Desktop/DPA_Project2/config/universe_100.json)) was engineered to reflect real-world complexity across asset managers, vehicle structures, and distribution frequencies.
-
-```mermaid
-pie title 100-Fund Universe Country Split
-    "US Funds (60)" : 60
-    "Canadian Funds (40)" : 40
+```bash
+python -m src.database.populator        # reference data + 24-month backfill (Layer A -> B -> validation -> DB)
+python -m src.sweep_scheduler           # daily run: gap logic decides what to re-check
+python -m src.reports.detection_report  # hit rate, UNKNOWN reasons, routes, coverage, cost per check
 ```
 
-### Frequency Breakdown
-1. **US Universe (60 Funds):**
-   - **Monthly Payers (26 funds):** Fixed Income & Option Income ETFs (`BND`, `AGG`, `HYG`, `LQD`, `MBB`, `USHY`, `JNK`, `BOND`, `MINT`, `JEPI`, `JEPQ`, etc.).
-   - **Quarterly Payers (30 funds):** Broad Equity & Sector Index ETFs (`VTI`, `VOO`, `IVV`, `QQQ`, `SCHD`, `SPY`, `IWM`, `XLF`, `XLE`, etc.).
-   - **Annual / Semi-Annual Payers (4 funds):** Capital Growth & Index Mutual Funds (`FZROX`, `FNCMX`, `FXAIX`, `FSKAX`).
-2. **Canadian Universe (40 Funds):**
-   - **Monthly Payers (28 funds):** `ZAG`, `ZEB`, `ZWB`, `ZUT`, `ZDV`, `ZDB`, `ZPR`, `VAB`, `VDY`, `VSB`, `XBB`, `XEI`, `XDV`, `XUT`, `XSB`, `XSH`, `XHY`, `RBN`, `RCD`, `RUSB`, `RBF556`, `RBF266`, `TDB909`, `HDIV`, `FIE`, `FIG`, `CDZ`, `QBB`.
-   - **Quarterly Payers (8 funds):** `ZCN`, `VCN`, `VFV`, `VBAL`, `VGRO`, `XIC`, `TTP`, `TPU`.
-   - **Semi-Annual Payers (2 funds):** `TDB900`, `TDB902`.
-   - **Annual Payers (2 funds):** `HXT`, `HBB`.
+## 2. Universe
 
-### Dynamic Month-Wise Expectation Matrix
-To minimize redundant crawling, the engine uses a dynamic monthly expectations schedule:
-* **Off-Cadence Inactive Months:** Evaluated with negative calendar proof; yields `NOT_DECLARED` without hitting rate-limited sponsor portals.
-* **On-Cadence Active Months (e.g., March, June, September, December):** Targeted sweeps with high-priority crawl scheduling.
+100 funds in `config/universe_100.json`: 60 US and 40 Canadian, 81 ETFs and 19 mutual funds,
+54 monthly payers, 15 fund families. All US funds have a CIK; Canadian funds have a ticker or a
+FundServ code.
 
----
+## 3. Layer A - how a window is decided
 
-## 3. Multi-Tier Source Registry & Crawling Strategy
+Strategies run cheapest first (PDF "Detection strategies"):
 
-To enforce strict cryptographic provenance and legal compliance, ingestion endpoints are partitioned into three distinct tiers:
+1. **Calendar expectation** - on/off cadence from the fund's frequency. A trigger only.
+2. **Change detection** - sha256 of the fund's distribution page against the last stored hash.
+3. **Filing index polling** - EDGAR daily form index for 497 / 497K / N-CSR / N-CEN / 8-K... filed by universe CIKs.
+4. **Sources** - SEC EDGAR submissions and filing documents (Tier 1, US), TMX notices (Tier 1, CA),
+   the fund's official distribution page or release (Tier 2). **Targeted lookup** runs only when these are inconclusive.
 
-```mermaid
-flowchart TD
-    A[Target Fund Distribution Event] --> B{Tier 1: Regulatory Feeds}
-    B -->|SEC EDGAR API / Rule 19a-1 / SEDAR+| C[Parse Structured Notice]
-    B -->|Unavailable or Delayed| D{Tier 2: Primary Unstructured}
-    D -->|Official Sponsor Portal / Table / PDF| E[Extract Table / Press Release]
-    D -->|Blocked 403 / SPA Shell| F[Return UNKNOWN & Queue Review]
-    D --> G{Tier 3: Public Market Data}
-    G -->|MarketWatch / Exchange Feeds| H[Cross-Check & Reconciliation Only]
-    H -.->|Never Standalone Declaration| F
-```
+Synthesis rules:
 
-1. **Tier 1 (Regulatory Filings & Feeds):**
-   - SEC EDGAR Submissions API & Rule 19a-1 Notices (US).
-   - SEDAR+ & TMX Regulatory Distribution Notices (CA).
-   - *Characteristics:* Highest authority, immune to sponsor marketing redesigns, 100% legal compliance.
-2. **Tier 2 (Official Fund Sponsor Portals):**
-   - Vanguard Advisors Distribution Tables, iShares Canadian Schedules, BMO GAM Press Releases, Fidelity Fund Research.
-   - *Characteristics:* Timely declaration source, rich multi-component tax breakdowns.
-3. **Tier 3 (Public Market Corroboration Feeds):**
-   - Public market data feeds.
-   - *Strict Rule:* Used **strictly for variance cross-checking**; never allowed to declare a distribution standalone.
+- **DECLARED** needs Tier 1 or Tier 2 evidence whose declaration date, ex-date or publication date
+  is in the window. Dates are only read next to their own label; a record or payable date alone
+  never places a distribution in a window; a filing date is stored as a publication date, never as
+  a declaration date. Tier 3 alone never decides anything (and Tier 3 is disabled until its terms of
+  use are reviewed).
+- **NOT_DECLARED** needs an applicable Tier 1/2 source that demonstrably covers the whole window
+  (a distribution table that spans it, or a published full-year schedule) and no outage on any
+  applicable Tier 1/2 source.
+- **UNKNOWN** otherwise, with a reason (SOURCE_UNAVAILABLE, RETRIEVAL_FAILED, INCOMPLETE_SOURCE,
+  CONFLICTING_EVIDENCE, INSUFFICIENT_EVIDENCE). A source that does not apply to a fund (SEC for a
+  Canadian fund) is ignored instead of blocking an answer.
+- **Confidence** is always a float in 0.0-1.0: Tier 1 = 1.00, Tier 2 with a labelled declaration or
+  ex-date = 0.90, Tier 2 publication date only = 0.80, NOT_DECLARED Tier 2 coverage = 0.85, minus 0.05
+  when another applicable source failed; UNKNOWN = 0.0.
 
----
+## 4. Backfill and gap logic
 
-## 4. Layer A (Atomic Detection) & Layer B (Extraction) Performance
+Per fund: `expected_frequency`, `last_confirmed_event_date`, `last_checked_at`, `consecutive_unknowns`.
+A lookback sweep over the last **N months** runs when the time since the last confirmed event
+exceeds **1.5x** the expected interval (monthly 30 d, quarterly 91 d, semi-annual 182 d, annual 365 d),
+when UNKNOWN came back **more than twice** in a row, at **month-end** (last 3 days) and throughout the
+**year-end period** (1 Dec - 15 Jan). A new fund gets a **24-month backfill**. Sweeps are cut into
+calendar months so every monthly payment is detected separately. On quiet days the fund only gets
+a routine check, and that is skipped when it is off cadence, its page hash is unchanged and EDGAR
+shows no new filing.
 
-The architecture decouples **Binary Event Detection (Layer A)** from **High-Precision Parameter Extraction (Layer B)** to protect database integrity.
+**Default N = 3 months**, configurable in `config/sweep_config.yaml`. Reasons: it covers one full
+cycle of the quarterly payers that make up most of the non-monthly universe; sources publish late
+and amend (Canadian year-end reallocations, estimated -> final capital gains), and a 3-month window
+re-reads a restated month twice more after its first appearance; and it costs only 3 checks per
+triggered fund, with page and index responses reused within a run.
 
-### Layer A 3-State Decision Model
-* **`DECLARED`:** Confirmed announcement in the active date window backed by Tier 1 or Tier 2 official sources.
-* **`NOT_DECLARED`:** Verified off-cadence window backed by complete annual calendar proof.
-* **`UNKNOWN`:** First-class state for HTTP 403 / WAF blocks, SPA dynamic shells, or unverified secondary claims. **Never guessed or fabricated.**
+## 5. Layer B, validation and database
 
-### Layer B Extraction Decision Tree
-When Layer A returns `DECLARED`, the router selects the deterministic parser:
-1. `STRUCTURED_API` $\rightarrow$ Direct JSON parsing.
-2. `HTML_TABLE` $\rightarrow$ Cell-isolated HTML table parser with column header resolution (`Ex-Date`, `Pay Date`, `Cash Amount`).
-3. `PDF_SCHEDULE` $\rightarrow$ Document extraction via `pdfplumber` / PyMuPDF table parsing.
-4. `FILING_EXTRACT` $\rightarrow$ Regex and pattern extractor for Rule 19a-1 notices.
+Route decision tree per cited document: structured JSON -> HTML table -> PDF / Excel ->
+filing / notice text -> manual review. The route taken is stored for every check
+(`detection_run.route_taken`) and every event (`distribution_event.extraction_route`).
 
----
+No LLM is used. Every extracted figure passes the deterministic checks **before** it is stored:
+component sum (tolerance $0.0005, i.e. rounding of 4-6 decimal per-share figures), date order
+(declaration <= ex <= record <= pay), currency = share class currency, amount > 0; NAV decline and
+the 20%-of-NAV magnitude check when a NAV is supplied; cross-source variance when two sources report
+the same event. CRITICAL failures go to `review_queue`, not to the database; WARNINGs are stored and
+flagged. Checks without input data are reported as **skipped**, not as passes.
 
-## 5. Relational Database Architecture & Provenance
+Database rules: natural key `(class_id, ex_date, distribution_category, estimated_or_final, version)`;
+restatements append a version and supersede the old row; a different source disagreeing is recorded
+next to the event and flagged, never silently resolved; every event links to the stored raw bytes
+(`raw_document`, sha256) it came from; estimated and final rows coexist.
 
-The database schema fulfills all non-negotiable requirements of the Project Specification across 9 relational tables:
+Tax components are stored only when the source publishes them. When a page shows only a total, the
+event has `components_reported = false` and no component rows. Nothing is inferred.
 
-```mermaid
-erDiagram
-    FUND_MASTER ||--o{ SHARE_CLASS : "has classes"
-    FUND_MASTER ||--o{ CRAWL_LOG : "audits crawls"
-    SOURCE_REGISTRY ||--o{ CRAWL_LOG : "tracks attempts"
-    SOURCE_REGISTRY ||--o{ RAW_DOCUMENT : "stores artifacts"
-    SHARE_CLASS ||--o{ DISTRIBUTION_EVENT : "declares events"
-    DISTRIBUTION_EVENT ||--o{ DISTRIBUTION_COMPONENT : "tax breakdown"
-    DISTRIBUTION_EVENT ||--o{ EVENT_EVIDENCE : "provenance link"
-    RAW_DOCUMENT ||--o{ EVENT_EVIDENCE : "evidenced by"
-    FUND_MASTER ||--o{ DQ_FLAG : "validates quality"
-```
+## 6. Results
 
-### Table Structure & Live Metrics
+### Measured offline (reproducible now)
 
-| Table Name | Row Count | Purpose & Design Constraints |
-| :--- | :--- | :--- |
-| **`fund_master`** | **100** | Primary fund entities (60 US, 40 CA; CIK, SEDAR ID, Country, Fund Type). |
-| **`share_class`** | **100** | Share class identifiers (Ticker, CUSIP, ISIN, Fundserv, Currency, Frequency). |
-| **`source_registry`** | **8** | Regulated endpoint registry with source tiers, robots.txt, and parser versions. |
-| **`raw_document`** | **40** | Immutable cryptographic store holding raw HTML/text keyed by SHA-256. |
-| **`distribution_event`** | **72** | 24-month verified distribution events with natural composite key (`class_id`, `ex_date`, `estimated_or_final`). |
-| **`distribution_component`** | **72** | Granular tax component breakdown (Ordinary Income, Eligible Dividend). |
-| **`event_evidence`** | **72** | Provenance audit link binding each event to the exact `raw_document` SHA-256 hash. |
-| **`crawl_log`** | Active | Immutable audit logger recording timestamp, HTTP status, hash, outcome, duration. |
-| **`dq_flag`** | Active | Anomaly tracking table logging validation failures, severity, and resolution status. |
+- `python -m pytest`: **539 tests pass** offline. Among them:
+  - a 12-fund x 24-month matrix (288 cases) where the detector must return the right status for every month and Layer B the exact amount;
+  - end-to-end pipeline tests: provenance, idempotent re-runs, the validation gate and the review queue;
+  - gap-logic rule tests;
+  - one regression test for each bug found in the audit.
+- `ruff check` and `black --check` are clean for `src/` and `tests/`.
 
-### Non-Negotiable Database Rules
-1. **Strict Idempotency:** The natural composite key suppresses 100% of duplicate rows upon re-execution.
-2. **Non-Destructive Amendments:** Amended distributions bump version (`version=2`), mark the previous record `is_superseded=TRUE`, and link `superseded_by='new_event_id'`.
-3. **Cryptographic Provenance:** Every figure in `distribution_event` traces directly to a stored SHA-256 hashed document.
-4. **Estimated vs Final Coexistence:** Estimated and Final events on the same Ex-Date coexist seamlessly as distinct records.
+### Needs a live run (fill from `quality/detection_report.md`)
 
----
+| Metric | Value |
+|---|---|
+| Checks run / funds covered | PENDING LIVE RUN |
+| Hit rate (DECLARED share) / NOT_DECLARED / UNKNOWN | PENDING LIVE RUN |
+| UNKNOWN reasons by source (where automation fails) | PENDING LIVE RUN |
+| Route taken on DECLARED checks (automatable share) | PENDING LIVE RUN |
+| Extracted without manual intervention (target >= 90 %) | PENDING LIVE RUN |
+| Coverage by fund family and by country | PENDING LIVE RUN |
+| Average HTTP requests, KB and seconds per check | PENDING LIVE RUN |
+| Events stored, 24-month coverage per fund | PENDING LIVE RUN |
 
-## 6. Data Quality Validation Results & Gold Set Accuracy
+### Needs the gold set (fill from `quality/gold_set_evaluation.json`)
 
-### 7 Deterministic Validation Rules (100% Pass Rate over Clean Universe)
+| Metric | Target | Value |
+|---|---|---|
+| Recall | >= 98 % | PENDING GOLD SET |
+| Precision | >= 99 % | PENDING GOLD SET |
+| False negative rate | | PENDING GOLD SET |
+| Extraction accuracy (ex-date and amount exact) | | PENDING GOLD SET |
 
-```mermaid
-gantt
-    title Data Quality Rule Coverage
-    dateFormat  YYYY-MM-DD
-    section Deterministic Rules
-    Component Sum Check       :done, 2024-01-01, 2024-12-31
-    Date Ordering Sanity      :done, 2024-01-01, 2024-12-31
-    NAV Decline Consistency   :done, 2024-01-01, 2024-12-31
-    Magnitude 20% NAV Check   :done, 2024-01-01, 2024-12-31
-    Currency Integrity        :done, 2024-01-01, 2024-12-31
-    Frequency Continuity      :done, 2024-01-01, 2024-12-31
-    Cross-Source Variance     :done, 2024-01-01, 2024-12-31
-```
+The previous version of this memo reported 100 % precision and recall and a 100 % DQ pass rate. Those
+figures came from a script-generated gold set that the detector also read as evidence, and from
+three DQ rules that never ran. They are withdrawn.
 
-1. **`COMPONENT_SUM_CHECK`:** Verifies $\sum \text{Components} = \text{Gross Amount} \pm 0.0005$. (72/72 Passed)
-2. **`DATE_ORDERING_SANITY`:** Enforces $\text{Declaration} \le \text{Ex} \le \text{Record} \le \text{Payable}$. (72/72 Passed)
-3. **`NAV_DECLINE_CONSISTENCY`:** Validates ex-date price drop against distribution magnitude. (72/72 Passed)
-4. **`MAGNITUDE_20PCT_NAV_CHECK`:** Flags distributions $> 20\%$ of NAV for human review without hard rejection. (72/72 Passed)
-5. **`CURRENCY_INTEGRITY`:** Enforces US $\rightarrow$ USD, CA $\rightarrow$ CAD. (72/72 Passed)
-6. **`FREQUENCY_CONTINUITY`:** Flags gaps $> 45$ days in monthly payers. (72/72 Passed)
-7. **`CROSS_SOURCE_VARIANCE`:** Flags discrepancies between primary and secondary market feeds. (72/72 Passed)
+## 7. Where automation is expected to fail (to confirm with the live run)
 
-### Gold Set Benchmark Results (300 Events across 50 Funds)
-* **Total Gold Events:** **300** verified historical declarations spanning 24 months.
-* **Precision:** **100.0%** (Target: $\ge 99.0\%$) $\rightarrow$ **PASS**
-* **Recall:** **100.0%** (Target: $\ge 98.0\%$) $\rightarrow$ **PASS**
-* **F1-Score:** **100.0%**
+- **JavaScript-rendered sponsor pages** (several large US and Canadian families): the HTML has no
+  table, so the page cannot prove coverage and the result is UNKNOWN (INSUFFICIENT_EVIDENCE). Tier 1
+  sources still work for US funds. Options: a documented JSON endpoint per family (API route), or a
+  headless browser, which needs its own ToS review.
+- **Blocks (403 / bot management)**: logged and returned as UNKNOWN. By policy there are no proxies or
+  header tricks.
+- **TMX endpoint**: `https://www.tmx.com/dividends/{ticker}` was not verified from this environment.
+  If it does not serve notices, Canadian funds rely on the sponsor pages (Tier 2).
+- **Scanned PDFs** without a text layer go to manual review (OCR with ocrmypdf/Tesseract is not wired in).
+- **Tax character** is often published only in year-end T3/T5 or 1099 files, so many events will have
+  `components_reported = false` until those files are ingested (stretch goal).
+- **Multi-fund trust filings** on EDGAR: identity is checked against ticker, fund name and series ID,
+  but the 19(a) wording varies by sponsor, so some notices will need review.
 
----
+## 8. Cost of running the full universe
 
-## 7. Failure Modes, Edge Cases & Mitigation Strategies
+Cost per check comes from `detection_run` (requests, bytes, seconds) after the live run. Model:
 
-```mermaid
-graph TD
-    A[Failure Modes Encountered] --> B[WAF / 403 / Cloudflare Blocks]
-    A --> C[Dynamic SPA Shells]
-    A --> D[Cross-Fund Contamination]
-    A --> E[Canadian Year-End Reallocations]
-    
-    B --> B1[Mitigation: Downgrade to UNKNOWN + Tier 1 Fallback]
-    C --> C1[Mitigation: Content Validation + Headless Queue]
-    D --> D1[Mitigation: Strict Per-Row CIK/Fundserv Binding]
-    E --> E1[Mitigation: Non-Destructive Versioning v1 to v2]
-```
+- Daily routine checks cost about 2-3 requests (page hash + index); only triggered funds get full checks.
+- Full checks per month ~= funds x (1 routine + triggered sweeps x N windows), with responses reused within a run.
+- At 2.5 s per request per domain, throughput is limited by politeness per domain, not by compute.
+  Parallelise across domains (fund families), not within a domain.
+- Compute: `avg_seconds_per_check x checks x $/hour` (the report uses $0.10 / hour; change with `--usd-per-compute-hour`).
+- Storage: raw documents (`avg_kb_per_check x checks`) on disk or object storage.
+- People: the `review_queue` volume x minutes per item. This is expected to be the dominant cost and
+  should be taken from the live run's `review_queue_open` and `extracted_without_manual_pct`.
 
-1. **WAF / HTTP 403 Blocks (e.g., Vanguard Canada Portal):**
-   - *Problem:* Cloudflare and Akamai bot management systems block automated server-side requests.
-   - *Design Solution:* The detector immediately classifies the status as `UNKNOWN` rather than guessing or defaulting. Layer B gracefully defers extraction until authenticated headless or proxy sessions are invoked.
-2. **Dynamic Single Page Applications (SPAs):**
-   - *Problem:* Web pages delivering empty HTML shells (`<div id="root"></div>`) that require client-side JavaScript execution.
-   - *Design Solution:* Content-length and structural validation rejects empty shells, preventing false negatives.
-3. **Cross-Fund Multi-Trust Contamination:**
-   - *Problem:* Multi-fund filings (e.g. iShares Trust SEC filings) listing 50 funds on a single page, risking ticker attribution errors.
-   - *Design Solution:* Strict CIK, Series ID, and exact-row ticker matching ensures an announcement is only attributed to the target fund.
-4. **Canadian Year-End Tax Reallocations:**
-   - *Problem:* Canadian funds often revise estimated distributions into capital gains and return of capital post year-end.
-   - *Design Solution:* Supported via non-destructive versioning (`version=2`, `is_superseded=TRUE`).
+No proxy services are budgeted: working around blocks is out of policy (PDF compliance rules).
 
----
+## 9. Next steps
 
-## 8. Full-Universe Scaling Economics (10,000+ Funds)
-
-Scaling the distribution intelligence engine from 100 funds to the full North American investment universe (**10,000+ mutual funds and ETFs**) requires a robust cost and infrastructure model.
-
-### 1. Daily Ingestion Volume & Computational Profile
-* **Total Funds:** 10,000 funds.
-* **Active Monthly Payers:** ~3,500 funds (3,500 requests/month).
-* **Active Quarterly Payers:** ~6,000 funds (6,000 requests/quarter).
-* **Daily Crawl Sweep Volume:** ~350 to 500 targeted checks/day (normal days), rising to ~2,500 checks/day during quarterly peak windows (March, June, September, December).
-
-### 2. Infrastructure & Cost Breakdown (Monthly Estimate)
-
-| Infrastructure Component | Monthly Cost | Operational Rationale |
-| :--- | :--- | :--- |
-| **Compute (Kubernetes / Worker Pods)** | **$450** | 3 worker nodes (8 vCPU, 32 GB RAM) for distributed scraping and validation. |
-| **Residential & Datacenter Proxies** | **$600** | Rotated residential IPs (BrightData / Oxylabs) for WAF/403 mitigation on sponsor sites. |
-| **Managed PostgreSQL Database (Aurora / Cloud SQL)** | **$350** | High-availability PostgreSQL instance with automated backups and read replicas. |
-| **Object Storage (S3 / GCS for Raw Documents)** | **$80** | Cryptographic storage of ~50,000 HTML/PDF artifacts/month with lifecycle tiering. |
-| **Headless Browser Cluster (Playwright / Chromium)** | **$300** | Headless cluster dedicated exclusively to SPA dynamic shell rendering (~15% of universe). |
-| **Human-in-the-Loop Operations (1 FTE Specialist)** | **$5,000** | Dedicated data operations analyst reviewing flagged `dq_flag` items and UNKNOWN queues. |
-| **TOTAL MONTHLY RUN-RATE** | **$6,780 / month** | **Unit Cost: $0.68 per fund / month** |
-
----
-
-## 9. Conclusion & Production Recommendations
-
-The Fund Distribution Intelligence Engine has met **100% of the deliverables and acceptance criteria across all 4 Phases** of the project specification.
-
-### Immediate Next Steps for Production Rollout
-1. **Database Deployment:** Run [`docs/schema.sql`](file:///c:/Users/chait/Desktop/DPA_Project2/docs/schema.sql) on the production PostgreSQL cluster.
-2. **Scheduled Orchestration:** Deploy the daily sweep cron job via Airflow or Kubernetes CronJob (`python -m src.detector` and `python -m src.validators.run_dq_audit`).
-3. **Data Ops Dashboard:** Connect Metabase or Tableau to the `dq_flag` and `distribution_event` tables for real-time operations monitoring.
-
----
-*Submitted by the Distributed Financial Systems Engineering Team.*
+1. Record the terms-of-use decisions in `docs/COMPLIANCE.md`.
+2. Set `DETECTOR_CONTACT_EMAIL`, run the 24-month backfill, then `python -m src.reports.detection_report`.
+3. Build the 300-event gold set (`docs/GOLD_SET_GUIDE.md`), run the evaluator, then fill section 6.
+4. Look at the UNKNOWN reasons per family and decide whether to add a family-specific JSON parser (API route).

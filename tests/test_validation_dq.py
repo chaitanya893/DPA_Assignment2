@@ -15,13 +15,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import date
-import pytest
-from sqlalchemy import create_engine
 
-from src.database.connection import init_db, session_scope
+from src.database.connection import get_engine, init_db, session_scope
 from src.database.repository import DistributionRepository
 from src.models import (
-    CAComponentType,
     ExtractedComponent,
     ExtractedDistribution,
     USComponentType,
@@ -117,7 +114,10 @@ def test_nav_decline_rule_consistent():
 def test_nav_decline_rule_large_divergence_flagged():
     rule = NavDeclineRule(market_move_tolerance_pct=0.02)
     ev = MockEvent(gross_amount=1.00)
-    context = {"nav_prior_day": 100.0, "nav_ex_day": 85.0}  # Drop of $15 vs $1 distribution
+    context = {
+        "nav_prior_day": 100.0,
+        "nav_ex_day": 85.0,
+    }  # Drop of $15 vs $1 distribution
     res = rule.validate(ev, context=context)
     assert res.is_valid is False
     assert res.severity == DQSeverity.WARNING
@@ -184,15 +184,22 @@ def test_cross_source_variance_rule():
     assert "Cross-source variance detected" in res.message
 
 
-def test_dq_engine_database_audit_execution():
-    engine = create_engine("sqlite:///:memory:")
+def test_dq_engine_database_audit_execution(tmp_path):
+    engine = get_engine(f"sqlite:///{tmp_path / 'dq.db'}")
     init_db(engine)
 
     with session_scope(engine) as session:
         repo = DistributionRepository(session)
-        repo.upsert_fund("US_VTI", "Vanguard Total Stock Market", "Vanguard", "US", "ETF")
+        repo.upsert_fund(
+            "US_VTI", "Vanguard Total Stock Market", "Vanguard", "US", "ETF"
+        )
         repo.upsert_share_class("US_VTI_CLASS", "US_VTI", ticker="VTI", currency="USD")
-
+        repo.upsert_source_registry("official_fund_sponsor_page", "Sponsor", 2, "{url}")
+        doc = repo.store_raw_document(
+            "official_fund_sponsor_page",
+            "https://s.test/vti",
+            b"<html>SYNTHETIC</html>",
+        )
         extracted = ExtractedDistribution(
             fund_id="US_VTI",
             country="US",
@@ -200,13 +207,73 @@ def test_dq_engine_database_audit_execution():
             ex_date=date(2024, 3, 22),
             gross_amount=0.9168,
             components=[
-                ExtractedComponent("Ordinary Income", USComponentType.ORDINARY_INCOME, 0.9168, 100.0)
+                ExtractedComponent(
+                    "Ordinary Income", USComponentType.ORDINARY_INCOME, 0.9168, 100.0
+                )
             ],
-            source_url="https://investor.vanguard.com/vti",
+            source_url="https://s.test/vti",
         )
-        repo.save_distribution_event(extracted)
+        repo.save_distribution_event(extracted, "US_VTI_CLASS", raw_document=doc)
 
-    dq_engine = DataQualityEngine()
-    # Run audit passing engine
-    report = dq_engine.audit_database(engine=engine, log_to_db=False)
+    report = DataQualityEngine().audit_database(engine=engine, log_to_db=False)
     assert report.pass_rate_pct == 100.0
+    # NAV, magnitude and cross-source checks had no input data: skipped, NOT counted as passes.
+    assert report.skipped_checks >= 3
+    assert report.rule_metrics["NAV_DECLINE_CONSISTENCY"]["skipped"] == 1
+
+
+def test_dq_audit_flags_are_idempotent_across_reruns(tmp_path):
+    """Bug: every audit run inserted the same flags again."""
+    engine = get_engine(f"sqlite:///{tmp_path / 'dq2.db'}")
+    init_db(engine)
+    with session_scope(engine) as session:
+        repo = DistributionRepository(session)
+        repo.upsert_fund("US_VTI", "VTI", "Vanguard", "US", "ETF")
+        repo.upsert_share_class("US_VTI_CLASS", "US_VTI", ticker="VTI", currency="USD")
+        repo.upsert_source_registry("official_fund_sponsor_page", "Sponsor", 2, "{url}")
+        doc = repo.store_raw_document(
+            "official_fund_sponsor_page",
+            "https://s.test/vti",
+            b"<html>SYNTHETIC</html>",
+        )
+        bad = ExtractedDistribution(
+            fund_id="US_VTI",
+            country="US",
+            currency="USD",
+            ex_date=date(2024, 3, 22),
+            payable_date=date(2024, 3, 1),
+            gross_amount=0.5,
+            source_url="https://s.test/vti",
+        )
+        repo.save_distribution_event(bad, "US_VTI_CLASS", raw_document=doc)
+    engine_dq = DataQualityEngine()
+    for _ in range(3):
+        report = engine_dq.audit_database(engine=engine, log_to_db=True)
+    assert report.critical_flags == 1
+    from sqlalchemy import func, select
+
+    from src.database.models import DQFlag
+
+    with session_scope(engine) as s:
+        assert s.scalar(select(func.count(DQFlag.flag_id))) == 1
+
+
+def test_monthly_continuity_flags_missing_months_in_coverage():
+    rule = FrequencyContinuityRule()
+    ctx = {
+        "is_monthly_payer": True,
+        "all_fund_ex_dates": [date(2024, 2, 1), date(2024, 3, 1)],
+        "coverage_start": date(2024, 1, 1),
+        "coverage_end": date(2024, 4, 30),
+    }
+    res = rule.validate(None, context=ctx)
+    assert res.is_valid is False
+    assert res.details["missing_months"] == ["2024-01", "2024-04"]
+
+
+def test_currency_rule_uses_share_class_currency():
+    rule = CurrencyIntegrityRule()
+    res = rule.validate(
+        MockEvent(currency="USD"), context={"share_class_currency": "CAD"}
+    )
+    assert res.is_valid is False

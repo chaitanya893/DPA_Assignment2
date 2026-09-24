@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 from src.detector import detect_distribution
@@ -29,13 +29,19 @@ def main() -> None:
         "--mode",
         choices=["1month", "5months", "24months"],
         default="1month",
-        help="Detection sweep mode: '1month' (Feb default), '5months' (Active Feb+Quarterly cycles), '24months' (Dynamic 24-month rolling lookback)",
+        help="'1month' (last complete month, or --start/--end), '5months' (Feb + quarter-end months), '24months' (rolling 24 months)",
     )
     parser.add_argument(
         "--as-of",
         type=str,
         default=None,
         help="Optional reference date (YYYY-MM-DD) for rolling window calculations (default: today).",
+    )
+    parser.add_argument(
+        "--start", type=str, default=None, help="Window start YYYY-MM-DD (1month mode)"
+    )
+    parser.add_argument(
+        "--end", type=str, default=None, help="Window end YYYY-MM-DD (1month mode)"
     )
     parser.add_argument(
         "--fund-id",
@@ -118,10 +124,15 @@ def main() -> None:
         print(f"  * Total Attempts:     {len(sweep_res['source_attempts'])}")
 
     else:
-        # Default 1month (Feb)
-        result = detect_distribution(
-            target_fund_id, date(2026, 2, 1), date(2026, 2, 28)
-        )
+        # Default: the last complete calendar month before the reference date
+        if args.start and args.end:
+            w_start, w_end = date.fromisoformat(args.start), date.fromisoformat(
+                args.end
+            )
+        else:
+            w_end = ref_date.replace(day=1) - timedelta(days=1)
+            w_start = w_end.replace(day=1)
+        result = detect_distribution(target_fund_id, w_start, w_end)
         print(f"  * Target Fund:        {result.fund_id}")
         print(f"  * Evaluation Window:  {result.window_start} to {result.window_end}")
         print(f"  * Detection Status:   {result.status.value}")

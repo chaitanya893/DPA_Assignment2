@@ -212,7 +212,7 @@ def test_canadian_waf_403_blocked_yields_unknown(
         strategies=[sponsor_strat],
     )
     assert result.status == DetectionStatus.UNKNOWN
-    assert result.confidence is None
+    assert result.confidence == 0.0
     assert any(
         ev.failure_reason == UnknownReason.SOURCE_UNAVAILABLE for ev in result.evidence
     )
@@ -254,7 +254,7 @@ def test_canadian_dynamic_spa_shell_yields_unknown(
         strategies=[sponsor_strat],
     )
     assert result.status == DetectionStatus.UNKNOWN
-    assert result.confidence is None
+    assert result.confidence == 0.0
 
 
 # -----------------------------------------------------------------------------
@@ -286,7 +286,7 @@ def test_canadian_tier3_only_evidence_never_yields_declared_or_not_declared() ->
         observations=[obs],
     )
     assert result.status == DetectionStatus.UNKNOWN
-    assert result.confidence is None
+    assert result.confidence == 0.0
 
 
 # -----------------------------------------------------------------------------
@@ -333,7 +333,7 @@ def test_canadian_wrong_fund_evidence_rejected_in_multi_fund_table(
         strategies=[sponsor_strat],
     )
     assert result.status == DetectionStatus.UNKNOWN
-    assert result.confidence is None
+    assert result.confidence == 0.0
 
 
 # -----------------------------------------------------------------------------
@@ -628,7 +628,7 @@ def test_canadian_t3_t5_tax_narrative_false_positive_rejected(
         strategies=[sponsor_strat],
     )
     assert result.status == DetectionStatus.UNKNOWN
-    assert result.confidence is None
+    assert result.confidence == 0.0
     assert any(
         ev.failure_reason == UnknownReason.INSUFFICIENT_EVIDENCE
         for ev in result.evidence

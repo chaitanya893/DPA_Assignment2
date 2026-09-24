@@ -1,4 +1,12 @@
-"""HTML Table Parser for Layer B Extraction."""
+"""HTML table parser for Layer B extraction (route HTML_TABLE).
+
+Rules enforced here (PDF Assignment 2, Phase 0 and Phase 2):
+- Dates are read only from the column whose header names that date type. An ex-date is
+  never invented from a record, payable or declaration date.
+- Amounts are read only from amount columns, never from a date column.
+- Tax components are recorded only when the source table has a column for them.
+  No component is invented; if the table only shows a total, ``components`` stays empty.
+"""
 
 from __future__ import annotations
 
@@ -13,58 +21,100 @@ from src.models import (
     SourceTier,
     USComponentType,
 )
+from src.text_utils import clean_html_text, parse_amount, parse_date
+
+_DATE_HEADER_WORDS = ("date", "day", "year", "month", "as of")
+_GROSS_HEADER_WORDS = (
+    "amount",
+    "rate",
+    "$/share",
+    "$/unit",
+    "per share",
+    "per unit",
+    "total",
+    "distribution",
+    "dividend",
+    "income",
+)
+_HEADER_HINTS = (
+    "payable",
+    "record",
+    "ex-div",
+    "ex div",
+    "ex-date",
+    "ex date",
+    "amount",
+    "rate",
+)
 
 
 def _clean_text(s: str) -> str:
-    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", s)).strip()
+    return clean_html_text(s)
 
 
 def _parse_amount(text: str) -> float | None:
-    m = re.search(r"\$?\s*([0-9]+\.[0-9]+|[0-9]+)", text)
-    if m:
-        try:
-            return float(m.group(1))
-        except ValueError:
-            return None
-    return None
+    return parse_amount(text)
 
 
 def _parse_date(text: str) -> date | None:
-    # Match YYYY-MM-DD
-    m_iso = re.search(r"\b(202[0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])\b", text)
-    if m_iso:
-        try:
-            return date(int(m_iso.group(1)), int(m_iso.group(2)), int(m_iso.group(3)))
-        except ValueError:
-            return None
+    return parse_date(text)
 
-    # Match MM/DD/YYYY
-    m_us = re.search(r"\b(0?[1-9]|1[0-2])/(0?[1-9]|[12][0-9]|3[01])/(202[0-9])\b", text)
-    if m_us:
-        try:
-            return date(int(m_us.group(3)), int(m_us.group(1)), int(m_us.group(2)))
-        except ValueError:
-            return None
 
-    # Match Month DD, YYYY
-    months = {
-        "jan": 1, "january": 1, "feb": 2, "february": 2, "mar": 3, "march": 3,
-        "apr": 4, "april": 4, "may": 5, "jun": 6, "june": 6, "jul": 7, "july": 7,
-        "aug": 8, "august": 8, "sep": 9, "september": 9, "oct": 10, "october": 10,
-        "nov": 11, "november": 11, "dec": 12, "december": 12,
-    }
-    m_named = re.search(
-        r"\b(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+([0-9]{1,2}),?\s+(202[0-9])\b",
-        text,
-        re.IGNORECASE,
-    )
-    if m_named:
-        try:
-            m_str = m_named.group(1).lower()
-            m_num = months.get(m_str, 1)
-            return date(int(m_named.group(3)), m_num, int(m_named.group(2)))
-        except ValueError:
-            return None
+def classify_component(
+    header: str, country: str
+) -> USComponentType | CAComponentType | None:
+    """Map a column header to a component type, or None if it is not a component column."""
+    h = header.lower()
+    if country.upper() == "CA":
+        if "non-eligible" in h or "non eligible" in h:
+            return CAComponentType.NON_ELIGIBLE_DIVIDEND
+        if "eligible" in h:
+            return CAComponentType.ELIGIBLE_DIVIDEND
+        if "capital gain" in h:
+            return CAComponentType.CAPITAL_GAINS
+        if "return of capital" in h or re.search(r"\broc\b", h):
+            return CAComponentType.RETURN_OF_CAPITAL
+        if "foreign tax" in h:
+            return CAComponentType.FOREIGN_TAX_PAID
+        if "foreign" in h:
+            return CAComponentType.FOREIGN_INCOME
+        if "interest" in h or "other income" in h:
+            return CAComponentType.INTEREST_AND_OTHER
+        return None
+    if "qualified" in h:
+        return USComponentType.QUALIFIED_DIVIDEND
+    if "ordinary" in h or "net investment income" in h:
+        return USComponentType.ORDINARY_INCOME
+    if "short-term" in h or "short term" in h:
+        return USComponentType.SHORT_TERM_CAPITAL_GAIN
+    if "long-term" in h or "long term" in h:
+        return USComponentType.LONG_TERM_CAPITAL_GAIN
+    if "capital gain" in h:
+        return USComponentType.CAPITAL_GAIN_UNCLASSIFIED
+    if "return of capital" in h or re.search(r"\broc\b", h):
+        return USComponentType.RETURN_OF_CAPITAL
+    if "foreign tax" in h:
+        return USComponentType.FOREIGN_TAX_PAID
+    if "199a" in h:
+        return USComponentType.SECTION_199A
+    if "exempt" in h:
+        return USComponentType.TAX_EXEMPT_INCOME
+    return None
+
+
+def _date_kind(header: str) -> str | None:
+    h = header.lower()
+    if any(k in h for k in ("decl", "announced")):
+        return "declaration"
+    if any(
+        k in h
+        for k in ("ex-div", "ex div", "ex-date", "ex date", "exdate", "ex-dividend")
+    ):
+        return "ex"
+    if "record" in h:
+        return "record"
+    if any(k in h for k in ("payable", "pay date", "payment", "paid")):
+        return "payable"
     return None
 
 
@@ -76,117 +126,208 @@ def parse_html_distribution_tables(
     ticker: str | None = None,
     fundserv_code: str | None = None,
     target_ex_date: date | None = None,
+    window_start: date | None = None,
+    window_end: date | None = None,
+    source_tier: SourceTier = SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+    extraction_route: ExtractionRoute = ExtractionRoute.HTML_TABLE,
 ) -> list[ExtractedDistribution]:
-    """Parse HTML tables into structured ExtractedDistribution objects."""
-    results: list[ExtractedDistribution] = []
-    currency = "CAD" if country.upper() == "CA" else "USD"
+    """Parse HTML distribution tables into ExtractedDistribution rows.
 
-    # Find all <table>...</table>
-    table_matches = re.finditer(r"<table[^>]*>([\s\S]*?)</table>", html_content, re.IGNORECASE)
-    for t_m in table_matches:
-        t_html = t_m.group(1)
-        row_matches = re.finditer(r"<tr[^>]*>([\s\S]*?)</tr>", t_html, re.IGNORECASE)
+    Only rows that carry an explicit ex-date and an explicit amount become events.
+    """
+    rows = html_table_rows(html_content)
+    return parse_table_rows(
+        rows,
+        fund_id=fund_id,
+        country=country,
+        source_url=source_url,
+        ticker=ticker,
+        fundserv_code=fundserv_code,
+        target_ex_date=target_ex_date,
+        window_start=window_start,
+        window_end=window_end,
+        source_tier=source_tier,
+        extraction_route=extraction_route,
+    )
+
+
+def html_table_rows(html_content: str) -> list[tuple[list[str], list[str]]]:
+    """(headers, cells) for every data row of every <table> in the page."""
+    rows: list[tuple[list[str], list[str]]] = []
+    for t_m in re.finditer(
+        r"<table[^>]*>([\s\S]*?)</table>", html_content, re.IGNORECASE
+    ):
         headers: list[str] = []
-
-        for r_m in row_matches:
+        for r_m in re.finditer(
+            r"<tr[^>]*>([\s\S]*?)</tr>", t_m.group(1), re.IGNORECASE
+        ):
             r_html = r_m.group(1)
             th_cells = re.findall(r"<th[^>]*>([\s\S]*?)</th>", r_html, re.IGNORECASE)
             if th_cells:
                 headers = [_clean_text(c).lower() for c in th_cells]
                 continue
-
             td_cells = re.findall(r"<td[^>]*>([\s\S]*?)</td>", r_html, re.IGNORECASE)
             if not td_cells:
                 continue
-
-            clean_cells = [_clean_text(c) for c in td_cells]
+            cells = [_clean_text(c) for c in td_cells]
             if not headers:
-                # Check if first row is header
-                if any(k in " ".join(clean_cells).lower() for k in ["payable", "record", "ex-dividend", "amount", "rate"]):
-                    headers = [c.lower() for c in clean_cells]
-                    continue
+                joined = " ".join(cells).lower()
+                if any(k in joined for k in _HEADER_HINTS) and not any(
+                    parse_date(c) for c in cells
+                ):
+                    headers = [c.lower() for c in cells]
+                continue
+            rows.append((headers, cells))
+    return rows
 
-            # Multi-fund cross check
-            if ticker or fundserv_code:
-                ticker_col_idx = None
-                for idx, h in enumerate(headers):
-                    if any(k in h for k in ["ticker", "symbol", "code"]):
-                        ticker_col_idx = idx
-                        break
-                if ticker_col_idx is not None and ticker_col_idx < len(clean_cells):
-                    row_ticker = clean_cells[ticker_col_idx].upper().strip()
-                    target_syms = {s.upper() for s in [ticker, fundserv_code] if s}
-                    if row_ticker and row_ticker not in target_syms:
-                        continue
 
-            decl_d: date | None = None
-            ex_d: date | None = None
-            rec_d: date | None = None
-            pay_d: date | None = None
-            gross_amt: float | None = None
-            dist_type: str = "Income"
-            components: list[ExtractedComponent] = []
+def table_date_rows(
+    html_content: str,
+    ticker: str | None = None,
+    fundserv_code: str | None = None,
+) -> list[tuple[dict[str, date], str]]:
+    """(labelled dates, row text) per table row (ex / record / payable / declaration), amount not required.
 
-            for h, cell in zip(headers, clean_cells):
-                d = _parse_date(cell)
+    Used by Layer A to decide whether a schedule table covers a window. Only dates in columns
+    whose header names the date type are returned.
+    """
+    target = {x.upper() for x in (ticker, fundserv_code) if x}
+    out: list[tuple[dict[str, date], str]] = []
+    for headers, cells in html_table_rows(html_content):
+        if len(headers) != len(cells):
+            continue
+        sym_idx = next(
+            (
+                i
+                for i, h in enumerate(headers)
+                if any(k in h for k in ("ticker", "symbol", "fund code"))
+            ),
+            None,
+        )
+        if (
+            sym_idx is not None
+            and target
+            and cells[sym_idx].upper().strip() not in target | {""}
+        ):
+            continue
+        found: dict[str, date] = {}
+        for h, cell in zip(headers, cells, strict=True):
+            kind = _date_kind(h)
+            if kind and kind not in found:
+                d = parse_date(cell)
                 if d:
-                    if any(k in h for k in ["decl", "announced"]):
-                        decl_d = d
-                    elif any(k in h for k in ["ex-div", "ex div", "ex-date", "ex date"]):
-                        ex_d = d
-                    elif "record" in h:
-                        rec_d = d
-                    elif any(k in h for k in ["pay", "payable"]):
-                        pay_d = d
+                    found[kind] = d
+        if found:
+            out.append((found, " | ".join(c for c in cells if c)))
+    return out
 
-                amt = _parse_amount(cell)
-                if amt is not None:
-                    # Avoid treating date columns as amounts
-                    if not any(k in h for k in ["date", "day", "year", "month"]):
-                        if any(k in h for k in ["amount", "rate", "$/share", "$/unit", "total", "distribution"]):
-                            if gross_amt is None:
-                                gross_amt = amt
-                    # Component mappings
-                    if "capital gain" in h or "cap gain" in h:
-                        c_type = CAComponentType.CAPITAL_GAINS if country == "CA" else USComponentType.LONG_TERM_CAPITAL_GAIN
-                        components.append(ExtractedComponent(component_name=h, component_type=c_type, amount=amt))
-                    elif "return of capital" in h or "roc" in h:
-                        c_type = CAComponentType.RETURN_OF_CAPITAL if country == "CA" else USComponentType.RETURN_OF_CAPITAL
-                        components.append(ExtractedComponent(component_name=h, component_type=c_type, amount=amt))
-                    elif "eligible" in h:
-                        components.append(ExtractedComponent(component_name=h, component_type=CAComponentType.ELIGIBLE_DIVIDEND, amount=amt))
-                    elif "qualified" in h:
-                        components.append(ExtractedComponent(component_name=h, component_type=USComponentType.QUALIFIED_DIVIDEND, amount=amt))
 
-                if "type" in h:
+def parse_table_rows(
+    rows: list[tuple[list[str], list[str]]],
+    fund_id: str,
+    country: str,
+    source_url: str,
+    ticker: str | None = None,
+    fundserv_code: str | None = None,
+    target_ex_date: date | None = None,
+    window_start: date | None = None,
+    window_end: date | None = None,
+    source_tier: SourceTier = SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+    extraction_route: ExtractionRoute = ExtractionRoute.HTML_TABLE,
+) -> list[ExtractedDistribution]:
+    """Turn (headers, cells) rows from any tabular source (HTML, Excel, CSV) into events."""
+    results: list[ExtractedDistribution] = []
+    currency = "CAD" if country.upper() == "CA" else "USD"
+    target_syms = {s.upper() for s in (ticker, fundserv_code) if s}
+
+    for headers, cells in rows:
+        if len(headers) != len(cells):
+            continue
+
+        # Multi-fund tables: skip rows that belong to another fund.
+        sym_idx = next(
+            (
+                i
+                for i, h in enumerate(headers)
+                if any(k in h for k in ("ticker", "symbol", "fund code"))
+            ),
+            None,
+        )
+        if sym_idx is not None and target_syms:
+            row_sym = cells[sym_idx].upper().strip()
+            if row_sym and row_sym not in target_syms:
+                continue
+
+        dates: dict[str, date] = {}
+        gross_amt: float | None = None
+        dist_type = "Income"
+        components: list[ExtractedComponent] = []
+        is_estimated = False
+
+        for h, cell in zip(headers, cells, strict=True):
+            if "estimat" in h or "estimat" in cell.lower():
+                is_estimated = True
+            if "type" in h or h in ("distribution", "description"):
+                if cell and parse_amount(cell) is None:
                     dist_type = cell
-
-            # Never fabricate ex_date from payable or declaration date
-            if ex_d and gross_amt is not None:
-                if target_ex_date and ex_d != target_ex_date:
                     continue
-
-                results.append(
-                    ExtractedDistribution(
-                        fund_id=fund_id,
-                        country=country,
-                        currency=currency,
-                        ticker=ticker,
-                        fundserv_code=fundserv_code,
-                        declaration_date=decl_d,
-                        ex_date=ex_d,
-                        record_date=rec_d,
-                        payable_date=pay_d,
-                        gross_amount=gross_amt,
-                        distribution_type=dist_type,
-                        components=components,
-                        source_url=source_url,
-                        source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
-                        extraction_route=ExtractionRoute.HTML_TABLE,
-                        retrieved_at=datetime.now(timezone.utc),
-                        raw_doc_snippet=" | ".join(clean_cells)[:200],
-                        validation_passed=True,
+            kind = _date_kind(h)
+            if kind:
+                d = parse_date(cell)
+                if d and kind not in dates:
+                    dates[kind] = d
+                continue
+            if any(k in h for k in _DATE_HEADER_WORDS):
+                continue
+            amt = parse_amount(cell)
+            if amt is None:
+                continue
+            comp_type = classify_component(h, country)
+            if comp_type is not None:
+                components.append(
+                    ExtractedComponent(
+                        component_name=h, component_type=comp_type, amount=amt
                     )
                 )
+            elif gross_amt is None and any(k in h for k in _GROSS_HEADER_WORDS):
+                gross_amt = amt
 
+        ex_d = dates.get("ex")
+        notes = ""
+        if gross_amt is None and components:
+            gross_amt = round(sum(c.amount for c in components), 6)
+            notes = "Gross derived from sum of published components (no total column)."
+        if ex_d is None or gross_amt is None:
+            continue
+        if target_ex_date and ex_d != target_ex_date:
+            continue
+        if window_start and ex_d < window_start:
+            continue
+        if window_end and ex_d > window_end:
+            continue
+
+        results.append(
+            ExtractedDistribution(
+                fund_id=fund_id,
+                country=country,
+                currency=currency,
+                ticker=ticker,
+                fundserv_code=fundserv_code,
+                declaration_date=dates.get("declaration"),
+                ex_date=ex_d,
+                record_date=dates.get("record"),
+                payable_date=dates.get("payable"),
+                gross_amount=gross_amt,
+                distribution_type=dist_type,
+                is_estimated=is_estimated,
+                components=components,
+                source_url=source_url,
+                source_tier=source_tier,
+                extraction_route=extraction_route,
+                retrieved_at=datetime.now(timezone.utc),
+                raw_doc_snippet=" | ".join(cells)[:200],
+                validation_passed=True,
+                validation_notes=notes,
+            )
+        )
     return results

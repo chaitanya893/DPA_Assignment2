@@ -1,0 +1,26 @@
+# Backfill and gap logic settings (PDF Assignment 2, Phase 1). Read by src/sweep_scheduler.py.
+
+# N: rolling lookback window (months) re-queried when a sweep is triggered.
+# Default 3 = one full quarterly cycle; gives late-publishing or restating sources
+# (year-end reallocations, estimated -> final capital gains) three chances to be seen.
+lookback_months: 3
+
+# History loaded when a fund first enters the universe.
+backfill_months: 24
+
+# Sweep when time since last confirmed event > gap_multiplier x expected interval
+# (MONTHLY 30 d, QUARTERLY 91 d, SEMI_ANNUAL 182 d, ANNUAL 365 d).
+gap_multiplier: 1.5
+
+# Sweep when UNKNOWN was returned more than this many times in a row.
+unknown_threshold: 2
+
+# Month-end: the last N days of every month trigger a sweep unconditionally.
+month_end_days: 3
+
+# Year-end period (month, day) - wraps into January. Sweeps run unconditionally.
+year_end_start: [12, 1]
+year_end_end: [1, 15]
+
+# Routine checks look back at most this many days.
+routine_max_days: 31

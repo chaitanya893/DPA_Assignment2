@@ -1,147 +1,58 @@
-# Relational Database Schema Diagram (Phase 3)
+# Database schema (Phase 3)
 
-Entity-Relationship architecture for the Fund Distribution Extraction Database.
+Generated DDL: `docs/schema.sql`. ORM: `src/database/models.py`. Default engine is SQLite
+(`data/fund_distributions.db`); set `DATABASE_URL` for PostgreSQL.
 
 ```mermaid
 erDiagram
-    fund_master ||--o{ share_class : "has"
-    fund_master ||--o{ crawl_log : "tracked_in"
-    fund_master ||--o{ distribution_event : "distributes"
-    fund_master ||--o{ dq_flag : "flagged_by"
-
-    share_class ||--o{ distribution_event : "declares"
-
-    source_registry ||--o{ crawl_log : "logs_attempt"
-    source_registry ||--o{ raw_document : "provides"
-
-    raw_document ||--o{ event_evidence : "supports"
-
-    distribution_event ||--o{ distribution_component : "comprises"
-    distribution_event ||--o{ event_evidence : "provenanced_by"
-    distribution_event ||--o{ dq_flag : "audited_by"
-    distribution_event ||--o| distribution_event : "superseded_by"
-
-    fund_master {
-        string fund_id PK
-        string fund_name
-        string fund_family
-        string country
-        string fund_type
-        string cik
-        string sedar_id
-        date inception_date
-        string status
-    }
-
-    share_class {
-        string class_id PK
-        string fund_id FK
-        string ticker
-        string cusip
-        string isin
-        string sec_series_id
-        string sec_class_id
-        string fundserv_code
-        string currency
-        string expected_frequency
-        boolean is_monthly_payer
-        boolean is_etf
-    }
-
-    source_registry {
-        string source_id PK
-        string source_name
-        int source_tier
-        string url_pattern
-        string parser_version
-        string robots_status
-        string tos_status
-        timestamp last_success
-        boolean is_active
-    }
-
-    crawl_log {
-        string log_id PK
-        string source_id FK
-        string fund_id FK
-        string target_url
-        timestamp retrieved_at
-        int http_status
-        string content_sha256
-        string outcome
-        float duration_seconds
-        string error_message
-    }
-
-    raw_document {
-        string doc_id PK
-        string sha256 UK
-        string source_id FK
-        string source_url
-        timestamp retrieved_at
-        string content_type
-        int byte_size
-        string raw_text
-        string storage_path
-    }
-
-    distribution_event {
-        string event_id PK
-        string class_id FK
-        string fund_id FK
-        date ex_date
-        date record_date
-        date payable_date
-        date declaration_date
-        string currency
-        decimal gross_amount
-        string distribution_type
-        string estimated_or_final
-        int version
-        boolean is_superseded
-        string superseded_by FK
-        string extraction_route
-    }
-
-    distribution_component {
-        string component_id PK
-        string event_id FK
-        string component_type
-        string component_name
-        decimal amount
-        decimal percentage
-        boolean is_tax_reallocated
-    }
-
-    event_evidence {
-        string evidence_id PK
-        string event_id FK
-        string doc_id FK
-        int source_tier
-        string locator_or_snippet
-        decimal confidence
-    }
-
-    dq_flag {
-        string flag_id PK
-        string event_id FK
-        string fund_id FK
-        string rule_name
-        string severity
-        string message
-        string resolution_status
-    }
+    fund_master ||--o{ share_class : has
+    fund_master ||--o{ distribution_event : distributes
+    fund_master ||--o{ dq_flag : flagged_by
+    fund_master ||--o{ detection_run : checked_by
+    fund_master ||--|| fund_detection_state : gap_state
+    fund_master ||--o{ review_queue : reviewed_in
+    share_class ||--o{ distribution_event : declares
+    source_registry ||--o{ crawl_log : logs
+    source_registry ||--o{ raw_document : provides
+    raw_document ||--o{ event_evidence : supports
+    raw_document ||--o{ review_queue : attached_to
+    distribution_event ||--o{ distribution_component : comprises
+    distribution_event ||--o{ event_evidence : traced_by
+    distribution_event ||--o{ dq_flag : audited_by
+    distribution_event ||--o| distribution_event : superseded_by
 ```
 
----
+## Tables from the PDF
 
-## 🔑 Natural Keys & Constraints Defense
+| Table | Purpose | Notes |
+|---|---|---|
+| `fund_master` | Fund: name, family, CIK / SEDAR id, country, type, inception, status | |
+| `share_class` | Ticker, CUSIP, ISIN, series/class id, FundServ code, currency, expected frequency | `currency` is what the currency check compares against |
+| `source_registry` | Every source: URL pattern, tier, parser version, robots/ToS status, last success | ToS status stays `PENDING_REVIEW` until recorded in `docs/COMPLIANCE.md` |
+| `crawl_log` | Every HTTP attempt: source, time, HTTP status, sha256, outcome, duration | written for every request, including failures and robots.txt refusals |
+| `raw_document` | Immutable copy of every artefact: exact bytes on disk (`storage_path`), sha256, retrieval time | identical bytes stored once |
+| `distribution_event` | One row per class x ex-date x category x estimated/final (+ version) | see key below |
+| `distribution_component` | Component type, amount per share, % | only components the source published; `components_reported` on the event says whether a split exists |
+| `event_evidence` | Links an event to the raw documents that support it | `reported_amount` keeps each source's own figure |
+| `dq_flag` | Validation failures, severity, resolution status | idempotent: an identical open flag is never inserted twice |
 
-1. **`distribution_event` Natural Key:**
-   * Constraint: `UNIQUE(class_id, ex_date, estimated_or_final, version)`
-   * **Defense:** Guarantees idempotency. Re-running the pipeline on the same date will not create duplicate rows for the same share class and ex-date.
-2. **Amendments & Versioning:**
-   * When a Canadian year-end T3/T5 reallocation or US estimated-to-final change occurs, the new record is inserted with `version = N + 1`, and the previous record is marked `is_superseded = TRUE` with `superseded_by = new_event_id`.
-   * **Defense:** Never deletes or overwrites historic audit records.
-3. **Provenance Integrity:**
-   * `event_evidence` strictly maps `event_id -> doc_id`, ensuring every number in the database has a cryptographic raw document trail (`sha256`).
+## Refinements and why
+
+1. **Natural key adds `distribution_category`.** `(class_id, ex_date, distribution_category, estimated_or_final, version)`.
+   A December income dividend and a long-term capital gain paid on the same ex-date are two
+   distributions. Keyed on ex-date only, the second superseded the first.
+2. **`version` + `is_superseded` / `superseded_by`.** A restatement by the source that stated the
+   current figure (new amount or new component split, e.g. a T3 reallocation) appends version
+   N+1; the old row is only marked superseded, so what we believed and when stays intact.
+3. **Cross-source disagreement is not an amendment.** If a *different* source reports another
+   amount, the event is left as is, the second figure is stored in `event_evidence.reported_amount`
+   and a `CROSS_SOURCE_VARIANCE` flag is raised (PDF: "record both and flag, never silently pick one").
+4. **`detection_run` (added).** One row per Layer A check: status, confidence, UNKNOWN reason,
+   suggested route, route actually taken, evidence JSON, HTTP requests, bytes, seconds. This is
+   where "route logged for 100% of detected events", hit rate and cost per check come from.
+5. **`fund_detection_state` (added).** `expected_frequency`, `last_confirmed_event_date`,
+   `last_checked_at`, `consecutive_unknowns` - the exact fields the PDF's backfill and gap logic needs.
+6. **`review_queue` (added).** Figures that fail a CRITICAL check, MANUAL-route detections and
+   figures without a stored source document. They never reach `distribution_event`.
+7. **Wider ids.** `event_id` is `evt_{class}_{ex_date}_{category}_{est|final}_v{n}` (up to 160 chars),
+   readable and deterministic, so re-runs address the same row.

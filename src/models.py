@@ -65,6 +65,10 @@ class Evidence:
     ex_date_found: date | None = None
     record_date_found: date | None = None
     payable_date_found: date | None = None
+    # Date the declaring document itself was published/filed (e.g. SEC filing date).
+    # Kept separate from declaration_date_found so a filing date is never mislabelled
+    # as the board's declaration date.
+    published_date_found: date | None = None
     failure_reason: UnknownReason | None = None
 
     def __post_init__(self) -> None:
@@ -93,6 +97,8 @@ class DetectionResult:
     suggested_extraction_route: ExtractionRoute | None = None
     window_start: date | None = None
     window_end: date | None = None
+    # Main reason when status is UNKNOWN (drives the consecutive_unknowns gap logic).
+    unknown_reason: UnknownReason | None = None
 
     def __post_init__(self) -> None:
         if not self.fund_id or not isinstance(self.fund_id, str):
@@ -226,6 +232,9 @@ class USComponentType(str, Enum):
     FOREIGN_TAX_PAID = "FOREIGN_TAX_PAID"
     SECTION_199A = "SECTION_199A"
     TAX_EXEMPT_INCOME = "TAX_EXEMPT_INCOME"
+    # Source reports a capital gain without saying short- or long-term.
+    # Recorded honestly instead of guessing LONG_TERM.
+    CAPITAL_GAIN_UNCLASSIFIED = "CAPITAL_GAIN_UNCLASSIFIED"
 
 
 class CAComponentType(str, Enum):
@@ -248,6 +257,7 @@ class ExtractedComponent:
     component_type: USComponentType | CAComponentType | str
     amount: float
     percentage: float | None = None
+    is_tax_reallocated: bool = False
 
 
 @dataclass
@@ -274,3 +284,14 @@ class ExtractedDistribution:
     raw_doc_snippet: str = ""
     validation_passed: bool = True
     validation_notes: str = ""
+
+    @property
+    def components_reported(self) -> bool:
+        """True only when the source itself published a component breakdown."""
+        return bool(self.components)
+
+    @property
+    def distribution_category(self) -> str:
+        from src.text_utils import distribution_category
+
+        return distribution_category(self.distribution_type)

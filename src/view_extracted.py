@@ -1,55 +1,62 @@
-"""Interactive viewer for the 33 Layer-B Extracted Distribution Events and Evidence."""
+"""Show the distribution events stored by the pipeline, with the source document of each.
+
+Reads the database (not a pre-computed JSON file), so what you see is exactly what Layer B
+extracted and the validation gate accepted.
+
+    python -m src.view_extracted [--limit 50]
+"""
 
 from __future__ import annotations
 
-import json
-from pathlib import Path
+import argparse
+
+from sqlalchemy import select
+
+from src.database.connection import get_engine, session_scope
+from src.database.models import DistributionEvent, EventEvidence, RawDocument
 
 
-def display_extracted_33() -> None:
-    json_path = Path(__file__).parent.parent / "quality" / "layer_b_extracted_events.json"
-    if not json_path.exists():
-        print(f"Error: {json_path} not found.")
-        return
-
-    with open(json_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-
-    events = data.get("events", [])
-    print("=" * 125)
-    print(f"               LAYER-B EXTRACTED DISTRIBUTION EVIDENCE (TOTAL {len(events)} FUNDS EXTRACTED)")
-    print("=" * 125)
-    print(
-        f"{'#':<3} | {'Fund ID':<20} | {'Ticker':<7} | {'Ex-Date':<10} | {'Pay Date':<10} | {'Gross Amount':<14} | {'Route':<11} | {'Source URL'}"
-    )
-    print("-" * 125)
-
-    for idx, ev in enumerate(events, 1):
-        sym = ev.get("symbol") or "N/A"
-        ex_d = ev.get("ex_date") or "N/A"
-        pay_d = ev.get("payable_date") or "N/A"
-        amt = f"${ev.get('gross_amount', 0.0):.4f} {ev.get('currency', 'USD')}"
-        route = ev.get("route") or "HTML_TABLE"
-        src_url = ev.get("source_url") or "N/A"
-
-        print(f"{idx:<3} | {ev.get('fund_id', ''):<20} | {sym:<7} | {ex_d:<10} | {pay_d:<10} | {amt:<14} | {route:<11} | {src_url}")
-
-    print("=" * 125)
-    print(f"\nTotal Extracted Funds with High-Precision Evidence: {len(events)}")
-    print(f"Detailed JSON File Location: quality/layer_b_extracted_events.json")
-
-    # Also save to clean CSV for Senior
-    export_dir = Path(__file__).parent.parent / "data" / "exports"
-    export_dir.mkdir(parents=True, exist_ok=True)
-    csv_file = export_dir / "layer_b_33_extracted_evidence.csv"
-    with open(csv_file, "w", encoding="utf-8") as f:
-        f.write("idx,fund_id,symbol,country,ex_date,record_date,payable_date,gross_amount,currency,route,source_url\n")
-        for idx, ev in enumerate(events, 1):
-            f.write(
-                f"{idx},{ev.get('fund_id','')},{ev.get('symbol','')},{ev.get('country','')},{ev.get('ex_date','')},{ev.get('record_date','')},{ev.get('payable_date','')},{ev.get('gross_amount',0.0)},{ev.get('currency','')},{ev.get('route','')},{ev.get('source_url','')}\n"
+def display_extracted(limit: int = 50, db_url: str | None = None) -> None:
+    engine = get_engine(db_url)
+    with session_scope(engine) as s:
+        events = list(
+            s.scalars(
+                select(DistributionEvent)
+                .where(DistributionEvent.is_superseded.is_(False))
+                .order_by(DistributionEvent.ex_date.desc())
+                .limit(limit)
+            ).all()
+        )
+        print("=" * 140)
+        print(
+            f"STORED DISTRIBUTION EVENTS (latest {len(events)}, current versions only)"
+        )
+        print("=" * 140)
+        print(
+            f"{'Fund ID':<22} | {'Ex-Date':<10} | {'Pay Date':<10} | {'Gross':<16} | {'Category':<22} | {'Route':<10} | Source document"
+        )
+        print("-" * 140)
+        for ev in events:
+            link = s.scalars(
+                select(EventEvidence).where(EventEvidence.event_id == ev.event_id)
+            ).first()
+            doc = s.get(RawDocument, link.doc_id) if link else None
+            print(
+                f"{ev.fund_id:<22} | {ev.ex_date!s:<10} | {ev.payable_date or 'N/A'!s:<10} | "
+                f"{float(ev.gross_amount):.6f} {ev.currency:<3} | {ev.distribution_category:<22} | "
+                f"{ev.extraction_route:<10} | {doc.source_url if doc else 'MISSING'} ({doc.sha256[:10] if doc else '-'})"
             )
-    print(f"Generated Clean CSV for Senior: {csv_file}\n")
+        if not events:
+            print("No events stored yet. Run: python -m src.database.populator")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--limit", type=int, default=50)
+    parser.add_argument("--db-url", default=None)
+    args = parser.parse_args()
+    display_extracted(args.limit, args.db_url)
 
 
 if __name__ == "__main__":
-    display_extracted_33()
+    main()

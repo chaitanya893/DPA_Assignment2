@@ -36,6 +36,9 @@ class ValidationResult:
     severity: DQSeverity = DQSeverity.INFO
     message: str = ""
     details: dict[str, Any] = field(default_factory=dict)
+    # True when the rule could not run because its input data was not available
+    # (e.g. no NAV series). A skipped check is reported separately and is NOT a pass.
+    skipped: bool = False
 
 
 class BaseValidationRule(ABC):
@@ -44,7 +47,9 @@ class BaseValidationRule(ABC):
     rule_name: str = "BASE_RULE"
 
     @abstractmethod
-    def validate(self, event: Any, context: dict[str, Any] | None = None) -> ValidationResult:
+    def validate(
+        self, event: Any, context: dict[str, Any] | None = None
+    ) -> ValidationResult:
         """Execute validation rule logic against a distribution event."""
         raise NotImplementedError
 
@@ -60,7 +65,9 @@ class ComponentSumRule(BaseValidationRule):
     def __init__(self, tolerance: float = 0.0005) -> None:
         self.tolerance = tolerance
 
-    def validate(self, event: Any, context: dict[str, Any] | None = None) -> ValidationResult:
+    def validate(
+        self, event: Any, context: dict[str, Any] | None = None
+    ) -> ValidationResult:
         gross_amt = float(getattr(event, "gross_amount", 0.0) or 0.0)
         components = getattr(event, "components", []) or []
 
@@ -68,7 +75,8 @@ class ComponentSumRule(BaseValidationRule):
             return ValidationResult(
                 is_valid=True,
                 rule_name=self.rule_name,
-                message="No tax components provided; single gross distribution accepted.",
+                message="Source did not publish a component breakdown; component sum not checkable.",
+                skipped=True,
             )
 
         comp_sum = sum(float(getattr(c, "amount", 0.0) or 0.0) for c in components)
@@ -83,7 +91,11 @@ class ComponentSumRule(BaseValidationRule):
                     f"Component sum mismatch: sum of components (${comp_sum:.4f}) does not equal "
                     f"gross amount (${gross_amt:.4f}) within tolerance $\\pm${self.tolerance:.4f} (diff: {diff:.4f})."
                 ),
-                details={"gross_amount": gross_amt, "component_sum": comp_sum, "diff": diff},
+                details={
+                    "gross_amount": gross_amt,
+                    "component_sum": comp_sum,
+                    "diff": diff,
+                },
             )
 
         return ValidationResult(
@@ -102,7 +114,9 @@ class DateOrderRule(BaseValidationRule):
 
     rule_name = "DATE_ORDERING_SANITY"
 
-    def validate(self, event: Any, context: dict[str, Any] | None = None) -> ValidationResult:
+    def validate(
+        self, event: Any, context: dict[str, Any] | None = None
+    ) -> ValidationResult:
         decl_d: date | None = getattr(event, "declaration_date", None)
         ex_d: date | None = getattr(event, "ex_date", None)
         rec_d: date | None = getattr(event, "record_date", None)
@@ -136,7 +150,12 @@ class DateOrderRule(BaseValidationRule):
                 rule_name=self.rule_name,
                 severity=DQSeverity.CRITICAL,
                 message="; ".join(errors),
-                details={"declaration": str(decl_d), "ex": str(ex_d), "record": str(rec_d), "pay": str(pay_d)},
+                details={
+                    "declaration": str(decl_d),
+                    "ex": str(ex_d),
+                    "record": str(rec_d),
+                    "pay": str(pay_d),
+                },
             )
 
         return ValidationResult(
@@ -157,7 +176,9 @@ class NavDeclineRule(BaseValidationRule):
     def __init__(self, market_move_tolerance_pct: float = 0.05) -> None:
         self.market_tolerance = market_move_tolerance_pct
 
-    def validate(self, event: Any, context: dict[str, Any] | None = None) -> ValidationResult:
+    def validate(
+        self, event: Any, context: dict[str, Any] | None = None
+    ) -> ValidationResult:
         ctx = context or {}
         nav_prior = ctx.get("nav_prior_day")
         nav_ex = ctx.get("nav_ex_day")
@@ -169,6 +190,7 @@ class NavDeclineRule(BaseValidationRule):
                 rule_name=self.rule_name,
                 severity=DQSeverity.INFO,
                 message="NAV prior/ex-day prices not supplied in context; skipped.",
+                skipped=True,
             )
 
         actual_decline = float(nav_prior) - float(nav_ex)
@@ -188,7 +210,12 @@ class NavDeclineRule(BaseValidationRule):
                     f"Ex-date NAV decline (${actual_decline:.4f}) deviates significantly from "
                     f"distribution per share (${gross_amt:.4f}) by ${diff:.4f}."
                 ),
-                details={"nav_prior": nav_prior, "nav_ex": nav_ex, "gross_amt": gross_amt, "diff": diff},
+                details={
+                    "nav_prior": nav_prior,
+                    "nav_ex": nav_ex,
+                    "gross_amt": gross_amt,
+                    "diff": diff,
+                },
             )
 
         return ValidationResult(
@@ -209,7 +236,9 @@ class MagnitudeRule(BaseValidationRule):
     def __init__(self, max_pct_threshold: float = 0.20) -> None:
         self.max_pct = max_pct_threshold
 
-    def validate(self, event: Any, context: dict[str, Any] | None = None) -> ValidationResult:
+    def validate(
+        self, event: Any, context: dict[str, Any] | None = None
+    ) -> ValidationResult:
         ctx = context or {}
         nav = ctx.get("nav") or ctx.get("nav_prior_day")
         gross_amt = float(getattr(event, "gross_amount", 0.0) or 0.0)
@@ -222,6 +251,14 @@ class MagnitudeRule(BaseValidationRule):
                 message=f"Distribution amount (${gross_amt}) is non-positive.",
             )
 
+        if not nav or float(nav) <= 0.0:
+            return ValidationResult(
+                is_valid=True,
+                rule_name=self.rule_name,
+                severity=DQSeverity.INFO,
+                message="No NAV supplied; 20% of NAV magnitude check skipped.",
+                skipped=True,
+            )
         if nav and float(nav) > 0.0:
             dist_pct = gross_amt / float(nav)
             if dist_pct > self.max_pct:
@@ -233,7 +270,11 @@ class MagnitudeRule(BaseValidationRule):
                         f"Distribution amount (${gross_amt:.4f}) exceeds {self.max_pct * 100:.0f}% of NAV "
                         f"(${float(nav):.2f}) at {dist_pct * 100:.1f}%. Flagged for human review."
                     ),
-                    details={"gross_amount": gross_amt, "nav": nav, "distribution_pct": dist_pct},
+                    details={
+                        "gross_amount": gross_amt,
+                        "nav": nav,
+                        "distribution_pct": dist_pct,
+                    },
                 )
 
         return ValidationResult(
@@ -247,36 +288,52 @@ class MagnitudeRule(BaseValidationRule):
 # 5. Currency Integrity Rule
 # -----------------------------------------------------------------------------
 class CurrencyIntegrityRule(BaseValidationRule):
-    """Validates currency matches share class country (USD for US, CAD for CA)."""
+    """Validates the distribution currency matches the share class currency (PDF Phase 4).
+
+    Falls back to the country default (USD for US, CAD for CA) only when the share class
+    currency is not supplied.
+    """
 
     rule_name = "CURRENCY_INTEGRITY"
 
-    def validate(self, event: Any, context: dict[str, Any] | None = None) -> ValidationResult:
-        currency = str(getattr(event, "currency", "")).upper()
-        country = str(getattr(event, "country", "")).upper()
-        if not country and context:
-            country = str(context.get("country", "")).upper()
+    def validate(
+        self, event: Any, context: dict[str, Any] | None = None
+    ) -> ValidationResult:
+        ctx = context or {}
+        currency = str(getattr(event, "currency", "") or "").upper()
+        expected = str(ctx.get("share_class_currency") or "").upper()
+        if not expected:
+            country = str(
+                getattr(event, "country", "") or ctx.get("country", "")
+            ).upper()
+            expected = {"US": "USD", "CA": "CAD"}.get(country, "")
 
-        if country == "US" and currency != "USD":
+        if not currency:
             return ValidationResult(
                 is_valid=False,
                 rule_name=self.rule_name,
                 severity=DQSeverity.CRITICAL,
-                message=f"US fund has invalid currency: '{currency}' (expected 'USD').",
+                message="Distribution has no currency.",
             )
-
-        if country == "CA" and currency not in ("CAD", "USD"):
+        if expected and currency != expected:
             return ValidationResult(
                 is_valid=False,
                 rule_name=self.rule_name,
                 severity=DQSeverity.CRITICAL,
-                message=f"Canadian fund has unexpected currency: '{currency}' (expected 'CAD' or 'USD').",
+                message=f"Currency '{currency}' does not match share class currency '{expected}'.",
+                details={"currency": currency, "expected": expected},
             )
-
+        if not expected:
+            return ValidationResult(
+                is_valid=True,
+                rule_name=self.rule_name,
+                message="Share class currency unknown; currency check skipped.",
+                skipped=True,
+            )
         return ValidationResult(
             is_valid=True,
             rule_name=self.rule_name,
-            message="Distribution currency matches country standard.",
+            message="Distribution currency matches share class currency.",
         )
 
 
@@ -284,45 +341,56 @@ class CurrencyIntegrityRule(BaseValidationRule):
 # 6. Frequency Continuity Rule
 # -----------------------------------------------------------------------------
 class FrequencyContinuityRule(BaseValidationRule):
-    """Detects missing months in distribution history for monthly payer funds."""
+    """Flags calendar months with no distribution for a monthly payer (PDF Phase 4).
+
+    Checks every month between ``coverage_start`` and ``coverage_end`` when the caller
+    supplies them (so a missing first or last month is also caught); otherwise checks the
+    months between the fund's first and last known ex-date.
+    """
 
     rule_name = "FREQUENCY_CONTINUITY"
 
-    def validate(self, event: Any, context: dict[str, Any] | None = None) -> ValidationResult:
+    def validate(
+        self, event: Any, context: dict[str, Any] | None = None
+    ) -> ValidationResult:
         ctx = context or {}
-        is_monthly = ctx.get("is_monthly_payer", False)
-        all_event_dates: list[date] = ctx.get("all_fund_ex_dates", [])
-
-        if not is_monthly or len(all_event_dates) < 2:
+        if not ctx.get("is_monthly_payer", False):
             return ValidationResult(
                 is_valid=True,
                 rule_name=self.rule_name,
-                message="Frequency continuity check satisfied.",
+                message="Not a monthly payer; monthly continuity not applicable.",
+                skipped=True,
             )
+        all_event_dates: list[date] = sorted(set(ctx.get("all_fund_ex_dates", [])))
+        if not all_event_dates:
+            return ValidationResult(
+                is_valid=True,
+                rule_name=self.rule_name,
+                message="No events to check.",
+                skipped=True,
+            )
+        start: date = ctx.get("coverage_start") or all_event_dates[0]
+        end: date = ctx.get("coverage_end") or all_event_dates[-1]
+        have = {(d.year, d.month) for d in all_event_dates}
+        missing: list[str] = []
+        y, m = start.year, start.month
+        while (y, m) <= (end.year, end.month):
+            if (y, m) not in have:
+                missing.append(f"{y}-{m:02d}")
+            y, m = (y + 1, 1) if m == 12 else (y, m + 1)
 
-        sorted_dates = sorted(all_event_dates)
-        missing_gaps: list[str] = []
-
-        for i in range(len(sorted_dates) - 1):
-            d1 = sorted_dates[i]
-            d2 = sorted_dates[i + 1]
-            days = (d2 - d1).days
-            if days > 45:  # Gap of more than 45 days in a monthly payer
-                missing_gaps.append(f"Missing distribution between {d1} and {d2} ({days} days)")
-
-        if missing_gaps:
+        if missing:
             return ValidationResult(
                 is_valid=False,
                 rule_name=self.rule_name,
                 severity=DQSeverity.WARNING,
-                message="; ".join(missing_gaps),
-                details={"gaps": missing_gaps},
+                message=f"Monthly payer has no distribution recorded for: {', '.join(missing)}",
+                details={"missing_months": missing},
             )
-
         return ValidationResult(
             is_valid=True,
             rule_name=self.rule_name,
-            message="Monthly payer frequency continuity is intact without missing periods.",
+            message="Monthly payer has a distribution in every month of the period.",
         )
 
 
@@ -334,12 +402,21 @@ class CrossSourceVarianceRule(BaseValidationRule):
 
     rule_name = "CROSS_SOURCE_VARIANCE"
 
-    def validate(self, event: Any, context: dict[str, Any] | None = None) -> ValidationResult:
+    def validate(
+        self, event: Any, context: dict[str, Any] | None = None
+    ) -> ValidationResult:
         ctx = context or {}
         second_source_amt = ctx.get("second_source_amount")
         second_source_url = ctx.get("second_source_url")
         gross_amt = float(getattr(event, "gross_amount", 0.0) or 0.0)
 
+        if second_source_amt is None:
+            return ValidationResult(
+                is_valid=True,
+                rule_name=self.rule_name,
+                message="Only one source available; cross-source comparison skipped.",
+                skipped=True,
+            )
         if second_source_amt is not None:
             sec_amt = float(second_source_amt)
             diff = abs(gross_amt - sec_amt)
@@ -353,7 +430,11 @@ class CrossSourceVarianceRule(BaseValidationRule):
                         f"Secondary source ({second_source_url or 'Secondary Feed'}) reported ${sec_amt:.4f} "
                         f"(diff: ${diff:.4f}). Both recorded and flagged for review."
                     ),
-                    details={"primary_amount": gross_amt, "secondary_amount": sec_amt, "diff": diff},
+                    details={
+                        "primary_amount": gross_amt,
+                        "secondary_amount": sec_amt,
+                        "diff": diff,
+                    },
                 )
 
         return ValidationResult(

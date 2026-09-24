@@ -6,13 +6,15 @@ synthesized by the core detector without inventing or assuming facts.
 
 from __future__ import annotations
 
+import hashlib
 import io
 import json
 import logging
 import re
 from abc import ABC, abstractmethod
+from collections.abc import Callable
 from dataclasses import dataclass, field
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from enum import Enum
 
 try:
@@ -27,6 +29,7 @@ from src.models import (
     SourceTier,
     UnknownReason,
 )
+from src.text_utils import parse_date
 from src.universe_loader import UniverseFund, UniverseRegistry
 
 logger = logging.getLogger(__name__)
@@ -69,73 +72,67 @@ class StrategyObservation:
     suggested_route: ExtractionRoute | None = None
     failure_reason: UnknownReason | None = None
     notes: str = ""
-
-
-MONTH_NAMES_MAP = {
-    "january": 1,
-    "february": 2,
-    "march": 3,
-    "april": 4,
-    "may": 5,
-    "june": 6,
-    "july": 7,
-    "august": 8,
-    "september": 9,
-    "october": 10,
-    "november": 11,
-    "december": 12,
-    "jan": 1,
-    "feb": 2,
-    "mar": 3,
-    "apr": 4,
-    "jun": 6,
-    "jul": 7,
-    "aug": 8,
-    "sep": 9,
-    "oct": 10,
-    "nov": 11,
-    "dec": 12,
-}
+    # False when the strategy does not apply to this fund at all (e.g. SEC EDGAR for a
+    # Canadian fund). Non-applicable observations are ignored by the synthesis, so they
+    # can never block a NOT_DECLARED outcome.
+    applicable: bool = True
 
 
 def _extract_date(text: str) -> date | None:
-    """Extract a date from text in ISO (YYYY-MM-DD), US (MM/DD/YYYY), or Textual (Month DD, YYYY) format."""
-    if not text:
-        return None
-    # 1. ISO format: 2026-02-18
-    m_iso = re.search(r"\b(202[0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])\b", text)
-    if m_iso:
-        try:
-            return date.fromisoformat(m_iso.group(0))
-        except ValueError:
-            pass
-    # 2. Textual format: February 18, 2026 or Feb. 18, 2026
-    m_text = re.search(
-        r"\b(January|February|March|April|May|June|July|August|September|October|November|December|Jan\.?|Feb\.?|Mar\.?|Apr\.?|May\.?|Jun\.?|Jul\.?|Aug\.?|Sep\.?|Oct\.?|Nov\.?|Dec\.?)\s+([0-9]{1,2}),?\s+(202[0-9])\b",
-        text,
-        re.IGNORECASE,
+    """First valid date in text (ISO, 'Month DD, YYYY', 'DD Month YYYY', MM/DD/YYYY)."""
+    return parse_date(text)
+
+
+_LABELS = {
+    "declaration": r"(?:declaration\s+date|declared\s+on|date\s+declared|declared\s*:)",
+    "ex": r"(?:ex[-\s]?(?:dividend\s+|distribution\s+)?date)",
+    "record": r"(?:record\s+date|(?:holders|unitholders|shareholders)\s+of\s+record(?:\s+(?:on|at\s+the\s+close\s+of\s+business\s+on|as\s+of))?)",
+    "payable": r"(?:payable\s+(?:date|on)|payment\s+date|pay\s+date|paid\s+on|payable)",
+}
+_DATELINE_RE = re.compile(
+    r"(?:TORONTO|MONTREAL|VANCOUVER|CALGARY|NEW\s+YORK|BOSTON|CHICAGO|MALVERN|VALLEY\s+FORGE|SAN\s+FRANCISCO|NEWPORT\s+BEACH)"
+    r"[\s,A-Za-z.()-]{0,40}?,\s*((?:[A-Z][a-z]{2,8}\.?\s+\d{1,2},?\s+20\d{2})|20\d{2}-\d{2}-\d{2})",
+)
+
+
+def labelled_dates(text: str) -> dict[str, date]:
+    """Dates that sit directly after their own label (e.g. 'Record Date: March 20, 2024').
+
+    A date is only ever assigned to the date type named by its label, so ex, record,
+    payable and declaration dates are never confused with one another.
+    """
+    out: dict[str, date] = {}
+    for kind, label in _LABELS.items():
+        m = re.search(label + r"\s*[:\-]?\s*(.{0,40})", text, re.IGNORECASE)
+        if m:
+            d = parse_date(m.group(1))
+            if d:
+                out[kind] = d
+    if "declaration" not in out:
+        # "announced/declared ... on June 18, 2026" (no payable/paid/record wording in between)
+        m = re.search(
+            r"\b(?:announce[sd]?|declare[sd]?)\b(?:(?!payable|paid|record|ex-)(?:[^.]|\.(?=\d))){0,80}?\bon\s+(.{0,30})",
+            text,
+            re.IGNORECASE,
+        )
+        if m:
+            d = parse_date(m.group(1))
+            if d:
+                out["declaration"] = d
+    dl = _DATELINE_RE.search(text)
+    if dl:
+        d = parse_date(dl.group(1))
+        if d:
+            out["published"] = d
+    return out
+
+
+def _dates_in_window(ev: Evidence, window_start: date, window_end: date) -> bool:
+    """Declaration, ex-date or publication date inside the window (record/payable alone do not count)."""
+    return any(
+        d is not None and window_start <= d <= window_end
+        for d in (ev.declaration_date_found, ev.ex_date_found, ev.published_date_found)
     )
-    if m_text:
-        m_str = m_text.group(1).lower().rstrip(".")
-        month = MONTH_NAMES_MAP.get(m_str)
-        day = int(m_text.group(2))
-        year = int(m_text.group(3))
-        if month:
-            try:
-                return date(year, month, day)
-            except ValueError:
-                pass
-    # 3. US slash format: 02/18/2026
-    m_us = re.search(
-        r"\b(0[1-9]|1[0-2])/([0-3][0-9])/(202[0-9])\b",
-        text,
-    )
-    if m_us:
-        try:
-            return date(int(m_us.group(3)), int(m_us.group(1)), int(m_us.group(2)))
-        except ValueError:
-            pass
-    return None
 
 
 class BaseDetectionStrategy(ABC):
@@ -164,11 +161,27 @@ class BaseDetectionStrategy(ABC):
 
 
 class CalendarExpectationStrategy(BaseDetectionStrategy):
-    """Calendar-based expectation strategy.
+    """Detection strategy 1 (PDF Phase 1): calendar-based expectation.
 
-    Rule: This strategy acts solely as an internal scheduling TRIGGER/SIGNAL.
-    It NEVER directly declares distributions or confirms non-declarations.
+    Emits a TRIGGER_SIGNAL only (on-cadence / off-cadence). It never declares a distribution
+    and never confirms a non-declaration.
     """
+
+    # Funds whose published pay months differ from the frequency default.
+    SPECIAL_MONTHS: dict[str, tuple[set[int], str]] = {
+        "VTIP": ({1, 4, 7, 10}, "QUARTERLY_TIPS (Jan, Apr, Jul, Oct)"),
+        "FSKAX": ({4, 12}, "SEMI_ANNUAL (Apr, Dec)"),
+        "IEFA": ({6, 12}, "SEMI_ANNUAL (Jun, Dec)"),
+        "IEMG": ({6, 12}, "SEMI_ANNUAL (Jun, Dec)"),
+        "TDB900": ({6, 12}, "SEMI_ANNUAL (Jun, Dec)"),
+        "TDB902": ({6, 12}, "SEMI_ANNUAL (Jun, Dec)"),
+        "FBALX": ({9, 12}, "SEMI_ANNUAL (Sep, Dec)"),
+        "FZROX": ({12}, "ANNUAL (December)"),
+        "FNCMX": ({12}, "ANNUAL (December)"),
+        "SWPPX": ({12}, "ANNUAL (December)"),
+        "HXT": ({12}, "ANNUAL (December)"),
+        "HBB": ({12}, "ANNUAL (December)"),
+    }
 
     def __init__(
         self,
@@ -182,10 +195,35 @@ class CalendarExpectationStrategy(BaseDetectionStrategy):
         if self.universe is not None:
             return self.universe.get_fund(fund_id)
         try:
-            reg = UniverseRegistry.from_json()
-            return reg.get_fund(fund_id)
+            return UniverseRegistry.from_json().get_fund(fund_id)
         except (OSError, ValueError, TypeError, KeyError):
             return None
+
+    @classmethod
+    def expected_in_window(
+        cls, fund: UniverseFund, window_start: date, window_end: date
+    ) -> tuple[bool, str]:
+        """(on_cadence, description) for the fund's expected pay months in the window."""
+        months: set[int] = set()
+        cur = window_start.replace(day=1)
+        while cur <= window_end:
+            months.add(cur.month)
+            cur = (
+                date(cur.year + 1, 1, 1)
+                if cur.month == 12
+                else date(cur.year, cur.month + 1, 1)
+            )
+        freq = (fund.expected_frequency or "QUARTERLY").upper()
+        if fund.is_monthly_payer or freq in ("MONTHLY", "DAILY"):
+            return True, "MONTHLY (All Months)"
+        if fund.ticker and fund.ticker in cls.SPECIAL_MONTHS:
+            pay, desc = cls.SPECIAL_MONTHS[fund.ticker]
+            return bool(months & pay), desc
+        if freq == "ANNUAL":
+            return 12 in months, "ANNUAL (December)"
+        if freq == "SEMI_ANNUAL":
+            return bool(months & {6, 12}), "SEMI_ANNUAL (Jun, Dec)"
+        return bool(months & {3, 6, 9, 12}), "QUARTERLY (Mar, Jun, Sep, Dec)"
 
     def inspect(
         self,
@@ -194,60 +232,18 @@ class CalendarExpectationStrategy(BaseDetectionStrategy):
         window_end: date,
     ) -> StrategyObservation:
         fund = self._get_fund(fund_id)
-        is_on_cadence = False
-        cadence_desc = "UNKNOWN"
-
-        if fund:
-            freq = (fund.expected_frequency or "QUARTERLY").upper()
-            is_monthly = fund.is_monthly_payer or freq == "MONTHLY"
-
-            w_months: set[int] = set()
-            cur_d = window_start
-            while cur_d <= window_end:
-                w_months.add(cur_d.month)
-                if cur_d.month == 12:
-                    cur_d = date(cur_d.year + 1, 1, 1)
-                else:
-                    cur_d = date(cur_d.year, cur_d.month + 1, 1)
-
-            if is_monthly:
-                is_on_cadence = True
-                cadence_desc = "MONTHLY (All Months)"
-            elif fund.ticker == "VTIP":
-                is_on_cadence = bool(w_months.intersection({1, 4, 7, 10}))
-                cadence_desc = "QUARTERLY_TIPS (Jan, Apr, Jul, Oct)"
-            elif fund.ticker == "FSKAX":
-                is_on_cadence = bool(w_months.intersection({4, 12}))
-                cadence_desc = "SEMI_ANNUAL (Apr, Dec)"
-            elif fund.ticker in ("IEFA", "IEMG", "TDB900", "TDB902"):
-                is_on_cadence = bool(w_months.intersection({6, 12}))
-                cadence_desc = "SEMI_ANNUAL (Jun, Dec)"
-            elif fund.ticker == "FBALX":
-                is_on_cadence = bool(w_months.intersection({9, 12}))
-                cadence_desc = "SEMI_ANNUAL (Sep, Dec)"
-            elif freq == "ANNUAL" or fund.ticker in (
-                "FZROX",
-                "FNCMX",
-                "SWPPX",
-                "HXT",
-                "HBB",
-            ):
-                is_on_cadence = bool(w_months.intersection({12}))
-                cadence_desc = "ANNUAL (December Year-End)"
-            elif freq == "SEMI_ANNUAL":
-                is_on_cadence = bool(w_months.intersection({6, 12}))
-                cadence_desc = "SEMI_ANNUAL (Jun, Dec)"
-            else:
-                is_on_cadence = bool(w_months.intersection({3, 6, 9, 12}))
-                cadence_desc = "QUARTERLY (Mar, Jun, Sep, Dec)"
-
-        note_prefix = "ON-CADENCE" if is_on_cadence else "OFF-CADENCE"
+        if fund is None:
+            return StrategyObservation(
+                self.name, SignalType.TRIGGER_SIGNAL, notes="Fund not in universe."
+            )
+        on, desc = self.expected_in_window(fund, window_start, window_end)
         return StrategyObservation(
             strategy_name=self.name,
             signal_type=SignalType.TRIGGER_SIGNAL,
-            has_declaration_in_window=False,
-            window_fully_covered=False,
-            notes=f"Calendar expectation trigger ({note_prefix} for {cadence_desc}): signal only, does not establish factual declaration or non-declaration.",
+            notes=(
+                f"Calendar expectation trigger ({'ON' if on else 'OFF'}-CADENCE for {desc}): "
+                "signal only, does not establish factual declaration or non-declaration."
+            ),
         )
 
 
@@ -280,18 +276,12 @@ class VerifiedFundSchedule:
 
 
 class VerifiedScheduleStrategy(BaseDetectionStrategy):
-    """Tier 2 Strategy that inspects verified official fund distribution schedules and tables.
+    """Test / injection strategy for schedules captured from a stored primary document.
 
-    Adheres strictly to Assignment 2 rules:
-    - A schedule alone is not an automatic declaration until confirmed.
-    - If a verified schedule has complete coverage over the requested window:
-      - When scheduled declaration/ex-date(s) fall in [window_start, window_end]:
-        Produces EVIDENCE_OBSERVATION with SourceTier.TIER_2_PRIMARY_UNSTRUCTURED carrying exact
-        event details ($/share, Payable, Record, Ex-Dividend dates).
-      - When no scheduled events fall in [window_start, window_end] (e.g. off-cadence window):
-        Produces NO_DATA_OBSERVATION with window_fully_covered=True, establishing complete negative proof.
-    - If the schedule is incomplete or unverified for the requested window:
-      - Produces NO_DATA_OBSERVATION with window_fully_covered=False, failure_reason=INCOMPLETE_SOURCE.
+    It only uses schedules passed in explicitly. It deliberately does NOT load
+    ``config/*_distribution_schedules.json`` or any gold set: a detector that reads its own
+    answer key cannot be measured against it, and hand-copied rows have no stored source
+    document (PDF Phase 3 provenance rule). With no schedules it reports not-applicable.
     """
 
     def __init__(
@@ -302,216 +292,15 @@ class VerifiedScheduleStrategy(BaseDetectionStrategy):
     ) -> None:
         super().__init__(name=name)
         self.schedules_by_fund: dict[str, list[VerifiedFundSchedule]] = {}
-        if schedules is not None:
-            for s in schedules:
-                self.schedules_by_fund.setdefault(s.fund_id.upper(), []).append(s)
-        else:
-            self._load_default_schedules()
+        for sched in schedules or []:
+            self.schedules_by_fund.setdefault(sched.fund_id.upper(), []).append(sched)
         self.universe = universe
-
-    def _load_default_schedules(self) -> None:
-        """Load default verified schedules from US and Canadian schedule files."""
-        from pathlib import Path
-
-        cfg_dir = Path(__file__).parent.parent / "config"
-        schedules_map: dict[str, dict[int, VerifiedFundSchedule]] = {}
-
-        def add_sched(key: str, sched: VerifiedFundSchedule) -> None:
-            k = key.upper()
-            if k not in schedules_map:
-                schedules_map[k] = {}
-            yr = sched.year
-            if yr not in schedules_map[k]:
-                schedules_map[k][yr] = sched
-            else:
-                existing = schedules_map[k][yr]
-                seen_events = {(e.ex_date, e.distribution_type): e for e in existing.events}
-                for e in sched.events:
-                    if (e.ex_date, e.distribution_type) not in seen_events:
-                        seen_events[(e.ex_date, e.distribution_type)] = e
-                merged_events = sorted(list(seen_events.values()), key=lambda x: x.ex_date)
-                all_dates = sorted(
-                    list(
-                        set(
-                            existing.scheduled_ex_dates
-                            + sched.scheduled_ex_dates
-                            + [e.ex_date for e in merged_events]
-                        )
-                    )
-                )
-                schedules_map[k][yr] = VerifiedFundSchedule(
-                    fund_id=existing.fund_id,
-                    year=yr,
-                    scheduled_ex_dates=all_dates,
-                    coverage_start=min(existing.coverage_start, sched.coverage_start),
-                    coverage_end=max(existing.coverage_end, sched.coverage_end),
-                    is_complete=existing.is_complete or sched.is_complete,
-                    source_url=existing.source_url or sched.source_url,
-                    source_tier=existing.source_tier,
-                    events=merged_events,
-                )
-
-        sched_files = [
-            cfg_dir / "us_distribution_schedules.json",
-            cfg_dir / "ca_distribution_schedules.json",
-        ]
-
-        for sched_file in sched_files:
-            if not sched_file.exists():
-                continue
-            try:
-                with sched_file.open("r", encoding="utf-8") as f:
-                    data = json.load(f)
-                for item in data:
-                    events = []
-                    for ev in item.get("events", []):
-                        amt = float(ev.get("amount_per_share", ev.get("amount", 0.0)))
-                        ex_d = (
-                            date.fromisoformat(ev["ex_date"])
-                            if ev.get("ex_date")
-                            else None
-                        )
-                        if not ex_d:
-                            continue
-                        events.append(
-                            DistributionEvent(
-                                distribution_type=ev.get("distribution_type", "Income"),
-                                amount_per_share=amt,
-                                ex_date=ex_d,
-                                record_date=(
-                                    date.fromisoformat(ev["record_date"])
-                                    if ev.get("record_date")
-                                    else None
-                                ),
-                                payable_date=(
-                                    date.fromisoformat(ev["payable_date"])
-                                    if ev.get("payable_date")
-                                    else None
-                                ),
-                                declaration_date=(
-                                    date.fromisoformat(ev["declaration_date"])
-                                    if ev.get("declaration_date")
-                                    else None
-                                ),
-                                notice_url=ev.get(
-                                    "source_url",
-                                    ev.get("notice_url", item.get("official_source_url", item.get("source_url", ""))),
-                                ),
-                            )
-                        )
-                    ex_dates = [
-                        date.fromisoformat(d)
-                        for d in item.get("scheduled_ex_dates", [])
-                    ]
-                    if not ex_dates and events:
-                        ex_dates = [e.ex_date for e in events if e.ex_date]
-
-                    year_val = int(item.get("year", 2024))
-                    cov_start = (
-                        date.fromisoformat(item["coverage_start"])
-                        if "coverage_start" in item
-                        else date(year_val, 1, 1)
-                    )
-                    cov_end = (
-                        date.fromisoformat(item["coverage_end"])
-                        if "coverage_end" in item
-                        else date(year_val, 12, 31)
-                    )
-                    is_comp = bool(
-                        item.get(
-                            "is_complete",
-                            item.get("event_verification_status") == "FULLY_VERIFIED",
-                        )
-                    )
-                    src_url = item.get("official_source_url", item.get("source_url", ""))
-                    sched = VerifiedFundSchedule(
-                        fund_id=item["fund_id"],
-                        year=year_val,
-                        scheduled_ex_dates=ex_dates,
-                        coverage_start=cov_start,
-                        coverage_end=cov_end,
-                        is_complete=is_comp,
-                        source_url=src_url,
-                        source_tier=SourceTier(int(item.get("source_tier", 2))),
-                        events=events,
-                    )
-                    add_sched(item["fund_id"], sched)
-                    if item.get("ticker"):
-                        add_sched(item["ticker"], sched)
-                    if item.get("fundserv_code"):
-                        add_sched(item["fundserv_code"], sched)
-            except (OSError, ValueError, KeyError, TypeError) as err:
-                logger.debug("Failed to load schedule file %s: %s", sched_file, err)
-
-        # Ingest 300-event primary verified gold set (2023-2024 historical window)
-        gold_file = cfg_dir / "gold_set_300.json"
-        if gold_file.exists():
-            try:
-                with gold_file.open("r", encoding="utf-8") as f:
-                    gold_data = json.load(f)
-                gold_events = gold_data.get("events", [])
-                fund_year_events: dict[tuple[str, int], list[DistributionEvent]] = {}
-                fund_meta: dict[str, dict] = {}
-
-                for ev in gold_events:
-                    fid = ev["fund_id"]
-                    ex_d = (
-                        date.fromisoformat(ev["ex_date"])
-                        if ev.get("ex_date")
-                        else None
-                    )
-                    if not ex_d:
-                        continue
-                    pay_d = (
-                        date.fromisoformat(ev["payable_date"])
-                        if ev.get("payable_date")
-                        else None
-                    )
-                    amt = float(ev.get("expected_gross_amount", 0.0))
-                    src_url = ev.get("evidence_url", "")
-
-                    dist_ev = DistributionEvent(
-                        distribution_type="Income",
-                        amount_per_share=amt,
-                        ex_date=ex_d,
-                        payable_date=pay_d,
-                        record_date=ex_d,
-                        notice_url=src_url,
-                    )
-                    fund_year_events.setdefault((fid, ex_d.year), []).append(dist_ev)
-                    fund_meta[fid] = {
-                        "symbol": ev.get("symbol"),
-                        "evidence_url": src_url,
-                    }
-
-                for (fid, yr), ev_list in fund_year_events.items():
-                    ex_dates = sorted([e.ex_date for e in ev_list])
-                    meta = fund_meta.get(fid, {})
-                    sched = VerifiedFundSchedule(
-                        fund_id=fid,
-                        year=yr,
-                        scheduled_ex_dates=ex_dates,
-                        coverage_start=date(yr, 1, 1),
-                        coverage_end=date(yr, 12, 31),
-                        is_complete=True,
-                        source_url=meta.get("evidence_url", ""),
-                        source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
-                        events=ev_list,
-                    )
-                    add_sched(fid, sched)
-                    if meta.get("symbol"):
-                        add_sched(meta["symbol"], sched)
-            except (OSError, ValueError, KeyError, TypeError) as err:
-                logger.debug("Failed to load gold_set_300: %s", err)
-
-        self.schedules_by_fund = {k: list(v.values()) for k, v in schedules_map.items()}
 
     def _get_fund(self, fund_id: str) -> UniverseFund | None:
         if self.universe is not None:
             return self.universe.get_fund(fund_id)
         try:
-            reg = UniverseRegistry.from_json()
-            return reg.get_fund(fund_id)
+            return UniverseRegistry.from_json().get_fund(fund_id)
         except (OSError, ValueError, TypeError, KeyError):
             return None
 
@@ -522,97 +311,61 @@ class VerifiedScheduleStrategy(BaseDetectionStrategy):
         window_end: date,
     ) -> StrategyObservation:
         fund = self._get_fund(fund_id)
-        lookup_keys = [fund_id.upper()]
-        if fund and fund.ticker:
-            lookup_keys.append(fund.ticker.upper())
-        if fund and fund.fundserv_code:
-            lookup_keys.append(fund.fundserv_code.upper())
+        keys = {fund_id.upper()}
         if fund:
-            lookup_keys.append(fund.fund_id.upper())
-
-        # Aggregate all matching schedules across lookup keys
-        all_schedules: list[VerifiedFundSchedule] = []
-        seen_sched_ids = set()
-        for k in lookup_keys:
-            for s in self.schedules_by_fund.get(k, []):
-                sched_key = (s.fund_id, s.year, s.source_url)
-                if sched_key not in seen_sched_ids:
-                    seen_sched_ids.add(sched_key)
-                    all_schedules.append(s)
+            keys |= {
+                k.upper() for k in (fund.fund_id, fund.ticker, fund.fundserv_code) if k
+            }
+        schedules = [s for k in keys for s in self.schedules_by_fund.get(k, [])]
+        if not schedules:
+            return StrategyObservation(
+                strategy_name=self.name,
+                signal_type=SignalType.NO_DATA_OBSERVATION,
+                applicable=False,
+                notes="No injected verified schedule for this fund.",
+            )
 
         display_name = fund.ticker if (fund and fund.ticker) else fund_id
-
-        # Look for matching events or dates in any available schedule
-        matching_events = []
-        matching_dates = []
-        event_schedule: VerifiedFundSchedule | None = None
-
-        for s in all_schedules:
-            evs = [
-                e
-                for e in s.events
-                if window_start <= e.ex_date <= window_end
-            ]
-            dts = [
-                d
-                for d in s.scheduled_ex_dates
-                if window_start <= d <= window_end
-            ]
-            if evs:
-                matching_events.extend(evs)
-                if event_schedule is None:
-                    event_schedule = s
-            if dts:
-                matching_dates.extend(dts)
-                if event_schedule is None:
-                    event_schedule = s
-
-        if matching_events or matching_dates:
-            ref_schedule = event_schedule or all_schedules[0]
-            evidences = []
-            if matching_events:
-                for ev_item in matching_events:
-                    sponsor_name = (
-                        fund.fund_family.lower() if fund else "sponsor"
-                    )
-                    snippet = (
-                        f"{ev_item.distribution_type} distribution, "
-                        f"${ev_item.amount_per_share:.6f}/share, "
-                        f"Payable {ev_item.payable_date.isoformat() if ev_item.payable_date else 'N/A'}, "
-                        f"Record {ev_item.record_date.isoformat() if ev_item.record_date else 'N/A'}, "
-                        f"Ex-Dividend {ev_item.ex_date.isoformat()}"
-                    )
+        evidences: list[Evidence] = []
+        ref: VerifiedFundSchedule | None = None
+        for sched in schedules:
+            for ev_item in sched.events:
+                if window_start <= ev_item.ex_date <= window_end:
+                    ref = ref or sched
                     evidences.append(
                         Evidence(
-                            source_id=f"{sponsor_name}_{display_name.lower()}_distribution_history",
-                            source_tier=ref_schedule.source_tier,
-                            url=ev_item.notice_url or ref_schedule.source_url,
+                            source_id=f"verified_schedule_{display_name.lower()}",
+                            source_tier=sched.source_tier,
+                            url=ev_item.notice_url
+                            or sched.source_url
+                            or "internal://schedule",
                             retrieved_at=datetime.now(timezone.utc),
-                            snippet_or_locator=snippet,
+                            snippet_or_locator=(
+                                f"{ev_item.distribution_type} distribution, ${ev_item.amount_per_share:.6f}/share, "
+                                f"Ex-Dividend {ev_item.ex_date.isoformat()}"
+                            ),
                             declaration_date_found=ev_item.declaration_date,
                             ex_date_found=ev_item.ex_date,
                             record_date_found=ev_item.record_date,
                             payable_date_found=ev_item.payable_date,
                         )
                     )
-            else:
-                for d in matching_dates:
-                    evidences.append(
-                        Evidence(
-                            source_id=f"verified_schedule_repository_{display_name.lower()}",
-                            source_tier=ref_schedule.source_tier,
-                            url=(
-                                ref_schedule.source_url
-                                or "https://investor.vanguard.com/schedules"
-                            ),
-                            retrieved_at=datetime.now(timezone.utc),
-                            snippet_or_locator=f"Verified distribution schedule for {display_name} confirms distribution on {d.isoformat()}.",
-                            declaration_date_found=None,
-                            ex_date_found=d,
+            if not sched.events:
+                for d in sched.scheduled_ex_dates:
+                    if window_start <= d <= window_end:
+                        ref = ref or sched
+                        evidences.append(
+                            Evidence(
+                                source_id=f"verified_schedule_{display_name.lower()}",
+                                source_tier=sched.source_tier,
+                                url=sched.source_url or "internal://schedule",
+                                retrieved_at=datetime.now(timezone.utc),
+                                snippet_or_locator=f"Verified schedule lists ex-date {d.isoformat()} for {display_name}.",
+                                ex_date_found=d,
+                            )
                         )
-                    )
 
-            is_pdf = ref_schedule.source_url.lower().endswith(".pdf")
+        if evidences and ref is not None:
             return StrategyObservation(
                 strategy_name=self.name,
                 signal_type=SignalType.EVIDENCE_OBSERVATION,
@@ -620,63 +373,92 @@ class VerifiedScheduleStrategy(BaseDetectionStrategy):
                 has_declaration_in_window=True,
                 window_fully_covered=True,
                 suggested_route=(
-                    ExtractionRoute.PDF if is_pdf else ExtractionRoute.HTML_TABLE
+                    ExtractionRoute.PDF
+                    if ref.source_url.lower().endswith(".pdf")
+                    else ExtractionRoute.HTML_TABLE
                 ),
-                notes="Verified schedule/table confirms distribution event within requested window.",
+                notes="Injected verified schedule confirms a distribution in the window.",
             )
 
-        # Check if any schedule covers the full window to establish negative proof
-        covering_schedule: VerifiedFundSchedule | None = None
-        for s in all_schedules:
-            if s.coverage_start <= window_start and window_end <= s.coverage_end and s.is_complete:
-                covering_schedule = s
-                break
-
-        if covering_schedule:
-            neg_evidence = Evidence(
-                source_id=f"verified_schedule_repository_{display_name.lower()}",
-                source_tier=covering_schedule.source_tier,
-                url=(
-                    covering_schedule.source_url
-                    or (fund.official_source_url if fund else "internal://schedule/repository")
-                ),
-                retrieved_at=datetime.now(timezone.utc),
-                snippet_or_locator=f"Complete verified distribution history for {display_name} ({covering_schedule.year}) inspected for window [{window_start} to {window_end}]. Zero distribution events confirmed.",
-            )
+        covering = next(
+            (
+                sc
+                for sc in schedules
+                if sc.is_complete
+                and sc.coverage_start <= window_start
+                and window_end <= sc.coverage_end
+            ),
+            None,
+        )
+        if covering:
             return StrategyObservation(
                 strategy_name=self.name,
                 signal_type=SignalType.NO_DATA_OBSERVATION,
-                evidence=[neg_evidence],
-                has_declaration_in_window=False,
+                evidence=[
+                    Evidence(
+                        source_id=f"verified_schedule_{display_name.lower()}",
+                        source_tier=covering.source_tier,
+                        url=covering.source_url or "internal://schedule",
+                        retrieved_at=datetime.now(timezone.utc),
+                        snippet_or_locator=(
+                            f"Complete schedule for {display_name} ({covering.year}) has no event in "
+                            f"[{window_start} to {window_end}]."
+                        ),
+                    )
+                ],
                 window_fully_covered=True,
-                notes="Complete verified schedule covers window; zero distributions confirmed.",
+                notes="Complete schedule covers the window; no distribution.",
             )
-
-        # Incomplete coverage or absent schedule
-        incomp_evidence = Evidence(
-            source_id="verified_schedule_repository",
-            source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
-            url=(fund.official_source_url if fund else "internal://schedule/repository"),
-            retrieved_at=datetime.now(timezone.utc),
-            snippet_or_locator=f"Schedule coverage incomplete or absent for {display_name} over window [{window_start} to {window_end}].",
-            failure_reason=UnknownReason.INSUFFICIENT_EVIDENCE,
-        )
         return StrategyObservation(
             strategy_name=self.name,
             signal_type=SignalType.NO_DATA_OBSERVATION,
-            evidence=[incomp_evidence],
-            has_declaration_in_window=False,
-            window_fully_covered=False,
-            failure_reason=UnknownReason.INSUFFICIENT_EVIDENCE,
-            notes="Schedule coverage incomplete or absent; cannot establish positive or negative proof.",
+            evidence=[
+                Evidence(
+                    source_id="verified_schedule",
+                    source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+                    url=(fund.official_source_url if fund else "internal://schedule"),
+                    retrieved_at=datetime.now(timezone.utc),
+                    snippet_or_locator=f"Schedule does not fully cover [{window_start} to {window_end}] for {display_name}.",
+                    failure_reason=UnknownReason.INCOMPLETE_SOURCE,
+                )
+            ],
+            failure_reason=UnknownReason.INCOMPLETE_SOURCE,
+            notes="Schedule coverage incomplete for the window.",
         )
 
 
 class ChangeDetectionStrategy(BaseDetectionStrategy):
-    """Monitors hash/content changes on official fund distribution pages or documents."""
+    """Detection strategy 2 (PDF Phase 1): hash the fund's distribution page.
 
-    def __init__(self, name: str = "ChangeDetectionStrategy") -> None:
+    Emits a TRIGGER_SIGNAL only. ``changed`` is True when the page hash differs from the
+    last recorded hash, None on first sight. The sweep scheduler uses it to decide whether
+    a fund needs a full check; the detector never treats it as evidence.
+    """
+
+    def __init__(
+        self,
+        http_client: HTTPClient | None = None,
+        universe: UniverseRegistry | None = None,
+        previous_hash_lookup: Callable[[str], str | None] | None = None,
+        name: str = "ChangeDetectionStrategy",
+    ) -> None:
         super().__init__(name=name)
+        self.http_client = http_client or HTTPClient()
+        self.universe = universe
+        self.previous_hash_lookup = previous_hash_lookup or (lambda _url: None)
+
+    def check(self, fund: UniverseFund) -> tuple[bool | None, str | None]:
+        """Return (changed, current_sha256). changed=None means first observation or fetch failure."""
+        if not fund.official_source_url:
+            return None, None
+        rec = self.http_client.get(fund.official_source_url)
+        if not rec.is_success or rec.content_bytes is None:
+            return None, None
+        current = hashlib.sha256(rec.content_bytes).hexdigest()
+        previous = self.previous_hash_lookup(fund.official_source_url)
+        if previous is None:
+            return None, current
+        return previous != current, current
 
     def inspect(
         self,
@@ -684,12 +466,23 @@ class ChangeDetectionStrategy(BaseDetectionStrategy):
         window_start: date,
         window_end: date,
     ) -> StrategyObservation:
+        fund = (
+            self.universe.get_fund(fund_id)
+            if self.universe
+            else UniverseRegistry.from_json().get_fund(fund_id)
+        )
+        if fund is None:
+            return StrategyObservation(
+                self.name, SignalType.TRIGGER_SIGNAL, applicable=False
+            )
+        changed, sha = self.check(fund)
+        state = (
+            "FIRST_SEEN" if changed is None else ("CHANGED" if changed else "UNCHANGED")
+        )
         return StrategyObservation(
             strategy_name=self.name,
             signal_type=SignalType.TRIGGER_SIGNAL,
-            has_declaration_in_window=False,
-            window_fully_covered=False,
-            notes="Change detection indicates potential update; requires evidence extraction.",
+            notes=f"Page hash {state} ({sha[:12] if sha else 'n/a'}); trigger only, not evidence.",
         )
 
 
@@ -816,22 +609,19 @@ class SECEdgarSubmissionsStrategy(BaseDetectionStrategy):
                 if match
                 else f"Form {form} Rule 19a-1 distribution notice found."
             )
-            decl_m = re.search(
-                r"(?:declared|declaration\s+date)[\s:]+([A-Za-z0-9,\s/-]+)",
-                sanitized_text,
-                re.IGNORECASE,
-            )
-            decl_date = _extract_date(decl_m.group(0)) if decl_m else None
-            if not decl_date:
-                decl_date = filing_date
+            found = labelled_dates(sanitized_text)
 
             ev = Evidence(
                 source_id="sec_edgar_submissions_filing",
                 source_tier=SourceTier.TIER_1_AUTHORITATIVE,
                 url=doc_url,
                 retrieved_at=doc_record.retrieved_at,
-                snippet_or_locator=f"Form {form} ({fund.ticker}): '{snippet_text}'",
-                declaration_date_found=decl_date,
+                snippet_or_locator=f"Form {form} ({fund.ticker}) filed {filing_date}: '{snippet_text}'",
+                declaration_date_found=found.get("declaration"),
+                ex_date_found=found.get("ex"),
+                record_date_found=found.get("record"),
+                payable_date_found=found.get("payable"),
+                published_date_found=filing_date,
             )
             return True, ev
 
@@ -861,22 +651,19 @@ class SECEdgarSubmissionsStrategy(BaseDetectionStrategy):
 
         if decl_match:
             snippet_text = decl_match.group(0).strip()[:200]
-            decl_m = re.search(
-                r"(?:declared|declaration\s+date)[\s:]+([A-Za-z0-9,\s/-]+)",
-                sanitized_text,
-                re.IGNORECASE,
-            )
-            decl_date = _extract_date(decl_m.group(0)) if decl_m else None
-            if not decl_date:
-                decl_date = filing_date
+            found = labelled_dates(sanitized_text)
 
             ev = Evidence(
                 source_id="sec_edgar_submissions_filing",
                 source_tier=SourceTier.TIER_1_AUTHORITATIVE,
                 url=doc_url,
                 retrieved_at=doc_record.retrieved_at,
-                snippet_or_locator=f"Form {form} ({fund.ticker}): '{snippet_text}'",
-                declaration_date_found=decl_date,
+                snippet_or_locator=f"Form {form} ({fund.ticker}) filed {filing_date}: '{snippet_text}'",
+                declaration_date_found=found.get("declaration"),
+                ex_date_found=found.get("ex"),
+                record_date_found=found.get("record"),
+                payable_date_found=found.get("payable"),
+                published_date_found=filing_date,
             )
             return True, ev
 
@@ -889,15 +676,19 @@ class SECEdgarSubmissionsStrategy(BaseDetectionStrategy):
         window_end: date,
     ) -> StrategyObservation:
         fund = self._get_fund(fund_id)
-        if not fund or not fund.cik or fund.country != "US":
-            # Canadian funds or funds without CIK are not applicable for SEC submissions
+        if not fund or fund.country != "US":
             return StrategyObservation(
                 strategy_name=self.name,
                 signal_type=SignalType.NO_DATA_OBSERVATION,
-                has_declaration_in_window=False,
-                window_fully_covered=False,
+                applicable=False,
+                notes="SEC EDGAR does not apply to non-US funds.",
+            )
+        if not fund.cik:
+            return StrategyObservation(
+                strategy_name=self.name,
+                signal_type=SignalType.NO_DATA_OBSERVATION,
                 failure_reason=UnknownReason.INSUFFICIENT_EVIDENCE,
-                notes="Fund is non-US or lacks verified SEC CIK.",
+                notes="US fund lacks a verified SEC CIK; EDGAR cannot be checked.",
             )
 
         cik_formatted = fund.cik.zfill(10)
@@ -951,12 +742,51 @@ class SECEdgarSubmissionsStrategy(BaseDetectionStrategy):
                 notes=f"JSON parse error: {err!s}",
             )
 
+        # "recent" holds only the latest ~1,000 filings. Large fund trusts file far more,
+        # so a 24-month backfill must also read the older pages listed in filings.files.
+        forms, filing_dates, accessions = (
+            list(forms),
+            list(filing_dates),
+            list(accessions),
+        )
+        primary_docs, primary_doc_descs = list(primary_docs), list(primary_doc_descs)
+        oldest_recent = min((d for d in filing_dates if d), default=None)
+        if oldest_recent and window_start.isoformat() < oldest_recent:
+            for page in data.get("filings", {}).get("files", []) or []:
+                p_from, p_to = page.get("filingFrom", ""), page.get("filingTo", "")
+                if p_to and p_to < window_start.isoformat():
+                    continue
+                if p_from and p_from > window_end.isoformat():
+                    continue
+                page_rec = self.http_client.get(
+                    f"https://data.sec.gov/submissions/{page.get('name')}"
+                )
+                if not page_rec.is_success or not page_rec.content_text:
+                    logger.warning(
+                        "Older EDGAR submissions page unavailable: %s", page.get("name")
+                    )
+                    continue
+                try:
+                    older = json.loads(page_rec.content_text)
+                except json.JSONDecodeError:
+                    continue
+                forms += older.get("form", [])
+                filing_dates += older.get("filingDate", [])
+                accessions += older.get("accessionNumber", [])
+                primary_docs += older.get("primaryDocument", [])
+                primary_doc_descs += older.get("primaryDocDescription", [])
+
         # Check filings within requested date window
         evidences: list[Evidence] = []
         has_positive_declaration = False
 
         for form, f_date_str, acc, doc, desc in zip(
-            forms, filing_dates, accessions, primary_docs, primary_doc_descs
+            forms,
+            filing_dates,
+            accessions,
+            primary_docs,
+            primary_doc_descs,
+            strict=False,
         ):
             try:
                 f_date = date.fromisoformat(f_date_str)
@@ -1120,14 +950,12 @@ class CanadianRegulatoryStrategy(BaseDetectionStrategy):
 
         if decl_match:
             snippet_text = decl_match.group(0).strip()[:200]
-            decl_m = re.search(
-                r"(?:declared|declaration\s+date|announcement\s+date)[\s:]+([A-Za-z0-9,\s/-]+)",
-                clean_text,
-                re.IGNORECASE,
-            )
-            decl_date = _extract_date(decl_m.group(0)) if decl_m else None
-            if not decl_date:
-                decl_date = filing_date
+            # Only dates that sit next to their own label count. There is no fallback to the
+            # retrieval date: a page that merely says "monthly distribution" is not a
+            # declaration made today.
+            found = labelled_dates(clean_text)
+            if not any(found.get(k) for k in ("declaration", "ex", "published")):
+                return False, None
 
             ev = Evidence(
                 source_id="sedar_tmx_regulatory_notice",
@@ -1135,7 +963,11 @@ class CanadianRegulatoryStrategy(BaseDetectionStrategy):
                 url=doc_url,
                 retrieved_at=doc_record.retrieved_at,
                 snippet_or_locator=f"SEDAR/TMX Notice ({fund.ticker or fund.fundserv_code}): '{snippet_text}'",
-                declaration_date_found=decl_date,
+                declaration_date_found=found.get("declaration"),
+                ex_date_found=found.get("ex"),
+                record_date_found=found.get("record"),
+                payable_date_found=found.get("payable"),
+                published_date_found=found.get("published"),
             )
             return True, ev
 
@@ -1152,10 +984,8 @@ class CanadianRegulatoryStrategy(BaseDetectionStrategy):
             return StrategyObservation(
                 strategy_name=self.name,
                 signal_type=SignalType.NO_DATA_OBSERVATION,
-                has_declaration_in_window=False,
-                window_fully_covered=False,
-                failure_reason=UnknownReason.INSUFFICIENT_EVIDENCE,
-                notes="Fund is non-Canadian or lacks Canadian regulatory identifier.",
+                applicable=False,
+                notes="Canadian regulatory sources do not apply to non-Canadian funds.",
             )
 
         reg_url = (
@@ -1200,12 +1030,7 @@ class CanadianRegulatoryStrategy(BaseDetectionStrategy):
             record_retrieved_at=record.retrieved_at,
         )
 
-        if (
-            has_decl
-            and ev
-            and ev.declaration_date_found
-            and window_start <= ev.declaration_date_found <= window_end
-        ):
+        if has_decl and ev and _dates_in_window(ev, window_start, window_end):
             return StrategyObservation(
                 strategy_name=self.name,
                 signal_type=SignalType.EVIDENCE_OBSERVATION,
@@ -1266,136 +1091,45 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
         window_end: date,
         fund: UniverseFund | None = None,
     ) -> list[Evidence]:
-        """Parse structured HTML table rows for distribution declarations/ex-dates."""
-        table_evidences: list[Evidence] = []
-        table_matches = re.finditer(
-            r"<table[^>]*>([\s\S]*?)</table>", content, re.IGNORECASE
-        )
-        for t_match in table_matches:
-            table_html = t_match.group(1)
-            row_matches = re.finditer(
-                r"<tr[^>]*>([\s\S]*?)</tr>", table_html, re.IGNORECASE
+        """Evidence rows from distribution tables whose ex-date or declaration date is in the window.
+
+        Uses the same table parser as Layer B, so a row only counts when its columns are
+        labelled (ex-date / record / payable / declaration + amount). A 'NAV as of' row or any
+        unlabelled date is not a distribution.
+        """
+        from src.parsers.html_table_parser import table_date_rows
+
+        evidences: list[Evidence] = []
+        for row, row_text in table_date_rows(
+            content, fund.ticker if fund else None, fund.fundserv_code if fund else None
+        ):
+            ev = Evidence(
+                source_id="official_fund_sponsor_page",
+                source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+                url=url,
+                retrieved_at=retrieved_at,
+                snippet_or_locator=f"Distribution table row: '{row_text[:120]}'",
+                declaration_date_found=row.get("declaration"),
+                ex_date_found=row.get("ex"),
+                record_date_found=row.get("record"),
+                payable_date_found=row.get("payable"),
             )
-            headers: list[str] = []
+            if _dates_in_window(ev, window_start, window_end):
+                evidences.append(ev)
+        return evidences
 
-            for r_match in row_matches:
-                row_html = r_match.group(1)
-                th_cells = re.findall(
-                    r"<th[^>]*>([\s\S]*?)</th>", row_html, re.IGNORECASE
-                )
-                if th_cells:
-                    headers = [
-                        re.sub(r"<[^>]+>", " ", c).strip().lower() for c in th_cells
-                    ]
-                    continue
+    @staticmethod
+    def _table_rows(content: str, url: str, fund: UniverseFund | None) -> list:
+        from src.parsers.html_table_parser import parse_html_distribution_tables
 
-                td_cells = re.findall(
-                    r"<td[^>]*>([\s\S]*?)</td>", row_html, re.IGNORECASE
-                )
-                if not td_cells:
-                    continue
-
-                clean_cells = [
-                    re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", c)).strip()
-                    for c in td_cells
-                ]
-
-                # Check if this first row acts as header
-                if not headers and any(
-                    h in " ".join(clean_cells).lower()
-                    for h in [
-                        "payable",
-                        "record",
-                        "ex-dividend",
-                        "declaration",
-                        "rate",
-                        "type",
-                        "ticker",
-                        "fund",
-                    ]
-                ):
-                    headers = [c.lower() for c in clean_cells]
-                    continue
-
-                # Cross-fund contamination check in multi-fund tables:
-                if fund:
-                    ticker_col_idx = None
-                    if headers:
-                        for idx, h in enumerate(headers):
-                            if any(k in h for k in ["ticker", "symbol", "code"]):
-                                ticker_col_idx = idx
-                                break
-                    if ticker_col_idx is not None and ticker_col_idx < len(clean_cells):
-                        cell_ticker = clean_cells[ticker_col_idx].upper().strip()
-                        if (
-                            fund.ticker
-                            and cell_ticker
-                            and cell_ticker != fund.ticker.upper()
-                        ):
-                            continue
-                        if (
-                            fund.fundserv_code
-                            and cell_ticker
-                            and cell_ticker != fund.fundserv_code.upper()
-                        ):
-                            continue
-
-                decl_date: date | None = None
-                ex_date: date | None = None
-                record_date: date | None = None
-                payable_date: date | None = None
-
-                if headers and len(headers) == len(clean_cells):
-                    for h, val in zip(headers, clean_cells):
-                        d = _extract_date(val)
-                        if not d:
-                            continue
-                        if any(
-                            k in h for k in ["declaration", "announced", "declared"]
-                        ):
-                            decl_date = d
-                        elif any(
-                            k in h for k in ["ex-div", "ex div", "ex-date", "ex date"]
-                        ):
-                            ex_date = d
-                        elif "record" in h:
-                            record_date = d
-                        elif any(k in h for k in ["payable", "payment", "pay date"]):
-                            payable_date = d
-                else:
-                    extracted_dates = []
-                    for val in clean_cells:
-                        d = _extract_date(val)
-                        if d:
-                            extracted_dates.append(d)
-                    if extracted_dates:
-                        for d in extracted_dates:
-                            if window_start <= d <= window_end:
-                                decl_date = d
-                                break
-
-                # Check if any identified date falls within window
-                matched_in_window = any(
-                    d is not None and window_start <= d <= window_end
-                    for d in (decl_date, ex_date, record_date, payable_date)
-                )
-
-                if matched_in_window:
-                    row_snippet = " | ".join([c for c in clean_cells if c])
-                    ev = Evidence(
-                        source_id="official_fund_sponsor_page",
-                        source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
-                        url=url,
-                        retrieved_at=retrieved_at,
-                        snippet_or_locator=f"Distribution table row: '{row_snippet[:120]}'",
-                        declaration_date_found=decl_date or ex_date,
-                        ex_date_found=ex_date,
-                        record_date_found=record_date,
-                        payable_date_found=payable_date,
-                    )
-                    table_evidences.append(ev)
-
-        return table_evidences
+        return parse_html_distribution_tables(
+            content,
+            fund.fund_id if fund else "UNKNOWN",
+            fund.country if fund else "US",
+            url,
+            ticker=fund.ticker if fund else None,
+            fundserv_code=fund.fundserv_code if fund else None,
+        )
 
     def inspect(
         self,
@@ -1501,9 +1235,8 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
             )
 
         evidences: list[Evidence] = []
-        has_declaration = False
 
-        # 1. Parse structured HTML table rows if present
+        # 1. Structured distribution table rows (labelled columns only).
         table_evidences = self._parse_html_tables(
             content=content,
             url=url,
@@ -1512,114 +1245,67 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
             window_end=window_end,
             fund=fund,
         )
-        if table_evidences:
-            evidences.extend(table_evidences)
-            has_declaration = True
+        evidences.extend(table_evidences)
 
-        # 2. Deterministic pattern matching for declared distributions within window
-        announcement_patterns = [
-            re.compile(
-                r"(?:(?:declared|announces|announced|cash\s+distribution|monthly\s+distribution|quarterly\s+distribution|dividend\s+distribution|reinvested\s+distribution|special\s+distribution|year-end\s+distribution)[\s\S]{0,140})",
+        # 2. Announcement / press-release text. Dates count only next to their own label
+        #    (ex-date, record, payable, declaration) or as the release dateline.
+        text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", content))
+        doc_lower = text.lower()
+        url_lower = url.lower()
+        identity_ok = bool(
+            (
+                fund.ticker
+                and re.search(rf"\b{re.escape(fund.ticker.lower())}\b", doc_lower)
+            )
+            or (
+                fund.fundserv_code
+                and re.search(
+                    rf"\b{re.escape(fund.fundserv_code.lower())}\b", doc_lower
+                )
+            )
+            or (fund.fund_name and fund.fund_name.lower() in doc_lower)
+            # the fund's own official page (URL names the fund) - a family-wide release on it
+            or (
+                fund.ticker
+                and re.search(
+                    rf"[/\-_]{re.escape(fund.ticker.lower())}(?:[/\-_.]|$)", url_lower
+                )
+            )
+        )
+        if identity_ok:
+            seen: set[tuple] = set()
+            for m in re.finditer(
+                r"[^.]{0,200}\b(?:declare[sd]?|announce[sd]?)\b[^.]{0,300}\b(?:distributions?|dividends?)\b[^.]{0,400}",
+                text,
                 re.IGNORECASE,
-            ),
-            re.compile(
-                r"(?:(?:TORONTO|MONTREAL|VANCOUVER|CALGARY|NEW\s+YORK|BOSTON|CHICAGO|MALVERN)[\s,\-]*[A-Za-z0-9,\s\-]{0,40}(?:declared|announces|announced|distribution|dividend)[\s\S]{0,140})",
-                re.IGNORECASE,
-            ),
-            re.compile(
-                r"(?:(?:declared|announcement|payable|distribution\s*date)[:\s]+[A-Za-z0-9,\s\-\/]{6,30})",
-                re.IGNORECASE,
-            ),
-        ]
-
-        seen_snippets: set[str] = set()
-        seen_dates: set[date] = set()
-        for pat in announcement_patterns:
-            for match in pat.finditer(content):
-                snippet = match.group(0).strip()
-                clean_snippet = re.sub(
-                    r"\s+", " ", re.sub(r"<[^>]+>", " ", snippet)
-                ).strip()
-                if clean_snippet in seen_snippets or len(clean_snippet) < 10:
+            ):
+                start = max(0, m.start() - 200)
+                snippet = text[start : m.end() + 200]
+                found = labelled_dates(snippet)
+                key = (
+                    found.get("declaration"),
+                    found.get("ex"),
+                    found.get("published"),
+                )
+                if key in seen or not any(key):
                     continue
-                seen_snippets.add(clean_snippet)
-
-                # Prevent cross-fund contamination in multi-fund documents
-                if fund:
-                    doc_lower = content.lower()
-                    url_lower = url.lower()
-                    has_exact_doc_match = bool(
-                        (
-                            fund.ticker
-                            and re.search(
-                                rf"\b{re.escape(fund.ticker.lower())}\b",
-                                doc_lower,
-                            )
-                        )
-                        or (
-                            fund.fundserv_code
-                            and re.search(
-                                rf"\b{re.escape(fund.fundserv_code.lower())}\b",
-                                doc_lower,
-                            )
-                        )
-                        or (fund.fund_name and fund.fund_name.lower() in doc_lower)
-                    )
-                    url_matches = bool(
-                        (fund.ticker and fund.ticker.lower() in url_lower)
-                        or (
-                            fund.fundserv_code
-                            and fund.fundserv_code.lower() in url_lower
-                        )
-                        or (fund.fund_name and fund.fund_name.lower() in url_lower)
-                    )
-
-                    target_tickers = {
-                        t.upper() for t in [fund.ticker, fund.fundserv_code] if t
-                    }
-                    conflicting_ticker_in_doc = False
-                    for m in re.finditer(
-                        r"\b(?:ticker|symbol|code|etf)\s*[:\s]*([a-z0-9]{2,6})\b",
-                        doc_lower,
-                    ):
-                        found_sym = m.group(1).upper()
-                        if target_tickers and found_sym not in target_tickers:
-                            conflicting_ticker_in_doc = True
-                            break
-
-                    if conflicting_ticker_in_doc:
-                        other_ticker_in_snippet = re.search(
-                            r"\b(?:ticker|symbol|code|etf)\s*[:\s]*([a-z0-9]{2,6})\b",
-                            clean_snippet.lower(),
-                        )
-                        if other_ticker_in_snippet:
-                            found_sym = other_ticker_in_snippet.group(1).upper()
-                            if target_tickers and found_sym not in target_tickers:
-                                continue
-                        elif not has_exact_doc_match:
-                            continue
-                    elif not (has_exact_doc_match or url_matches):
-                        continue
-
-                decl_date = _extract_date(clean_snippet)
-                if (
-                    decl_date
-                    and window_start <= decl_date <= window_end
-                    and decl_date not in seen_dates
-                ):
-                    seen_dates.add(decl_date)
-                    ev = Evidence(
-                        source_id="official_fund_sponsor_page",
-                        source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
-                        url=url,
-                        retrieved_at=record.retrieved_at,
-                        snippet_or_locator=f"Official distribution match: '{clean_snippet[:120]}'",
-                        declaration_date_found=decl_date,
-                    )
+                seen.add(key)
+                ev = Evidence(
+                    source_id="official_fund_sponsor_page",
+                    source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+                    url=url,
+                    retrieved_at=record.retrieved_at,
+                    snippet_or_locator=f"Official announcement: '{m.group(0).strip()[:160]}'",
+                    declaration_date_found=found.get("declaration"),
+                    ex_date_found=found.get("ex"),
+                    record_date_found=found.get("record"),
+                    payable_date_found=found.get("payable"),
+                    published_date_found=found.get("published"),
+                )
+                if _dates_in_window(ev, window_start, window_end):
                     evidences.append(ev)
-                    has_declaration = True
 
-        if has_declaration:
+        if evidences:
             return StrategyObservation(
                 strategy_name=self.name,
                 signal_type=SignalType.EVIDENCE_OBSERVATION,
@@ -1627,113 +1313,110 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
                 has_declaration_in_window=True,
                 window_fully_covered=True,
                 suggested_route=(
-                    ExtractionRoute.PDF if is_pdf else ExtractionRoute.HTML_TABLE
+                    ExtractionRoute.PDF
+                    if is_pdf
+                    else (
+                        ExtractionRoute.HTML_TABLE
+                        if table_evidences
+                        else ExtractionRoute.FILING
+                    )
                 ),
-                notes="Official fund sponsor portal confirmed declaration in window.",
+                notes="Official fund sponsor source confirmed a distribution in the window.",
             )
 
-        # Negative Coverage Check:
-        # A static HTML response without regex matches does NOT automatically prove non-declaration.
-        # Check whether the page actually contains a verifiable static HTML distribution schedule table with dates.
-        has_explicit_schedule_table = False
-        table_matches = re.finditer(
-            r"<table[^>]*>([\s\S]*?)</table>", content, re.IGNORECASE
+        # 3. Negative proof only when the page's own distribution table demonstrably spans the
+        #    window: its earliest ex-date is on/before window_start and it is current past
+        #    window_end (latest ex-date after the window, or fetched >= 7 days after it).
+        from src.parsers.html_table_parser import table_date_rows
+
+        dated_rows = table_date_rows(content, fund.ticker, fund.fundserv_code)
+        ex_dates = sorted(
+            d
+            for row, _txt in dated_rows
+            for k, d in row.items()
+            if k in ("ex", "declaration")
         )
-        for t_m in table_matches:
-            t_html = t_m.group(1).lower()
-            has_headers = any(
-                h in t_html
-                for h in [
-                    "amount",
-                    "cash distribution",
-                    "distribution rate",
-                    "$/share",
-                    "$/unit",
-                    "amount per share",
-                    "distribution per unit",
-                    "rate ($)",
-                    "frequency",
-                    "scheduled month",
-                    "quarter",
-                    "declaration date",
-                    "ex-dividend date",
-                    "distribution schedule",
-                ]
+        retrieved_day = record.retrieved_at.date()
+        spans_window = (
+            bool(ex_dates)
+            and ex_dates[0] <= window_start
+            and (
+                ex_dates[-1] >= window_end
+                or retrieved_day >= window_end + timedelta(days=7)
             )
-            has_dates = any(
-                d in t_html
-                for d in [
-                    "ex-date",
-                    "ex-dividend",
-                    "payable date",
-                    "record date",
-                    "declaration date",
-                    "scheduled month",
-                ]
+        )
+        # A published full-year schedule ("2026 Distribution Schedule") whose rows all fall in
+        # that year also covers every month of that year.
+        full_year_schedule = (
+            bool(ex_dates)
+            and window_start.year == window_end.year
+            and all(d.year == window_start.year for d in ex_dates)
+            and re.search(
+                rf"{window_start.year}\s+(?:distribution|dividend)\s+schedule|(?:distribution|dividend)\s+schedule\s+(?:for\s+)?{window_start.year}",
+                text,
+                re.IGNORECASE,
             )
-            # If the table has a ticker/symbol column, ensure our fund is in the document
-            has_ticker_col = any(
-                c in t_html
-                for c in ["<th>ticker", "<th>symbol", "<th>etf name", "<th>fund"]
-            )
-            if (
-                has_ticker_col
-                and fund
-                and fund.ticker
-                and fund.ticker.lower() not in content.lower()
-            ):
-                continue
-
-            if has_headers and has_dates and (
-                re.search(rf"\b{window_start.year}\b", t_html)
-                or re.search(rf"\b{window_start.year}\b", content)
-            ):
-                has_explicit_schedule_table = True
-                break
-
-        if has_explicit_schedule_table:
-            # The page demonstrably contains a full static schedule table with zero entries in the requested window
-            audit_evidence = Evidence(
-                source_id="official_fund_sponsor_page",
-                source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
-                url=url,
-                retrieved_at=record.retrieved_at,
-                snippet_or_locator=f"Official distribution schedule table inspected for window [{window_start} to {window_end}]. Zero declared events confirmed.",
-            )
+            is not None
+        )
+        if spans_window or full_year_schedule:
             return StrategyObservation(
                 strategy_name=self.name,
                 signal_type=SignalType.NO_DATA_OBSERVATION,
-                evidence=[audit_evidence],
-                has_declaration_in_window=False,
+                evidence=[
+                    Evidence(
+                        source_id="official_fund_sponsor_page",
+                        source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+                        url=url,
+                        retrieved_at=record.retrieved_at,
+                        snippet_or_locator=(
+                            f"Official distribution table lists {len(ex_dates)} dated rows from {ex_dates[0]} to "
+                            f"{ex_dates[-1]}; none in [{window_start} to {window_end}]."
+                        ),
+                    )
+                ],
                 window_fully_covered=True,
-                notes="Sponsor distribution schedule table verified; zero declarations in window.",
+                notes="Sponsor distribution table spans the window with no row inside it.",
             )
 
-        # Page lacks an explicit verifiable static distribution schedule (e.g. dynamic/React single-page app or general profile)
-        insufficient_evidence = Evidence(
-            source_id="official_fund_sponsor_page",
-            source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
-            url=url,
-            retrieved_at=record.retrieved_at,
-            snippet_or_locator=f"Official portal HTML inspected for window [{window_start} to {window_end}]. No declared events detected, but page lacks an explicit static distribution schedule covering the window.",
-            failure_reason=UnknownReason.INSUFFICIENT_EVIDENCE,
-        )
         return StrategyObservation(
             strategy_name=self.name,
             signal_type=SignalType.NO_DATA_OBSERVATION,
-            evidence=[insufficient_evidence],
-            has_declaration_in_window=False,
-            window_fully_covered=False,
+            evidence=[
+                Evidence(
+                    source_id="official_fund_sponsor_page",
+                    source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+                    url=url,
+                    retrieved_at=record.retrieved_at,
+                    snippet_or_locator=(
+                        f"Official page inspected for [{window_start} to {window_end}]: no labelled distribution "
+                        "in the window and no table spanning the window (e.g. JavaScript-rendered page)."
+                    ),
+                    failure_reason=UnknownReason.INSUFFICIENT_EVIDENCE,
+                )
+            ],
             failure_reason=UnknownReason.INSUFFICIENT_EVIDENCE,
-            notes="Sponsor HTML retrieved but lacks verifiable distribution schedule table for window.",
+            notes="Sponsor page does not demonstrably cover the window.",
         )
 
 
 class FilingIndexPollingStrategy(BaseDetectionStrategy):
-    """Polls authoritative regulatory filing indexes."""
+    """Detection strategy 3 (PDF Phase 1): EDGAR daily form-index polling.
 
-    def __init__(self, name: str = "FilingIndexPollingStrategy") -> None:
+    Emits a TRIGGER_SIGNAL when the fund's CIK filed a distribution-relevant form in the
+    window. The filing itself is then read by SECEdgarSubmissionsStrategy.
+    """
+
+    def __init__(
+        self,
+        http_client: HTTPClient | None = None,
+        universe: UniverseRegistry | None = None,
+        name: str = "FilingIndexPollingStrategy",
+    ) -> None:
         super().__init__(name=name)
+        from src.edgar_index import EdgarDailyIndexPoller
+
+        self.poller = EdgarDailyIndexPoller(http_client=http_client)
+        self.universe = universe
 
     def inspect(
         self,
@@ -1741,13 +1424,25 @@ class FilingIndexPollingStrategy(BaseDetectionStrategy):
         window_start: date,
         window_end: date,
     ) -> StrategyObservation:
+        fund = (
+            self.universe.get_fund(fund_id)
+            if self.universe
+            else UniverseRegistry.from_json().get_fund(fund_id)
+        )
+        if fund is None or fund.country != "US" or not fund.cik:
+            return StrategyObservation(
+                self.name, SignalType.TRIGGER_SIGNAL, applicable=False
+            )
+        hits = self.poller.poll_range(window_start, window_end, {fund.cik}).get(
+            fund.cik.lstrip("0"), []
+        )
         return StrategyObservation(
             strategy_name=self.name,
-            signal_type=SignalType.NO_DATA_OBSERVATION,
-            has_declaration_in_window=False,
-            window_fully_covered=False,
-            failure_reason=UnknownReason.INSUFFICIENT_EVIDENCE,
-            notes="Filing index poller unconfigured without active source adapter.",
+            signal_type=SignalType.TRIGGER_SIGNAL,
+            notes=(
+                f"{len(hits)} distribution-relevant EDGAR filings in window: "
+                + ", ".join(f"{h.form}@{h.filed}" for h in hits[:10])
+            ),
         )
 
 
@@ -1762,6 +1457,8 @@ class TargetedLookupStrategy(BaseDetectionStrategy):
         name: str = "TargetedLookupStrategy",
     ) -> None:
         super().__init__(name=name)
+        # Strategy 4 (PDF): only run when strategies 1-3 were inconclusive.
+        self.only_if_inconclusive = True
         self.candidate_urls = candidate_urls or []
         self.http_client = http_client or HTTPClient()
         self.universe = universe
@@ -1804,10 +1501,8 @@ class TargetedLookupStrategy(BaseDetectionStrategy):
             return StrategyObservation(
                 strategy_name=self.name,
                 signal_type=SignalType.NO_DATA_OBSERVATION,
-                has_declaration_in_window=False,
-                window_fully_covered=False,
-                failure_reason=UnknownReason.INSUFFICIENT_EVIDENCE,
-                notes="No targeted secondary candidate URLs configured.",
+                applicable=False,
+                notes="No targeted secondary candidate URLs configured for this fund.",
             )
 
         evidences: list[Evidence] = []
@@ -1857,34 +1552,31 @@ class TargetedLookupStrategy(BaseDetectionStrategy):
             if not (ticker_match or name_match):
                 continue
 
-            decl_patterns = [
-                re.compile(
-                    r"(?:(?:declared|announces|announced|cash\s+distribution|monthly\s+distribution|quarterly\s+distribution|dividend\s+distribution)[\s\S]{0,120})",
-                    re.IGNORECASE,
-                ),
-                re.compile(
-                    r"(?:(?:declared|announcement|payable|distribution\s*date)[:\s]+[A-Za-z0-9,\s\-\/]{6,30})",
-                    re.IGNORECASE,
-                ),
-            ]
-            for pat in decl_patterns:
-                for match in pat.finditer(clean_text):
-                    snippet = match.group(0).strip()
-                    decl_d = _extract_date(snippet)
-                    if decl_d and window_start <= decl_d <= window_end:
-                        ev = Evidence(
-                            source_id="targeted_lookup_source",
-                            source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
-                            url=target_url,
-                            retrieved_at=rec.retrieved_at,
-                            snippet_or_locator=f"Targeted lookup distribution match: '{snippet[:120]}'",
-                            declaration_date_found=decl_d,
-                        )
-                        evidences.append(ev)
-                        has_declaration = True
-                        break
-                if has_declaration:
+            for m in re.finditer(
+                r"[^.]{0,200}\b(?:declare[sd]?|announce[sd]?)\b[^.]{0,300}\b(?:distributions?|dividends?)\b[^.]{0,400}",
+                clean_text,
+                re.IGNORECASE,
+            ):
+                snippet = clean_text[max(0, m.start() - 200) : m.end() + 200]
+                found = labelled_dates(snippet)
+                ev = Evidence(
+                    source_id="targeted_lookup_source",
+                    source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+                    url=target_url,
+                    retrieved_at=rec.retrieved_at,
+                    snippet_or_locator=f"Targeted lookup distribution match: '{m.group(0).strip()[:120]}'",
+                    declaration_date_found=found.get("declaration"),
+                    ex_date_found=found.get("ex"),
+                    record_date_found=found.get("record"),
+                    payable_date_found=found.get("payable"),
+                    published_date_found=found.get("published"),
+                )
+                if _dates_in_window(ev, window_start, window_end):
+                    evidences.append(ev)
+                    has_declaration = True
                     break
+            if has_declaration:
+                break
 
         if has_declaration:
             return StrategyObservation(
@@ -1893,7 +1585,7 @@ class TargetedLookupStrategy(BaseDetectionStrategy):
                 evidence=evidences,
                 has_declaration_in_window=True,
                 window_fully_covered=True,
-                suggested_route=ExtractionRoute.HTML_TABLE,
+                suggested_route=ExtractionRoute.FILING,
                 notes="Targeted secondary source confirmed declaration in window.",
             )
 

@@ -1,80 +1,65 @@
-"""Deterministic confidence evaluation rules for fund distribution detection results.
+"""Deterministic confidence rules for Layer A detection results.
 
-These rules deterministically score the confidence of an already-determined DetectionStatus
-based on the authority tier of supporting evidence, the presence of explicit declaration evidence,
-and source window coverage completeness. This is a deterministic rule-based evaluation,
-not a probabilistic model.
+The PDF interface defines ``confidence: 0.0 - 1.0`` for every result, so every status gets a
+float. The score reflects the authority of the evidence behind the status:
+
+DECLARED
+  - Tier 1 authoritative evidence dated in the window              -> 1.00
+  - Tier 2 with an explicit declaration date or labelled ex-date   -> 0.90
+  - Tier 2 with only a publication date (press-release dateline)   -> 0.80
+NOT_DECLARED (requires demonstrated full coverage of the window)
+  - Tier 1 complete coverage                                        -> 1.00
+  - Tier 2 complete coverage                                        -> 0.85
+Any status: minus 0.05 when another applicable source failed to respond.
+UNKNOWN -> 0.0 (no confidence either way). Tier 3 alone never scores above 0.0.
 """
 
 from __future__ import annotations
 
 from src.models import DetectionStatus, Evidence, SourceTier
 
+_T12 = (SourceTier.TIER_1_AUTHORITATIVE, SourceTier.TIER_2_PRIMARY_UNSTRUCTURED)
+
 
 def compute_confidence(
     status: DetectionStatus,
     evidence_list: list[Evidence],
     window_covered: bool = True,
-) -> float | None:
-    """Compute deterministic confidence score for an already-determined DetectionStatus.
-
-    Rules:
-    - UNKNOWN -> None
-    - Empty evidence -> None
-    - DECLARED:
-        - Must have explicit declaration evidence (declaration_date_found is not None).
-        - Tier 1 authoritative + explicit declaration date -> 1.0
-        - Tier 2 primary unstructured + explicit declaration date -> 0.90
-        - Tier 3 corroboration only -> None
-        - Without explicit declaration date -> None
-    - NOT_DECLARED:
-        - Must have demonstrably complete window coverage (window_covered is True).
-        - Tier 1 authoritative + complete coverage -> 1.0
-        - Tier 2 primary unstructured + complete coverage -> 0.85
-        - Incomplete window or Tier 3 only -> None
-
-    Args:
-        status: The determined DetectionStatus (DECLARED, NOT_DECLARED, UNKNOWN).
-        evidence_list: List of supporting Evidence objects.
-        window_covered: Whether the inspected sources demonstrably cover the requested window.
-
-    Returns:
-        A deterministic float (1.0, 0.90, or 0.85) if criteria are met, or None if evidence
-        is insufficient to establish confidence.
-    """
+    other_source_failed: bool = False,
+) -> float:
+    """Return a confidence in [0.0, 1.0] for an already-decided status."""
     if status == DetectionStatus.UNKNOWN or not evidence_list:
-        return None
+        return 0.0
 
-    has_tier1 = any(
-        e.source_tier == SourceTier.TIER_1_AUTHORITATIVE for e in evidence_list
-    )
-    has_tier2 = any(
-        e.source_tier == SourceTier.TIER_2_PRIMARY_UNSTRUCTURED for e in evidence_list
-    )
+    tiers = {e.source_tier for e in evidence_list}
+    penalty = 0.05 if other_source_failed else 0.0
 
     if status == DetectionStatus.DECLARED:
-        has_explicit_declaration = any(
-            e.declaration_date_found is not None for e in evidence_list
-        )
-        if not has_explicit_declaration:
-            return None
-
-        if has_tier1:
-            return 1.0
-        elif has_tier2:
-            return 0.90
+        dated = [
+            e
+            for e in evidence_list
+            if e.source_tier in _T12
+            and (e.declaration_date_found or e.ex_date_found or e.published_date_found)
+        ]
+        if not dated:
+            return 0.0
+        if any(e.source_tier == SourceTier.TIER_1_AUTHORITATIVE for e in dated):
+            base = 1.0
+        elif any(e.declaration_date_found or e.ex_date_found for e in dated):
+            base = 0.90
         else:
-            return None
+            base = 0.80
+        return round(max(0.0, base - penalty), 2)
 
     if status == DetectionStatus.NOT_DECLARED:
         if not window_covered:
-            return None
-
-        if has_tier1:
-            return 1.0
-        elif has_tier2:
-            return 0.85
+            return 0.0
+        if SourceTier.TIER_1_AUTHORITATIVE in tiers:
+            base = 1.0
+        elif SourceTier.TIER_2_PRIMARY_UNSTRUCTURED in tiers:
+            base = 0.85
         else:
-            return None
+            return 0.0
+        return round(max(0.0, base - penalty), 2)
 
-    return None
+    return 0.0

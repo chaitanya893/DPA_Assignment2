@@ -39,7 +39,10 @@ def main() -> None:
         w_end = date(2024, 3, 31)
 
         # If fund has documented schedule events, use latest event month
-        sched_entry = sched_map.get(fund.fund_id)
+        # Windows are fixed calendar months. They are no longer chosen from events already
+        # listed in config/*_distribution_schedules.json (that made the test circular).
+        # The production entry point is: python -m src.sweep_scheduler
+        sched_entry = None
         if sched_entry and sched_entry.get("events"):
             ev0 = sched_entry["events"][0]
             ev_date_str = ev0.get("ex_date") or ev0.get("payable_date") or ev0.get("record_date")

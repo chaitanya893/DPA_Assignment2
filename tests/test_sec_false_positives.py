@@ -383,7 +383,12 @@ def test_pimco_rule_19a1_remains_declared(universe_registry: UniverseRegistry) -
     assert obs.suggested_route == ExtractionRoute.FILING
     assert len(obs.evidence) == 1
     assert obs.evidence[0].source_tier == SourceTier.TIER_1_AUTHORITATIVE
-    assert obs.evidence[0].declaration_date_found == date(2026, 2, 2)
+    # The notice has no labelled declaration date. The filing date is recorded as the
+    # publication date and is never passed off as the board's declaration date.
+    assert obs.evidence[0].declaration_date_found is None
+    assert obs.evidence[0].published_date_found == date(2026, 2, 2)
+    assert obs.evidence[0].record_date_found == date(2026, 2, 13)
+    assert obs.evidence[0].payable_date_found == date(2026, 2, 27)
 
     result = detect_distribution(
         fund_id="US_PIMCO_BOND",

@@ -26,14 +26,16 @@ from src.strategies import (
 )
 
 
-def test_user_agent_configuration_no_fake_contact() -> None:
+def test_user_agent_configuration_no_fake_contact(monkeypatch) -> None:
     """Verify default User-Agent contains no fake contact and is configurable."""
     assert "example.internal" not in DEFAULT_USER_AGENT
     assert "contact@" not in DEFAULT_USER_AGENT
 
-    # Test default instance
+    # Default instance: descriptive UA + the operator contact email from DETECTOR_CONTACT_EMAIL
     client = HTTPClient()
-    assert client.user_agent == DEFAULT_USER_AGENT
+    assert client.user_agent.startswith(DEFAULT_USER_AGENT[:-1])
+    assert "tests@example.com" in client.user_agent
+    assert "Mozilla" not in client.user_agent  # never impersonate a browser
 
     # Test custom param override
     custom_ua = "SYNTHETIC_TEST_AGENT/1.0 (test-run)"
@@ -86,7 +88,9 @@ def test_http_client_success_synthetic_response() -> None:
     mock_resp.content = b"<html>SYNTHETIC_TEST_CONTENT</html>"
 
     with patch("httpx.Client.get", return_value=mock_resp) as mock_get:
-        client = HTTPClient(user_agent="SYNTHETIC_TEST_USER_AGENT/1.0", max_retries=1)
+        client = HTTPClient(
+            user_agent="SYNTHETIC_TEST_USER_AGENT/1.0 (ops@example.com)", max_retries=1
+        )
         record = client.get("https://synthetic-test.example.org/api")
 
         assert record.is_success is True
@@ -97,7 +101,10 @@ def test_http_client_success_synthetic_response() -> None:
         # Verify custom synthetic User-Agent header was passed
         mock_get.assert_called_once()
         headers_passed = mock_get.call_args[1].get("headers", {})
-        assert headers_passed.get("User-Agent") == "SYNTHETIC_TEST_USER_AGENT/1.0"
+        assert (
+            headers_passed.get("User-Agent")
+            == "SYNTHETIC_TEST_USER_AGENT/1.0 (ops@example.com)"
+        )
 
 
 def test_http_client_empty_body_classified_as_incomplete() -> None:
@@ -174,3 +181,41 @@ def test_http_client_failure_not_converted_to_not_declared() -> None:
         assert result.status == DetectionStatus.UNKNOWN
         assert result.status != DetectionStatus.NOT_DECLARED
         assert result.evidence[0].failure_reason == UnknownReason.SOURCE_UNAVAILABLE
+
+
+def test_request_refused_without_contact_email(monkeypatch) -> None:
+    """Compliance: no contact email in the User-Agent -> no request is sent."""
+    monkeypatch.delenv("DETECTOR_CONTACT_EMAIL", raising=False)
+    with patch("httpx.Client.get") as mock_get:
+        record = HTTPClient(max_retries=1).get("https://synthetic-test.example.org/x")
+    assert record.is_success is False
+    assert "contact email" in (record.error_message or "")
+    mock_get.assert_not_called()
+
+
+def test_robots_txt_disallow_is_obeyed(monkeypatch) -> None:
+    """Compliance: a path disallowed by robots.txt is never fetched."""
+    from src.http_client import RobotsPolicy
+
+    RobotsPolicy.clear()
+    robots = MagicMock(status_code=200, text="User-agent: *\nDisallow: /private/\n")
+    page = MagicMock(
+        status_code=200, text="<html>ok</html>", content=b"<html>ok</html>"
+    )
+
+    def fake_get(self, url, headers=None, params=None):  # noqa: ANN001
+        return robots if url.endswith("/robots.txt") else page
+
+    with patch("httpx.Client.get", new=fake_get):
+        client = HTTPClient(max_retries=1, respect_robots=True)
+        blocked = client.get("https://robots-test.example.org/private/data")
+        allowed = client.get("https://robots-test.example.org/public/data")
+    assert blocked.is_success is False and "robots.txt" in (blocked.error_message or "")
+    assert allowed.is_success is True
+
+
+def test_default_rate_limit_is_2_to_3_seconds() -> None:
+    """Compliance: default pacing is one request every 2-3 s per domain."""
+    cfg = RateLimitConfig()
+    assert 2.0 <= cfg.min_interval_seconds <= 3.0
+    assert cfg.max_requests_per_window == 1

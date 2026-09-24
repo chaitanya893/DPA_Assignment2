@@ -15,7 +15,7 @@ import json
 import logging
 import os
 import time
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -78,106 +78,17 @@ def determine_fund_window(
             date(y, 12, 31),
             f"Active 5-cycle evaluation: Quarterly + Feb cycles across {y}",
         )
-    # 0. Check us_distribution_schedules.json for documented verified historical events
-    us_sched_path = Path("config/us_distribution_schedules.json")
-    if us_sched_path.exists():
-        try:
-            with us_sched_path.open("r", encoding="utf-8") as f:
-                us_schedules = json.load(f)
-            for item in us_schedules:
-                if item.get("fund_id") == fund.fund_id and item.get("events"):
-                    ev0 = item["events"][0]
-                    ev_date_str = (
-                        ev0.get("ex_date")
-                        or ev0.get("payable_date")
-                        or ev0.get("record_date")
-                    )
-                    if ev_date_str:
-                        ev_date = date.fromisoformat(ev_date_str)
-                        w_start = date(ev_date.year, ev_date.month, 1)
-                        if ev_date.month in {1, 3, 5, 7, 8, 10, 12}:
-                            w_end = date(ev_date.year, ev_date.month, 31)
-                        elif ev_date.month in {4, 6, 9, 11}:
-                            w_end = date(ev_date.year, ev_date.month, 30)
-                        else:
-                            w_end = date(
-                                ev_date.year,
-                                ev_date.month,
-                                29 if ev_date.year % 4 == 0 else 28,
-                            )
-                        return (
-                            w_start,
-                            w_end,
-                            f"Authenticated verified distribution window ({w_start} to {w_end})",
-                        )
-        except Exception:
-            pass
-
-    # 1. Check if fund has documented event in verification_audit
-    audit = fund.verification_audit or {}
-    event_date_str = (
-        audit.get("latest_distribution_date")
-        or audit.get("declaration_date")
-        or audit.get("event_date")
-    )
-    if event_date_str:
-        try:
-            ev_date = date.fromisoformat(event_date_str)
-            # Center a monthly observation window around documented event
-            w_start = date(ev_date.year, ev_date.month, 1)
-            # End of month
-            if ev_date.month in {1, 3, 5, 7, 8, 10, 12}:
-                w_end = date(ev_date.year, ev_date.month, 31)
-            elif ev_date.month in {4, 6, 9, 11}:
-                w_end = date(ev_date.year, ev_date.month, 30)
-            else:
-                w_end = date(
-                    ev_date.year,
-                    ev_date.month,
-                    29 if ev_date.year % 4 == 0 else 28,
-                )
-            return (
-                w_start,
-                w_end,
-                f"Surrounding documented distribution event ({event_date_str}) in {w_start.strftime('%B %Y')}",
-            )
-        except (ValueError, TypeError):
-            pass
-
-    # 2. Known specific verified cases
-    if fund.fund_id == "US_PIMCO_BOND":
-        return (
-            date(2026, 2, 1),
-            date(2026, 2, 28),
-            "Documented Section 19(a) declaration event window (February 2026)",
-        )
-    if fund.fund_id == "CA_BMO_ZCN":
-        return (
-            date(2026, 2, 1),
-            date(2026, 2, 28),
-            "Documented official sponsor declaration window (February 2026)",
-        )
-
-    # 3. Monthly payers vs Quarterly vs Annual cadence
-    if fund.is_monthly_payer or fund.expected_frequency == "MONTHLY":
-        return (
-            date(2026, 2, 1),
-            date(2026, 2, 28),
-            "Authenticated monthly payment cadence observation window (February 2026)",
-        )
-
-    if fund.expected_frequency in {"QUARTERLY", "ANNUAL", "SEMI_ANNUAL"}:
-        return (
-            date(2026, 1, 1),
-            date(2026, 3, 31),
-            f"Authenticated {fund.expected_frequency.lower()} schedule cadence window (Q1 2026)",
-        )
-
-    # 4. Standard observation window
+    # 'auto' / '1month': the last complete calendar month before the reference date.
+    # The window is chosen from the calendar only. It is never chosen from a known event
+    # (config schedules, gold set, verification notes): picking windows where the answer is
+    # already known would make every measured hit rate meaningless.
+    first_of_month = ref_date.replace(day=1)
+    w_end = first_of_month - timedelta(days=1)
+    w_start = w_end.replace(day=1)
     return (
-        date(2026, 2, 1),
-        date(2026, 2, 28),
-        "Standard active observation window for fund profile inspection (February 2026)",
+        w_start,
+        w_end,
+        f"Last complete calendar month before {ref_date.isoformat()} ({w_start:%B %Y})",
     )
 
 

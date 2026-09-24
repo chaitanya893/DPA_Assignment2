@@ -19,9 +19,10 @@ logger = logging.getLogger(__name__)
 class RateLimitConfig:
     """Configuration for a specific domain's rate limits."""
 
-    min_interval_seconds: float = 0.5  # Conservative default minimum spacing
-    max_requests_per_window: int = 10  # Max requests per window
-    window_seconds: float = 1.0  # Window duration in seconds
+    # PDF compliance rule: one request every 2 to 3 seconds per domain.
+    min_interval_seconds: float = 2.5
+    max_requests_per_window: int = 1
+    window_seconds: float = 2.5
 
     def __post_init__(self) -> None:
         if self.min_interval_seconds < 0:
@@ -97,3 +98,35 @@ class RateLimiter:
             self._last_request_time[domain] = now
             self._request_history[domain].append(now)
             return delay
+
+
+_SHARED: RateLimiter | None = None
+_SHARED_LOCK = threading.Lock()
+
+
+def shared_rate_limiter() -> RateLimiter:
+    """Process-wide limiter so every HTTPClient paces the same domain together.
+
+    Default 2.5 s between requests to one domain. DETECTOR_MIN_INTERVAL_SECONDS overrides it
+    (tests set 0; production should stay within the 2-3 s rule).
+    """
+    global _SHARED
+    with _SHARED_LOCK:
+        if _SHARED is None:
+            import os
+
+            interval = float(os.getenv("DETECTOR_MIN_INTERVAL_SECONDS", "2.5"))
+            _SHARED = RateLimiter(
+                default_config=RateLimitConfig(
+                    min_interval_seconds=interval,
+                    max_requests_per_window=1 if interval > 0 else 1_000_000,
+                    window_seconds=interval if interval > 0 else 1.0,
+                )
+            )
+        return _SHARED
+
+
+def reset_shared_rate_limiter() -> None:
+    global _SHARED
+    with _SHARED_LOCK:
+        _SHARED = None

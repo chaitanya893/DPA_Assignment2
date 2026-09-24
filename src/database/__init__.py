@@ -4,17 +4,30 @@ from src.database.connection import get_engine, get_session, init_db, session_sc
 from src.database.models import (
     Base,
     CrawlLog,
+    DetectionRun,
     DistributionComponent,
     DistributionEvent,
     DQFlag,
     EventEvidence,
+    FundDetectionState,
     FundMaster,
     RawDocument,
+    ReviewQueue,
     ShareClass,
     SourceRegistry,
 )
-from src.database.populator import DatabasePopulator, run_population
 from src.database.repository import DistributionRepository
+
+
+def __getattr__(
+    name: str,
+):  # lazy: the populator imports the pipeline, which imports this package
+    if name in ("DatabasePopulator", "run_population"):
+        from src.database import populator
+
+        return getattr(populator, name)
+    raise AttributeError(name)
+
 
 __all__ = [
     "Base",
@@ -27,6 +40,9 @@ __all__ = [
     "DistributionComponent",
     "EventEvidence",
     "DQFlag",
+    "DetectionRun",
+    "FundDetectionState",
+    "ReviewQueue",
     "DistributionRepository",
     "DatabasePopulator",
     "get_engine",

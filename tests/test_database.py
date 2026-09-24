@@ -16,42 +16,56 @@ Tests:
 from __future__ import annotations
 
 import hashlib
-from datetime import date, datetime, timezone
+from datetime import date
+
 import pytest
-from sqlalchemy import create_engine, select
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from src.database.connection import get_engine, init_db, session_scope
 from src.database.models import (
     Base,
-    CrawlLog,
     DistributionComponent,
     DistributionEvent,
     DQFlag,
     EventEvidence,
     FundMaster,
     RawDocument,
-    ShareClass,
-    SourceRegistry,
 )
-from src.database.populator import DatabasePopulator
 from src.database.repository import DistributionRepository
 from src.models import (
     CAComponentType,
     ExtractedComponent,
     ExtractedDistribution,
-    ExtractionRoute,
-    SourceTier,
     USComponentType,
 )
 
 
 @pytest.fixture
-def in_memory_db():
-    """Create a fresh in-memory SQLite database for testing."""
-    engine = create_engine("sqlite:///:memory:", echo=False)
+def in_memory_db(tmp_path):
+    """Fresh SQLite database created through the project's own get_engine().
+
+    get_engine() switches foreign keys on for every connection, exactly as in production, so
+    FK bugs (like the old amendment crash) are caught here too.
+    """
+    engine = get_engine(f"sqlite:///{tmp_path / 'test.db'}")
     init_db(engine)
     return engine
+
+
+def _doc(
+    repo: DistributionRepository, url: str, body: str | None = None
+) -> RawDocument:
+    """Store a synthetic source document so events can satisfy the provenance rule."""
+    return repo.store_raw_document(
+        source_id="official_fund_sponsor_page",
+        source_url=url,
+        content_bytes=(body or f"<html>SYNTHETIC TEST PAGE {url}</html>").encode(),
+    )
+
+
+def _setup_source(repo: DistributionRepository) -> None:
+    repo.upsert_source_registry("official_fund_sponsor_page", "Sponsor", 2, "{url}")
 
 
 def test_schema_creates_all_nine_tables(in_memory_db):
@@ -134,6 +148,7 @@ def test_raw_document_sha256_deduplication(in_memory_db):
 
     with session_scope(in_memory_db) as session:
         repo = DistributionRepository(session)
+        _setup_source(repo)
         doc1 = repo.store_raw_document(
             source_id="official_fund_sponsor_page",
             source_url="https://sponsor.com/pr",
@@ -154,8 +169,12 @@ def test_idempotent_distribution_insertion(in_memory_db):
     """Test that inserting identical distribution events does not create duplicates."""
     with session_scope(in_memory_db) as session:
         repo = DistributionRepository(session)
-        repo.upsert_fund("US_VTI", "Vanguard Total Stock Market", "Vanguard", "US", "ETF")
+        repo.upsert_fund(
+            "US_VTI", "Vanguard Total Stock Market", "Vanguard", "US", "ETF"
+        )
         repo.upsert_share_class("US_VTI_CLASS", "US_VTI", ticker="VTI")
+        _setup_source(repo)
+        doc = _doc(repo, "https://investor.vanguard.com/vti")
 
         extracted = ExtractedDistribution(
             fund_id="US_VTI",
@@ -165,19 +184,21 @@ def test_idempotent_distribution_insertion(in_memory_db):
             gross_amount=0.885,
             distribution_type="Income",
             components=[
-                ExtractedComponent("Ordinary Income", USComponentType.ORDINARY_INCOME, 0.885, 100.0)
+                ExtractedComponent(
+                    "Ordinary Income", USComponentType.ORDINARY_INCOME, 0.885, 100.0
+                )
             ],
             source_url="https://investor.vanguard.com/vti",
         )
 
         # First insert -> is_new = True
-        evt1, is_new1 = repo.save_distribution_event(extracted)
+        evt1, is_new1 = repo.save_distribution_event(extracted, raw_document=doc)
         assert is_new1 is True
         assert evt1.version == 1
         assert evt1.is_superseded is False
 
         # Duplicate insert -> is_new = False
-        evt2, is_new2 = repo.save_distribution_event(extracted)
+        evt2, is_new2 = repo.save_distribution_event(extracted, raw_document=doc)
         assert is_new2 is False
         assert evt2.event_id == evt1.event_id
 
@@ -193,8 +214,11 @@ def test_nondestructive_amendment_versioning(in_memory_db):
     """Test that restated/amended distributions create version 2 and mark version 1 superseded."""
     with session_scope(in_memory_db) as session:
         repo = DistributionRepository(session)
-        repo.upsert_fund("US_VTI", "Vanguard Total Stock Market", "Vanguard", "US", "ETF")
+        repo.upsert_fund(
+            "US_VTI", "Vanguard Total Stock Market", "Vanguard", "US", "ETF"
+        )
         repo.upsert_share_class("US_VTI_CLASS", "US_VTI", ticker="VTI")
+        _setup_source(repo)
 
         # Initial distribution announcement: $0.800
         extracted_v1 = ExtractedDistribution(
@@ -205,11 +229,15 @@ def test_nondestructive_amendment_versioning(in_memory_db):
             gross_amount=0.800,
             distribution_type="Income",
             components=[
-                ExtractedComponent("Ordinary Income", USComponentType.ORDINARY_INCOME, 0.800, 100.0)
+                ExtractedComponent(
+                    "Ordinary Income", USComponentType.ORDINARY_INCOME, 0.800, 100.0
+                )
             ],
             source_url="https://investor.vanguard.com/vti",
         )
-        evt1, is_new1 = repo.save_distribution_event(extracted_v1)
+        evt1, is_new1 = repo.save_distribution_event(
+            extracted_v1, raw_document=_doc(repo, "https://investor.vanguard.com/vti")
+        )
         assert is_new1 is True
         assert evt1.version == 1
 
@@ -222,11 +250,17 @@ def test_nondestructive_amendment_versioning(in_memory_db):
             gross_amount=0.850,
             distribution_type="Income",
             components=[
-                ExtractedComponent("Ordinary Income", USComponentType.ORDINARY_INCOME, 0.850, 100.0)
+                ExtractedComponent(
+                    "Ordinary Income", USComponentType.ORDINARY_INCOME, 0.850, 100.0
+                )
             ],
             source_url="https://investor.vanguard.com/vti/amendment",
         )
-        evt2, is_new2 = repo.save_distribution_event(extracted_v2, is_amendment=True)
+        evt2, is_new2 = repo.save_distribution_event(
+            extracted_v2,
+            is_amendment=True,
+            raw_document=_doc(repo, "https://investor.vanguard.com/vti/amendment"),
+        )
         assert is_new2 is True
         assert evt2.version == 2
         assert evt2.is_superseded is False
@@ -252,8 +286,13 @@ def test_estimated_vs_final_coexistence(in_memory_db):
     """Test that Estimated and Final distributions on same ex_date coexist without collision."""
     with session_scope(in_memory_db) as session:
         repo = DistributionRepository(session)
-        repo.upsert_fund("CA_BMO_ZCN", "BMO S&P/TSX Capped Composite", "BMO", "CA", "ETF")
-        repo.upsert_share_class("CA_BMO_ZCN_CLASS", "CA_BMO_ZCN", ticker="ZCN")
+        repo.upsert_fund(
+            "CA_BMO_ZCN", "BMO S&P/TSX Capped Composite", "BMO", "CA", "ETF"
+        )
+        repo.upsert_share_class(
+            "CA_BMO_ZCN_CLASS", "CA_BMO_ZCN", ticker="ZCN", currency="CAD"
+        )
+        _setup_source(repo)
 
         # Estimated distribution
         ext_est = ExtractedDistribution(
@@ -264,11 +303,15 @@ def test_estimated_vs_final_coexistence(in_memory_db):
             gross_amount=0.220,
             is_estimated=True,
             components=[
-                ExtractedComponent("Eligible Dividend", CAComponentType.ELIGIBLE_DIVIDEND, 0.220, 100.0)
+                ExtractedComponent(
+                    "Eligible Dividend", CAComponentType.ELIGIBLE_DIVIDEND, 0.220, 100.0
+                )
             ],
             source_url="https://bmo.com/est",
         )
-        evt_est, _ = repo.save_distribution_event(ext_est)
+        evt_est, _ = repo.save_distribution_event(
+            ext_est, raw_document=_doc(repo, "https://bmo.com/est")
+        )
         assert evt_est.estimated_or_final == "ESTIMATED"
 
         # Final distribution on same date with actual confirmed amount
@@ -280,11 +323,15 @@ def test_estimated_vs_final_coexistence(in_memory_db):
             gross_amount=0.230,
             is_estimated=False,
             components=[
-                ExtractedComponent("Eligible Dividend", CAComponentType.ELIGIBLE_DIVIDEND, 0.230, 100.0)
+                ExtractedComponent(
+                    "Eligible Dividend", CAComponentType.ELIGIBLE_DIVIDEND, 0.230, 100.0
+                )
             ],
             source_url="https://bmo.com/final",
         )
-        evt_fin, _ = repo.save_distribution_event(ext_fin)
+        evt_fin, _ = repo.save_distribution_event(
+            ext_fin, raw_document=_doc(repo, "https://bmo.com/final")
+        )
         assert evt_fin.estimated_or_final == "FINAL"
 
     # Both must exist simultaneously and neither should be marked superseded
@@ -300,6 +347,9 @@ def test_dq_flag_logging(in_memory_db):
     """Test logging and retrieval of DQ flags."""
     with session_scope(in_memory_db) as session:
         repo = DistributionRepository(session)
+        repo.upsert_fund(
+            "CA_BMO_ZCN", "BMO S&P/TSX Capped Composite", "BMO", "CA", "ETF"
+        )
         flag = repo.log_dq_flag(
             fund_id="CA_BMO_ZCN",
             rule_name="NEGATIVE_DISTRIBUTION_AMOUNT",
@@ -310,10 +360,177 @@ def test_dq_flag_logging(in_memory_db):
         assert flag.severity == "CRITICAL"
 
 
-def test_populator_in_memory_execution():
-    """Test DatabasePopulator on in-memory database."""
-    populator = DatabasePopulator(db_url="sqlite:///:memory:")
-    res = populator.populate_24month_distribution_history()
-    assert res["status"] == "COMPLETED"
-    assert res["total_events_inserted"] > 0
-    assert res["total_funds_with_history"] > 0
+# ---------------------------------------------------------------------------
+# Regression tests for bugs found in the audit (each reproduced before the fix)
+# ---------------------------------------------------------------------------
+def _ext(
+    amount: float,
+    dtype: str = "Income",
+    comps=None,
+    url: str = "https://s.test/p",
+    **kw,
+) -> ExtractedDistribution:
+    return ExtractedDistribution(
+        fund_id="US_VTI",
+        country="US",
+        currency="USD",
+        ex_date=date(2024, 12, 20),
+        gross_amount=amount,
+        distribution_type=dtype,
+        components=comps or [],
+        source_url=url,
+        **kw,
+    )
+
+
+@pytest.fixture
+def vti_repo(in_memory_db):
+    with session_scope(in_memory_db) as session:
+        repo = DistributionRepository(session)
+        repo.upsert_fund(
+            "US_VTI", "Vanguard Total Stock Market", "Vanguard", "US", "ETF"
+        )
+        repo.upsert_share_class("US_VTI_CLASS", "US_VTI", ticker="VTI")
+        _setup_source(repo)
+    return in_memory_db
+
+
+def test_amendment_does_not_crash_with_foreign_keys_on(vti_repo):
+    """Bug: v1.superseded_by was written before v2 existed -> FOREIGN KEY constraint failed."""
+    with session_scope(vti_repo) as s:
+        repo = DistributionRepository(s)
+        doc = _doc(repo, "https://s.test/p")
+        repo.save_distribution_event(_ext(0.80), "US_VTI_CLASS", raw_document=doc)
+    with session_scope(vti_repo) as s:
+        repo = DistributionRepository(s)
+        doc = _doc(repo, "https://s.test/p", "<html>restated page</html>")
+        res = repo.save_distribution_event(_ext(0.85), "US_VTI_CLASS", raw_document=doc)
+        assert res.outcome == "AMENDED" and res.event.version == 2
+    with Session(vti_repo) as s:
+        rows = s.scalars(
+            select(DistributionEvent).order_by(DistributionEvent.version)
+        ).all()
+        assert [r.is_superseded for r in rows] == [True, False]
+
+
+def test_income_and_capital_gain_on_same_ex_date_are_two_rows(vti_repo):
+    """Bug: the second distribution on the same ex-date superseded the first."""
+    with session_scope(vti_repo) as s:
+        repo = DistributionRepository(s)
+        doc = _doc(repo, "https://s.test/p")
+        repo.save_distribution_event(
+            _ext(0.30, "Income"), "US_VTI_CLASS", raw_document=doc
+        )
+        repo.save_distribution_event(
+            _ext(
+                1.25,
+                "Long-Term Capital Gain",
+                [
+                    ExtractedComponent(
+                        "LTCG", USComponentType.LONG_TERM_CAPITAL_GAIN, 1.25
+                    )
+                ],
+            ),
+            "US_VTI_CLASS",
+            raw_document=doc,
+        )
+    with Session(vti_repo) as s:
+        rows = s.scalars(select(DistributionEvent)).all()
+        assert len(rows) == 2
+        assert {r.distribution_category for r in rows} == {
+            "INCOME",
+            "LONG_TERM_CAPITAL_GAIN",
+        }
+        assert not any(r.is_superseded for r in rows)
+
+
+def test_component_restatement_with_same_total_is_versioned(vti_repo):
+    """Bug: a T3-style reallocation (same total, new split) was silently ignored."""
+    cg = "Capital Gain"
+    with session_scope(vti_repo) as s:
+        repo = DistributionRepository(s)
+        doc = _doc(repo, "https://s.test/p")
+        repo.save_distribution_event(
+            _ext(
+                1.25,
+                cg,
+                [
+                    ExtractedComponent(
+                        "CG", USComponentType.CAPITAL_GAIN_UNCLASSIFIED, 1.25
+                    )
+                ],
+            ),
+            "US_VTI_CLASS",
+            raw_document=doc,
+        )
+    with session_scope(vti_repo) as s:
+        repo = DistributionRepository(s)
+        doc = _doc(repo, "https://s.test/p", "<html>year-end reallocation</html>")
+        res = repo.save_distribution_event(
+            _ext(
+                1.25,
+                cg,
+                [
+                    ExtractedComponent(
+                        "CG", USComponentType.CAPITAL_GAIN_UNCLASSIFIED, 1.00
+                    ),
+                    ExtractedComponent("ROC", USComponentType.RETURN_OF_CAPITAL, 0.25),
+                ],
+            ),
+            "US_VTI_CLASS",
+            raw_document=doc,
+        )
+        assert res.outcome == "AMENDED"
+        new_event_id = res.event.event_id
+    with Session(vti_repo) as s:
+        comps = s.scalars(
+            select(DistributionComponent).where(
+                DistributionComponent.event_id == new_event_id
+            )
+        ).all()
+        assert len(comps) == 2 and all(c.is_tax_reallocated for c in comps)
+
+
+def test_two_sources_disagreeing_are_recorded_not_versioned(vti_repo):
+    """Bug: alternating sources created a new version on every run (2 rows -> 6)."""
+    for amount, url in [(0.30, "https://a.test/x"), (0.31, "https://b.test/y")] * 3:
+        with session_scope(vti_repo) as s:
+            repo = DistributionRepository(s)
+            doc = _doc(repo, url)
+            repo.save_distribution_event(
+                _ext(amount, url=url), "US_VTI_CLASS", raw_document=doc
+            )
+    with Session(vti_repo) as s:
+        assert len(s.scalars(select(DistributionEvent)).all()) == 1
+        amounts = sorted(
+            float(e.reported_amount) for e in s.scalars(select(EventEvidence)).all()
+        )
+        assert amounts == [0.30, 0.31]  # both sources kept
+
+
+def test_event_without_source_document_is_rejected(vti_repo):
+    """Provenance: 'If it cannot be traced, it does not belong in the table.'"""
+    with session_scope(vti_repo) as s:
+        with pytest.raises(ValueError, match="Provenance required"):
+            DistributionRepository(s).save_distribution_event(_ext(0.3), "US_VTI_CLASS")
+
+
+def test_raw_document_keeps_the_real_source_bytes(vti_repo):
+    body = "<html><table><tr><th>Ex-Date</th><th>Amount</th></tr></table></html>"
+    with session_scope(vti_repo) as s:
+        doc = _doc(DistributionRepository(s), "https://s.test/p", body)
+        assert doc.sha256 == hashlib.sha256(body.encode()).hexdigest()
+        assert doc.raw_text == body
+        from pathlib import Path
+
+        assert Path(doc.storage_path).read_bytes() == body.encode()
+
+
+def test_dq_flag_is_not_duplicated_on_rerun(vti_repo):
+    for _ in range(3):
+        with session_scope(vti_repo) as s:
+            DistributionRepository(s).log_dq_flag(
+                "US_VTI", "FREQUENCY_CONTINUITY", "WARNING", "gap 2024-05"
+            )
+    with Session(vti_repo) as s:
+        assert len(s.scalars(select(DQFlag)).all()) == 1

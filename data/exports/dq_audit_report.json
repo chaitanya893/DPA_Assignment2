@@ -1,39 +1,47 @@
 {
-  "total_events_evaluated": 72,
-  "total_checks_performed": 504,
+  "total_events_evaluated": 0,
+  "total_checks_performed": 0,
+  "skipped_checks": 0,
   "total_flags_raised": 0,
   "critical_flags": 0,
   "warning_flags": 0,
   "info_flags": 0,
-  "pass_rate_pct": 100.0,
+  "pass_rate_pct": null,
   "rule_metrics": {
     "COMPONENT_SUM_CHECK": {
-      "passed": 72,
-      "failed": 0
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0
     },
     "DATE_ORDERING_SANITY": {
-      "passed": 72,
-      "failed": 0
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0
     },
     "NAV_DECLINE_CONSISTENCY": {
-      "passed": 72,
-      "failed": 0
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0
     },
     "MAGNITUDE_20PCT_NAV_CHECK": {
-      "passed": 72,
-      "failed": 0
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0
     },
     "CURRENCY_INTEGRITY": {
-      "passed": 72,
-      "failed": 0
-    },
-    "FREQUENCY_CONTINUITY": {
-      "passed": 72,
-      "failed": 0
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0
     },
     "CROSS_SOURCE_VARIANCE": {
-      "passed": 72,
-      "failed": 0
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0
+    },
+    "FREQUENCY_CONTINUITY": {
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0
     }
   },
   "flagged_events": []

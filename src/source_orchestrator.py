@@ -29,6 +29,7 @@ from src.models import (
 )
 from src.strategies import (
     CalendarExpectationStrategy,
+    CanadianRegulatoryStrategy,
     OfficialSponsorWebStrategy,
     SECEdgarSubmissionsStrategy,
     StrategyObservation,
@@ -55,9 +56,13 @@ class SourceOrchestrator:
         self,
         http_client: HTTPClient | None = None,
         universe: UniverseRegistry | None = None,
+        enable_tier3: bool = False,
     ) -> None:
         self.http_client = http_client or HTTPClient()
         self.universe = universe or UniverseRegistry.from_json()
+        # Tier 3 public market pages are corroboration only and their terms of use have not
+        # been reviewed (docs/COMPLIANCE.md), so they are off unless explicitly enabled.
+        self.enable_tier3 = enable_tier3
 
     def _get_fund(self, fund_id: str) -> UniverseFund | None:
         return self.universe.get_fund(fund_id)
@@ -91,7 +96,7 @@ class SourceOrchestrator:
         observations: list[StrategyObservation] = []
 
         # Always evaluate baseline calendar expectations
-        cal_strat = CalendarExpectationStrategy()
+        cal_strat = CalendarExpectationStrategy(universe=self.universe)
         try:
             cal_obs = cal_strat.inspect(fund_id, window_start, window_end)
             observations.append(cal_obs)
@@ -140,6 +145,46 @@ class SourceOrchestrator:
                     evidence_found=obs_sec.has_declaration_in_window,
                     failure_reason=obs_sec.failure_reason,
                     notes=obs_sec.notes,
+                )
+            )
+
+        if fund and fund.country == "CA":
+            ca_strat = CanadianRegulatoryStrategy(
+                http_client=self.http_client, universe=self.universe
+            )
+            obs_ca = ca_strat.inspect(fund_id, window_start, window_end)
+            observations.append(obs_ca)
+            if obs_ca.has_declaration_in_window:
+                ca_state = SourceCoverageState.COMPLETE_POSITIVE
+                tier_1_conclusive = True
+            elif obs_ca.failure_reason in (
+                UnknownReason.SOURCE_UNAVAILABLE,
+                UnknownReason.RETRIEVAL_FAILED,
+            ):
+                ca_state = SourceCoverageState.UNAVAILABLE
+            else:
+                ca_state = SourceCoverageState.PARTIAL
+            attempts.append(
+                SourceAttemptRecord(
+                    fund_id=fund_id,
+                    source_id="sedar_tmx_notices",
+                    source_tier=SourceTier.TIER_1_AUTHORITATIVE,
+                    url=(
+                        f"https://www.tmx.com/dividends/{fund.ticker}"
+                        if fund.ticker
+                        else ""
+                    ),
+                    source_type="REGULATORY_NOTICE",
+                    retrieval_status=(
+                        "SUCCESS"
+                        if obs_ca.evidence and not obs_ca.failure_reason
+                        else "FAILED"
+                    ),
+                    retrieved_at=datetime.now(timezone.utc),
+                    coverage_status=ca_state,
+                    evidence_found=obs_ca.has_declaration_in_window,
+                    failure_reason=obs_ca.failure_reason,
+                    notes=obs_ca.notes,
                 )
             )
 
@@ -233,28 +278,29 @@ class SourceOrchestrator:
         # ---------------------------------------------------------------------
         # STEP 4: Tier 3 Corroboration (Public Market Data Cross-Check)
         # ---------------------------------------------------------------------
-        tier_3_strat = Tier3CorroborationStrategy(
-            http_client=self.http_client,
-            universe=self.universe,
-        )
-        obs_tier_3 = tier_3_strat.inspect(fund_id, window_start, window_end)
-        observations.append(obs_tier_3)
-
-        attempts.append(
-            SourceAttemptRecord(
-                fund_id=fund_id,
-                source_id="public_market_data_corroboration",
-                source_tier=SourceTier.TIER_3_CORROBORATION,
-                url=f"https://finance.yahoo.com/quote/{fund.ticker if fund else fund_id}",
-                source_type="THIRD_PARTY_CORROBORATION",
-                retrieval_status="SUCCESS" if obs_tier_3.evidence else "FAILED",
-                retrieved_at=datetime.now(timezone.utc),
-                coverage_status=SourceCoverageState.PARTIAL,
-                evidence_found=obs_tier_3.has_declaration_in_window,
-                failure_reason=obs_tier_3.failure_reason,
-                notes="Corroboration only. Never sole evidence for DECLARED or NOT_DECLARED.",
+        if self.enable_tier3:
+            tier_3_strat = Tier3CorroborationStrategy(
+                http_client=self.http_client,
+                universe=self.universe,
             )
-        )
+            obs_tier_3 = tier_3_strat.inspect(fund_id, window_start, window_end)
+            observations.append(obs_tier_3)
+
+            attempts.append(
+                SourceAttemptRecord(
+                    fund_id=fund_id,
+                    source_id="public_market_data_corroboration",
+                    source_tier=SourceTier.TIER_3_CORROBORATION,
+                    url=f"https://finance.yahoo.com/quote/{fund.ticker if fund else fund_id}",
+                    source_type="THIRD_PARTY_CORROBORATION",
+                    retrieval_status="SUCCESS" if obs_tier_3.evidence else "FAILED",
+                    retrieved_at=datetime.now(timezone.utc),
+                    coverage_status=SourceCoverageState.PARTIAL,
+                    evidence_found=obs_tier_3.has_declaration_in_window,
+                    failure_reason=obs_tier_3.failure_reason,
+                    notes="Corroboration only. Never sole evidence for DECLARED or NOT_DECLARED.",
+                )
+            )
 
         # ---------------------------------------------------------------------
         # STEP 5: Synthesis

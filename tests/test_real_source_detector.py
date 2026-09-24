@@ -121,7 +121,8 @@ def test_sec_edgar_strategy_explicit_declaration_in_window(
     assert obs.suggested_route == ExtractionRoute.FILING
     assert len(obs.evidence) == 1
     assert obs.evidence[0].source_tier == SourceTier.TIER_1_AUTHORITATIVE
-    assert obs.evidence[0].declaration_date_found == date(2026, 3, 15)
+    # Filing date is kept as the publication date, never relabelled as a declaration date.
+    assert obs.evidence[0].published_date_found == date(2026, 3, 15)
 
     # Verify synthesized detection result
     result = detect_distribution(
@@ -207,7 +208,7 @@ def test_sec_edgar_strategy_rejects_leadership_announcement_filing(
         strategies=[sec_strategy],
     )
     assert result.status == DetectionStatus.UNKNOWN
-    assert result.confidence is None
+    assert result.confidence == 0.0
 
 
 def test_sec_edgar_strategy_rejects_12b1_fee_table_filing(
@@ -287,7 +288,7 @@ def test_sec_edgar_strategy_rejects_12b1_fee_table_filing(
         strategies=[sec_strategy],
     )
     assert result.status == DetectionStatus.UNKNOWN
-    assert result.confidence is None
+    assert result.confidence == 0.0
 
 
 def test_sec_edgar_strategy_incomplete_negative_coverage_returns_unknown(
@@ -338,7 +339,7 @@ def test_sec_edgar_strategy_incomplete_negative_coverage_returns_unknown(
     )
     assert result.status == DetectionStatus.UNKNOWN
     assert result.status != DetectionStatus.NOT_DECLARED
-    assert result.confidence is None
+    assert result.confidence == 0.0
     assert len(result.evidence) >= 1
 
 
@@ -385,7 +386,7 @@ def test_sponsor_web_strategy_generic_page_no_schedule_table_yields_unknown(
         strategies=[sponsor_strategy],
     )
     assert result.status == DetectionStatus.UNKNOWN
-    assert result.confidence is None
+    assert result.confidence == 0.0
 
 
 def test_sponsor_web_strategy_explicit_schedule_table_negative_coverage(
@@ -456,7 +457,7 @@ def test_calendar_expectation_alone_strictly_unknown(
     assert result.status == DetectionStatus.UNKNOWN
     assert result.status != DetectionStatus.DECLARED
     assert result.status != DetectionStatus.NOT_DECLARED
-    assert result.confidence is None
+    assert result.confidence == 0.0
 
 
 def test_sec_edgar_strategy_http_failure_yields_unknown(
@@ -487,7 +488,7 @@ def test_sec_edgar_strategy_http_failure_yields_unknown(
     )
     assert result.status == DetectionStatus.UNKNOWN
     assert result.status != DetectionStatus.NOT_DECLARED
-    assert result.confidence is None
+    assert result.confidence == 0.0
     assert result.evidence[0].failure_reason == UnknownReason.SOURCE_UNAVAILABLE
 
 
@@ -565,7 +566,7 @@ def test_detector_conflicting_positive_and_negative_yields_unknown_conflicting(
         strategies=[sec_strategy, sponsor_strategy],
     )
     assert result.status == DetectionStatus.UNKNOWN
-    assert result.confidence is None
+    assert result.confidence == 0.0
 
 
 def test_all_evidence_fields_present_and_valid(

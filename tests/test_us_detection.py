@@ -165,7 +165,7 @@ def test_quarterly_off_cadence_incomplete_schedule_yields_unknown(
         strategies=[cal_strat, sponsor_strat],
     )
     assert result.status == DetectionStatus.UNKNOWN
-    assert result.confidence is None
+    assert result.confidence == 0.0
     assert any(
         ev.failure_reason == UnknownReason.INSUFFICIENT_EVIDENCE
         for ev in result.evidence
@@ -211,7 +211,8 @@ def test_quarterly_on_cadence_real_declaration_yields_declared(
     )
     assert result.status == DetectionStatus.DECLARED
     assert result.confidence is not None and result.confidence >= 0.85
-    assert result.suggested_extraction_route == ExtractionRoute.HTML_TABLE
+    # Announcement text (no distribution table) -> notice/filing-style extraction route.
+    assert result.suggested_extraction_route == ExtractionRoute.FILING
 
 
 # -----------------------------------------------------------------------------
@@ -265,7 +266,7 @@ def test_on_cadence_waf_blocked_yields_unknown(
         strategies=[cal_strat, sec_strat, sponsor_strat],
     )
     assert result.status == DetectionStatus.UNKNOWN
-    assert result.confidence is None
+    assert result.confidence == 0.0
 
 
 # -----------------------------------------------------------------------------
@@ -387,7 +388,7 @@ def test_monthly_fund_insufficient_evidence_yields_unknown(
         strategies=[cal_strat, sec_strat, sponsor_strat],
     )
     assert result.status == DetectionStatus.UNKNOWN
-    assert result.confidence is None
+    assert result.confidence == 0.0
 
 
 # -----------------------------------------------------------------------------
@@ -477,7 +478,7 @@ def test_tier3_only_evidence_never_yields_declared_or_not_declared() -> None:
         strategies=[tier3_strat],
     )
     assert result.status == DetectionStatus.UNKNOWN
-    assert result.confidence is None
+    assert result.confidence == 0.0
 
 
 # -----------------------------------------------------------------------------
@@ -545,7 +546,7 @@ def test_irrelevant_sec_filing_yields_unknown(
         strategies=[cal_strat, sec_strat],
     )
     assert result.status == DetectionStatus.UNKNOWN
-    assert result.confidence is None
+    assert result.confidence == 0.0
 
 
 # -----------------------------------------------------------------------------
@@ -591,7 +592,7 @@ def test_conflicting_positive_negative_evidence_yields_unknown() -> None:
         observations=[obs_pos, obs_neg],
     )
     assert result.status == DetectionStatus.UNKNOWN
-    assert result.confidence is None
+    assert result.confidence == 0.0
     assert any(
         ev.failure_reason == UnknownReason.CONFLICTING_EVIDENCE
         for ev in result.evidence

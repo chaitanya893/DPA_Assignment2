@@ -64,20 +64,20 @@ def synthetic_evidence_tier3_only() -> Evidence:
     )
 
 
-def test_confidence_for_unknown_is_none(
+def test_confidence_for_unknown_is_zero(
     synthetic_evidence_tier1_explicit: Evidence,
 ) -> None:
-    """UNKNOWN status must always return None confidence."""
+    """UNKNOWN status must always return 0.0 confidence (PDF: confidence is a float in 0.0-1.0)."""
     conf = compute_confidence(
         DetectionStatus.UNKNOWN, [synthetic_evidence_tier1_explicit]
     )
-    assert conf is None
+    assert conf == 0.0
 
 
 def test_confidence_for_empty_evidence() -> None:
-    """Empty evidence must return None confidence."""
+    """Empty evidence must return 0.0 confidence."""
     conf = compute_confidence(DetectionStatus.DECLARED, [])
-    assert conf is None
+    assert conf == 0.0
 
 
 def test_confidence_declared_tier1_explicit(
@@ -100,23 +100,27 @@ def test_confidence_declared_tier2_explicit(
     assert conf == 0.90
 
 
-def test_confidence_declared_tier2_without_declaration_date_is_none(
+def test_confidence_declared_tier2_ex_date_without_declaration_date(
     synthetic_evidence_tier2_no_declaration_date: Evidence,
 ) -> None:
-    """DECLARED + Tier 2 + no explicit declaration date MUST return None."""
+    """DECLARED + Tier 2 schedule row with a labelled ex-date but no declaration date.
+
+    PDF: confidence is a float in 0.0-1.0 for every result. A labelled ex-date from the
+    sponsor's own table is Tier 2 evidence, so it scores 0.90 (it used to return None).
+    """
     conf = compute_confidence(
         DetectionStatus.DECLARED,
         [synthetic_evidence_tier2_no_declaration_date],
     )
-    assert conf is None
+    assert conf == 0.90
 
 
-def test_confidence_declared_tier3_only_is_none(
+def test_confidence_declared_tier3_only_is_zero(
     synthetic_evidence_tier3_only: Evidence,
 ) -> None:
-    """DECLARED + Tier 3 only must return None."""
+    """DECLARED + Tier 3 only must return 0.0."""
     conf = compute_confidence(DetectionStatus.DECLARED, [synthetic_evidence_tier3_only])
-    assert conf is None
+    assert conf == 0.0
 
 
 def test_confidence_not_declared_window_covered_tier1(
@@ -143,25 +147,54 @@ def test_confidence_not_declared_window_covered_tier2(
     assert conf == 0.85
 
 
-def test_confidence_not_declared_incomplete_window_is_none(
+def test_confidence_not_declared_incomplete_window_is_zero(
     synthetic_evidence_tier1_explicit: Evidence,
 ) -> None:
-    """NOT_DECLARED with incomplete window coverage must return None."""
+    """NOT_DECLARED with incomplete window coverage must return 0.0."""
     conf = compute_confidence(
         DetectionStatus.NOT_DECLARED,
         [synthetic_evidence_tier1_explicit],
         window_covered=False,
     )
-    assert conf is None
+    assert conf == 0.0
 
 
-def test_confidence_not_declared_tier3_only_is_none(
+def test_confidence_not_declared_tier3_only_is_zero(
     synthetic_evidence_tier3_only: Evidence,
 ) -> None:
-    """NOT_DECLARED with Tier 3 only must return None."""
+    """NOT_DECLARED with Tier 3 only must return 0.0."""
     conf = compute_confidence(
         DetectionStatus.NOT_DECLARED,
         [synthetic_evidence_tier3_only],
         window_covered=True,
     )
-    assert conf is None
+    assert conf == 0.0
+
+
+def test_confidence_declared_tier2_ex_date_only_is_scored() -> None:
+    """Bug fix: a Tier 2 table row with a labelled ex-date is real evidence; DECLARED must carry a float."""
+    ev = Evidence(
+        source_id="SYNTHETIC_TABLE_ROW",
+        source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+        url="https://synthetic-test.example.com/distributions",
+        retrieved_at=datetime.now(timezone.utc),
+        snippet_or_locator="Distribution table row",
+        ex_date_found=date(2026, 3, 20),
+    )
+    assert compute_confidence(DetectionStatus.DECLARED, [ev]) == 0.90
+
+
+def test_confidence_declared_publication_date_only_and_outage_penalty() -> None:
+    ev = Evidence(
+        source_id="SYNTHETIC_PRESS_RELEASE",
+        source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+        url="https://synthetic-test.example.com/news",
+        retrieved_at=datetime.now(timezone.utc),
+        snippet_or_locator="TORONTO, March 5, 2026 - announced distributions",
+        published_date_found=date(2026, 3, 5),
+    )
+    assert compute_confidence(DetectionStatus.DECLARED, [ev]) == 0.80
+    assert (
+        compute_confidence(DetectionStatus.DECLARED, [ev], other_source_failed=True)
+        == 0.75
+    )

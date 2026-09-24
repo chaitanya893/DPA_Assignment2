@@ -179,7 +179,7 @@ def test_wrong_ticker_mutation_rejected(universe_registry: UniverseRegistry) -> 
         strategies=[sponsor_strat],
     )
     assert result.status == DetectionStatus.UNKNOWN
-    assert result.confidence is None
+    assert result.confidence == 0.0
 
 
 def test_fundserv_identity_matching(universe_registry: UniverseRegistry) -> None:
@@ -329,5 +329,5 @@ def test_http_network_failures_yield_first_class_unknown(
         strategies=[sponsor_strat],
     )
     assert result.status == DetectionStatus.UNKNOWN
-    assert result.confidence is None
+    assert result.confidence == 0.0
     assert any(ev.failure_reason == fail_reason for ev in result.evidence)

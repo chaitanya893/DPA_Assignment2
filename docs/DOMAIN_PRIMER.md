@@ -98,10 +98,12 @@ Confusing or conflating these dates directly corrupts downstream analytics, pric
 
 ### **Which Date Should the Event Be Keyed On, and Why?**
 > **Rule:** Every distribution event must be uniquely keyed on:
-> `(share_class_id, ex_dividend_date)`
+> `(share_class_id, ex_dividend_date, distribution_category, estimated_or_final)`
+> with a `version` number for restatements.
 
 * **Economic Rationale:** The ex-dividend date is the exact point of economic separation where NAV adjusts for the declared distribution amount.
-* **Deterministic Uniqueness:** While a fund can announce multiple future distribution periods in a single declaration, a single share class possesses exactly one primary distribution event per ex-dividend date.
+* **Why the category is in the key:** One share class can pay more than one distribution on the same ex-date. The typical case is December, when a fund pays its regular income dividend and a separate long-term capital gain distribution on the same day. Keyed on ex-date alone, the second payment would overwrite (or supersede) the first. The category (income, long-term gain, short-term gain, return of capital, special...) keeps them as two rows.
+* **Why estimated/final is in the key:** An October estimate and the December final figure are two different facts and must both be kept (see section 10).
 * **Processing Stability:** Unlike payable dates that may experience processing shifts, the ex-dividend date is economically definitive.
 
 ---

@@ -11,6 +11,7 @@ from __future__ import annotations
 import hashlib
 import json
 import logging
+import os
 import re
 from dataclasses import dataclass, field
 from datetime import date, datetime, timezone
@@ -76,7 +77,7 @@ class RawSourceCache:
 
     def __init__(self, cache_dir: str | Path | None = None) -> None:
         if cache_dir is None:
-            cache_dir = (
+            cache_dir = os.getenv("RAW_SOURCE_CACHE_DIR") or (
                 Path(__file__).resolve().parent.parent / "quality" / "raw_sources"
             )
         self.cache_dir = Path(cache_dir)
