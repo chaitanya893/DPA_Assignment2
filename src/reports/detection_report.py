@@ -68,6 +68,11 @@ def build_report(
             by_country[countries.get(r.fund_id, "?")][r.status] += 1
         seconds = sum(r.duration_seconds for r in runs)
 
+        fam_reasons: dict[str, Counter] = defaultdict(Counter)
+        for r in runs:
+            if r.status == "UNKNOWN" and r.unknown_reason:
+                fam_reasons[families.get(r.fund_id, "?")][r.unknown_reason] += 1
+
         report: dict[str, Any] = {
             "checks": n,
             "funds_checked": len({r.fund_id for r in runs}),
@@ -80,6 +85,9 @@ def build_report(
             "unknown_reasons": dict(
                 Counter(r.unknown_reason for r in runs if r.status == "UNKNOWN")
             ),
+            "unknown_reasons_by_family": {
+                k: dict(v) for k, v in sorted(fam_reasons.items())
+            },
             "route_taken_on_declared": dict(
                 Counter(r.route_taken or "NONE" for r in declared)
             ),

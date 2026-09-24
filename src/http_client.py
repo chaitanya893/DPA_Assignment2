@@ -80,12 +80,16 @@ class RobotsPolicy:
     """Per-host robots.txt cache shared by all clients in the process."""
 
     _lock = threading.Lock()
-    _cache: dict[str, RobotFileParser | None] = {}
+    _cache: dict[str, tuple[RobotFileParser | None, float]] = {}
+    _fail_count: dict[str, int] = {}
+    _COOLDOWN_SECONDS: float = 600.0  # 10 minute cooldown for temporary timeouts
+    _MAX_FAILURES: int = 3  # maximum retry attempts across a run
 
     @classmethod
     def clear(cls) -> None:
         with cls._lock:
             cls._cache.clear()
+            cls._fail_count.clear()
 
     @classmethod
     def allowed(
@@ -93,34 +97,56 @@ class RobotsPolicy:
     ) -> bool:
         parsed = urlparse(url)
         host = f"{parsed.scheme}://{parsed.netloc}"
+        now = time.monotonic()
         with cls._lock:
-            cached = cls._cache.get(host, "missing")
-        if cached == "missing":
-            rp: RobotFileParser | None = RobotFileParser()
-            robots_url = f"{host}/robots.txt"
-            try:
-                limiter.acquire(robots_url)
-                with httpx.Client(timeout=timeout, follow_redirects=True) as client:
-                    resp = client.get(robots_url, headers={"User-Agent": user_agent})
-                if 200 <= resp.status_code < 300:
-                    rp.parse(resp.text.splitlines())
-                elif 400 <= resp.status_code < 500:
-                    rp.parse([])  # no robots.txt -> no restrictions
-                else:
-                    rp = None  # server error -> treat whole host as disallowed
-            except httpx.HTTPError as err:
-                logger.warning(
-                    "robots.txt unreachable for %s: %s (treating host as disallowed)",
-                    host,
-                    err,
-                )
-                rp = None
+            cached = cls._cache.get(host)
+            if cached is not None:
+                rp, ts = cached
+                if rp is not None:
+                    return rp.can_fetch(user_agent, url)
+                # rp is None -> temporary timeout or failure
+                if (
+                    now - ts < cls._COOLDOWN_SECONDS
+                    or cls._fail_count.get(host, 0) >= cls._MAX_FAILURES
+                ):
+                    return False
+                # Cooldown expired, allow retry below
+
+        rp_new: RobotFileParser | None = RobotFileParser()
+        robots_url = f"{host}/robots.txt"
+        try:
+            limiter.acquire(robots_url)
+            with httpx.Client(timeout=timeout, follow_redirects=True) as client:
+                resp = client.get(robots_url, headers={"User-Agent": user_agent})
+            if 200 <= resp.status_code < 300:
+                rp_new.parse(resp.text.splitlines())
+                with cls._lock:
+                    cls._cache[host] = (rp_new, now)
+                    cls._fail_count[host] = 0
+            elif 400 <= resp.status_code < 500:
+                rp_new.parse([])  # RFC 9309: 4xx on robots.txt -> no restrictions
+                with cls._lock:
+                    cls._cache[host] = (rp_new, now)
+                    cls._fail_count[host] = 0
+            else:
+                rp_new = None  # 5xx server error
+                with cls._lock:
+                    cls._cache[host] = (None, now)
+                    cls._fail_count[host] = cls._fail_count.get(host, 0) + 1
+        except httpx.HTTPError as err:
+            logger.warning(
+                "robots.txt unreachable for %s: %s (treating host as temporarily disallowed with cooldown)",
+                host,
+                err,
+            )
+            rp_new = None
             with cls._lock:
-                cls._cache[host] = rp
-            cached = rp
-        if cached is None:
+                cls._cache[host] = (None, now)
+                cls._fail_count[host] = cls._fail_count.get(host, 0) + 1
+
+        if rp_new is None:
             return False
-        return cached.can_fetch(user_agent, url)
+        return rp_new.can_fetch(user_agent, url)
 
 
 class HTTPClient:
@@ -350,13 +376,12 @@ class HTTPClient:
 
 
 class RecordingHTTPClient(HTTPClient):
-    """HTTPClient that remembers every response of a run.
+    """HTTPClient that remembers responses of a run.
 
-    - Each URL is fetched at most once per run (later calls reuse the stored response), which
-      keeps the crawl polite and guarantees that Layer B extracts from exactly the bytes Layer A
-      saw.
-    - ``records`` is persisted by the pipeline into raw_document and crawl_log, so every stored
-      number traces to the stored source document.
+    - Permanent outcomes (200, 403, 404, 410) are cached immediately so later calls reuse the stored
+      response, keeping the crawl polite and guaranteeing Layer B extracts from what Layer A saw.
+    - Temporary failures (timeouts, 5xx) are retried up to 2 times across the run before caching.
+    - ``records`` is persisted into raw_document and crawl_log for full audit provenance.
     """
 
     def __init__(self, inner: HTTPClient | None = None, **kwargs: Any) -> None:
@@ -364,6 +389,7 @@ class RecordingHTTPClient(HTTPClient):
         self.inner = inner
         self.records: list[HTTPResponseRecord] = []
         self._by_url: dict[str, HTTPResponseRecord] = {}
+        self._failure_attempts: dict[str, int] = {}
 
     def get(
         self,
@@ -379,7 +405,19 @@ class RecordingHTTPClient(HTTPClient):
             if self.inner
             else super().get(url, headers, params)
         )
-        self._by_url[key] = rec
+        # Permanent status codes: 200, 403 (blocked), 404/410 (not found)
+        # Temporary status codes: None (timeout/connect error), 429, 500, 502, 503, 504
+        is_permanent = rec.is_success or (
+            rec.status_code is not None and rec.status_code in {403, 404, 410}
+        )
+        if is_permanent:
+            self._by_url[key] = rec
+        else:
+            attempts = self._failure_attempts.get(key, 0) + 1
+            self._failure_attempts[key] = attempts
+            if attempts >= 2:
+                self._by_url[key] = rec  # Cache after 2 failed attempts to prevent runaway latency
+
         self.records.append(rec)
         return rec
 

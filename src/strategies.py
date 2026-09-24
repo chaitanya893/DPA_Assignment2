@@ -1236,7 +1236,46 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
 
         evidences: list[Evidence] = []
 
-        # 1. Structured distribution table rows (labelled columns only).
+        # 1. Structured JSON distribution data (if response is JSON)
+        json_evidences: list[Evidence] = []
+        if (
+            record.content_text
+            and (
+                record.content_text.lstrip().startswith(("{", "["))
+                or "json" in (record.content_type or "").lower()
+                or url.lower().endswith(".json")
+            )
+        ):
+            from src.parsers.api_parser import parse_json_distributions
+
+            extracted_list = parse_json_distributions(
+                record.content_text,
+                fund_id=fund.fund_id if fund else "UNKNOWN",
+                country=fund.country if fund else "US",
+                source_url=url,
+                ticker=fund.ticker if fund else None,
+                fundserv_code=fund.fundserv_code if fund else None,
+                window_start=window_start,
+                window_end=window_end,
+                source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+            )
+            for dist in extracted_list:
+                ev = Evidence(
+                    source_id="official_fund_sponsor_page",
+                    source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+                    url=url,
+                    retrieved_at=record.retrieved_at,
+                    snippet_or_locator=f"Structured JSON distribution: ex_date={dist.ex_date}, amount={dist.gross_amount}",
+                    declaration_date_found=dist.declaration_date,
+                    ex_date_found=dist.ex_date,
+                    record_date_found=dist.record_date,
+                    payable_date_found=dist.payable_date,
+                )
+                if _dates_in_window(ev, window_start, window_end):
+                    json_evidences.append(ev)
+            evidences.extend(json_evidences)
+
+        # 2. Structured distribution table rows (labelled columns only).
         table_evidences = self._parse_html_tables(
             content=content,
             url=url,
@@ -1247,7 +1286,7 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
         )
         evidences.extend(table_evidences)
 
-        # 2. Announcement / press-release text. Dates count only next to their own label
+        # 3. Announcement / press-release text. Dates count only next to their own label
         #    (ex-date, record, payable, declaration) or as the release dateline.
         text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", content))
         doc_lower = text.lower()
@@ -1313,28 +1352,57 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
                 has_declaration_in_window=True,
                 window_fully_covered=True,
                 suggested_route=(
-                    ExtractionRoute.PDF
-                    if is_pdf
+                    ExtractionRoute.API
+                    if json_evidences
                     else (
-                        ExtractionRoute.HTML_TABLE
-                        if table_evidences
-                        else ExtractionRoute.FILING
+                        ExtractionRoute.PDF
+                        if is_pdf
+                        else (
+                            ExtractionRoute.HTML_TABLE
+                            if table_evidences
+                            else ExtractionRoute.FILING
+                        )
                     )
                 ),
                 notes="Official fund sponsor source confirmed a distribution in the window.",
             )
 
-        # 3. Negative proof only when the page's own distribution table demonstrably spans the
+        # 4. Negative proof only when the page's own distribution table demonstrably spans the
         #    window: its earliest ex-date is on/before window_start and it is current past
-        #    window_end (latest ex-date after the window, or fetched >= 7 days after it).
+        #    window_end (latest ex-date after the window, or fetched > window_end).
         from src.parsers.html_table_parser import table_date_rows
 
         dated_rows = table_date_rows(content, fund.ticker, fund.fundserv_code)
+        all_json_ex_dates: list[date] = []
+        if (
+            record.content_text
+            and (
+                record.content_text.lstrip().startswith(("{", "["))
+                or "json" in (record.content_type or "").lower()
+                or url.lower().endswith(".json")
+            )
+        ):
+            from src.parsers.api_parser import parse_json_distributions
+
+            all_extracted = parse_json_distributions(
+                record.content_text,
+                fund_id=fund.fund_id if fund else "UNKNOWN",
+                country=fund.country if fund else "US",
+                source_url=url,
+                ticker=fund.ticker if fund else None,
+                fundserv_code=fund.fundserv_code if fund else None,
+                source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+            )
+            all_json_ex_dates = [d.ex_date for d in all_extracted if d.ex_date]
+
         ex_dates = sorted(
-            d
-            for row, _txt in dated_rows
-            for k, d in row.items()
-            if k in ("ex", "declaration")
+            [
+                d
+                for row, _txt in dated_rows
+                for k, d in row.items()
+                if k in ("ex", "declaration")
+            ]
+            + all_json_ex_dates
         )
         retrieved_day = record.retrieved_at.date()
         spans_window = (
@@ -1342,15 +1410,15 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
             and ex_dates[0] <= window_start
             and (
                 ex_dates[-1] >= window_end
-                or retrieved_day >= window_end + timedelta(days=7)
+                or retrieved_day > window_end
             )
         )
-        # A published full-year schedule ("2026 Distribution Schedule") whose rows all fall in
-        # that year also covers every month of that year.
+        # A published full-year schedule whose rows fall in that year also covers every month of that year
         full_year_schedule = (
             bool(ex_dates)
             and window_start.year == window_end.year
             and all(d.year == window_start.year for d in ex_dates)
+            and retrieved_day > window_end
             and re.search(
                 rf"{window_start.year}\s+(?:distribution|dividend)\s+schedule|(?:distribution|dividend)\s+schedule\s+(?:for\s+)?{window_start.year}",
                 text,
@@ -1369,13 +1437,13 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
                         url=url,
                         retrieved_at=record.retrieved_at,
                         snippet_or_locator=(
-                            f"Official distribution table lists {len(ex_dates)} dated rows from {ex_dates[0]} to "
+                            f"Official distribution data lists {len(ex_dates)} dated rows from {ex_dates[0]} to "
                             f"{ex_dates[-1]}; none in [{window_start} to {window_end}]."
                         ),
                     )
                 ],
                 window_fully_covered=True,
-                notes="Sponsor distribution table spans the window with no row inside it.",
+                notes="Sponsor distribution data spans the window with no row inside it.",
             )
 
         return StrategyObservation(
