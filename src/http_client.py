@@ -40,11 +40,14 @@ _EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.-]+")
 
 
 def build_user_agent() -> str:
-    """User-Agent from DETECTOR_USER_AGENT, else DEFAULT_USER_AGENT + DETECTOR_CONTACT_EMAIL."""
+    """User-Agent from DETECTOR_USER_AGENT, else DETECTOR_CONTACT_NAME + DETECTOR_CONTACT_EMAIL, or DEFAULT_USER_AGENT."""
     explicit = os.getenv("DETECTOR_USER_AGENT")
     if explicit:
         return explicit
+    name = os.getenv("DETECTOR_CONTACT_NAME", "").strip()
     email = os.getenv("DETECTOR_CONTACT_EMAIL", "").strip()
+    if name and email:
+        return f"{name} {email}"
     if email:
         return f"FundDistributionDetector/1.0 (+{PROJECT_URL}; {email})"
     return DEFAULT_USER_AGENT
