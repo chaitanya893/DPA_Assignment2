@@ -156,7 +156,11 @@ def synthesize_detection_result(
         )
 
     # 3. Complete negative evidence (demonstrably covered window with no declaration)
-    if has_full_window_coverage and not failure_reasons:
+    primary_outage = any(
+        r in {UnknownReason.SOURCE_UNAVAILABLE, UnknownReason.RETRIEVAL_FAILED}
+        for r in failure_reasons
+    )
+    if has_full_window_coverage and not valid_declarations and not primary_outage:
         conf = compute_confidence(
             DetectionStatus.NOT_DECLARED,
             all_evidence,

@@ -33,12 +33,18 @@ def _parse_date(text: str) -> date | None:
     # Match YYYY-MM-DD
     m_iso = re.search(r"\b(202[0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])\b", text)
     if m_iso:
-        return date(int(m_iso.group(1)), int(m_iso.group(2)), int(m_iso.group(3)))
+        try:
+            return date(int(m_iso.group(1)), int(m_iso.group(2)), int(m_iso.group(3)))
+        except ValueError:
+            return None
 
     # Match MM/DD/YYYY
     m_us = re.search(r"\b(0?[1-9]|1[0-2])/(0?[1-9]|[12][0-9]|3[01])/(202[0-9])\b", text)
     if m_us:
-        return date(int(m_us.group(3)), int(m_us.group(1)), int(m_us.group(2)))
+        try:
+            return date(int(m_us.group(3)), int(m_us.group(1)), int(m_us.group(2)))
+        except ValueError:
+            return None
 
     # Match Month DD, YYYY
     months = {
@@ -53,9 +59,12 @@ def _parse_date(text: str) -> date | None:
         re.IGNORECASE,
     )
     if m_named:
-        m_str = m_named.group(1).lower()
-        m_num = months.get(m_str, 1)
-        return date(int(m_named.group(3)), m_num, int(m_named.group(2)))
+        try:
+            m_str = m_named.group(1).lower()
+            m_num = months.get(m_str, 1)
+            return date(int(m_named.group(3)), m_num, int(m_named.group(2)))
+        except ValueError:
+            return None
     return None
 
 
@@ -132,9 +141,11 @@ def parse_html_distribution_tables(
 
                 amt = _parse_amount(cell)
                 if amt is not None:
-                    if any(k in h for k in ["amount", "rate", "$/share", "$/unit", "total", "distribution"]):
-                        if gross_amt is None:
-                            gross_amt = amt
+                    # Avoid treating date columns as amounts
+                    if not any(k in h for k in ["date", "day", "year", "month"]):
+                        if any(k in h for k in ["amount", "rate", "$/share", "$/unit", "total", "distribution"]):
+                            if gross_amt is None:
+                                gross_amt = amt
                     # Component mappings
                     if "capital gain" in h or "cap gain" in h:
                         c_type = CAComponentType.CAPITAL_GAINS if country == "CA" else USComponentType.LONG_TERM_CAPITAL_GAIN
@@ -150,24 +161,10 @@ def parse_html_distribution_tables(
                 if "type" in h:
                     dist_type = cell
 
-            if not ex_d and (rec_d or pay_d or decl_d):
-                ex_d = rec_d or pay_d or decl_d
-
+            # Never fabricate ex_date from payable or declaration date
             if ex_d and gross_amt is not None:
                 if target_ex_date and ex_d != target_ex_date:
                     continue
-
-                # If no individual components parsed, assign full gross to primary income
-                if not components:
-                    primary_comp_type = CAComponentType.ELIGIBLE_DIVIDEND if country == "CA" else USComponentType.ORDINARY_INCOME
-                    components.append(
-                        ExtractedComponent(
-                            component_name=dist_type,
-                            component_type=primary_comp_type,
-                            amount=gross_amt,
-                            percentage=100.0,
-                        )
-                    )
 
                 results.append(
                     ExtractedDistribution(

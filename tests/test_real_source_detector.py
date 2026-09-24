@@ -506,7 +506,7 @@ def test_detector_conflicting_positive_and_negative_yields_unknown_conflicting(
             }
         }
     }
-    synthetic_doc_html = "<p>Notice of Dividend Distribution: Declared distribution of $0.50 per share payable 2026-03-25.</p>"
+    synthetic_doc_html = "<p>VTI Vanguard Total Stock Market ETF: Notice of Dividend Distribution: Declared distribution of $0.50 per share payable 2026-03-25.</p>"
     synthetic_negative_schedule_html = """
     <h2>Distribution Schedule (2026)</h2>
     <table><thead><tr><th>Ex-Dividend Date</th><th>Record Date</th><th>Payable Date</th><th>Distribution Per Share</th></tr></thead>

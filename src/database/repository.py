@@ -259,12 +259,15 @@ class DistributionRepository:
         else:
             est_final = "FINAL"
 
-        # Check existing committed events for this natural key (class_id, ex_date, estimated_or_final)
+        dtype = extracted.distribution_type or "Income"
+
+        # Check existing committed events for natural key (class_id, ex_date, distribution_type, estimated_or_final)
         stmt = (
             select(DistributionEvent)
             .where(
                 DistributionEvent.class_id == cid,
                 DistributionEvent.ex_date == extracted.ex_date,
+                DistributionEvent.distribution_type == dtype,
                 DistributionEvent.estimated_or_final == est_final,
             )
             .order_by(DistributionEvent.version.desc())
@@ -273,13 +276,26 @@ class DistributionRepository:
 
         if existing_events:
             latest = existing_events[0]
-            # If identical amount and components already recorded, idempotency ensures no-op
-            if abs(float(latest.gross_amount) - float(extracted.gross_amount)) < 1e-6 and not is_amendment:
+            # Check if amount and components are identical for idempotency
+            amount_matches = abs(float(latest.gross_amount) - float(extracted.gross_amount)) < 1e-6
+            
+            # Check existing components
+            comp_stmt = select(DistributionComponent).where(DistributionComponent.event_id == latest.event_id)
+            existing_comps = list(self.session.scalars(comp_stmt).all())
+            comps_match = len(existing_comps) == len(extracted.components)
+            if comps_match and existing_comps:
+                # Compare component amounts
+                ex_comp_map = {c.component_type: float(c.amount) for c in existing_comps}
+                new_comp_map = {c.component_type.value if hasattr(c.component_type, 'value') else str(c.component_type): float(c.amount) for c in extracted.components}
+                if ex_comp_map != new_comp_map:
+                    comps_match = False
+
+            if amount_matches and comps_match and not is_amendment:
                 return latest, False
 
             # If it is a genuine amendment (restated amount/components or explicit amendment flag):
             new_version = latest.version + 1
-            new_event_id = f"evt_{extracted.fund_id}_{extracted.ex_date.isoformat()}_{est_final.lower()}_v{new_version}"
+            new_event_id = f"evt_{extracted.fund_id}_{dtype.lower()}_{extracted.ex_date.isoformat()}_{est_final.lower()}_v{new_version}"
 
             # Create new amended version
             new_event = DistributionEvent(
@@ -292,13 +308,14 @@ class DistributionRepository:
                 declaration_date=extracted.declaration_date,
                 currency=extracted.currency,
                 gross_amount=extracted.gross_amount,
-                distribution_type=extracted.distribution_type,
+                distribution_type=dtype,
                 estimated_or_final=est_final,
                 version=new_version,
                 is_superseded=False,
                 extraction_route=extracted.extraction_route.value,
             )
             self.session.add(new_event)
+            self.session.flush()  # Ensure new row exists in DB before FK assignment
 
             # Mark previous version as superseded
             latest.is_superseded = True
@@ -306,7 +323,7 @@ class DistributionRepository:
             target_event = new_event
         else:
             # First time insertion (Version 1)
-            event_id = f"evt_{extracted.fund_id}_{extracted.ex_date.isoformat()}_{est_final.lower()}_v1"
+            event_id = f"evt_{extracted.fund_id}_{dtype.lower()}_{extracted.ex_date.isoformat()}_{est_final.lower()}_v1"
             new_event = DistributionEvent(
                 event_id=event_id,
                 class_id=cid,
@@ -317,7 +334,7 @@ class DistributionRepository:
                 declaration_date=extracted.declaration_date,
                 currency=extracted.currency,
                 gross_amount=extracted.gross_amount,
-                distribution_type=extracted.distribution_type,
+                distribution_type=dtype,
                 estimated_or_final=est_final,
                 version=1,
                 is_superseded=False,

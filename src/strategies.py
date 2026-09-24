@@ -589,9 +589,7 @@ class VerifiedScheduleStrategy(BaseDetectionStrategy):
                             url=ev_item.notice_url or ref_schedule.source_url,
                             retrieved_at=datetime.now(timezone.utc),
                             snippet_or_locator=snippet,
-                            declaration_date_found=(
-                                ev_item.declaration_date or ev_item.ex_date
-                            ),
+                            declaration_date_found=ev_item.declaration_date,
                             ex_date_found=ev_item.ex_date,
                             record_date_found=ev_item.record_date,
                             payable_date_found=ev_item.payable_date,
@@ -609,7 +607,7 @@ class VerifiedScheduleStrategy(BaseDetectionStrategy):
                             ),
                             retrieved_at=datetime.now(timezone.utc),
                             snippet_or_locator=f"Verified distribution schedule for {display_name} confirms distribution on {d.isoformat()}.",
-                            declaration_date_found=d,
+                            declaration_date_found=None,
                             ex_date_found=d,
                         )
                     )
@@ -1390,7 +1388,7 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
                         url=url,
                         retrieved_at=retrieved_at,
                         snippet_or_locator=f"Distribution table row: '{row_snippet[:120]}'",
-                        declaration_date_found=decl_date or ex_date or record_date,
+                        declaration_date_found=decl_date or ex_date,
                         ex_date_found=ex_date,
                         record_date_found=record_date,
                         payable_date_found=payable_date,
@@ -1895,7 +1893,7 @@ class TargetedLookupStrategy(BaseDetectionStrategy):
                 evidence=evidences,
                 has_declaration_in_window=True,
                 window_fully_covered=True,
-                suggested_route=ExtractionRoute.WEB_PORTAL,
+                suggested_route=ExtractionRoute.HTML_TABLE,
                 notes="Targeted secondary source confirmed declaration in window.",
             )
 
