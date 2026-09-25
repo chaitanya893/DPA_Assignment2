@@ -406,6 +406,7 @@ class DistributionPipeline:
         context = {
             "country": fund.country,
             "share_class_currency": "CAD" if fund.country == "CA" else "USD",
+            "fund_type": "ETF" if fund.is_etf else "MUTUAL_FUND",
         }
         results = self.dq.validate_event(extracted, context=context)
         blocking = self.dq.blocking_failures(results)

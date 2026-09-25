@@ -277,3 +277,101 @@ def test_currency_rule_uses_share_class_currency():
         MockEvent(currency="USD"), context={"share_class_currency": "CAD"}
     )
     assert res.is_valid is False
+
+
+def test_date_order_rule_mutual_fund_vs_etf():
+    rule = DateOrderRule()
+    ev = MockEvent(
+        declaration_date=date(2025, 3, 15),
+        record_date=date(2025, 3, 26),
+        ex_date=date(2025, 3, 27),
+        payable_date=date(2025, 3, 28),
+    )
+    # MUTUAL_FUND with record 2025-03-26, ex 2025-03-27, pay 2025-03-28 -> passes.
+    res_mf = rule.validate(ev, context={"fund_type": "MUTUAL_FUND"})
+    assert res_mf.is_valid is True
+
+    # ETF with the same dates -> still CRITICAL (unchanged behaviour).
+    res_etf = rule.validate(ev, context={"fund_type": "ETF"})
+    assert res_etf.is_valid is False
+    assert res_etf.severity == DQSeverity.CRITICAL
+
+
+def test_date_order_rule_mutual_fund_pay_before_record():
+    rule = DateOrderRule()
+    # MUTUAL_FUND with pay before record -> CRITICAL.
+    ev = MockEvent(
+        declaration_date=date(2025, 3, 15),
+        record_date=date(2025, 3, 26),
+        ex_date=date(2025, 3, 27),
+        payable_date=date(2025, 3, 20),
+    )
+    res = rule.validate(ev, context={"fund_type": "MUTUAL_FUND"})
+    assert res.is_valid is False
+    assert res.severity == DQSeverity.CRITICAL
+
+
+def test_dq_audit_mutual_fund_date_ordering_and_flag_resolution(tmp_path):
+    engine = get_engine(f"sqlite:///{tmp_path / 'dq_mf.db'}")
+    init_db(engine)
+
+    with session_scope(engine) as session:
+        repo = DistributionRepository(session)
+        repo.upsert_fund(
+            "US_VFIAX", "Vanguard 500 Index Fund", "Vanguard", "US", "MUTUAL_FUND"
+        )
+        repo.upsert_share_class(
+            "US_VFIAX_CLASS",
+            "US_VFIAX",
+            ticker="VFIAX",
+            currency="USD",
+            is_etf=False,
+        )
+        repo.upsert_source_registry("official_fund_sponsor_page", "Sponsor", 2, "{url}")
+        doc = repo.store_raw_document(
+            "official_fund_sponsor_page",
+            "https://s.test/vfiax",
+            b"<html>SYNTHETIC</html>",
+        )
+        extracted = ExtractedDistribution(
+            fund_id="US_VFIAX",
+            country="US",
+            currency="USD",
+            declaration_date=date(2025, 3, 15),
+            record_date=date(2025, 3, 26),
+            ex_date=date(2025, 3, 27),
+            payable_date=date(2025, 3, 28),
+            gross_amount=1.8116,
+            source_url="https://s.test/vfiax",
+        )
+        saved = repo.save_distribution_event(
+            extracted, "US_VFIAX_CLASS", raw_document=doc
+        )
+        saved_event_id = saved.event.event_id
+        # Pre-seed an open DATE_ORDERING_SANITY flag for this event
+        repo.log_dq_flag(
+            fund_id="US_VFIAX",
+            event_id=saved_event_id,
+            rule_name="DATE_ORDERING_SANITY",
+            severity="CRITICAL",
+            message="Record date (2025-03-26) is before Ex-date (2025-03-27)",
+            resolution_status="OPEN",
+        )
+
+    dq_engine = DataQualityEngine()
+    report = dq_engine.audit_database(engine=engine, log_to_db=True)
+    assert report.critical_flags == 0
+
+    from sqlalchemy import select
+
+    from src.database.models import DQFlag
+
+    with session_scope(engine) as session:
+        flag = session.scalar(
+            select(DQFlag).where(
+                DQFlag.event_id == saved_event_id,
+                DQFlag.rule_name == "DATE_ORDERING_SANITY",
+            )
+        )
+        assert flag is not None
+        assert flag.resolution_status == "RESOLVED"

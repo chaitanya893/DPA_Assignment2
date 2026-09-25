@@ -227,6 +227,20 @@ class ExtractionEngine:
             events = parse_json_distributions(rec.content_text, **common)
             if events:
                 return ExtractionRoute.API, events
+        if rec.content_text and "data-vgn-funds-profile" in rec.content_text:
+            from src.parsers.vanguard_profile_parser import parse_vanguard_profile
+
+            events = parse_vanguard_profile(
+                rec.content_text,
+                fund_id=fund.fund_id,
+                source_url=url,
+                window_start=ws,
+                window_end=we,
+                source_tier=tier,
+                ticker=fund.ticker,
+            )
+            if events:
+                return ExtractionRoute.API, events
         # 2. HTML table
         if (
             rec.content_text
@@ -242,6 +256,19 @@ class ExtractionEngine:
             if events:
                 return ExtractionRoute.PDF, events
         if _is_excel(rec, url) and rec.content_bytes:
+            from src.parsers.spdr_distributions_parser import parse_spdr_distributions
+
+            events = parse_spdr_distributions(
+                rec.content_bytes,
+                fund_id=fund.fund_id,
+                ticker=fund.ticker,
+                source_url=url,
+                window_start=ws,
+                window_end=we,
+                source_tier=tier,
+            )
+            if events:
+                return ExtractionRoute.PDF, events
             events = parse_excel_distribution_document(rec.content_bytes, **common)
             if events:
                 return ExtractionRoute.PDF, events

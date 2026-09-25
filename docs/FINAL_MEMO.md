@@ -139,6 +139,15 @@ three DQ rules that never ran. They are withdrawn.
 
 ## 7. Where automation is expected to fail (to confirm with the live run)
 
+- **Vanguard history depth (compliance limit).** The Vanguard profile page gives about
+  18 months of distributions (from March 2025). A Vanguard advisor-site endpoint with full
+  history since 2016 exists and passes robots.txt, but its Terms of Use restrict data to
+  personal, noncommercial use and forbid derivative works without written approval.
+  It is an undocumented internal endpoint, not a "documented API" (PDF Assignment 2, Phase 2 route tree), so it was not used. Effect:
+  for the 20 Vanguard US funds, windows before March 2025 return UNKNOWN (reason:
+  source history limit), not NOT_DECLARED. Verified on VTI: 25 monthly checks ->
+  6 DECLARED, 12 NOT_DECLARED, 7 UNKNOWN (6 before coverage, 1 current month under the
+  7-day rule). Fix path: written approval from Vanguard, or a licensed data feed.
 - **JavaScript-rendered sponsor pages** (several large US and Canadian families): the HTML has no
   table, so the page cannot prove coverage and the result is UNKNOWN (INSUFFICIENT_EVIDENCE). Tier 1
   sources still work for US funds. Options: a documented JSON endpoint per family (API route), or a

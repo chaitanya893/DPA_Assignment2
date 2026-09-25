@@ -1138,7 +1138,7 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
         window_end: date,
     ) -> StrategyObservation:
         fund = self._get_fund(fund_id)
-        if not fund or not fund.official_source_url:
+        if not fund or (not fund.official_source_url and not fund.distribution_api_url):
             return StrategyObservation(
                 strategy_name=self.name,
                 signal_type=SignalType.NO_DATA_OBSERVATION,
@@ -1148,7 +1148,11 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
                 notes="Fund missing official source URL in universe registry.",
             )
 
-        url = fund.official_source_url
+        url = (
+            fund.distribution_api_url
+            if fund.distribution_api_url
+            else fund.official_source_url
+        )
         record = self.http_client.get(url)
 
         if not record.is_success:
@@ -1176,11 +1180,24 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
             and record.content_bytes.startswith(b"%PDF-")
             or url.lower().endswith(".pdf")
         )
+        is_xlsx = bool(
+            (
+                fund
+                and fund.distribution_api_url
+                and fund.distribution_api_url.lower().endswith(".xlsx")
+            )
+            or url.lower().endswith(".xlsx")
+            or "spreadsheet" in (record.content_type or "").lower()
+            or "excel" in (record.content_type or "").lower()
+            or (record.content_bytes and record.content_bytes.startswith(b"PK"))
+        )
         content = ""
         if is_pdf and record.content_bytes:
             content = _extract_text_from_pdf(record.content_bytes)
         if not content and record.content_text:
             content = record.content_text
+        if not content and is_xlsx and record.content_bytes:
+            content = "[XLSX_SPREADSHEET]"
 
         if not content:
             failure_reason = record.failure_reason or UnknownReason.INCOMPLETE_SOURCE
@@ -1236,15 +1253,76 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
 
         evidences: list[Evidence] = []
 
-        # 1. Structured JSON distribution data (if response is JSON)
+        # 1. Structured JSON / Excel / Vanguard profile distribution data
         json_evidences: list[Evidence] = []
         if (
-            record.content_text
-            and (
-                record.content_text.lstrip().startswith(("{", "["))
-                or "json" in (record.content_type or "").lower()
-                or url.lower().endswith(".json")
+            (
+                fund
+                and fund.distribution_api_url
+                and fund.distribution_api_url.lower().endswith(".xlsx")
             )
+            or url.lower().endswith(".xlsx")
+            or "spreadsheet" in (record.content_type or "").lower()
+            or "excel" in (record.content_type or "").lower()
+        ) and record.content_bytes:
+            from src.parsers.spdr_distributions_parser import parse_spdr_distributions
+
+            spdr_extracted = parse_spdr_distributions(
+                record.content_bytes,
+                fund_id=fund.fund_id if fund else "UNKNOWN",
+                ticker=fund.ticker if fund else None,
+                source_url=url,
+                window_start=window_start,
+                window_end=window_end,
+                source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+            )
+            for dist in spdr_extracted:
+                ev = Evidence(
+                    source_id="official_fund_sponsor_page",
+                    source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+                    url=url,
+                    retrieved_at=record.retrieved_at,
+                    snippet_or_locator=f"SPDR Excel distribution: ex_date={dist.ex_date}, amount={dist.gross_amount}",
+                    declaration_date_found=dist.declaration_date,
+                    ex_date_found=dist.ex_date,
+                    record_date_found=dist.record_date,
+                    payable_date_found=dist.payable_date,
+                )
+                if _dates_in_window(ev, window_start, window_end):
+                    json_evidences.append(ev)
+            evidences.extend(json_evidences)
+        elif record.content_text and "data-vgn-funds-profile" in record.content_text:
+            from src.parsers.vanguard_profile_parser import parse_vanguard_profile
+
+            vgn_extracted = parse_vanguard_profile(
+                record.content_text,
+                fund_id=fund.fund_id if fund else "UNKNOWN",
+                source_url=url,
+                window_start=window_start,
+                window_end=window_end,
+                source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+                ticker=fund.ticker if fund else None,
+            )
+            for dist in vgn_extracted:
+                ev = Evidence(
+                    source_id="official_fund_sponsor_page",
+                    source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+                    url=url,
+                    retrieved_at=record.retrieved_at,
+                    snippet_or_locator=f"Vanguard Profile distribution: ex_date={dist.ex_date}, amount={dist.gross_amount}",
+                    declaration_date_found=dist.declaration_date,
+                    ex_date_found=dist.ex_date,
+                    record_date_found=dist.record_date,
+                    payable_date_found=dist.payable_date,
+                )
+                if _dates_in_window(ev, window_start, window_end):
+                    json_evidences.append(ev)
+            evidences.extend(json_evidences)
+        elif record.content_text and (
+            bool(fund.distribution_api_url)
+            or record.content_text.lstrip().startswith(("{", "["))
+            or "json" in (record.content_type or "").lower()
+            or url.lower().endswith(".json")
         ):
             from src.parsers.api_parser import parse_json_distributions
 
@@ -1352,15 +1430,19 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
                 has_declaration_in_window=True,
                 window_fully_covered=True,
                 suggested_route=(
-                    ExtractionRoute.API
-                    if json_evidences
+                    ExtractionRoute.PDF
+                    if is_xlsx
                     else (
-                        ExtractionRoute.PDF
-                        if is_pdf
+                        ExtractionRoute.API
+                        if json_evidences
                         else (
-                            ExtractionRoute.HTML_TABLE
-                            if table_evidences
-                            else ExtractionRoute.FILING
+                            ExtractionRoute.PDF
+                            if is_pdf
+                            else (
+                                ExtractionRoute.HTML_TABLE
+                                if table_evidences
+                                else ExtractionRoute.FILING
+                            )
                         )
                     )
                 ),
@@ -1375,12 +1457,41 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
         dated_rows = table_date_rows(content, fund.ticker, fund.fundserv_code)
         all_json_ex_dates: list[date] = []
         if (
-            record.content_text
-            and (
-                record.content_text.lstrip().startswith(("{", "["))
-                or "json" in (record.content_type or "").lower()
-                or url.lower().endswith(".json")
+            (
+                fund
+                and fund.distribution_api_url
+                and fund.distribution_api_url.lower().endswith(".xlsx")
             )
+            or url.lower().endswith(".xlsx")
+            or "spreadsheet" in (record.content_type or "").lower()
+            or "excel" in (record.content_type or "").lower()
+        ) and record.content_bytes:
+            from src.parsers.spdr_distributions_parser import parse_spdr_distributions
+
+            all_spdr = parse_spdr_distributions(
+                record.content_bytes,
+                fund_id=fund.fund_id if fund else "UNKNOWN",
+                ticker=fund.ticker if fund else None,
+                source_url=url,
+                source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+            )
+            all_json_ex_dates = [d.ex_date for d in all_spdr if d.ex_date]
+        elif record.content_text and "data-vgn-funds-profile" in record.content_text:
+            from src.parsers.vanguard_profile_parser import parse_vanguard_profile
+
+            all_vgn = parse_vanguard_profile(
+                record.content_text,
+                fund_id=fund.fund_id if fund else "UNKNOWN",
+                source_url=url,
+                source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+                ticker=fund.ticker if fund else None,
+            )
+            all_json_ex_dates = [d.ex_date for d in all_vgn if d.ex_date]
+        elif record.content_text and (
+            bool(fund.distribution_api_url)
+            or record.content_text.lstrip().startswith(("{", "["))
+            or "json" in (record.content_type or "").lower()
+            or url.lower().endswith(".json")
         ):
             from src.parsers.api_parser import parse_json_distributions
 
@@ -1410,7 +1521,7 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
             and ex_dates[0] <= window_start
             and (
                 ex_dates[-1] >= window_end
-                or retrieved_day > window_end
+                or retrieved_day >= window_end + timedelta(days=7)
             )
         )
         # A published full-year schedule whose rows fall in that year also covers every month of that year
@@ -1418,7 +1529,7 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
             bool(ex_dates)
             and window_start.year == window_end.year
             and all(d.year == window_start.year for d in ex_dates)
-            and retrieved_day > window_end
+            and retrieved_day >= window_end + timedelta(days=7)
             and re.search(
                 rf"{window_start.year}\s+(?:distribution|dividend)\s+schedule|(?:distribution|dividend)\s+schedule\s+(?:for\s+)?{window_start.year}",
                 text,

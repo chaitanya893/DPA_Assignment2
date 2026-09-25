@@ -1,48 +1,113 @@
 {
-  "total_events_evaluated": 0,
-  "total_checks_performed": 0,
-  "skipped_checks": 0,
-  "total_flags_raised": 0,
+  "total_events_evaluated": 312,
+  "total_checks_performed": 738,
+  "skipped_checks": 1161,
+  "total_flags_raised": 8,
   "critical_flags": 0,
-  "warning_flags": 0,
+  "warning_flags": 8,
   "info_flags": 0,
-  "pass_rate_pct": null,
+  "pass_rate_pct": 98.92,
   "rule_metrics": {
     "COMPONENT_SUM_CHECK": {
-      "passed": 0,
+      "passed": 104,
       "failed": 0,
-      "skipped": 0
+      "skipped": 208
     },
     "DATE_ORDERING_SANITY": {
-      "passed": 0,
+      "passed": 312,
       "failed": 0,
       "skipped": 0
     },
     "NAV_DECLINE_CONSISTENCY": {
       "passed": 0,
       "failed": 0,
-      "skipped": 0
+      "skipped": 312
     },
     "MAGNITUDE_20PCT_NAV_CHECK": {
       "passed": 0,
       "failed": 0,
-      "skipped": 0
+      "skipped": 312
     },
     "CURRENCY_INTEGRITY": {
-      "passed": 0,
+      "passed": 312,
       "failed": 0,
       "skipped": 0
     },
     "CROSS_SOURCE_VARIANCE": {
       "passed": 0,
       "failed": 0,
-      "skipped": 0
+      "skipped": 312
     },
     "FREQUENCY_CONTINUITY": {
-      "passed": 0,
-      "failed": 0,
-      "skipped": 0
+      "passed": 2,
+      "failed": 8,
+      "skipped": 17
     }
   },
-  "flagged_events": []
+  "flagged_events": [
+    {
+      "fund_id": "US_SPDR_JNK",
+      "event_id": null,
+      "ex_date": null,
+      "rule_name": "FREQUENCY_CONTINUITY",
+      "severity": "WARNING",
+      "message": "Monthly payer has no distribution recorded for: 2025-01, 2026-01"
+    },
+    {
+      "fund_id": "US_SPDR_SJNK",
+      "event_id": null,
+      "ex_date": null,
+      "rule_name": "FREQUENCY_CONTINUITY",
+      "severity": "WARNING",
+      "message": "Monthly payer has no distribution recorded for: 2025-01, 2026-01"
+    },
+    {
+      "fund_id": "US_SPDR_SPAB",
+      "event_id": null,
+      "ex_date": null,
+      "rule_name": "FREQUENCY_CONTINUITY",
+      "severity": "WARNING",
+      "message": "Monthly payer has no distribution recorded for: 2025-01, 2026-01"
+    },
+    {
+      "fund_id": "US_VANGUARD_BIV",
+      "event_id": null,
+      "ex_date": null,
+      "rule_name": "FREQUENCY_CONTINUITY",
+      "severity": "WARNING",
+      "message": "Monthly payer has no distribution recorded for: 2026-01"
+    },
+    {
+      "fund_id": "US_VANGUARD_BLV",
+      "event_id": null,
+      "ex_date": null,
+      "rule_name": "FREQUENCY_CONTINUITY",
+      "severity": "WARNING",
+      "message": "Monthly payer has no distribution recorded for: 2026-01"
+    },
+    {
+      "fund_id": "US_VANGUARD_BND",
+      "event_id": null,
+      "ex_date": null,
+      "rule_name": "FREQUENCY_CONTINUITY",
+      "severity": "WARNING",
+      "message": "Monthly payer has no distribution recorded for: 2026-01"
+    },
+    {
+      "fund_id": "US_VANGUARD_BSV",
+      "event_id": null,
+      "ex_date": null,
+      "rule_name": "FREQUENCY_CONTINUITY",
+      "severity": "WARNING",
+      "message": "Monthly payer has no distribution recorded for: 2026-01"
+    },
+    {
+      "fund_id": "US_VANGUARD_VTEB",
+      "event_id": null,
+      "ex_date": null,
+      "rule_name": "FREQUENCY_CONTINUITY",
+      "severity": "WARNING",
+      "message": "Monthly payer has no distribution recorded for: 2026-01"
+    }
+  ]
 }

@@ -15,7 +15,19 @@ sweep scheduler (gap logic) -> Layer A detect_distribution -> DECLARED? -> Layer
 ```bash
 python -m venv .venv && .venv\Scripts\activate          # Windows (use source .venv/bin/activate on Linux/macOS)
 pip install -r requirements-dev.txt
-set DETECTOR_CONTACT_EMAIL=you@yourcompany.com          # required: goes into the User-Agent (compliance)
+
+# Environment variables (required: contact email goes into User-Agent for compliance)
+# In PowerShell:
+$env:DETECTOR_CONTACT_EMAIL = "you@yourcompany.com"
+$env:DETECTOR_CONTACT_NAME = "Your Name"
+
+# In cmd.exe:
+set DETECTOR_CONTACT_EMAIL=you@yourcompany.com
+set DETECTOR_CONTACT_NAME=Your Name
+
+# In bash / zsh:
+export DETECTOR_CONTACT_EMAIL="you@yourcompany.com"
+export DETECTOR_CONTACT_NAME="Your Name"
 ```
 
 Optional: `DATABASE_URL` (default SQLite at `data/fund_distributions.db`),

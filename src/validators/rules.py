@@ -130,19 +130,35 @@ class DateOrderRule(BaseValidationRule):
                 message="Missing mandatory Ex-Date.",
             )
 
+        fund_type = (context or {}).get("fund_type", "ETF")
         errors: list[str] = []
 
-        if decl_d and decl_d > ex_d:
-            errors.append(f"Declaration date ({decl_d}) is after Ex-date ({ex_d})")
+        if fund_type == "MUTUAL_FUND":
+            if decl_d and decl_d > ex_d:
+                errors.append(f"Declaration date ({decl_d}) is after Ex-date ({ex_d})")
 
-        if rec_d and rec_d < ex_d:
-            errors.append(f"Record date ({rec_d}) is before Ex-date ({ex_d})")
+            if decl_d and rec_d and decl_d > rec_d:
+                errors.append(
+                    f"Declaration date ({decl_d}) is after Record date ({rec_d})"
+                )
 
-        if pay_d and ex_d and pay_d < ex_d:
-            errors.append(f"Payable date ({pay_d}) is before Ex-date ({ex_d})")
+            if pay_d and pay_d < ex_d:
+                errors.append(f"Payable date ({pay_d}) is before Ex-date ({ex_d})")
 
-        if pay_d and rec_d and pay_d < rec_d:
-            errors.append(f"Payable date ({pay_d}) is before Record date ({rec_d})")
+            if pay_d and rec_d and pay_d < rec_d:
+                errors.append(f"Payable date ({pay_d}) is before Record date ({rec_d})")
+        else:
+            if decl_d and decl_d > ex_d:
+                errors.append(f"Declaration date ({decl_d}) is after Ex-date ({ex_d})")
+
+            if rec_d and rec_d < ex_d:
+                errors.append(f"Record date ({rec_d}) is before Ex-date ({ex_d})")
+
+            if pay_d and ex_d and pay_d < ex_d:
+                errors.append(f"Payable date ({pay_d}) is before Ex-date ({ex_d})")
+
+            if pay_d and rec_d and pay_d < rec_d:
+                errors.append(f"Payable date ({pay_d}) is before Record date ({rec_d})")
 
         if errors:
             return ValidationResult(

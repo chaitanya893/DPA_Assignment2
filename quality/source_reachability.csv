@@ -1,0 +1,101 @@
+fund_id,fund_family,country,domain,http_status,body_length,failure_reason,data_vgn_funds_profile,ex_date,ex_dividend,record_date,payable,distribution,table_tag,has_dated_table_marker
+US_VANGUARD_VTI,Vanguard,US,investor.vanguard.com,200,263323,,True,False,False,False,False,True,False,True
+US_VANGUARD_VOO,Vanguard,US,investor.vanguard.com,200,263126,,True,False,False,False,False,True,False,True
+US_VANGUARD_BND,Vanguard,US,investor.vanguard.com,200,269390,,True,False,False,False,False,True,False,True
+US_VANGUARD_VYM,Vanguard,US,investor.vanguard.com,200,260389,,True,False,False,False,False,True,False,True
+US_VANGUARD_VNQ,Vanguard,US,investor.vanguard.com,200,264217,,True,False,False,False,False,True,False,True
+US_VANGUARD_VB,Vanguard,US,investor.vanguard.com,200,261349,,True,False,False,False,False,True,False,True
+US_VANGUARD_VO,Vanguard,US,investor.vanguard.com,200,259883,,True,False,False,False,False,True,False,True
+US_VANGUARD_VEA,Vanguard,US,investor.vanguard.com,200,261914,,True,False,False,False,False,True,False,True
+US_VANGUARD_VWO,Vanguard,US,investor.vanguard.com,200,264496,,True,False,False,False,False,True,False,True
+US_VANGUARD_VT,Vanguard,US,investor.vanguard.com,200,263591,,True,False,False,False,False,True,False,True
+US_VANGUARD_VIG,Vanguard,US,investor.vanguard.com,200,258149,,True,False,False,False,False,True,False,True
+US_VANGUARD_VTEB,Vanguard,US,investor.vanguard.com,200,272268,,True,False,False,False,False,True,False,True
+US_VANGUARD_BSV,Vanguard,US,investor.vanguard.com,200,268736,,True,False,False,False,False,True,False,True
+US_VANGUARD_BIV,Vanguard,US,investor.vanguard.com,200,266882,,True,False,False,False,False,True,False,True
+US_VANGUARD_BLV,Vanguard,US,investor.vanguard.com,200,267493,,True,False,False,False,False,True,False,True
+US_VANGUARD_VFIAX,Vanguard,US,investor.vanguard.com,200,252342,,True,False,False,False,False,True,False,True
+US_VANGUARD_VTSAX,Vanguard,US,investor.vanguard.com,200,253260,,True,False,False,False,False,True,False,True
+US_VANGUARD_VBTLX,Vanguard,US,investor.vanguard.com,200,260186,,True,False,False,False,False,True,False,True
+US_VANGUARD_VTIAX,Vanguard,US,investor.vanguard.com,200,257480,,True,False,False,False,False,True,False,True
+US_VANGUARD_VWEAX,Vanguard,US,investor.vanguard.com,200,260891,,True,False,False,False,False,True,False,True
+US_ISHARES_IVV,BlackRock iShares,US,www.ishares.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_ISHARES_AGG,BlackRock iShares,US,www.ishares.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_ISHARES_IWM,BlackRock iShares,US,www.ishares.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_ISHARES_HYG,BlackRock iShares,US,www.ishares.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_ISHARES_LQD,BlackRock iShares,US,www.ishares.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_ISHARES_TIP,BlackRock iShares,US,www.ishares.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_ISHARES_MBB,BlackRock iShares,US,www.ishares.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_ISHARES_SHY,BlackRock iShares,US,www.ishares.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_ISHARES_IEF,BlackRock iShares,US,www.ishares.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_ISHARES_TLT,BlackRock iShares,US,www.ishares.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_ISHARES_HDV,BlackRock iShares,US,www.ishares.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_ISHARES_IEMG,BlackRock iShares,US,www.ishares.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_ISHARES_IEFA,BlackRock iShares,US,www.ishares.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_ISHARES_USHY,BlackRock iShares,US,www.ishares.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_FIDELITY_FXAIX,Fidelity,US,fundresearch.fidelity.com,200,9151,,False,False,False,False,False,False,False,False
+US_FIDELITY_FSKAX,Fidelity,US,fundresearch.fidelity.com,200,8134,,False,False,False,False,False,False,False,False
+US_FIDELITY_FXNAX,Fidelity,US,fundresearch.fidelity.com,200,9151,,False,False,False,False,False,False,False,False
+US_FIDELITY_FTBFX,Fidelity,US,fundresearch.fidelity.com,200,8134,,False,False,False,False,False,False,False,False
+US_FIDELITY_FZROX,Fidelity,US,fundresearch.fidelity.com,200,8134,,False,False,False,False,False,False,False,False
+US_FIDELITY_FNCMX,Fidelity,US,fundresearch.fidelity.com,200,8134,,False,False,False,False,False,False,False,False
+US_FIDELITY_FBALX,Fidelity,US,fundresearch.fidelity.com,200,8134,,False,False,False,False,False,False,False,False
+US_FIDELITY_FDVV,Fidelity,US,www.fidelity.com,400,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_FIDELITY_ONEQ,Fidelity,US,www.fidelity.com,400,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_SPDR_SPTM,State Street SPDR,US,www.ssga.com,200,245717,,False,False,False,False,False,True,True,True
+US_SPDR_SPYD,State Street SPDR,US,www.ssga.com,200,233879,,False,False,False,False,False,True,True,True
+US_SPDR_SPAB,State Street SPDR,US,www.ssga.com,200,274413,,False,False,False,False,False,True,True,True
+US_SPDR_JNK,State Street SPDR,US,www.ssga.com,200,275777,,False,False,False,False,False,True,True,True
+US_SPDR_SJNK,State Street SPDR,US,www.ssga.com,200,276468,,False,False,False,False,False,True,True,True
+US_SPDR_XLF,State Street SPDR,US,www.ssga.com,200,236659,,False,False,False,False,False,True,True,True
+US_SPDR_XLE,State Street SPDR,US,www.ssga.com,200,233685,,False,False,False,False,False,True,True,True
+US_SCHWAB_SCHD,Charles Schwab,US,www.schwabassetmanagement.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_SCHWAB_SCHX,Charles Schwab,US,www.schwabassetmanagement.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_SCHWAB_SCHZ,Charles Schwab,US,www.schwabassetmanagement.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_SCHWAB_SWPPX,Charles Schwab,US,www.schwabassetmanagement.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_SCHWAB_SWAGX,Charles Schwab,US,www.schwabassetmanagement.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_INVESCO_QQQ,Invesco,US,www.invesco.com,200,262737,,False,False,False,False,False,False,False,False
+US_INVESCO_RSP,Invesco,US,www.invesco.com,200,628404,,False,False,False,False,False,True,False,False
+US_INVESCO_BKLN,Invesco,US,www.invesco.com,200,622926,,False,False,False,False,False,True,False,False
+US_PIMCO_BOND,PIMCO,US,www.pimco.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+US_PIMCO_MINT,PIMCO,US,www.pimco.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+CA_BMO_ZCN,BMO Global Asset Management,CA,www.bmogam.com,,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+CA_BMO_ZAG,BMO Global Asset Management,CA,www.bmogam.com,,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+CA_BMO_ZEB,BMO Global Asset Management,CA,www.bmogam.com,,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+CA_BMO_ZWB,BMO Global Asset Management,CA,www.bmogam.com,,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+CA_BMO_ZUT,BMO Global Asset Management,CA,www.bmogam.com,,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+CA_BMO_ZDV,BMO Global Asset Management,CA,www.bmogam.com,,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+CA_BMO_ZDB,BMO Global Asset Management,CA,www.bmogam.com,,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+CA_BMO_ZPR,BMO Global Asset Management,CA,www.bmogam.com,,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+CA_VANGUARD_VCN,Vanguard Canada,CA,www.vanguard.ca,200,359448,,False,False,False,False,False,True,True,True
+CA_VANGUARD_VAB,Vanguard Canada,CA,www.vanguard.ca,200,397217,,False,False,False,False,False,True,True,True
+CA_VANGUARD_VDY,Vanguard Canada,CA,www.vanguard.ca,200,360197,,False,False,False,False,False,True,True,True
+CA_VANGUARD_VFV,Vanguard Canada,CA,www.vanguard.ca,200,359827,,False,False,False,False,False,True,True,True
+CA_VANGUARD_VSB,Vanguard Canada,CA,www.vanguard.ca,200,396121,,False,False,False,False,False,True,True,True
+CA_VANGUARD_VBAL,Vanguard Canada,CA,www.vanguard.ca,200,388273,,False,False,False,False,False,True,True,True
+CA_VANGUARD_VGRO,Vanguard Canada,CA,www.vanguard.ca,200,388174,,False,False,False,False,False,True,True,True
+CA_ISHARES_XIC,BlackRock iShares Canada,CA,www.blackrock.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+CA_ISHARES_XBB,BlackRock iShares Canada,CA,www.blackrock.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+CA_ISHARES_XEI,BlackRock iShares Canada,CA,www.blackrock.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+CA_ISHARES_XDV,BlackRock iShares Canada,CA,www.blackrock.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+CA_ISHARES_XUT,BlackRock iShares Canada,CA,www.blackrock.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+CA_ISHARES_XSB,BlackRock iShares Canada,CA,www.blackrock.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+CA_ISHARES_XSH,BlackRock iShares Canada,CA,www.blackrock.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+CA_ISHARES_XHY,BlackRock iShares Canada,CA,www.blackrock.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+CA_RBC_RBN,RBC Global Asset Management,CA,www.rbcgam.com,404,0,INSUFFICIENT_EVIDENCE,False,False,False,False,False,False,False,False
+CA_RBC_RCD,RBC Global Asset Management,CA,www.rbcgam.com,200,3456996,,False,False,True,False,False,True,True,True
+CA_RBC_RUSB,RBC Global Asset Management,CA,www.rbcgam.com,200,2879970,,False,False,True,False,False,True,True,True
+CA_RBC_RBF556,RBC Global Asset Management,CA,www.rbcgam.com,200,1337987,,False,False,False,False,False,True,True,True
+CA_RBC_RBF266,RBC Global Asset Management,CA,www.rbcgam.com,200,1022389,,False,False,False,False,False,True,True,True
+CA_TD_TTP,TD Asset Management,CA,www.td.com,200,203656,,False,False,False,False,False,True,True,True
+CA_TD_TPU,TD Asset Management,CA,www.td.com,200,203656,,False,False,False,False,False,True,True,True
+CA_TD_TDB900,TD Asset Management,CA,www.td.com,200,201237,,False,False,False,False,False,True,False,False
+CA_TD_TDB902,TD Asset Management,CA,www.td.com,200,202676,,False,False,False,False,False,True,False,False
+CA_TD_TDB909,TD Asset Management,CA,www.td.com,200,199035,,False,False,False,False,False,True,False,False
+CA_GLOBALX_HXT,Global X Investments Canada,CA,www.globalx.ca,200,524714,,False,False,False,False,False,True,True,True
+CA_GLOBALX_HBB,Global X Investments Canada,CA,www.globalx.ca,200,496305,,False,False,False,False,False,True,True,True
+CA_GLOBALX_HDIV,Global X Investments Canada,CA,www.globalx.ca,404,0,INSUFFICIENT_EVIDENCE,False,False,False,False,False,False,False,False
+CA_CI_FIE,CI Global Asset Management,CA,funds.cifinancial.com,400,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+CA_CI_FIG,CI Global Asset Management,CA,funds.cifinancial.com,200,147096,,False,False,False,False,False,True,False,False
+CA_CI_CDZ,CI Global Asset Management,CA,funds.cifinancial.com,400,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False
+CA_MACKENZIE_QBB,Mackenzie Investments,CA,www.mackenzieinvestments.com,403,0,RETRIEVAL_FAILED,False,False,False,False,False,False,False,False

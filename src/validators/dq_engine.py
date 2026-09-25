@@ -17,6 +17,7 @@ from src.database.connection import get_engine, session_scope
 from src.database.models import (
     DistributionComponent,
     DistributionEvent,
+    DQFlag,
     EventEvidence,
     FundMaster,
     ShareClass,
@@ -192,6 +193,9 @@ class DataQualityEngine:
                 context = {
                     "country": fund_record.country if fund_record else None,
                     "share_class_currency": sc_record.currency if sc_record else None,
+                    "fund_type": (
+                        "ETF" if (sc_record and sc_record.is_etf) else "MUTUAL_FUND"
+                    ),
                     "second_source_amount": other_amounts[0] if other_amounts else None,
                     "components": components,
                 }
@@ -207,6 +211,16 @@ class DataQualityEngine:
                             res,
                             log_to_db,
                         )
+                    elif log_to_db and res.is_valid and not res.skipped:
+                        open_flags = session.scalars(
+                            select(DQFlag).where(
+                                DQFlag.event_id == ev.event_id,
+                                DQFlag.rule_name == res.rule_name,
+                                DQFlag.resolution_status == "OPEN",
+                            )
+                        ).all()
+                        for flag in open_flags:
+                            flag.resolution_status = "RESOLVED"
 
             for fund_id, fund_events in fund_event_map.items():
                 sc_record = session.get(ShareClass, fund_events[0].class_id)

@@ -416,7 +416,9 @@ class RecordingHTTPClient(HTTPClient):
             attempts = self._failure_attempts.get(key, 0) + 1
             self._failure_attempts[key] = attempts
             if attempts >= 2:
-                self._by_url[key] = rec  # Cache after 2 failed attempts to prevent runaway latency
+                self._by_url[key] = (
+                    rec  # Cache after 2 failed attempts to prevent runaway latency
+                )
 
         self.records.append(rec)
         return rec

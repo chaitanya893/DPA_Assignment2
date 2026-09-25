@@ -18,6 +18,7 @@ class UniverseFund:
     fund_type: str
     fund_family: str
     official_source_url: str
+    distribution_api_url: str | None = None
     ticker: str | None = None
     cik: str | None = None
     sec_series_id: str | None = None
@@ -75,6 +76,7 @@ class UniverseRegistry:
                     sedar_id=item.get("sedar_id"),
                     fundserv_code=item.get("fundserv_code"),
                     official_source_url=item["official_source_url"],
+                    distribution_api_url=item.get("distribution_api_url"),
                     verification_source=item["verification_source"],
                     verified_at=item["verified_at"],
                     expected_frequency=item.get("expected_frequency"),

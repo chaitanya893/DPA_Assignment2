@@ -89,6 +89,8 @@ A fund distribution involves several milestone dates that must be captured from 
 | **4. Payable Date (Payment Date)** | The date on which the cash distribution is credited or disbursed to investors. |
 | **5. Reinvestment Date** | The date on which distributions are reinvested into additional shares for participating unitholders. |
 
+For US mutual funds the record date usually precedes the ex-date (which equals the reinvest date), e.g. VFIAX record 2025-03-26, ex 2025-03-27. The date-order validator therefore checks declaration <= record <= pay and declaration <= ex <= pay for mutual funds, and the full declaration <= ex <= record <= pay order only for ETFs.
+
 ### **Why Confusing These Dates Corrupts a Database:**
 Confusing or conflating these dates directly corrupts downstream analytics, pricing models, and data pipelines:
 * **Conflating Declaration Date with Ex-Date:** Distorts price-adjustment and corporate-action time series. The economic detachment of cash occurs on the ex-dividend date, not when the fund board announces it.
