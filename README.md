@@ -39,6 +39,7 @@ Key deliverable documents:
 - **Requirement Traceability Index:** [docs/REPORT_INDEX.md](docs/REPORT_INDEX.md)
 - **Compliance & Terms of Use:** [docs/COMPLIANCE.md](docs/COMPLIANCE.md)
 - **Gold Set Documentation & Manual Evidence:** [docs/GOLD_SET_GUIDE.md](docs/GOLD_SET_GUIDE.md) and [docs/gold_set_evidence/](docs/gold_set_evidence/)
+- **How to open the database:** see [docs/HOW_TO_VIEW_DATABASE.md](docs/HOW_TO_VIEW_DATABASE.md)
 
 ---
 
