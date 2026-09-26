@@ -1,1 +1,1 @@
-
+review_id,fund_id,window_start,window_end,reason,details,payload_json,source_url,doc_id,status,created_at

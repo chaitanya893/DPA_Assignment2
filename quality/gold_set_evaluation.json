@@ -1,0 +1,578 @@
+{
+  "total_gold_events": 439,
+  "evaluated_funds": 50,
+  "true_positives": 269,
+  "false_positives": 0,
+  "false_negatives": 92,
+  "true_negatives": 78,
+  "unknown_on_declared": 92,
+  "unknown_on_not_declared": 24,
+  "precision_pct": 100.0,
+  "recall_pct": 74.52,
+  "f1_score_pct": 85.4,
+  "precision_target_met": true,
+  "recall_target_met": false,
+  "extraction_checked": 269,
+  "extraction_correct": 266,
+  "extraction_accuracy_pct": 98.88,
+  "by_family": {
+    "RBC Global Asset Management": {
+      "TP": 16,
+      "FN": 0,
+      "FP": 0,
+      "TN": 0,
+      "UNK": 0
+    },
+    "Vanguard Canada": {
+      "TP": 62,
+      "FN": 0,
+      "FP": 0,
+      "TN": 10,
+      "UNK": 0
+    },
+    "BlackRock iShares": {
+      "TP": 0,
+      "FN": 62,
+      "FP": 0,
+      "TN": 16,
+      "UNK": 62
+    },
+    "Charles Schwab": {
+      "TP": 0,
+      "FN": 30,
+      "FP": 0,
+      "TN": 8,
+      "UNK": 30
+    },
+    "State Street SPDR": {
+      "TP": 56,
+      "FN": 0,
+      "FP": 0,
+      "TN": 14,
+      "UNK": 0
+    },
+    "Vanguard": {
+      "TP": 135,
+      "FN": 0,
+      "FP": 0,
+      "TN": 30,
+      "UNK": 0
+    }
+  },
+  "failure_details": [
+    {
+      "gold_id": "g0089",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0091",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0092",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0093",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0094",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0095",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0096",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0097",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0098",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0100",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0101",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0103",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0104",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0105",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0106",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0107",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0108",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0110",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0111",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0112",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0113",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0114",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0115",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0116",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0117",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0118",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0120",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0122",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0123",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0124",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0125",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0126",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0127",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0128",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0130",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0132",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0133",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0134",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0135",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0137",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0138",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0139",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0140",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0141",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0142",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0144",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0145",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0146",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0147",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0148",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0149",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0150",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0155",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0156",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0157",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0158",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0160",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0162",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0163",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0164",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0165",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0166",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0167",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0168",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0169",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0170",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0172",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0174",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0175",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0176",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0177",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0178",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0179",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0180",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0182",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0184",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0185",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0186",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0187",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0189",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0190",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0191",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0193",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0194",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0195",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0196",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0197",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0198",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0199",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0200",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0201",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0203",
+      "expected": "DECLARED",
+      "actual": "UNKNOWN"
+    },
+    {
+      "gold_id": "g0352",
+      "problem": "extraction mismatch",
+      "expected": [
+        "2025-06-26",
+        0.8678
+      ],
+      "got": [
+        [
+          "2025-06-26",
+          0.654842
+        ],
+        [
+          "2025-06-26",
+          0.212958
+        ]
+      ]
+    },
+    {
+      "gold_id": "g0353",
+      "problem": "extraction mismatch",
+      "expected": [
+        "2025-09-24",
+        0.8716
+      ],
+      "got": [
+        [
+          "2025-09-24",
+          0.657709
+        ],
+        [
+          "2025-09-24",
+          0.213891
+        ]
+      ]
+    },
+    {
+      "gold_id": "g0354",
+      "problem": "extraction mismatch",
+      "expected": [
+        "2025-12-22",
+        0.8005
+      ],
+      "got": [
+        [
+          "2025-12-22",
+          0.604057
+        ],
+        [
+          "2025-12-22",
+          0.196443
+        ]
+      ]
+    }
+  ]
+}

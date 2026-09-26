@@ -1,7 +1,7 @@
 source_id,source_name,source_tier,url_pattern,parser_version,robots_status,tos_status,last_success,is_active,created_at
-sec_edgar_submissions_api,SEC EDGAR Submissions API,1,https://data.sec.gov/submissions/CIK{cik}.json,1.0.0,CHECKED_PER_REQUEST,PENDING_REVIEW,,True,2026-09-24 09:08:04.557175
-sec_edgar_filings,"SEC EDGAR filing documents (497, 19(a), 8-K)",1,https://www.sec.gov/Archives/edgar/data/{cik}/...,1.0.0,CHECKED_PER_REQUEST,PENDING_REVIEW,,True,2026-09-24 09:08:04.558367
-sec_edgar_daily_index,SEC EDGAR daily form index,1,https://www.sec.gov/Archives/edgar/daily-index/{yyyy}/QTR{q}/form.{yyyymmdd}.idx,1.0.0,CHECKED_PER_REQUEST,PENDING_REVIEW,,True,2026-09-24 09:08:04.559042
-sedar_tmx_notices,TMX / CDS distribution notices,1,https://www.tmx.com/dividends/{ticker},1.0.0,CHECKED_PER_REQUEST,PENDING_REVIEW,,True,2026-09-24 09:08:04.559780
-official_fund_sponsor_page,Official fund sponsor distribution pages and releases,2,{official_source_url},1.0.0,CHECKED_PER_REQUEST,PENDING_REVIEW,,True,2026-09-24 09:08:04.560352
-public_market_data_crosscheck,"Public market data pages (corroboration only, disabled)",3,https://finance.yahoo.com/quote/{ticker},1.0.0,CHECKED_PER_REQUEST,PENDING_REVIEW,,True,2026-09-24 09:08:04.560954
+sec_edgar_submissions_api,SEC EDGAR Submissions API,1,https://data.sec.gov/submissions/CIK{cik}.json,1.0.0,CHECKED_PER_REQUEST,PENDING_REVIEW,2026-09-26 15:24:19.961196,1,2026-09-25 18:43:26.025247
+sec_edgar_filings,"SEC EDGAR filing documents (497, 19(a), 8-K)",1,https://www.sec.gov/Archives/edgar/data/{cik}/...,1.0.0,CHECKED_PER_REQUEST,PENDING_REVIEW,2026-09-26 15:25:24.161679,1,2026-09-25 18:43:26.027599
+sec_edgar_daily_index,SEC EDGAR daily form index,1,https://www.sec.gov/Archives/edgar/daily-index/{yyyy}/QTR{q}/form.{yyyymmdd}.idx,1.0.0,CHECKED_PER_REQUEST,PENDING_REVIEW,,1,2026-09-25 18:43:26.028311
+sedar_tmx_notices,TMX / CDS distribution notices,1,https://www.tmx.com/dividends/{ticker},1.0.0,CHECKED_PER_REQUEST,PENDING_REVIEW,,1,2026-09-25 18:43:26.028941
+official_fund_sponsor_page,Official fund sponsor distribution pages and releases,2,{official_source_url},1.0.0,CHECKED_PER_REQUEST,PENDING_REVIEW,2026-09-26 15:13:45.151126,1,2026-09-25 18:43:26.029558
+public_market_data_crosscheck,"Public market data pages (corroboration only, disabled)",3,https://finance.yahoo.com/quote/{ticker},1.0.0,CHECKED_PER_REQUEST,PENDING_REVIEW,,1,2026-09-25 18:43:26.031033

@@ -1,1 +1,11 @@
-
+flag_id,event_id,fund_id,rule_name,severity,message,resolution_status,created_at
+dq_f397b4dcb5b14f6a,,US_SPDR_JNK,FREQUENCY_CONTINUITY,WARNING,"Monthly payer has no distribution recorded for: 2025-01, 2026-01",OPEN,2026-09-26 11:42:45.273068
+dq_7e5f614301824de2,,US_SPDR_SJNK,FREQUENCY_CONTINUITY,WARNING,"Monthly payer has no distribution recorded for: 2025-01, 2026-01",OPEN,2026-09-26 11:42:45.273072
+dq_31b4ec8ec90c4251,,US_SPDR_SPAB,FREQUENCY_CONTINUITY,WARNING,"Monthly payer has no distribution recorded for: 2025-01, 2026-01",OPEN,2026-09-26 11:42:45.273073
+dq_4588eff81c614827,,US_VANGUARD_BIV,FREQUENCY_CONTINUITY,WARNING,Monthly payer has no distribution recorded for: 2026-01,OPEN,2026-09-26 11:42:45.273073
+dq_b967bbb3080445d9,,US_VANGUARD_BLV,FREQUENCY_CONTINUITY,WARNING,Monthly payer has no distribution recorded for: 2026-01,OPEN,2026-09-26 11:42:45.273074
+dq_dbfd8f92894d4811,,US_VANGUARD_BND,FREQUENCY_CONTINUITY,WARNING,Monthly payer has no distribution recorded for: 2026-01,OPEN,2026-09-26 11:42:45.273074
+dq_2c77cad01f654e37,,US_VANGUARD_BSV,FREQUENCY_CONTINUITY,WARNING,Monthly payer has no distribution recorded for: 2026-01,OPEN,2026-09-26 11:42:45.273075
+dq_2394443e46264ad6,,US_VANGUARD_VTEB,FREQUENCY_CONTINUITY,WARNING,Monthly payer has no distribution recorded for: 2026-01,OPEN,2026-09-26 11:42:45.273075
+dq_a78e78aa06b14d2a,,CA_VANGUARD_VAB,FREQUENCY_CONTINUITY,WARNING,Monthly payer has no distribution recorded for: 2026-01,OPEN,2026-09-26 17:00:56.242459
+dq_dee994e0641943a0,,CA_VANGUARD_VSB,FREQUENCY_CONTINUITY,WARNING,Monthly payer has no distribution recorded for: 2026-01,OPEN,2026-09-26 17:00:56.242464

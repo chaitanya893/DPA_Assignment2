@@ -1,50 +1,66 @@
 {
-  "total_events_evaluated": 312,
-  "total_checks_performed": 738,
-  "skipped_checks": 1161,
-  "total_flags_raised": 8,
+  "total_events_evaluated": 425,
+  "total_checks_performed": 969,
+  "skipped_checks": 1617,
+  "total_flags_raised": 10,
   "critical_flags": 0,
-  "warning_flags": 8,
+  "warning_flags": 10,
   "info_flags": 0,
-  "pass_rate_pct": 98.92,
+  "pass_rate_pct": 98.97,
   "rule_metrics": {
     "COMPONENT_SUM_CHECK": {
       "passed": 104,
       "failed": 0,
-      "skipped": 208
+      "skipped": 321
     },
     "DATE_ORDERING_SANITY": {
-      "passed": 312,
+      "passed": 425,
       "failed": 0,
       "skipped": 0
     },
     "NAV_DECLINE_CONSISTENCY": {
       "passed": 0,
       "failed": 0,
-      "skipped": 312
+      "skipped": 425
     },
     "MAGNITUDE_20PCT_NAV_CHECK": {
       "passed": 0,
       "failed": 0,
-      "skipped": 312
+      "skipped": 425
     },
     "CURRENCY_INTEGRITY": {
-      "passed": 312,
+      "passed": 425,
       "failed": 0,
       "skipped": 0
     },
     "CROSS_SOURCE_VARIANCE": {
       "passed": 0,
       "failed": 0,
-      "skipped": 312
+      "skipped": 425
     },
     "FREQUENCY_CONTINUITY": {
-      "passed": 2,
-      "failed": 8,
-      "skipped": 17
+      "passed": 5,
+      "failed": 10,
+      "skipped": 21
     }
   },
   "flagged_events": [
+    {
+      "fund_id": "CA_VANGUARD_VAB",
+      "event_id": null,
+      "ex_date": null,
+      "rule_name": "FREQUENCY_CONTINUITY",
+      "severity": "WARNING",
+      "message": "Monthly payer has no distribution recorded for: 2026-01"
+    },
+    {
+      "fund_id": "CA_VANGUARD_VSB",
+      "event_id": null,
+      "ex_date": null,
+      "rule_name": "FREQUENCY_CONTINUITY",
+      "severity": "WARNING",
+      "message": "Monthly payer has no distribution recorded for: 2026-01"
+    },
     {
       "fund_id": "US_SPDR_JNK",
       "event_id": null,
