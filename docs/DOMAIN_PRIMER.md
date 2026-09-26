@@ -8,10 +8,10 @@ An **investment fund** is a pooled investment vehicle. It aggregates capital fro
 
 * **Core Structure:** Rather than purchasing individual securities directly, investors acquire shares or units of the fund. The fund is managed according to a defined investment mandate or index methodology.
 * **Net Asset Value (NAV):** The per-share asset value of a fund is represented by its Net Asset Value (NAV), generally calculated as total fund assets minus liabilities divided by the number of outstanding shares:
-  $$\text{NAV} = \frac{\text{Total Assets} - \text{Total Liabilities}}{\text{Total Outstanding Shares}}$$
+  NAV = (Total Assets - Total Liabilities) / Total Outstanding Shares
 * **Illustrative Concept:**
   *(Illustrative example — not real fund data)*
-  If a fund holds assets valued at \$10,000,000 and liabilities of \$500,000 with 1,000,000 shares outstanding, its NAV per share is \$9.50.
+  If a fund holds assets valued at $10,000,000 and liabilities of $500,000 with 1,000,000 shares outstanding, its NAV per share is $9.50.
 
 ---
 
@@ -46,7 +46,7 @@ A **distribution** is a payment made by a mutual fund or ETF to its unitholders 
 * **Economic Effect on NAV:** A distribution represents a transfer of value from the fund's asset base to unitholders. As a general economic effect, on the ex-dividend date, the fund's NAV typically adjusts downward by the per-share distribution amount, subject to normal market fluctuations.
 * **Illustrative Concept:**
   *(Illustrative example — not real fund data)*
-  If a fund has an NAV of \$50.00 and distributes \$1.50 per share, the fund's NAV generally adjusts downward by approximately \$1.50 on the ex-dividend date, reflecting the distribution payment.
+  If a fund has an NAV of $50.00 and distributes $1.50 per share, the fund's NAV generally adjusts downward by approximately $1.50 on the ex-dividend date, reflecting the distribution payment.
 
 ---
 
@@ -59,7 +59,7 @@ After subtracting fund operating expenses and management fees from gross income,
 
 * **Illustrative Concept:**
   *(Illustrative example — not real fund data)*
-  An income fund collects interest and dividends from its bond and equity holdings. After deducting expenses, it distributes \$0.25 per share as an income dividend.
+  An income fund collects interest and dividends from its bond and equity holdings. After deducting expenses, it distributes $0.25 per share as an income dividend.
 
 ---
 
@@ -73,7 +73,7 @@ A **capital gain distribution** occurs when a fund realizes net profits from sel
 * **Timing:** Capital gain distributions are frequently declared toward the end of the calendar year (such as November or December), although funds may declare them at other times as operational needs dictate.
 * **Illustrative Concept:**
   *(Illustrative example — not real fund data)*
-  At the end of its tax year, a fund calculates net realized gains from stock sales and declares a \$1.80 per share capital gain distribution.
+  At the end of its tax year, a fund calculates net realized gains from stock sales and declares a $1.80 per share capital gain distribution.
 
 ---
 
@@ -83,11 +83,11 @@ A fund distribution involves several milestone dates that must be captured from 
 
 | Date Type | Description |
 |:---|:---|
-| **1. Declaration Date** (Announcement Date) | The date on which the fund company or board officially announces the distribution, per-share amounts, and schedule. |
-| **2. Ex-Dividend Date (Ex-Date)** | The date that determines entitlement to the distribution. An investor buying on or after the ex-date does not receive the declared distribution. On this date, the fund's NAV generally adjusts for the payout. |
-| **3. Record Date** | The date on which an investor must be listed on the fund's books to be eligible for the distribution. |
-| **4. Payable Date (Payment Date)** | The date on which the cash distribution is credited or disbursed to investors. |
-| **5. Reinvestment Date** | The date on which distributions are reinvested into additional shares for participating unitholders. |
+| 1. Declaration Date (Announcement Date) | The date on which the fund company or board officially announces the distribution, per-share amounts, and schedule. |
+| 2. Ex-Dividend Date (Ex-Date) | The date that determines entitlement to the distribution. An investor buying on or after the ex-date does not receive the declared distribution. On this date, the fund's NAV generally adjusts for the payout. |
+| 3. Record Date | The date on which an investor must be listed on the fund's books to be eligible for the distribution. |
+| 4. Payable Date (Payment Date) | The date on which the cash distribution is credited or disbursed to investors. |
+| 5. Reinvestment Date | The date on which distributions are reinvested into additional shares for participating unitholders. |
 
 For US mutual funds the record date usually precedes the ex-date (which equals the reinvest date), e.g. VFIAX record 2025-03-26, ex 2025-03-27. The date-order validator therefore checks declaration <= record <= pay and declaration <= ex <= pay for mutual funds, and the full declaration <= ex <= record <= pay order only for ETFs.
 
@@ -124,11 +124,11 @@ Under US regulatory requirements (including SEC disclosures and IRS Form 1099-DI
 
 * **Illustrative Concept:**
   *(Illustrative example — not real fund data)*
-  A US fund distribution of \$1.0000 per share may be composed of:
-  * Ordinary Dividend: \$0.5000 (Qualified: \$0.3500, Non-Qualified: \$0.1500)
-  * Return of Capital: \$0.2000
-  * Long-Term Capital Gain: \$0.3000
-  * **Component Sum:** \$0.5000 + \$0.2000 + \$0.3000 = \$1.0000 per share.
+  A US fund distribution of $1.0000 per share may be composed of:
+  * Ordinary Dividend: $0.5000 (Qualified: $0.3500, Non-Qualified: $0.1500)
+  * Return of Capital: $0.2000
+  * Long-Term Capital Gain: $0.3000
+  * **Component Sum:** $0.5000 + $0.2000 + $0.3000 = $1.0000 per share.
 
 ---
 
@@ -145,11 +145,11 @@ In Canada, mutual fund trusts, corporations, and ETFs characterize distributions
 
 * **Illustrative Concept:**
   *(Illustrative example — not real fund data)*
-  A Canadian ETF distribution of \$0.40000 CAD per unit may be composed of:
-  * Eligible Dividend: \$0.25000
-  * Capital Gains: \$0.10000
-  * Return of Capital: \$0.05000
-  * **Component Sum:** \$0.25000 + \$0.10000 + \$0.05000 = \$0.40000 CAD per unit.
+  A Canadian ETF distribution of $0.40000 CAD per unit may be composed of:
+  * Eligible Dividend: $0.25000
+  * Capital Gains: $0.10000
+  * Return of Capital: $0.05000
+  * **Component Sum:** $0.25000 + $0.10000 + $0.05000 = $0.40000 CAD per unit.
 
 ---
 

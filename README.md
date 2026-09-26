@@ -48,16 +48,16 @@ All figures below are directly reproducible from `quality/detection_report.json`
 
 | Metric Category | Metric | Value | Target / Benchmark |
 |---|---|---|---|
-| **Universe & Volume** | Funds Covered | **100 funds** (60 US, 40 CA) | 100 funds |
-| | Deduplicated Window Checks | **2,501 checks** (2,517 total runs) | 24-month backfill |
-| | Market Events Stored | **425 events** | Verified primary events |
-| **Layer A Detection** | Precision (0 False Positives) | **100.0%** (269 / 269) | $\ge 99.0\%$ |
-| | Recall (Overall, 50 funds) | **74.52%** (269 / 361) | 92 FN due to HTTP 403 blocks |
-| | Recall (Automated Sponsors) | **100.0%** (269 / 269) | **100.0%** on SPDR, Vanguard, RBC |
-| **Layer B Extraction**| Extraction Accuracy | **98.88%** (266 / 269 exact) | High fidelity |
-| | Zero-Intervention Extraction | **100.0%** (0 review queue items) | $\ge 90.0\%$ |
-| **Data Quality Gate** | Pass Rate (0 Critical flags) | **98.97%** (10 warnings, 0 critical)| Clean audit |
-| **Cost & Performance**| Average Compute Cost per Check| **$0.000173** (6.22s, 1.46 HTTP reqs)| Economical & throttled |
+| Universe & Volume | Funds Covered | 100 funds (60 US, 40 CA) | 100 funds |
+| | Deduplicated Window Checks | 2,501 checks (2,517 total runs) | 24-month backfill |
+| | Market Events Stored | 425 events | Verified primary events |
+| Layer A Detection | Precision (0 False Positives) | 100.0% (269 / 269) | ≥ 99.0% |
+| | Recall (Overall, 50 funds) | 74.52% (269 / 361) | 92 FN due to HTTP 403 blocks |
+| | Recall (Automated Sponsors) | 100.0% (269 / 269) | 100.0% on SPDR, Vanguard, RBC |
+| Layer B Extraction | Extraction Accuracy | 98.88% (266 / 269 exact) | High fidelity |
+| | Zero-Intervention Extraction | 100.0% (0 review queue items) | ≥ 90.0% |
+| Data Quality Gate | Pass Rate (0 Critical flags) | 98.97% (10 warnings, 0 critical) | Clean audit |
+| Cost & Performance | Average Compute Cost per Check | $0.000173 (6.22s, 1.46 HTTP reqs) | Economical & throttled |
 
 ---
 
@@ -80,14 +80,14 @@ $env:DETECTOR_CONTACT_NAME = "Your Name"
 
 | Task | Command |
 |---|---|
-| **Full Run** (Backfill 100 funds for 24 months) | `python -m src.database.populator` |
-| **Daily Sweep** (Gap logic re-checks) | `python -m src.sweep_scheduler` |
-| **Scheduler Dry-Run** (Inspect sweep plan offline)| `python -m src.sweep_scheduler --dry-run` |
-| **Targeted Fund Run** (Single fund check) | `python run.py --fund-id US_VANGUARD_VTI` |
-| **Detection Report** (Hit rate, routes, cost) | `python -m src.reports.detection_report` |
-| **Gold Set Evaluator** (Live benchmark against 439 gold rows) | `python -m src.validators.gold_set_evaluator` |
-| **Data Quality Audit** (Validate all stored rows) | `python -m src.validators.run_dq_audit` |
-| **Export All Tables** (CSV and Excel formats) | `python -m src.database.export_db` |
+| Full Run (Backfill 100 funds for 24 months) | `python -m src.database.populator` |
+| Daily Sweep (Gap logic re-checks) | `python -m src.sweep_scheduler` |
+| Scheduler Dry-Run (Inspect sweep plan offline) | `python -m src.sweep_scheduler --dry-run` |
+| Targeted Fund Run (Single fund check) | `python run.py --fund-id US_VANGUARD_VTI` |
+| Detection Report (Hit rate, routes, cost) | `python -m src.reports.detection_report` |
+| Gold Set Evaluator (Live benchmark against 439 gold rows) | `python -m src.validators.gold_set_evaluator` |
+| Data Quality Audit (Validate all stored rows) | `python -m src.validators.run_dq_audit` |
+| Export All Tables (CSV and Excel formats) | `python -m src.database.export_db` |
 
 ---
 

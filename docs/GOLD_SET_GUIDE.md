@@ -7,7 +7,7 @@ The gold set is the ground-truth benchmark used to evaluate the accuracy, precis
 ## 1. Scope & Target Criteria
 
 To provide a robust evaluation benchmark meeting all Assignment 2 requirements, the gold set satisfies:
-- **$\ge 300$ DECLARED events** across **$\ge 50$ funds**, spanning **$\ge 24$ months** (October 2024 through September 2026).
+- **≥ 300 DECLARED events** across **≥ 50 funds**, spanning **≥ 24 months** (October 2024 through September 2026).
 - **NOT_DECLARED rows** included for non-distribution months (essential for measuring false positives and precision).
 - **Primary sources only:** Direct verification against primary sponsor tables and official distribution schedules. Zero secondary market data feeds.
 
@@ -58,7 +58,7 @@ python -m src.validators.gold_set_evaluator
 ```
 
 ### Empirical Results (from `quality/gold_set_evaluation.json`)
-- **Detector Precision:** **100.0%** (269 TP, 0 FP) — Target $\ge 99\%$ **MET**
-- **Detector Recall (Overall):** **74.52%** (269 / 361 TP, 92 FN due to 403 blocks)
-- **Detector Recall (Automated Sponsors):** **100.0%** (269 / 269 TP) — Target $\ge 98\%$ **MET**
-- **Layer B Extraction Accuracy:** **98.88%** (266 / 269 exact matches on ex-date and amount)
+- **Detector Precision:** 100.0% (269 TP, 0 FP) — Target ≥ 99% MET
+- **Detector Recall (Overall):** 74.52% (269 / 361 TP, 92 FN due to 403 blocks)
+- **Detector Recall (Automated Sponsors):** 100.0% (269 / 269 TP) — Target ≥ 98% MET
+- **Layer B Extraction Accuracy:** 98.88% (266 / 269 exact matches on ex-date and amount)

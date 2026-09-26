@@ -16,18 +16,19 @@ We designed, implemented, and evaluated an end-to-end data pipeline for detectin
 - **Validation Gate & Provenance:** Executes multi-rule accounting, calendar sanity, currency integrity, and continuity checks before ingestion, storing full byte-level SHA-256 provenance in SQLite.
 
 ### Core Metrics Summary
+
 | Metric | Measured Result | Benchmark / Target | Source / Notes |
 |---|---|---|---|
-| **Universe Scope** | **100 funds** (60 US, 40 CA) | 100 funds | `config/universe_100.json` |
-| **Total Window Checks** | **2,501 deduped** (2,517 total runs) | 24-month backfill | `quality/detection_report.json` |
-| **Events Stored** | **425 events** | Real market events | `data/exports/distribution_event.csv` |
-| **Detector Precision** | **100.0%** (0 False Positives) | $\ge 99.0\%$ | `quality/gold_set_evaluation.json` |
-| **Detector Recall (Overall)** | **74.52%** (269 / 361 TP) | $\ge 98.0\%$ | Across all 50 gold funds (incl. 403 blocked) |
-| **Detector Recall (Automated Funds)**| **100.0%** (269 / 269 TP) | $\ge 98.0\%$ | SPDR, Vanguard US, Vanguard CA, RBC |
-| **Extraction Accuracy** | **98.88%** (266 / 269 exact) | High fidelity | Exact ex-date & gross amount match |
-| **Zero-Intervention Extraction** | **100.0%** (425 / 425) | $\ge 90.0\%$ | 0 open items in `review_queue` |
-| **Data Quality Pass Rate** | **98.97%** (0 Critical flags, 10 warnings) | Clean audit | `data/exports/dq_audit_report.json` |
-| **Average Cost per Check** | **$0.000173** (6.22s, 1.46 reqs) | Economical | Politeness-governed runtime |
+| Universe Scope | 100 funds (60 US, 40 CA) | 100 funds | `config/universe_100.json` |
+| Total Window Checks | 2,501 deduped (2,517 total runs) | 24-month backfill | `quality/detection_report.json` |
+| Events Stored | 425 events | Real market events | `data/exports/distribution_event.csv` |
+| Detector Precision | 100.0% (0 False Positives) | ≥ 99.0% | `quality/gold_set_evaluation.json` |
+| Detector Recall (Overall) | 74.52% (269 / 361 TP) | ≥ 98.0% | Across all 50 gold funds (incl. 403 blocked) |
+| Detector Recall (Automated Funds) | 100.0% (269 / 269 TP) | ≥ 98.0% | SPDR, Vanguard US, Vanguard CA, RBC |
+| Extraction Accuracy | 98.88% (266 / 269 exact) | High fidelity | Exact ex-date & gross amount match |
+| Zero-Intervention Extraction | 100.0% (425 / 425) | ≥ 90.0% | 0 open items in `review_queue` |
+| Data Quality Pass Rate | 98.97% (0 Critical flags, 10 warnings) | Clean audit | `data/exports/dq_audit_report.json` |
+| Average Cost per Check | $0.000173 (6.22s, 1.46 reqs) | Economical | Politeness-governed runtime |
 
 ---
 
@@ -100,8 +101,8 @@ Synthesis rules:
 
 Per fund, the engine tracks `expected_frequency`, `last_confirmed_event_date`, `last_checked_at`, and `consecutive_unknowns`.
 A lookback sweep over the last **N months** runs when:
-1. The time since the last confirmed event exceeds **1.5x** the expected interval (monthly: 30 d $\rightarrow$ 45 d signal matching the PDF's 45-day threshold, quarterly: 91 d $\rightarrow$ 136 d, semi-annual: 182 d $\rightarrow$ 273 d, annual: 365 d $\rightarrow$ 547 d);
-2. Expected frequency is dynamically learned from stored history (`learn_frequency`, requiring $\ge 4$ events);
+1. The time since the last confirmed event exceeds **1.5x** the expected interval (monthly: 30 d → 45 d signal matching the PDF's 45-day threshold, quarterly: 91 d → 136 d, semi-annual: 182 d → 273 d, annual: 365 d → 547 d);
+2. Expected frequency is dynamically learned from stored history (`learn_frequency`, requiring ≥ 4 events);
 3. UNKNOWN returned **more than twice** consecutively;
 4. At **month-end** (last 3 days of the month);
 5. Throughout the **year-end period** (1 December through 15 January).
@@ -110,7 +111,7 @@ A newly initialized fund receives a **24-month backfill**. Sweeps are partitione
 
 **Default N = 3 months**, configurable in `config/sweep_config.yaml`. Reasons:
 - It covers one full cycle of the quarterly payers that make up most of the non-monthly universe;
-- Sources publish late and amend (Canadian year-end reallocations, estimated $\rightarrow$ final capital gains), and a 3-month window re-reads a restated month twice more after its first appearance;
+- Sources publish late and amend (Canadian year-end reallocations, estimated → final capital gains), and a 3-month window re-reads a restated month twice more after its first appearance;
 - It costs only 3 checks per triggered fund, with page and index responses reused within a single run.
 
 ---
@@ -119,21 +120,22 @@ A newly initialized fund receives a **24-month backfill**. Sweeps are partitione
 
 | Deliverable | PDF Acceptance Criteria | Measured Value / Status | Evaluation |
 |---|---|---|---|
-| **Domain primer** | Reviewed and approved before coding starts | `docs/DOMAIN_PRIMER.md` exists (3-5 pages); written before the later code changes, formal approval not recorded | **PARTLY MET** |
-| **Atomic detector** | Runs over 100 funds; recall >= 98% and precision >= 99% against the gold set | 100 funds run; precision 100%; recall 100% on the 36 automated funds, 74.52% on all 50 gold-set funds (92 misses = HTTP 403 families) | **PARTLY MET** |
-| **Routing layer** | Route logged for 100% of detected events | 100% | **MET** |
-| **Extraction** | >= 90% of detected events fully extracted without manual intervention | 100% (425/425, review queue 0); extraction accuracy 98.88% | **MET** |
-| **Database** | Schema implemented, populated with 24 months of history for 100 funds, idempotent on re-run | schema + idempotency MET; 36 funds with data (depths as written) | **PARTLY MET** |
-| **Validation** | All checks implemented, DQ report generated | 7 checks implemented, pass rate 98.97%, NAV checks and cross-source skipped (no input data) | **MET** |
-| **Gold set** | 300 verified events with evidence links | 361 DECLARED + 78 NOT_DECLARED, 50 funds, 24 months, evidence URL per row; 52 rows manually verified with screenshots | **MET** |
-| **Final memo** | Coverage by fund family and source type, where automation fails, full-universe cost | this document | **MET** |
+| Domain primer | Reviewed and approved before coding starts | `docs/DOMAIN_PRIMER.md` exists (3-5 pages); written before the later code changes, formal approval not recorded | PARTLY MET |
+| Atomic detector | Runs over 100 funds; recall >= 98% and precision >= 99% against the gold set | 100 funds run; precision 100%; recall 100% on the 36 automated funds, 74.52% on all 50 gold-set funds (92 misses = HTTP 403 families) | PARTLY MET |
+| Routing layer | Route logged for 100% of detected events | 100% | MET |
+| Extraction | >= 90% of detected events fully extracted without manual intervention | 100% (425/425, review queue 0); extraction accuracy 98.88% | MET |
+| Database | Schema implemented, populated with 24 months of history for 100 funds, idempotent on re-run | schema + idempotency MET; 36 funds with data (depths as written) | PARTLY MET |
+| Validation | All checks implemented, DQ report generated | 7 checks implemented, pass rate 98.97%, NAV checks and cross-source skipped (no input data) | MET |
+| Gold set | 300 verified events with evidence links | 361 DECLARED + 78 NOT_DECLARED, 50 funds, 24 months, evidence URL per row; 52 rows manually verified with screenshots | MET |
+| Final memo | Coverage by fund family and source type, where automation fails, full-universe cost | this document | MET |
 
 ### Other requirements
+
 | Requirement | Target / Spec | Measured Value / Status | Evaluation |
 |---|---|---|---|
-| **Universe definition** | 100 funds (60 US, 40 CA, ETFs, mutual funds, 15 families) | 100 funds in `config/universe_100.json` (60 US, 40 CA, 81 ETFs, 19 mutual funds) | **MET** |
-| **Backfill & gap logic** | 1.5x interval triggers, year-end sweeps, N=3 months | Implemented in `src/sweep_scheduler.py`, fully unit-tested | **MET** |
-| **Compliance & ToS** | Robots.txt, $\le 10$ req/s SEC, 2.5s domain throttle, zero bot-bypass | Enforced in `src/http_client.py`; documented in `docs/COMPLIANCE.md` | **MET** |
+| Universe definition | 100 funds (60 US, 40 CA, ETFs, mutual funds, 15 families) | 100 funds in `config/universe_100.json` (60 US, 40 CA, 81 ETFs, 19 mutual funds) | MET |
+| Backfill & gap logic | 1.5x interval triggers, year-end sweeps, N=3 months | Implemented in `src/sweep_scheduler.py`, fully unit-tested | MET |
+| Compliance & ToS | Robots.txt, ≤ 10 req/s SEC, 2.5s domain throttle, zero bot-bypass | Enforced in `src/http_client.py`; documented in `docs/COMPLIANCE.md` | MET |
 
 ---
 
@@ -164,7 +166,7 @@ The database uses SQLite with 12 relational tables (exceeding the baseline 9 tab
 The engine enforces strict automated compliance policies in `src/http_client.py` and `src/rate_limiter.py`:
 1. **Descriptive User-Agent & Mandatory Contact:** Format: `FundDistributionDetector/1.0 (+https://github.com/chaitanya893/DPA_Assignment2; <DETECTOR_CONTACT_EMAIL>)`. If `DETECTOR_CONTACT_EMAIL` is unset, zero requests are sent.
 2. **Robots.txt Adherence:** `robots.txt` is fetched once per host and cached. Disallowed paths result in immediate refusal, logged in `crawl_log`.
-3. **Rate Limiting:** SEC EDGAR is throttled to $\le 10$ req/s; all sponsor domains are throttled to a minimum 2.5-second interval between requests per host.
+3. **Rate Limiting:** SEC EDGAR is throttled to ≤ 10 req/s; all sponsor domains are throttled to a minimum 2.5-second interval between requests per host.
 4. **Zero Anti-Bot Circumvention:** No proxy rotation, no header spoofing, and no CAPTCHA solving. If a host responds with HTTP 403 or an anti-bot challenge, the system logs the failure as `UNKNOWN` (`RETRIEVAL_FAILED`) and moves on.
 5. **Terms of Use Status:** Documented in `docs/COMPLIANCE.md`.
 
@@ -177,26 +179,28 @@ The detector was evaluated against `config/gold_set.csv`, a verified gold set of
 - **Evaluation Mechanism:** `src/validators/gold_set_evaluator.py` executed live detector sweeps across all 439 windows without feeding any gold labels into the detector.
 
 ### Gold Set Performance Results
+
 | Metric | Value | Target | Status |
 |---|---|---|---|
-| **Precision** | **100.0%** (269 / 269) | $\ge 99.0\%$ | **MET** (0 False Positives) |
-| **Recall (Overall)** | **74.52%** (269 / 361) | $\ge 98.0\%$ | 92 False Negatives due to HTTP 403 blocks |
-| **Recall (Automated Sponsors)** | **100.0%** (269 / 269) | $\ge 98.0\%$ | **MET** on SPDR, Vanguard US, Vanguard CA, RBC |
-| **True Positives (TP)** | 269 | - | Accurate declarations identified |
-| **False Positives (FP)** | 0 | 0 | Zero phantom distributions declared |
-| **False Negatives (FN)** | 92 | 0 | All 92 were blocked sponsors (UNKNOWN) |
-| **True Negatives (TN)** | 78 | - | 78 NOT_DECLARED rows, of which 24 returned UNKNOWN (counted as no FP, not TN) |
-| **F1 Score** | **85.4%** | - | Balance across unblocked and blocked sponsors |
+| Precision | 100.0% (269 / 269) | ≥ 99.0% | MET (0 False Positives) |
+| Recall (Overall) | 74.52% (269 / 361) | ≥ 98.0% | 92 False Negatives due to HTTP 403 blocks |
+| Recall (Automated Sponsors) | 100.0% (269 / 269) | ≥ 98.0% | MET on SPDR, Vanguard US, Vanguard CA, RBC |
+| True Positives (TP) | 269 | - | Accurate declarations identified |
+| False Positives (FP) | 0 | 0 | Zero phantom distributions declared |
+| False Negatives (FN) | 92 | 0 | All 92 were blocked sponsors (UNKNOWN) |
+| True Negatives (TN) | 78 | - | 78 NOT_DECLARED rows, of which 24 returned UNKNOWN (counted as no FP, not TN) |
+| F1 Score | 85.4% | - | Balance across unblocked and blocked sponsors |
 
 ### Breakdown by Fund Family
+
 | Fund Family | Evaluated Funds | TP | FN | FP | TN | UNK | Recall | Precision | Notes |
 |---|---|---|---|---|---|---|---|---|---|
-| **Vanguard (US)** | 20 | 135 | 0 | 0 | 30 | 0 | **100.0%** | **100.0%** | Accurate detection |
-| **State Street SPDR** | 7 | 56 | 0 | 0 | 14 | 0 | **100.0%** | **100.0%** | Accurate detection |
-| **Vanguard Canada** | 7 | 62 | 0 | 0 | 10 | 0 | **100.0%** | **100.0%** | Accurate detection |
-| **RBC GAM** | 2 | 16 | 0 | 0 | 0 | 0 | **100.0%** | **100.0%** | Accurate detection |
-| **BlackRock iShares** | 9 | 0 | 62 | 0 | 16 | 62 | 0.0% | N/A | Blocked by HTTP 403 |
-| **Charles Schwab** | 5 | 0 | 30 | 0 | 8 | 30 | 0.0% | N/A | Blocked by HTTP 403 |
+| Vanguard (US) | 20 | 135 | 0 | 0 | 30 | 0 | 100.0% | 100.0% | Accurate detection |
+| State Street SPDR | 7 | 56 | 0 | 0 | 14 | 0 | 100.0% | 100.0% | Accurate detection |
+| Vanguard Canada | 7 | 62 | 0 | 0 | 10 | 0 | 100.0% | 100.0% | Accurate detection |
+| RBC GAM | 2 | 16 | 0 | 0 | 0 | 0 | 100.0% | 100.0% | Accurate detection |
+| BlackRock iShares | 9 | 0 | 62 | 0 | 16 | 62 | 0.0% | N/A | Blocked by HTTP 403 |
+| Charles Schwab | 5 | 0 | 30 | 0 | 8 | 30 | 0.0% | N/A | Blocked by HTTP 403 |
 | **Total** | **50** | **269** | **92** | **0** | **78** | **92** | **74.52%** | **100.0%** | Zero false positives |
 
 ---
@@ -221,9 +225,9 @@ The 24-month backfill sweep across all 100 funds executed **2,501 deduplicated f
 
 | Status | Count | Percentage | Operational Meaning |
 |---|---|---|---|
-| **DECLARED** | **404** | **16.15%** | Distribution confirmed and extracted with Tier 1/2 evidence |
-| **NOT_DECLARED** | **294** | **11.76%** | Complete calendar coverage confirmed zero distribution in window |
-| **UNKNOWN** | **1,803** | **72.09%** | Insufficient coverage, HTTP 403 block, or missing table |
+| DECLARED | 404 | 16.15% | Distribution confirmed and extracted with Tier 1/2 evidence |
+| NOT_DECLARED | 294 | 11.76% | Complete calendar coverage confirmed zero distribution in window |
+| UNKNOWN | 1,803 | 72.09% | Insufficient coverage, HTTP 403 block, or missing table |
 | **Total Windows** | **2,501** | **100.00%** | Complete 24-month universe coverage |
 
 ---
@@ -234,10 +238,10 @@ Layer B automatically selected the appropriate extraction route for all 404 decl
 
 | Extraction Route | Checks Taken | Events Produced | Share of Events | Extraction Quality |
 |---|---|---|---|---|
-| **API (JSON)** | 247 | 256 | 60.24% | Vanguard US API profile & RBC GAM fundData JSON |
-| **PDF / Excel** | 98 | 104 | 24.47% | SPDR official distribution Excel schedule (PDF/Excel route) |
-| **HTML Table** | 59 | 65 | 15.29% | Vanguard Canada distribution history HTML tables |
-| **Filing Regex / Manual** | 0 | 0 | 0.00% | 0 items sent to manual review |
+| API (JSON) | 247 | 256 | 60.24% | Vanguard US API profile & RBC GAM fundData JSON |
+| PDF / Excel | 98 | 104 | 24.47% | SPDR official distribution Excel schedule (PDF/Excel route) |
+| HTML Table | 59 | 65 | 15.29% | Vanguard Canada distribution history HTML tables |
+| Filing Regex / Manual | 0 | 0 | 0.00% | 0 items sent to manual review |
 | **Total** | **404** | **425** | **100.00%** | **100% automated extraction** |
 
 - **Route Logging Rate:** **100.0%** (All checks recorded `route_taken` in `detection_run`).
@@ -252,21 +256,21 @@ Across the 1,803 `UNKNOWN` window checks, failures reflect the exact reasons log
 
 | Fund Family | Jurisdiction | DECLARED | NOT_DECLARED | UNKNOWN | Exact Logged Root Cause / Notes |
 |---|---|---|---|---|---|
-| **State Street SPDR** | US | 98 | 77 | 0 | **100% automated** (official Excel schedule parsed under PDF/Excel route) |
-| **Vanguard US** | US | 199 | 154 | 148 | **Automated for $\ge$ Mar 2025**; 148 UNKNOWN due to profile page depth limit (~18 mo) |
-| **Vanguard Canada** | CA | 59 | 61 | 55 | **Automated for recent distributions**; 55 UNKNOWN because page shows only last 10 distributions |
-| **RBC GAM** | CA | 48 | 2 | 75 | **Automated for ETFs**; 75 UNKNOWN because 2 mutual funds publish only yearly totals and RBN returns 404 |
-| **BlackRock iShares** | US | 0 | 0 | 350 | HTTP 403 Forbidden |
-| **BlackRock iShares Canada**| CA | 0 | 0 | 200 | HTTP 403 Forbidden |
-| **Charles Schwab** | US | 0 | 0 | 125 | HTTP 403 Forbidden |
-| **Invesco** | US | 0 | 0 | 75 | HTTP 403 Forbidden |
-| **PIMCO** | US | 0 | 0 | 50 | HTTP 403 Forbidden |
-| **Mackenzie Investments** | CA | 0 | 0 | 25 | HTTP 403 Forbidden |
-| **Global X Canada** | CA | 0 | 0 | 75 | HTTP 403 Forbidden |
-| **BMO GAM** | CA | 0 | 0 | 200 | `robots.txt` disallow (and universe URL returns 404) |
-| **CI GAM** | CA | 0 | 0 | 75 | HTTP 400 Bad Request (+ one fund with no data) |
-| **TD Asset Management** | CA | 0 | 0 | 125 | FundCard URLs redirect to a list page (no distribution table) |
-| **Fidelity Investments** | US | 0 | 0 | 225 | No table / JavaScript page (static HTML contains no distribution data) |
+| State Street SPDR | US | 98 | 77 | 0 | 100% automated (official Excel schedule parsed under PDF/Excel route) |
+| Vanguard US | US | 199 | 154 | 148 | Automated for ≥ Mar 2025; 148 UNKNOWN due to profile page depth limit (~18 mo) |
+| Vanguard Canada | CA | 59 | 61 | 55 | Automated for recent distributions; 55 UNKNOWN because page shows only last 10 distributions |
+| RBC GAM | CA | 48 | 2 | 75 | Automated for ETFs; 75 UNKNOWN because 2 mutual funds publish only yearly totals and RBN returns 404 |
+| BlackRock iShares | US | 0 | 0 | 350 | HTTP 403 Forbidden |
+| BlackRock iShares Canada | CA | 0 | 0 | 200 | HTTP 403 Forbidden |
+| Charles Schwab | US | 0 | 0 | 125 | HTTP 403 Forbidden |
+| Invesco | US | 0 | 0 | 75 | HTTP 403 Forbidden |
+| PIMCO | US | 0 | 0 | 50 | HTTP 403 Forbidden |
+| Mackenzie Investments | CA | 0 | 0 | 25 | HTTP 403 Forbidden |
+| Global X Canada | CA | 0 | 0 | 75 | HTTP 403 Forbidden |
+| BMO GAM | CA | 0 | 0 | 200 | `robots.txt` disallow (and universe URL returns 404) |
+| CI GAM | CA | 0 | 0 | 75 | HTTP 400 Bad Request (+ one fund with no data) |
+| TD Asset Management | CA | 0 | 0 | 125 | FundCard URLs redirect to a list page (no distribution table) |
+| Fidelity Investments | US | 0 | 0 | 225 | No table / JavaScript page (static HTML contains no distribution data) |
 
 ---
 
@@ -290,8 +294,8 @@ Pass Rate (excl flags) : 98.97%
 ```
 
 ### Rule-by-Rule Breakdown
-1. **`COMPONENT_SUM_CHECK`:** 104 passed, 0 failed, 321 skipped (no components published). Exact mathematical equality verified within $\$0.0005$.
-2. **`DATE_ORDERING_SANITY`:** 425 passed, 0 failed. Chronological ordering verified: $\text{Declaration Date} \le \text{Ex-Date} \le \text{Record Date} \le \text{Payable Date}$.
+1. **`COMPONENT_SUM_CHECK`:** 104 passed, 0 failed, 321 skipped (no components published). Exact mathematical equality verified within $0.0005.
+2. **`DATE_ORDERING_SANITY`:** 425 passed, 0 failed. Chronological ordering verified: Declaration Date ≤ Ex-Date ≤ Record Date ≤ Payable Date.
 3. **`CURRENCY_INTEGRITY`:** 425 passed, 0 failed. Exact currency alignment verified (USD for US funds, CAD for Canadian funds).
 4. **`NAV_DECLINE_CONSISTENCY` / `MAGNITUDE_20PCT_NAV_CHECK`:** Implemented in code, but 425 skipped (no NAV feed supplied).
 5. **`FREQUENCY_CONTINUITY`:** 5 passed, 10 warning flags, 21 skipped.
@@ -303,9 +307,9 @@ Pass Rate (excl flags) : 98.97%
 
 Resource consumption was measured continuously across all 2,517 check executions:
 - **Measured Averages per Check:** 1.46 HTTP requests, 568.5 KB data transfer, 6.22 seconds duration (governed by 2.5s domain politeness).
-- **Daily Routine Checks:** 100 funds $\times$ 1 check = 100 checks $\approx$ 146 HTTP requests, 56.8 MB transfer, ~10.4 minutes sequential wall-clock time (or ~2.5 minutes parallelized across separate host domains). At \$0.10/compute-hour, daily routine cost = **\$0.017 per day**.
-- **Triggered Sweeps:** A fund triggers an $N=3$ month lookback only when the cadence threshold is exceeded (e.g. 45 days for monthly, 136 days for quarterly) or during year-end (1 Dec – 15 Jan). 3 checks $\times$ triggered funds $\times$ \$0.000173/check $\approx$ **\$0.0005 per fund sweep**.
-- **Full 24-Month Backfill:** 2,501 checks $\times$ 6.22 s $\approx$ 4.3 compute-hours $\approx$ **\$0.43 total compute cost**.
+- **Daily Routine Checks:** 100 funds × 1 check = 100 checks ≈ 146 HTTP requests, 56.8 MB transfer, ~10.4 minutes sequential wall-clock time (or ~2.5 minutes parallelized across separate host domains). At $0.10/compute-hour, daily routine cost = **$0.017 per day**.
+- **Triggered Sweeps:** A fund triggers an N=3 month lookback only when the cadence threshold is exceeded (e.g. 45 days for monthly, 136 days for quarterly) or during year-end (1 Dec – 15 Jan). 3 checks × triggered funds × $0.000173/check ≈ **$0.0005 per fund sweep**.
+- **Full 24-Month Backfill:** 2,501 checks × 6.22 s ≈ 4.3 compute-hours ≈ **$0.43 total compute cost**.
 
 ---
 
