@@ -238,7 +238,7 @@ Layer B automatically selected the appropriate extraction route for all 404 decl
 
 | Extraction Route | Checks Taken | Events Produced | Share of Events | Extraction Quality |
 |---|---|---|---|---|
-| API (JSON) | 247 | 256 | 60.24% | Vanguard US API profile & RBC GAM fundData JSON |
+| API (JSON) | 247 | 256 | 60.24% | Vanguard US profile page (embedded JSON) & RBC GAM fundData JSON |
 | PDF / Excel | 98 | 104 | 24.47% | SPDR official distribution Excel schedule (PDF/Excel route) |
 | HTML Table | 59 | 65 | 15.29% | Vanguard Canada distribution history HTML tables |
 | Filing Regex / Manual | 0 | 0 | 0.00% | 0 items sent to manual review |
