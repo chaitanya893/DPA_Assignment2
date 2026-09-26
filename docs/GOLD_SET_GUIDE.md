@@ -9,13 +9,13 @@ The gold set is the ground-truth benchmark used to evaluate the accuracy, precis
 To provide a robust evaluation benchmark meeting all Assignment 2 requirements, the gold set satisfies:
 - **$\ge 300$ DECLARED events** across **$\ge 50$ funds**, spanning **$\ge 24$ months** (October 2024 through September 2026).
 - **NOT_DECLARED rows** included for non-distribution months (essential for measuring false positives and precision).
-- **Primary sources only:** Direct verification against SEC EDGAR Form 19(a)-1/497 filings, official sponsor dividend press releases, PDF distribution schedules, or TSX/TMX dividend bulletins. Zero secondary market data feeds.
+- **Primary sources only:** Direct verification against primary sponsor tables and official distribution schedules. Zero secondary market data feeds.
 
 ---
 
 ## 2. Dataset Structure: `config/gold_set.csv`
 
-The gold set is stored in [`config/gold_set.csv`](file:///c:/Users/chait/Desktop/DPA_Project2/config/gold_set.csv) with **439 total rows** (361 `DECLARED`, 78 `NOT_DECLARED`) across 50 funds:
+The gold set is stored in [../config/gold_set.csv](../config/gold_set.csv) with **439 total rows** (361 `DECLARED`, 78 `NOT_DECLARED`) across 50 funds:
 
 | Column | Description |
 |---|---|
@@ -35,15 +35,13 @@ The gold set is stored in [`config/gold_set.csv`](file:///c:/Users/chait/Desktop
 
 ## 3. How This Gold Set Was Built
 
-The gold set was manually curated through rigorous human verification:
-1. **Fund Selection:** 50 representative funds were selected across 6 major fund families (Vanguard US, State Street SPDR, Vanguard Canada, RBC GAM, BlackRock iShares, and Charles Schwab), incorporating equity ETFs, fixed income ETFs, REITs, monthly payers, and quarterly payers.
-2. **Primary Evidence Extraction:** Every single distribution fact was manually researched and cross-referenced with primary sources:
-   - **SEC EDGAR:** Form 19(a)-1 notices, Form 497 definitive filings, and N-CSR annual reports.
-   - **Sponsor Distribution Notices:** State Street Global Advisors (SSGA) annual distribution schedules, Vanguard official distribution tables, and RBC Global Asset Management fund distributions.
-   - **Canadian Regulatory Bulletins:** TSX/TMX dividend notices for Canadian ETFs.
-3. **Manual Proofs & Evidence Repository:**
-   - Full manual verification workbook: [`docs/gold_set_evidence/gold_set_for_verification_Done.xlsx`](file:///c:/Users/chait/Desktop/DPA_Project2/docs/gold_set_evidence/gold_set_for_verification_Done.xlsx).
-   - Screenshot visual proofs catalog: [`docs/gold_set_evidence/Screenshots_of_Distributions_Manual_Proofs/`](file:///c:/Users/chait/Desktop/DPA_Project2/docs/gold_set_evidence/Screenshots_of_Distributions_Manual_Proofs/).
+The gold set in `config/gold_set.csv` was compiled from primary source distribution tables:
+- **Primary Sources Used:** SSGA official SPDR distributions Excel; Vanguard US profile pages; `vanguard.ca` distribution history tables; `rbcgam.com` Distributions tab; `ishares.com` Distributions table; `schwabassetmanagement.com` Distributions table. (Not SEC 19(a)/497 filings, not SPDR PDF press releases, not TMX bulletins.)
+- **Verification Method:** 52 rows across all 6 source families were verified manually by the author against the source pages (evidence: [gold_set_evidence/](gold_set_evidence/)); the remaining rows were compiled from the same primary sources with AI assistance and are labelled as such in `config/gold_set.csv`.
+- **Exclusions & Isolation:** Nothing was taken from the database or the detector output; `US_VANGUARD_VWO` March 2026 was excluded (no row on the source page, not confirmable from a second source).
+- **Manual Proofs & Evidence Repository:**
+  - Full manual verification workbook: [gold_set_evidence/gold_set_for_verification_Done.xlsx](gold_set_evidence/gold_set_for_verification_Done.xlsx).
+  - Screenshot visual proofs catalog: [gold_set_evidence/Screenshots_of_Distributions_Manual_Proofs/](gold_set_evidence/Screenshots_of_Distributions_Manual_Proofs/).
 
 ---
 

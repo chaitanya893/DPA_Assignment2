@@ -16,7 +16,7 @@ This document outlines the ethical and regulatory boundaries enforced by the Fun
 | **Domain Politeness & Throttling** | Minimum 2.5 seconds inter-request interval enforced per domain across the entire application runtime (`DETECTOR_MIN_INTERVAL_SECONDS`). | Project Ethical Guidelines |
 | **SEC Fair Access** | Strictly capped at $\le 10$ requests per second for SEC EDGAR endpoints (`www.sec.gov`, `data.sec.gov`). | SEC EDGAR Fair Access Policy |
 | **Exponential Backoff & Retries** | 3 attempts maximum with exponential backoff ($1.5^n$ seconds) plus random jitter; 15-second hard socket timeout. Retries 429/5xx only; 4xx client errors fail immediately. | Resilience Best Practices |
-| **Zero Bot Bypass Policy** | If a host responds with HTTP 403 Forbidden, 429 Too Many Requests, or a CAPTCHA/Cloudflare/Akamai challenge, the system **never attempts proxy rotation, header spoofing, or CAPTCHA solving**. It logs the block and records an `UNKNOWN` status. | Assignment 2 Core Requirement |
+| **Zero Bot Bypass Policy** | If a host responds with HTTP 403 Forbidden, 429 Too Many Requests, or a CAPTCHA challenge, the system **never attempts proxy rotation, header spoofing, or CAPTCHA solving**. It logs the block and records an `UNKNOWN` status. | Assignment 2 Core Requirement |
 | **No Private Walls / Paywalls** | The pipeline never creates accounts, bypasses paywalls, or accesses gated portals. Only public filings and unauthenticated fund pages are queried. | Assignment 2 Source Rules |
 | **Secrets & Privacy Management** | Contact emails, names, and database connection strings reside exclusively in environment variables (`$env:DETECTOR_CONTACT_EMAIL`). No credentials are committed to version control. | Security Best Practices |
 
@@ -28,16 +28,16 @@ All data sources evaluated or used by the engine have been formally reviewed aga
 
 | Source | Role in Hierarchy | robots.txt Status | Terms of Use Decision | Review Date | Clause / Justification Relied On |
 |---|---|---|---|---|---|
-| **SEC EDGAR** (`www.sec.gov`, `data.sec.gov`) | Tier 1 (US Regulatory Filings, Form 19(a)-1, 497, N-CSR) | Allowed per EDGAR policy | **USED** | 2026-09-26 | SEC "Accessing EDGAR Data" Fair Access Policy: automated retrieval permitted with declared User-Agent and rate $\le 10$ req/s. |
-| **TMX / SEDAR+** (`www.tmx.com`) | Tier 1 (Canadian Regulatory Notices & Dividend Bulletins) | Checked per request | **USED** | 2026-09-26 | TMX Group Terms of Use: public dividend announcements accessible for informational querying; 2.5s politeness observed. |
-| **Vanguard US Investor Pages** (`investor.vanguard.com/.../profile/{ticker}`) | Tier 2 (Fund Sponsor Profile Page & Embedded Table) | Disallows only `/images/`, `/static/`, `/404` | **USED** | 2026-09-26 | Vanguard Terms of Use: public investor product profile pages; informational distribution table parsed with rate limiting; no derivative resale. |
-| **Vanguard Canada** (`vanguard.ca/.../funds/detail/{ticker}`) | Tier 2 (Canadian Fund Distribution Pages) | Allows product pages | **USED** | 2026-09-26 | Vanguard Investments Canada Terms of Use: public distribution schedule tables; single fetch per fund per sweep. |
-| **Vanguard Advisor Site API** (`advisors.vanguard.com/.../distributions`) | Tier 2 (Advisor REST Endpoint) | Allows `/investments/` | **NOT USED** | 2026-09-26 | *advisors.vanguard.com/site/terms-and-conditions* section "Limited license and restrictions on use": restricts use to personal noncommercial advisor use, prohibiting derivative works and automated scraping without prior written approval. |
-| **State Street SPDR** (`ssga.com/.../distributions.pdf`) | Tier 2 (Sponsor Distribution Schedule PDF) | Disallows `/internal/`, `/cgi-bin/` | **USED** | 2026-09-26 | SSGA Website Terms and Conditions: public product distribution notice PDFs; fetched and parsed via `pdfplumber` without redistribution. |
-| **RBC Global Asset Management** (`rbcgam.com/.../fund-data`) | Tier 2 (Sponsor Fund Data Endpoint) | Allows public fund overview | **USED** | 2026-09-26 | RBC GAM Terms of Use: public ETF distribution overview payload; parsed with strict rate limiting for accurate investor record keeping. |
-| **BlackRock iShares US / Canada** (`ishares.com`) | Tier 2 (Sponsor Distribution Pages) | Disallows specific dynamic paths | **EVALUATED (BLOCKED)** | 2026-09-26 | iShares Terms of Use: automated requests received HTTP 403 from edge security (Cloudflare/Akamai); respected and logged as `UNKNOWN` without circumvention. |
-| **Charles Schwab, Fidelity, Invesco, PIMCO** | Tier 2 (Sponsor Product Pages) | Checked per request | **EVALUATED (BLOCKED / SPA)** | 2026-09-26 | Sponsor Terms of Use: public endpoints attempted under robots.txt; 403 blocks and SPA rendering logged as `UNKNOWN` without circumvention. |
-| **BMO GAM, TD AM, CI GAM, Global X, Mackenzie** | Tier 2 (Canadian Sponsor Pages) | Checked per request | **EVALUATED (BLOCKED / SPA)** | 2026-09-26 | Sponsor Terms of Use: public endpoints attempted under robots.txt; edge blocks and client-rendered SPAs logged as `UNKNOWN` without circumvention. |
+| **SEC EDGAR** (`www.sec.gov`, `data.sec.gov`) | Tier 1 (US Regulatory Filings, Form 19(a)-1, 497, N-CSR) | Allowed per EDGAR policy | **USED** | 2026-09-26 | SEC "Accessing EDGAR Data" Fair Access Policy: max 10 req/s, declared User-Agent. |
+| **TMX / SEDAR+** (`www.tmx.com`) | Tier 1 (Canadian Regulatory Notices & Dividend Bulletins) | Checked per request | **USED** | 2026-09-26 | terms page not quoted - decision based on robots.txt and public availability |
+| **Vanguard US Investor Pages** (`investor.vanguard.com/.../profile/{ticker}`) | Tier 2 (Fund Sponsor Profile Page & Embedded Table) | Disallows only `/images/`, `/static/`, `/404` | **USED** | 2026-09-26 | terms page not quoted - decision based on robots.txt and public availability |
+| **Vanguard Canada** (`vanguard.ca/.../funds/detail/{ticker}`) | Tier 2 (Canadian Fund Distribution Pages) | Allows product pages | **USED** | 2026-09-26 | terms page not quoted - decision based on robots.txt and public availability |
+| **Vanguard Advisor Site API** (`advisors.vanguard.com/.../distributions`) | Tier 2 (Advisor REST Endpoint) | Allows `/investments/` | **NOT USED** | 2026-09-26 | *advisors.vanguard.com/site/terms-and-conditions* section "Limited license and restrictions on use": "solely for your personal, informational, and noncommercial use or as expressly authorized by Vanguard in writing"; commercial use by intermediaries needs "Vanguard's prior approval"; and users "may not ... copy ... reproduce ... create derivative works from ... data". Building a distribution database is a derivative/commercial use, so the source was not used. |
+| **State Street SPDR** (`ssga.com/.../distributions`) | Tier 2 (Sponsor Distribution Schedule Excel) | Disallows `/internal/`, `/cgi-bin/` | **USED** | 2026-09-26 | terms page not quoted - decision based on robots.txt and public availability |
+| **RBC Global Asset Management** (`rbcgam.com/.../fund-data`) | Tier 2 (Sponsor Fund Data Endpoint) | Allows public fund overview | **USED** | 2026-09-26 | terms page not quoted - decision based on robots.txt and public availability |
+| **BlackRock iShares US / Canada** (`ishares.com`) | Tier 2 (Sponsor Distribution Pages) | Disallows specific dynamic paths | **EVALUATED (BLOCKED)** | 2026-09-26 | terms page not quoted - decision based on robots.txt and public availability |
+| **Charles Schwab, Fidelity, Invesco, PIMCO** | Tier 2 (Sponsor Product Pages) | Checked per request | **EVALUATED (BLOCKED / SPA)** | 2026-09-26 | terms page not quoted - decision based on robots.txt and public availability |
+| **BMO GAM, TD AM, CI GAM, Global X, Mackenzie** | Tier 2 (Canadian Sponsor Pages) | Checked per request | **EVALUATED (BLOCKED / SPA)** | 2026-09-26 | terms page not quoted - decision based on robots.txt and public availability |
 | **Yahoo Finance / Market Data Portals** | Tier 3 (Secondary Corroboration) | N/A | **NOT USED (DISABLED)** | 2026-09-26 | Disabled by architecture (`SourceOrchestrator(enable_tier3=False)`) to maintain 100% primary source integrity. |
 
 ---
@@ -45,7 +45,7 @@ All data sources evaluated or used by the engine have been formally reviewed aga
 ## 3. Data Provenance & Integrity
 
 Every distribution event ingested into `distribution_event` is immutably linked to an `event_evidence` record and a `raw_document` record:
-- **Exact Raw Content:** Stored in `raw_document` (HTML, JSON, PDF binary, or filing text).
+- **Exact Raw Content:** Stored in `raw_document` (HTML, JSON, Excel binary, or filing text).
 - **Cryptographic Hash:** SHA-256 hash computed and indexed for every retrieved document.
 - **Retrieval Metadata:** Exact timestamp, URL, HTTP response status, and source tier recorded in `crawl_log`.
 - **Zero Hallucination Guarantee:** No distribution fact can be stored without referencing an immutable raw document row.
