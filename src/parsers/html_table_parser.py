@@ -162,14 +162,22 @@ def html_table_rows(html_content: str) -> list[tuple[list[str], list[str]]]:
             r"<tr[^>]*>([\s\S]*?)</tr>", t_m.group(1), re.IGNORECASE
         ):
             r_html = r_m.group(1)
-            th_cells = re.findall(r"<th[^>]*>([\s\S]*?)</th>", r_html, re.IGNORECASE)
-            if th_cells:
-                headers = [_clean_text(c).lower() for c in th_cells]
+            all_cell_matches = list(
+                re.finditer(r"<(th|td)[^>]*>([\s\S]*?)</\1>", r_html, re.IGNORECASE)
+            )
+            if not all_cell_matches:
                 continue
-            td_cells = re.findall(r"<td[^>]*>([\s\S]*?)</td>", r_html, re.IGNORECASE)
-            if not td_cells:
+
+            has_th = any(m.group(1).lower() == "th" for m in all_cell_matches)
+            has_td = any(m.group(1).lower() == "td" for m in all_cell_matches)
+
+            # Only a <tr> with <th> cells and NO <td> is a header row
+            if has_th and not has_td:
+                headers = [_clean_text(m.group(2)).lower() for m in all_cell_matches]
                 continue
-            cells = [_clean_text(c) for c in td_cells]
+
+            # A <tr> with <td> (or both <th> and <td>) is a data row
+            cells = [_clean_text(m.group(2)) for m in all_cell_matches]
             if not headers:
                 joined = " ".join(cells).lower()
                 if any(k in joined for k in _HEADER_HINTS) and not any(
@@ -259,7 +267,8 @@ def parse_table_rows(
                 continue
 
         dates: dict[str, date] = {}
-        gross_amt: float | None = None
+        total_amt: float | None = None
+        fallback_gross_amt: float | None = None
         dist_type = "Income"
         components: list[ExtractedComponent] = []
         is_estimated = False
@@ -289,9 +298,16 @@ def parse_table_rows(
                         component_name=h, component_type=comp_type, amount=amt
                     )
                 )
-            elif gross_amt is None and any(k in h for k in _GROSS_HEADER_WORDS):
-                gross_amt = amt
+            else:
+                if "total" in h and any(k in h for k in _GROSS_HEADER_WORDS):
+                    if total_amt is None:
+                        total_amt = amt
+                elif fallback_gross_amt is None and any(
+                    k in h for k in _GROSS_HEADER_WORDS
+                ):
+                    fallback_gross_amt = amt
 
+        gross_amt = total_amt if total_amt is not None else fallback_gross_amt
         ex_d = dates.get("ex")
         notes = ""
         if gross_amt is None and components:

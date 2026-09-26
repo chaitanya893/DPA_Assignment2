@@ -1,52 +1,62 @@
 # Detection report (generated from the database)
 
-- **checks**: 525
-- **funds_checked**: 20
+- **checks**: 901
+- **total_check_executions**: 917
+- **funds_checked**: 36
 ## status_counts
-- **UNKNOWN**: 153
-- **DECLARED**: 205
-- **NOT_DECLARED**: 167
+- **NOT_DECLARED**: 294
+- **DECLARED**: 404
+- **UNKNOWN**: 203
 
-- **hit_rate_pct**: 39.05
-- **not_declared_rate_pct**: 31.81
-- **unknown_rate_pct**: 29.14
+- **hit_rate_pct**: 44.84
+- **not_declared_rate_pct**: 32.63
+- **unknown_rate_pct**: 22.53
 ## unknown_reasons
-- **INSUFFICIENT_EVIDENCE**: 153
+- **INSUFFICIENT_EVIDENCE**: 203
 
 ## unknown_reasons_by_family
-- **Vanguard**: {'INSUFFICIENT_EVIDENCE': 153}
+- **Vanguard**: {'INSUFFICIENT_EVIDENCE': 148}
+- **Vanguard Canada**: {'INSUFFICIENT_EVIDENCE': 55}
 
 ## route_taken_on_declared
-- **API**: 205
+- **PDF**: 98
+- **API**: 247
+- **HTML_TABLE**: 59
 
 - **route_logged_pct**: 100.0
 - **extracted_without_manual_pct**: 100.0
-- **events_stored**: 208
+- **events_stored**: 425
 ## events_by_route
-- **API**: 208
+- **PDF**: 104
+- **API**: 256
+- **HTML_TABLE**: 65
 
 ## events_by_source_tier
-- **2**: 208
+- **2**: 425
 
-- **events_with_published_components_pct**: 0.0
-- **review_queue_open**: 6
+- **events_with_published_components_pct**: 24.47
+- **review_queue_open**: 0
 ## review_reasons
-- **VALIDATION_FAILED**: 6
 
 ## coverage_by_family
-- **Vanguard**: {'UNKNOWN': 153, 'DECLARED': 205, 'NOT_DECLARED': 167}
+- **RBC Global Asset Management**: {'NOT_DECLARED': 2, 'DECLARED': 48}
+- **State Street SPDR**: {'NOT_DECLARED': 77, 'DECLARED': 98}
+- **Vanguard**: {'UNKNOWN': 148, 'DECLARED': 199, 'NOT_DECLARED': 154}
+- **Vanguard Canada**: {'UNKNOWN': 55, 'DECLARED': 59, 'NOT_DECLARED': 61}
 
 ## coverage_by_country
-- **US**: {'UNKNOWN': 153, 'DECLARED': 205, 'NOT_DECLARED': 167}
+- **CA**: {'UNKNOWN': 55, 'DECLARED': 107, 'NOT_DECLARED': 63}
+- **US**: {'NOT_DECLARED': 231, 'DECLARED': 297, 'UNKNOWN': 148}
 
 ## crawl_outcomes_by_source
-- **sec_edgar_submissions_api**: {'SUCCESS': 21}
-- **official_fund_sponsor_page**: {'SUCCESS': 21}
-- **sec_edgar_filings**: {'SUCCESS': 510}
+- **sec_edgar_submissions_api**: {'SUCCESS': 33}
+- **official_fund_sponsor_page**: {'SUCCESS': 37}
+- **sec_edgar_filings**: {'SUCCESS': 564, 'SOURCE_UNAVAILABLE': 48, 'RETRIEVAL_FAILED': 9}
+- **sedar_tmx_notices**: {'INSUFFICIENT_EVIDENCE': 9}
 
-- **avg_http_requests_per_check**: 1.05
-- **avg_kb_per_check**: 342.4
-- **avg_seconds_per_check**: 2.75
+- **avg_http_requests_per_check**: 0.76
+- **avg_kb_per_check**: 311.0
+- **avg_seconds_per_check**: 8.15
 - **usd_per_compute_hour_assumed**: 0.1
-- **avg_compute_cost_usd_per_check**: 7.6e-05
+- **avg_compute_cost_usd_per_check**: 0.000226
 - **gold_set**: not evaluated yet (python -m src.validators.gold_set_evaluator)

@@ -19,6 +19,7 @@ from __future__ import annotations
 import argparse
 import json
 from collections import Counter, defaultdict
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -56,34 +57,59 @@ def build_report(
         reviews = list(s.scalars(select(ReviewQueue)).all())
         crawls = list(s.scalars(select(CrawlLog)).all())
 
-        n = len(runs)
-        status = Counter(r.status for r in runs)
-        declared = [r for r in runs if r.status == "DECLARED"]
+        latest_by_window: dict[tuple[str, Any, Any], DetectionRun] = {}
+        for r in runs:
+            key = (r.fund_id, r.window_start, r.window_end)
+            if key not in latest_by_window:
+                latest_by_window[key] = r
+            else:
+                curr = latest_by_window[key]
+                r_ts = r.checked_at or datetime.min.replace(tzinfo=timezone.utc)
+                curr_ts = curr.checked_at or datetime.min.replace(tzinfo=timezone.utc)
+                if r_ts > curr_ts:
+                    latest_by_window[key] = r
+        latest_runs = list(latest_by_window.values())
+
+        n_windows = len(latest_runs)
+        n_total = len(runs)
+        status = Counter(r.status for r in latest_runs)
+        declared = [r for r in latest_runs if r.status == "DECLARED"]
         auto = [r for r in declared if r.route_taken and r.route_taken != "MANUAL"]
         fam: dict[str, Counter] = defaultdict(Counter)
-        for r in runs:
+        for r in latest_runs:
             fam[families.get(r.fund_id, "?")][r.status] += 1
         by_country: dict[str, Counter] = defaultdict(Counter)
-        for r in runs:
+        for r in latest_runs:
             by_country[countries.get(r.fund_id, "?")][r.status] += 1
         seconds = sum(r.duration_seconds for r in runs)
 
         fam_reasons: dict[str, Counter] = defaultdict(Counter)
-        for r in runs:
+        for r in latest_runs:
             if r.status == "UNKNOWN" and r.unknown_reason:
                 fam_reasons[families.get(r.fund_id, "?")][r.unknown_reason] += 1
 
         report: dict[str, Any] = {
-            "checks": n,
-            "funds_checked": len({r.fund_id for r in runs}),
+            "checks": n_windows,
+            "total_check_executions": n_total,
+            "funds_checked": len({r.fund_id for r in latest_runs}),
             "status_counts": dict(status),
-            "hit_rate_pct": round(status["DECLARED"] / n * 100, 2) if n else None,
-            "not_declared_rate_pct": (
-                round(status["NOT_DECLARED"] / n * 100, 2) if n else None
+            "hit_rate_pct": (
+                round(status["DECLARED"] / n_windows * 100, 2) if n_windows else None
             ),
-            "unknown_rate_pct": round(status["UNKNOWN"] / n * 100, 2) if n else None,
+            "not_declared_rate_pct": (
+                round(status["NOT_DECLARED"] / n_windows * 100, 2)
+                if n_windows
+                else None
+            ),
+            "unknown_rate_pct": (
+                round(status["UNKNOWN"] / n_windows * 100, 2) if n_windows else None
+            ),
             "unknown_reasons": dict(
-                Counter(r.unknown_reason for r in runs if r.status == "UNKNOWN")
+                Counter(
+                    r.unknown_reason
+                    for r in latest_runs
+                    if r.status == "UNKNOWN" and r.unknown_reason
+                )
             ),
             "unknown_reasons_by_family": {
                 k: dict(v) for k, v in sorted(fam_reasons.items())
@@ -123,17 +149,21 @@ def build_report(
                 ).items()
             },
             "avg_http_requests_per_check": (
-                round(sum(r.http_requests for r in runs) / n, 2) if n else None
-            ),
-            "avg_kb_per_check": (
-                round(sum(r.bytes_downloaded for r in runs) / n / 1024, 1)
-                if n
+                round(sum(r.http_requests for r in runs) / n_total, 2)
+                if n_total
                 else None
             ),
-            "avg_seconds_per_check": round(seconds / n, 2) if n else None,
+            "avg_kb_per_check": (
+                round(sum(r.bytes_downloaded for r in runs) / n_total / 1024, 1)
+                if n_total
+                else None
+            ),
+            "avg_seconds_per_check": (round(seconds / n_total, 2) if n_total else None),
             "usd_per_compute_hour_assumed": usd_per_compute_hour,
             "avg_compute_cost_usd_per_check": (
-                round(seconds / n / 3600 * usd_per_compute_hour, 6) if n else None
+                round(seconds / n_total / 3600 * usd_per_compute_hour, 6)
+                if n_total
+                else None
             ),
         }
 

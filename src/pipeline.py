@@ -504,12 +504,28 @@ class DistributionPipeline:
             unknowns = 0
         else:
             unknowns += 1
+        from sqlalchemy import select
+
+        from src.database.models import DistributionEvent
+        from src.sweep_scheduler import learn_frequency
+
+        ex_dates = list(
+            repo.session.scalars(
+                select(DistributionEvent.ex_date).where(
+                    DistributionEvent.fund_id == fund.fund_id,
+                    DistributionEvent.is_superseded.is_(False),
+                )
+            ).all()
+        )
+        learned = learn_frequency(ex_dates)
+        configured_freq = (
+            fund.expected_frequency
+            or ("MONTHLY" if fund.is_monthly_payer else "QUARTERLY")
+        ).upper()
+
         repo.upsert_detection_state(
             fund.fund_id,
-            expected_frequency=(
-                fund.expected_frequency
-                or ("MONTHLY" if fund.is_monthly_payer else "QUARTERLY")
-            ).upper(),
+            expected_frequency=learned or configured_freq,
             last_confirmed_event_date=last_confirmed,
             last_checked_at=now,
             consecutive_unknowns=unknowns,

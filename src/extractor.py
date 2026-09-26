@@ -241,6 +241,24 @@ class ExtractionEngine:
             )
             if events:
                 return ExtractionRoute.API, events
+        if (
+            rec.content_text
+            and "const fundData" in rec.content_text
+            and fund.fund_family == "RBC Global Asset Management"
+        ):
+            from src.parsers.rbc_fund_data_parser import parse_rbc_fund_data
+
+            events = parse_rbc_fund_data(
+                rec.content_text,
+                fund_id=fund.fund_id,
+                ticker=fund.ticker or "",
+                source_url=url,
+                window_start=ws,
+                window_end=we,
+                source_tier=tier,
+            )
+            if events:
+                return ExtractionRoute.API, events
         # 2. HTML table
         if (
             rec.content_text

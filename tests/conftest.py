@@ -12,6 +12,7 @@ from src.rate_limiter import reset_shared_rate_limiter
 @pytest.fixture(autouse=True)
 def _offline_test_environment(monkeypatch: pytest.MonkeyPatch, tmp_path) -> None:
     monkeypatch.setenv("DETECTOR_CONTACT_EMAIL", "tests@example.com")
+    monkeypatch.delenv("DETECTOR_CONTACT_NAME", raising=False)
     monkeypatch.delenv("DETECTOR_USER_AGENT", raising=False)
     monkeypatch.setenv("DETECTOR_MIN_INTERVAL_SECONDS", "0")
     monkeypatch.setenv("DETECTOR_RESPECT_ROBOTS", "0")

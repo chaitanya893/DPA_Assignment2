@@ -6,7 +6,7 @@ All test fixtures use synthetic data and test doubles. No real network calls are
 from __future__ import annotations
 
 import json
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from unittest.mock import MagicMock, patch
 
 import httpx
@@ -470,3 +470,332 @@ def test_full_year_schedule_safety_buffer() -> None:
         strategies=[strategy_8],
     )
     assert res_8.status == DetectionStatus.NOT_DECLARED
+
+
+def test_detection_report_counts_latest_window_and_all_executions(tmp_path) -> None:
+    from src.database.connection import get_engine, init_db, session_scope
+    from src.database.models import DetectionRun, FundMaster
+    from src.reports.detection_report import build_report
+
+    db_path = tmp_path / "test_report.db"
+    db_url = f"sqlite:///{db_path}"
+    engine = get_engine(db_url)
+    init_db(engine)
+
+    with session_scope(engine) as s:
+        fund = FundMaster(
+            fund_id="TEST_F1",
+            fund_name="Test Fund 1",
+            fund_family="Vanguard",
+            country="US",
+            fund_type="ETF",
+        )
+        s.add(fund)
+        s.flush()
+
+        # Older run: UNKNOWN
+        run1 = DetectionRun(
+            check_id="chk_1",
+            run_id="run_old",
+            fund_id="TEST_F1",
+            window_start=date(2026, 1, 1),
+            window_end=date(2026, 1, 31),
+            status="UNKNOWN",
+            unknown_reason="TIMEOUT",
+            evidence_json="[]",
+            http_requests=1,
+            bytes_downloaded=100,
+            duration_seconds=1.0,
+            checked_at=datetime(2026, 2, 1, 10, 0, tzinfo=timezone.utc),
+        )
+        # Newer run: DECLARED
+        run2 = DetectionRun(
+            check_id="chk_2",
+            run_id="run_new",
+            fund_id="TEST_F1",
+            window_start=date(2026, 1, 1),
+            window_end=date(2026, 1, 31),
+            status="DECLARED",
+            route_taken="HTML_TABLE",
+            evidence_json="[]",
+            http_requests=2,
+            bytes_downloaded=500,
+            duration_seconds=1.5,
+            checked_at=datetime(2026, 2, 1, 12, 0, tzinfo=timezone.utc),
+        )
+        s.add_all([run1, run2])
+
+    rep = build_report(db_url)
+    assert rep["checks"] == 1
+    assert rep["total_check_executions"] == 2
+    assert rep["status_counts"] == {"DECLARED": 1}
+    assert rep["hit_rate_pct"] == 100.0
+    assert rep["avg_http_requests_per_check"] == 1.5
+
+
+def test_learn_frequency_offline() -> None:
+    from src.sweep_scheduler import learn_frequency
+
+    # 1. 12 monthly dates -> MONTHLY
+    monthly_dates = [date(2025, m, 15) for m in range(1, 13)]
+    assert learn_frequency(monthly_dates) == "MONTHLY"
+
+    # 2. 8 quarterly dates -> QUARTERLY
+    quarterly_dates = [
+        date(2024, 3, 15),
+        date(2024, 6, 15),
+        date(2024, 9, 15),
+        date(2024, 12, 15),
+        date(2025, 3, 15),
+        date(2025, 6, 15),
+        date(2025, 9, 15),
+        date(2025, 12, 15),
+    ]
+    assert learn_frequency(quarterly_dates) == "QUARTERLY"
+
+    # 3. 3 dates (< 4 distinct months) -> None
+    three_dates = [date(2025, 1, 15), date(2025, 2, 15), date(2025, 3, 15)]
+    assert learn_frequency(three_dates) is None
+
+    # 4. Monthly + extra December capital gain date -> MONTHLY
+    monthly_plus_dec = monthly_dates + [date(2025, 12, 28)]
+    assert learn_frequency(monthly_plus_dec) == "MONTHLY"
+
+
+def test_decide_uses_learned_frequency_from_state_and_configured_fallback() -> None:
+    from src.database.models import FundDetectionState
+    from src.sweep_scheduler import SweepConfig, decide
+    from src.universe_loader import UniverseFund
+
+    fund = UniverseFund(
+        fund_id="TEST_DECIDE_FUND",
+        country="US",
+        fund_name="Test Decide Fund",
+        fund_type="ETF",
+        fund_family="TestFamily",
+        official_source_url="https://sponsor.example.com/fund",
+        expected_frequency="QUARTERLY",  # configured
+        is_monthly_payer=False,
+    )
+
+    today = date(2026, 9, 15)
+    cfg = SweepConfig(gap_multiplier=1.5)
+
+    # Case 1: State has learned expected_frequency="MONTHLY"
+    # Gap is 50 days (> 1.5 * 30 = 45 days for MONTHLY, but <= 1.5 * 91 = 136.5 for QUARTERLY)
+    state_learned = FundDetectionState(
+        fund_id="TEST_DECIDE_FUND",
+        expected_frequency="MONTHLY",
+        consecutive_unknowns=0,
+        last_confirmed_event_date=today - timedelta(days=50),
+        last_checked_at=datetime(2026, 9, 10, tzinfo=timezone.utc),
+        backfill_completed_at=datetime(2026, 1, 1, tzinfo=timezone.utc),
+    )
+    decision_learned = decide(fund, state_learned, today, cfg)
+    assert decision_learned.mode == "LOOKBACK"
+    assert any("(learned)" in r for r in decision_learned.reasons)
+    assert any("MONTHLY" in r for r in decision_learned.reasons)
+
+    # Case 2: State has no learned frequency (or empty) -> fallback to configured QUARTERLY
+    # Gap is 50 days (not late for QUARTERLY 91 days: 50 <= 136.5) -> ROUTINE
+    state_configured = FundDetectionState(
+        fund_id="TEST_DECIDE_FUND",
+        expected_frequency="",  # empty / fallback
+        consecutive_unknowns=0,
+        last_confirmed_event_date=today - timedelta(days=50),
+        last_checked_at=datetime(2026, 9, 10, tzinfo=timezone.utc),
+        backfill_completed_at=datetime(2026, 1, 1, tzinfo=timezone.utc),
+    )
+    decision_configured = decide(fund, state_configured, today, cfg)
+    assert decision_configured.mode == "ROUTINE"
+
+    # Case 3: When late with configured frequency -> reason mentions configured (confirmed by history or not enough history)
+    state_configured_late = FundDetectionState(
+        fund_id="TEST_DECIDE_FUND",
+        expected_frequency="",
+        consecutive_unknowns=0,
+        last_confirmed_event_date=today - timedelta(days=140),
+        last_checked_at=datetime(2026, 9, 10, tzinfo=timezone.utc),
+        backfill_completed_at=datetime(2026, 1, 1, tzinfo=timezone.utc),
+    )
+    decision_configured_late = decide(fund, state_configured_late, today, cfg)
+    assert decision_configured_late.mode == "LOOKBACK"
+    assert any(
+        "configured (confirmed by history or not enough history)" in r
+        for r in decision_configured_late.reasons
+    )
+    assert any("QUARTERLY" in r for r in decision_configured_late.reasons)
+
+    # Case 4: State expected_frequency equals configured frequency -> not labeled as "learned"
+    state_same = FundDetectionState(
+        fund_id="TEST_DECIDE_FUND",
+        expected_frequency="QUARTERLY",
+        consecutive_unknowns=0,
+        last_confirmed_event_date=today - timedelta(days=140),
+        last_checked_at=datetime(2026, 9, 10, tzinfo=timezone.utc),
+        backfill_completed_at=datetime(2026, 1, 1, tzinfo=timezone.utc),
+    )
+    decision_same = decide(fund, state_same, today, cfg)
+    assert decision_same.mode == "LOOKBACK"
+    assert any(
+        "configured (confirmed by history or not enough history)" in r
+        for r in decision_same.reasons
+    )
+
+
+def test_vanguard_canada_th_scope_row_table_extraction() -> None:
+    from src.parsers.html_table_parser import parse_html_distribution_tables
+
+    html = """
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Ex-dividend date</th>
+          <th>Record date</th>
+          <th>Payment date</th>
+          <th>Cash distribution per unit</th>
+          <th>Reinvestment distribution per unit</th>
+          <th>Total distribution per unit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Income</th>
+          <td>Sep 18 2026</td>
+          <td>Sep 18 2026</td>
+          <td>Sep 25 2026</td>
+          <td>$0.18622</td>
+          <td>—</td>
+          <td>$0.18622</td>
+        </tr>
+        <tr>
+          <th scope="row">Income</th>
+          <td>Aug 21 2026</td>
+          <td>Aug 21 2026</td>
+          <td>Aug 28 2026</td>
+          <td>$0.21121</td>
+          <td>—</td>
+          <td>$0.21121</td>
+        </tr>
+        <tr>
+          <th scope="row">Income</th>
+          <td>Jul 17 2026</td>
+          <td>Jul 17 2026</td>
+          <td>Jul 24 2026</td>
+          <td>$0.17681</td>
+          <td>—</td>
+          <td>$0.17681</td>
+        </tr>
+        <tr>
+          <th scope="row">CGCA</th>
+          <td>Dec 30 2025</td>
+          <td>Dec 30 2025</td>
+          <td>Jan 07 2026</td>
+          <td>—</td>
+          <td>$0.76462</td>
+          <td>$0.76462</td>
+        </tr>
+      </tbody>
+    </table>
+    """
+
+    events = parse_html_distribution_tables(
+        html,
+        fund_id="CA_VANGUARD_VDY",
+        country="CA",
+        source_url="https://www.vanguard.ca/en/investor/products/products-group/etfs/VDY",
+        ticker="VDY",
+    )
+
+    assert len(events) == 4
+    income_events = [e for e in events if e.distribution_type == "Income"]
+    cgca_events = [e for e in events if e.distribution_type == "CGCA"]
+
+    assert len(income_events) == 3
+    assert [e.gross_amount for e in income_events] == [0.18622, 0.21121, 0.17681]
+    assert [e.ex_date for e in income_events] == [
+        date(2026, 9, 18),
+        date(2026, 8, 21),
+        date(2026, 7, 17),
+    ]
+
+    assert len(cgca_events) == 1
+    assert cgca_events[0].gross_amount == 0.76462
+    assert cgca_events[0].ex_date == date(2025, 12, 30)
+
+
+def test_rbc_fund_data_parser_extraction() -> None:
+    from src.parsers.rbc_fund_data_parser import parse_rbc_fund_data
+
+    html = """
+    <!DOCTYPE html>
+    <html>
+      <head><title>RCD ETF</title></head>
+      <body>
+        <script>
+          const fundData = {
+            "ticker": "RCD",
+            "fundName": "RBC Canadian Discount Bond ETF",
+            "distributions": {
+              "2025": {
+                "details": [
+                  {
+                    "cashDistr": 0.095,
+                    "recordDate": "2025-11-21",
+                    "totalDistr": 0.095,
+                    "exDivDate": "2025-11-21",
+                    "reInvDistr": null,
+                    "payDate": "2025-11-28"
+                  },
+                  {
+                    "cashDistr": 0.095,
+                    "recordDate": "2025-12-30",
+                    "totalDistr": 3.488,
+                    "exDivDate": "2025-12-30",
+                    "reInvDistr": 3.393,
+                    "payDate": "2026-01-05"
+                  }
+                ]
+              }
+            }
+          };
+        </script>
+      </body>
+    </html>
+    """
+
+    # 1. Successful parse with normal month and reinvested December row
+    events = parse_rbc_fund_data(
+        html,
+        fund_id="CA_RBC_RCD",
+        ticker="RCD",
+        source_url="https://www.rbcgam.com/en/ca/products/etfs/RCD/detail",
+    )
+    assert len(events) == 2
+
+    # Normal month
+    nov = events[0]
+    assert nov.ex_date == date(2025, 11, 21)
+    assert nov.record_date == date(2025, 11, 21)
+    assert nov.payable_date == date(2025, 11, 28)
+    assert nov.gross_amount == 0.095
+    assert nov.currency == "CAD"
+    assert nov.extraction_route == ExtractionRoute.API
+
+    # December row: total 3.488 with reinvested note
+    dec = events[1]
+    assert dec.ex_date == date(2025, 12, 30)
+    assert dec.record_date == date(2025, 12, 30)
+    assert dec.payable_date == date(2026, 1, 5)
+    assert dec.gross_amount == 3.488
+    assert "reinvested (non-cash)" in dec.validation_notes
+
+    # 2. Ticker mismatch -> returns []
+    mismatch_events = parse_rbc_fund_data(
+        html,
+        fund_id="CA_RBC_OTHER",
+        ticker="OTHER",
+        source_url="https://www.rbcgam.com/en/ca/products/etfs/OTHER/detail",
+    )
+    assert mismatch_events == []

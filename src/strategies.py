@@ -1291,6 +1291,37 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
                 if _dates_in_window(ev, window_start, window_end):
                     json_evidences.append(ev)
             evidences.extend(json_evidences)
+        elif (
+            record.content_text
+            and "const fundData" in record.content_text
+            and fund
+            and fund.fund_family == "RBC Global Asset Management"
+        ):
+            from src.parsers.rbc_fund_data_parser import parse_rbc_fund_data
+
+            rbc_extracted = parse_rbc_fund_data(
+                record.content_text,
+                fund_id=fund.fund_id if fund else "UNKNOWN",
+                ticker=fund.ticker or "" if fund else "",
+                source_url=url,
+                window_start=window_start,
+                window_end=window_end,
+            )
+            for dist in rbc_extracted:
+                ev = Evidence(
+                    source_id="official_fund_sponsor_page",
+                    source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
+                    url=url,
+                    retrieved_at=record.retrieved_at,
+                    snippet_or_locator=f"RBC fundData distribution: ex_date={dist.ex_date}, amount={dist.gross_amount}",
+                    declaration_date_found=dist.declaration_date,
+                    ex_date_found=dist.ex_date,
+                    record_date_found=dist.record_date,
+                    payable_date_found=dist.payable_date,
+                )
+                if _dates_in_window(ev, window_start, window_end):
+                    json_evidences.append(ev)
+            evidences.extend(json_evidences)
         elif record.content_text and "data-vgn-funds-profile" in record.content_text:
             from src.parsers.vanguard_profile_parser import parse_vanguard_profile
 
@@ -1476,6 +1507,21 @@ class OfficialSponsorWebStrategy(BaseDetectionStrategy):
                 source_tier=SourceTier.TIER_2_PRIMARY_UNSTRUCTURED,
             )
             all_json_ex_dates = [d.ex_date for d in all_spdr if d.ex_date]
+        elif (
+            record.content_text
+            and "const fundData" in record.content_text
+            and fund
+            and fund.fund_family == "RBC Global Asset Management"
+        ):
+            from src.parsers.rbc_fund_data_parser import parse_rbc_fund_data
+
+            all_rbc = parse_rbc_fund_data(
+                record.content_text,
+                fund_id=fund.fund_id if fund else "UNKNOWN",
+                ticker=fund.ticker or "" if fund else "",
+                source_url=url,
+            )
+            all_json_ex_dates = [d.ex_date for d in all_rbc if d.ex_date]
         elif record.content_text and "data-vgn-funds-profile" in record.content_text:
             from src.parsers.vanguard_profile_parser import parse_vanguard_profile
 

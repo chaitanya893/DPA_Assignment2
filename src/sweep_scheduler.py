@@ -32,6 +32,7 @@ from __future__ import annotations
 import argparse
 import calendar
 import logging
+import statistics
 from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -128,6 +129,56 @@ def expected_interval_days(frequency: str | None) -> int:
     return INTERVAL_DAYS.get((frequency or "QUARTERLY").upper(), 91)
 
 
+def learn_frequency(ex_dates: list[date]) -> str | None:
+    """Learn distribution cadence from historical ex-dates (PDF Phase 1).
+
+    - Deduplicates same-month payments (e.g. regular + year-end special in December is 1 monthly interval).
+    - Requires >= 4 distinct months. If fewer, returns None.
+    - Computes median gap in days between consecutive payment months.
+    - <= 45 days -> 'MONTHLY', <= 120 -> 'QUARTERLY', <= 240 -> 'SEMI_ANNUAL', else 'ANNUAL'.
+    """
+    if not ex_dates:
+        return None
+
+    valid_dates: set[date] = set()
+    for d in ex_dates:
+        if d is None:
+            continue
+        if isinstance(d, datetime):
+            valid_dates.add(d.date())
+        elif isinstance(d, date):
+            valid_dates.add(d)
+
+    if not valid_dates:
+        return None
+
+    sorted_dates = sorted(valid_dates)
+    months_seen: set[tuple[int, int]] = set()
+    distinct_month_dates: list[date] = []
+    for d in sorted_dates:
+        ym = (d.year, d.month)
+        if ym not in months_seen:
+            months_seen.add(ym)
+            distinct_month_dates.append(d)
+
+    if len(distinct_month_dates) < 4:
+        return None
+
+    gaps = [
+        (distinct_month_dates[i] - distinct_month_dates[i - 1]).days
+        for i in range(1, len(distinct_month_dates))
+    ]
+    med = statistics.median(gaps)
+
+    if med <= 45:
+        return "MONTHLY"
+    if med <= 120:
+        return "QUARTERLY"
+    if med <= 240:
+        return "SEMI_ANNUAL"
+    return "ANNUAL"
+
+
 def decide(
     fund: UniverseFund,
     state: FundDetectionState | None,
@@ -135,9 +186,22 @@ def decide(
     cfg: SweepConfig,
 ) -> SweepDecision:
     """Decide what to check for one fund today."""
-    freq = (
+    configured_freq = (
         fund.expected_frequency or ("MONTHLY" if fund.is_monthly_payer else "QUARTERLY")
     ).upper()
+
+    state_freq = (
+        state.expected_frequency.upper()
+        if state is not None and getattr(state, "expected_frequency", None)
+        else None
+    )
+
+    if state_freq and state_freq != configured_freq:
+        freq = state_freq
+        freq_source = "learned"
+    else:
+        freq = state_freq or configured_freq
+        freq_source = "configured (confirmed by history or not enough history)"
 
     if state is None or state.backfill_completed_at is None:
         return SweepDecision(
@@ -157,9 +221,9 @@ def decide(
         elapsed = (today - reference).days
         if elapsed > cfg.gap_multiplier * interval:
             reasons.append(
-                f"{elapsed} days since last confirmed event > {cfg.gap_multiplier} x {interval}-day {freq} interval"
+                f"{elapsed} days since last confirmed event > {cfg.gap_multiplier} x {interval}-day {freq} interval ({freq_source})"
             )
-    if state.consecutive_unknowns > cfg.unknown_threshold:
+    if (getattr(state, "consecutive_unknowns", 0) or 0) > cfg.unknown_threshold:
         reasons.append(
             f"UNKNOWN {state.consecutive_unknowns} times in a row (> {cfg.unknown_threshold})"
         )
